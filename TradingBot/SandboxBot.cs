@@ -139,24 +139,40 @@ namespace TradingBot
                     {
                         ++idx;
                         var now = DateTime.Now;
-                        var candleList = await _context.MarketCandlesAsync(figi, now.AddHours(-3), now, CandleInterval.FiveMinutes);
-                        if (candleList.Candles.Count > 3)
+                        var candleList = await _context.MarketCandlesAsync(figi, now.AddMinutes(-20), now, CandleInterval.FiveMinutes);
+                        //if (candleList.Candles.Count > 3)
                         {
-                            decimal delta = candleList.Candles[candleList.Candles.Count - 1].Close / candleList.Candles[0].Close;
-                            decimal diff = candleList.Candles[candleList.Candles.Count - 1].Close - candleList.Candles[0].Close;
-                            if (delta >= (decimal)1.01)
+                            //decimal delta = candleList.Candles[candleList.Candles.Count - 1].Close / candleList.Candles[0].Close;
+                            //decimal diff = candleList.Candles[candleList.Candles.Count - 1].Close - candleList.Candles[0].Close;
+                            //if (delta >= (decimal)1.01)
+                            //{
+                            //    // check that we are in trend
+                            //    int in_trend = 2;
+                            //    for (int j = 1; j < candleList.Candles.Count - 1; ++j)
+                            //    {
+                            //        var expected = candleList.Candles[0].Close + diff / candleList.Candles.Count;
+                            //        if (candleList.Candles[j].High <= expected * (decimal)1.001 && candleList.Candles[j].Low >= expected * (decimal)0.999)
+                            //            ++in_trend;
+                            //    }
+
+                            //    if (in_trend / candleList.Candles.Count >= 0.8)
+                            //        Console.WriteLine("{0}: {1} ->> {2}", ticker, candleList.Candles[0].Close, candleList.Candles[candleList.Candles.Count - 1].Close);
+                            //}
+
+                            //decimal delta = candleList.Candles[candleList.Candles.Count - 1].Close / candleList.Candles[0].Close;
+                            //decimal diff = candleList.Candles[candleList.Candles.Count - 1].Close - candleList.Candles[0].Close;
+                            //if (delta >= (decimal)1.002)
                             {
                                 // check that we are in trend
-                                int in_trend = 2;
-                                for (int j = 1; j < candleList.Candles.Count - 1; ++i)
+                                int in_trend = 0;
+                                for (int j = candleList.Candles.Count - 3; j < candleList.Candles.Count; ++j)
                                 {
-                                    var low = candleList.Candles[j].Close;
-                                    var expected = candleList.Candles[0].Close + diff / j;
-                                    if (candleList.Candles[j].High <= expected * (decimal)1.001 && candleList.Candles[j].Low >= expected * (decimal)0.999)
+                                    decimal delta = candleList.Candles[j].Close / candleList.Candles[j].Open;
+                                    if (delta >= (decimal)1.002)
                                         ++in_trend;
                                 }
 
-                                if (in_trend / candleList.Candles.Count >= 0.9)
+                                if (in_trend >= 3)
                                     Console.WriteLine("{0}: {1} ->> {2}", ticker, candleList.Candles[0].Close, candleList.Candles[candleList.Candles.Count - 1].Close);
                             }
                         }
