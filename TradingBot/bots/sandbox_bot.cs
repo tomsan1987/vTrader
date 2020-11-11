@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 
 namespace TradingBot
 {
-    public class SandboxBot : IAsyncDisposable
+    public class Sandbox_bot : IAsyncDisposable
     {
         //private static readonly Random Random = new Random();
         private readonly Context _context;
@@ -23,7 +23,7 @@ namespace TradingBot
         private Dictionary<string, CandlePayload> _quotes = new Dictionary<string, CandlePayload>();
         private string _config_path;
 
-        public SandboxBot(string token, string config_path)
+        public Sandbox_bot(string token, string config_path)
         {
             var connection = ConnectionFactory.GetConnection(token);
             _context = connection.Context;
