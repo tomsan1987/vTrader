@@ -21,6 +21,7 @@ namespace TradingBot
         protected List<MarketInstrument> _instruments;
         protected IList<string> _watch_list;
         protected Dictionary<string, string> _figi_to_ticker = new Dictionary<string, string>();
+        protected Dictionary<string, MarketInstrument> _figi_to_instrument = new Dictionary<string, MarketInstrument>();
         protected Dictionary<string, string> _ticker_to_figi = new Dictionary<string, string>();
         protected string _config_path;
 
@@ -54,11 +55,17 @@ namespace TradingBot
                 {
                     _figi_to_ticker.Add(_instruments[idx].Figi, _instruments[idx].Ticker);
                     _ticker_to_figi.Add(_instruments[idx].Ticker, _instruments[idx].Figi);
+                    _figi_to_instrument.Add(_instruments[idx].Figi, _instruments[idx]);
                 }
             }
         }
         public async ValueTask DisposeAsync()
         {
+        }
+
+        protected decimal get_min_increment(string figi)
+        {
+            return _figi_to_instrument[figi].MinPriceIncrement;
         }
     }
 }

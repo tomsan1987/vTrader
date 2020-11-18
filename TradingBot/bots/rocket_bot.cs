@@ -17,6 +17,9 @@ namespace TradingBot
     {
         private bool _work = true;
         private Dictionary<string, CandlePayload> _quotes = new Dictionary<string, CandlePayload>();
+        private Dictionary<string, Quote_logger> _loggers = new Dictionary<string, Quote_logger>();
+        PlacedLimitOrder _order;
+
 
         public Rocket_bot(Context context, string config_path) : base(context, config_path)
         {
@@ -48,6 +51,7 @@ namespace TradingBot
                         {
                             await _context.SendStreamingRequestAsync(StreamingRequest.SubscribeCandle(figi, CandleInterval.Minute));
                             ok = true;
+                            _loggers.Add(figi, new Quote_logger(figi, ticker));
                         }
                         catch (OpenApiException)
                         {
@@ -83,13 +87,34 @@ namespace TradingBot
                     {
                         //q.Close = cr.Payload.Close;
                     }
+
+                    //var res = _context.CancelOrderAsync(_order.OrderId);
+                    //res.Wait();
+                    //var test = 0;
                 }
                 else
                 {
                     _quotes.Add(cr.Payload.Figi, cr.Payload);
+
+                    try
+                    {
+                        // place limit order BUY
+                        //var price = Helpers.round_price(cr.Payload.Close * (decimal)0.9, get_min_increment(cr.Payload.Figi));
+                        //LimitOrder order = new LimitOrder(cr.Payload.Figi, 1, OperationType.Buy, price);
+                        //var res = _context.PlaceLimitOrderAsync(order);
+                        //res.Wait();
+                        //_order = res.Result;
+
+                    }
+                    catch (Exception exx)
+                    {
+                        int wtf = 0;
+                    }
                 }
 
                 Console.WriteLine("{0}:{1}", _figi_to_ticker[cr.Payload.Figi], cr.Payload.Close);
+
+                _loggers[cr.Payload.Figi].on_quote_received(cr);
             }
             else
             {
