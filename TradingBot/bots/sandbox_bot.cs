@@ -98,7 +98,7 @@ namespace TradingBot
 
             while (_work)
             {
-                Task.Delay(1000);
+                //Task.Delay(1000);
             }
 
             //await _context.SendStreamingRequestAsync(StreamingRequest.UnsubscribeCandle(randomInstrument.Figi, CandleInterval.Minute));

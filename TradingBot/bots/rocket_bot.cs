@@ -15,10 +15,9 @@ namespace TradingBot
     //     The Bot subcribes for instruments from watch list and keeps track of abrupt change of price.
     public class Rocket_bot : Base_bot
     {
-        private bool _work = true;
         private Dictionary<string, CandlePayload> _quotes = new Dictionary<string, CandlePayload>();
         private Dictionary<string, Quote_logger> _loggers = new Dictionary<string, Quote_logger>();
-        PlacedLimitOrder _order;
+        //PlacedLimitOrder _order;
 
 
         public Rocket_bot(Context context, string config_path) : base(context, config_path)
@@ -106,9 +105,9 @@ namespace TradingBot
                         //_order = res.Result;
 
                     }
-                    catch (Exception exx)
+                    catch (Exception ex)
                     {
-                        int wtf = 0;
+                        Console.WriteLine(ex.Message);
                     }
                 }
 

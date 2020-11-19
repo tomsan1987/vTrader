@@ -17,17 +17,20 @@ namespace TradingBot
             // Rocket bot
             await using var bot = new Rocket_bot(connection.Context, args[1]);
             await bot.StartAsync();
+            while (true)
+                System.Threading.Thread.Sleep(50000);
 
             /*/
 
             // Screener
             await using var bot = new Screener(connection.Context, args[1]);
             await bot.StartAsync();
-
-            //*/
-
             while (true)
-                System.Threading.Thread.Sleep(50000);
+            {
+                bot.ShowStats();
+                System.Threading.Thread.Sleep(60000);
+            }
+            //*/
         }
     }
 }
