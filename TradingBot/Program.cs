@@ -13,9 +13,9 @@ namespace TradingBot
             var token = (await File.ReadAllTextAsync(args[0])).Trim();
             var connection = ConnectionFactory.GetConnection(token);
 
-            /*
+            //*
             // Rocket bot
-            await using var bot = new Rocket_bot(connection.Context, args[1]);
+            await using var bot = new RocketBot(connection.Context, args[1]);
             await bot.StartAsync();
             while (true)
                 System.Threading.Thread.Sleep(50000);

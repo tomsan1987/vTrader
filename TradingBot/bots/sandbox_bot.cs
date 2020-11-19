@@ -10,31 +10,18 @@ using System.Runtime.InteropServices;
 
 namespace TradingBot
 {
-    public class Sandbox_bot : IAsyncDisposable
+    public class SandboxBot : BaseBot
     {
         //private static readonly Random Random = new Random();
-        private readonly Context _context;
-        private string _accountId;
         private bool _work = true;
-        private List<MarketInstrument> _instruments;
-        private IList<string> _watch_list;
-        private Dictionary<string, string> _figi_to_ticker = new Dictionary<string, string>();
-        private Dictionary<string, string> _ticker_to_figi = new Dictionary<string, string>();
         private Dictionary<string, CandlePayload> _quotes = new Dictionary<string, CandlePayload>();
-        private string _config_path;
 
-        public Sandbox_bot(string token, string config_path)
+        public SandboxBot(Context context, string configPath) : base(context, configPath)
         {
-            var connection = ConnectionFactory.GetConnection(token);
-            _context = connection.Context;
-            _config_path = config_path;
         }
 
         public async Task StartAsync()
         {
-            var config_json = JObject.Parse(File.ReadAllText(_config_path));
-            _watch_list = ((JArray)config_json["watch-list"]).ToObject<IList<string>>();
-
             // register new sandbox account
             var sandboxAccount = await _context.AccountsAsync();
             foreach (var acc in sandboxAccount)
@@ -46,13 +33,13 @@ namespace TradingBot
             var stocks = await _context.MarketStocksAsync();
             _instruments = stocks.Instruments;
 
-            foreach (var ticker in _watch_list)
+            foreach (var ticker in _watchList)
             {
                 var idx = _instruments.FindIndex(x => x.Ticker == ticker);
                 if (idx != -1)
                 {
-                    _figi_to_ticker.Add(_instruments[idx].Figi, _instruments[idx].Ticker);
-                    _ticker_to_figi.Add(_instruments[idx].Ticker, _instruments[idx].Figi);
+                    _figiToTicker.Add(_instruments[idx].Figi, _instruments[idx].Ticker);
+                    _tickerToFigi.Add(_instruments[idx].Ticker, _instruments[idx].Figi);
                 }
             }
 
@@ -119,18 +106,13 @@ namespace TradingBot
             Console.WriteLine();
         }
 
-        public async ValueTask DisposeAsync()
-        {
-
-        }
-
         public async void Query5MinTop()
         {
             int idx = 0;
-            for (int i = 0; i < _watch_list.Count; ++i)
+            for (int i = 0; i < _watchList.Count; ++i)
             {
-                var ticker = _watch_list[i];
-                var figi = _ticker_to_figi[ticker];
+                var ticker = _watchList[i];
+                var figi = _tickerToFigi[ticker];
 
                 bool ok = false;
                 while (!ok)
@@ -195,10 +177,10 @@ namespace TradingBot
             Console.WriteLine("Start query candles...");
 
             int processed = 0;
-            for (int i = 0; i < _watch_list.Count; ++i)
+            for (int i = 0; i < _watchList.Count; ++i)
             {
-                var ticker = _watch_list[i];
-                var figi = _ticker_to_figi[ticker];
+                var ticker = _watchList[i];
+                var figi = _tickerToFigi[ticker];
                 if (figi.Length > 0)
                 {
                     bool ok = false;
@@ -242,10 +224,10 @@ namespace TradingBot
             _context.StreamingEventReceived += OnStreamingEventReceived;
 
             int processed = 0;
-            for (int i = 0; i < _watch_list.Count; ++i)
+            for (int i = 0; i < _watchList.Count; ++i)
             {
-                var ticker = _watch_list[i];
-                var figi = _ticker_to_figi[ticker];
+                var ticker = _watchList[i];
+                var figi = _tickerToFigi[ticker];
                 if (figi.Length > 0)
                 {
                     bool ok = false;
@@ -287,7 +269,7 @@ namespace TradingBot
                 {
                     //q.Close = cr.Payload.Close;
                 }
-                Console.WriteLine("{0}:{1}", _figi_to_ticker[cr.Payload.Figi], cr.Payload.Close);
+                Console.WriteLine("{0}:{1}", _figiToTicker[cr.Payload.Figi], cr.Payload.Close);
             }
             else
             {

@@ -13,29 +13,29 @@ namespace TradingBot
     //
     // Summary:
     //     Base class for all trade bots.
-    public class Base_bot : IAsyncDisposable
+    public class BaseBot : IAsyncDisposable
     {
         //private static readonly Random Random = new Random();
         protected readonly Context _context;
         protected string _accountId;
         protected List<MarketInstrument> _instruments;
-        protected IList<string> _watch_list;
-        protected Dictionary<string, string> _figi_to_ticker = new Dictionary<string, string>();
-        protected Dictionary<string, MarketInstrument> _figi_to_instrument = new Dictionary<string, MarketInstrument>();
-        protected Dictionary<string, string> _ticker_to_figi = new Dictionary<string, string>();
-        protected string _config_path;
+        protected IList<string> _watchList;
+        protected Dictionary<string, string> _figiToTicker = new Dictionary<string, string>();
+        protected Dictionary<string, MarketInstrument> _figiToInstrument = new Dictionary<string, MarketInstrument>();
+        protected Dictionary<string, string> _tickerToFigi = new Dictionary<string, string>();
+        protected string _configPath;
 
-        public Base_bot(Context context, string config_path)
+        public BaseBot(Context context, string configPath)
         {
             _context = context;
-            _config_path = config_path;
+            _configPath = configPath;
             Init();
         }
 
         public void Init()
         {
-            var config_json = JObject.Parse(File.ReadAllText(_config_path));
-            _watch_list = ((JArray)config_json["watch-list"]).ToObject<IList<string>>();
+            var configJson = JObject.Parse(File.ReadAllText(_configPath));
+            _watchList = ((JArray)configJson["watch-list"]).ToObject<IList<string>>();
 
             // get account ID
             var accounts = _context.AccountsAsync();
@@ -48,24 +48,29 @@ namespace TradingBot
             var stocks = _context.MarketStocksAsync().Result;
             _instruments = stocks.Instruments;
 
-            foreach (var ticker in _watch_list)
+            foreach (var ticker in _watchList)
             {
                 var idx = _instruments.FindIndex(x => x.Ticker == ticker);
                 if (idx != -1)
                 {
-                    _figi_to_ticker.Add(_instruments[idx].Figi, _instruments[idx].Ticker);
-                    _ticker_to_figi.Add(_instruments[idx].Ticker, _instruments[idx].Figi);
-                    _figi_to_instrument.Add(_instruments[idx].Figi, _instruments[idx]);
+                    _figiToTicker.Add(_instruments[idx].Figi, _instruments[idx].Ticker);
+                    _tickerToFigi.Add(_instruments[idx].Ticker, _instruments[idx].Figi);
+                    _figiToInstrument.Add(_instruments[idx].Figi, _instruments[idx]);
+                }
+                else
+                {
+                    throw new Exception("Unknown ticker: " + ticker);
                 }
             }
         }
         public async ValueTask DisposeAsync()
         {
+            await Task.Yield();
         }
 
-        protected decimal get_min_increment(string figi)
+        protected decimal getMinIncrement(string figi)
         {
-            return _figi_to_instrument[figi].MinPriceIncrement;
+            return _figiToInstrument[figi].MinPriceIncrement;
         }
     }
 }

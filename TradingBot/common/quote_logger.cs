@@ -9,13 +9,13 @@ namespace TradingBot
     //
     // Summary:
     //     Simple dunper quotes to text file.
-    public class Quote_logger
+    public class QuoteLogger
     {
         private readonly string _figi;
         private readonly string _ticker;
         private readonly StreamWriter _file;
 
-        public Quote_logger(string figi, string ticker)
+        public QuoteLogger(string figi, string ticker)
         {
             _figi = figi;
             _ticker = ticker;
@@ -24,7 +24,7 @@ namespace TradingBot
             _file.WriteLine("Time;Quote;Volume");
         }
 
-        public void on_quote_received(CandleResponse res)
+        public void onQuoteReceived(CandleResponse res)
         {
             if (res.Payload.Figi == _figi)
             {

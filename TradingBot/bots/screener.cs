@@ -14,7 +14,7 @@ namespace TradingBot
     //
     // Summary:
     //     Stocks screener. Show day statistic for instuments.
-    public class Screener : Base_bot
+    public class Screener : BaseBot
     {
         private class Stat : IComparable<Stat>
         {
@@ -69,10 +69,10 @@ namespace TradingBot
             Console.WriteLine("Query candle history...");            
 
             int idx = 0;
-            for (int i = 0; i < _watch_list.Count; ++i)
+            for (int i = 0; i < _watchList.Count; ++i)
             {
-                var ticker = _watch_list[i];
-                var figi = _ticker_to_figi[ticker];
+                var ticker = _watchList[i];
+                var figi = _tickerToFigi[ticker];
 
                 bool ok = false;
                 while (!ok)
@@ -218,38 +218,38 @@ namespace TradingBot
 
         private void ShowStats(string message, List<Stat> stat)
         {
+            const int cMaxOutput = 10;
+            
+            Console.WriteLine(message);            
             stat.Sort();
 
-            const int cMaxOutput = 10;
-            var color_before = Console.ForegroundColor;
-
-            Console.WriteLine(message);
-            Console.ForegroundColor = ConsoleColor.Green;
+            var j = stat.Count - 1;
             for (var i = 0; i < Math.Min(stat.Count, cMaxOutput); ++i)
             {
+                String lOutput = String.Format("{0}:", _figiToTicker[stat[i].figi]).PadLeft(7);
+                lOutput += String.Format("{0}%", stat[i].change).PadLeft(7);
+                lOutput += String.Format("({0} ->> {1})", stat[i].open, stat[i].close).PadLeft(20);
+                lOutput = lOutput.PadRight(10);
+
                 Console.ForegroundColor = stat[i].change >= 0 ? ConsoleColor.Green : ConsoleColor.Red;
-                Console.WriteLine("{0}: {1}% ({2} ->> {3})", _figi_to_ticker[stat[i].figi], stat[i].change, stat[i].open, stat[i].close);
-            }
+                Console.Write(lOutput);
 
-            if (stat.Count > cMaxOutput && stat.Count <= 2 * cMaxOutput)
-            {
-                for (var i = cMaxOutput; i < stat.Count; ++i)
+                if (j >= cMaxOutput)
                 {
-                    Console.ForegroundColor = stat[i].change >= 0 ? ConsoleColor.Green : ConsoleColor.Red;
-                    Console.WriteLine("{0}: {1}% ({2} ->> {3})", _figi_to_ticker[stat[i].figi], stat[i].change, stat[i].open, stat[i].close);
+                    String rOutput = String.Format("{0}:", _figiToTicker[stat[j].figi]).PadLeft(7);
+                    rOutput += String.Format("{0}%", stat[j].change).PadLeft(7);
+                    rOutput += String.Format("({0} ->> {1})", stat[j].open, stat[j].close).PadLeft(20);
+
+                    Console.ForegroundColor = stat[j].change >= 0 ? ConsoleColor.Green : ConsoleColor.Red;
+                    Console.Write(rOutput);
+                    --j;
                 }
+
+                Console.Write("\n\r");
             }
 
-            if (stat.Count > 2*cMaxOutput)
-            {
-                for (var i = stat.Count - cMaxOutput; i < stat.Count; ++i)
-                {
-                    Console.ForegroundColor = stat[i].change >= 0 ? ConsoleColor.Green : ConsoleColor.Red;
-                    Console.WriteLine("{0}: {1}% ({2} ->> {3})", _figi_to_ticker[stat[i].figi], stat[i].change, stat[i].open, stat[i].close);
-                }
-            }
 
-            Console.ForegroundColor = color_before;
+            Console.ResetColor();
             Console.WriteLine();
         }
 
@@ -291,7 +291,7 @@ namespace TradingBot
         private void OnWebSocketExceptionReceived(object s, WebSocketException e)
         {
             Console.WriteLine(e.Message);
-            SubscribeCandles();
+            _ = SubscribeCandles();
         }
 
         private void OnStreamingClosedReceived(object s, EventArgs args)
@@ -301,10 +301,10 @@ namespace TradingBot
 
         private async Task SubscribeCandles()
         {
-            for (int i = 0; i < _watch_list.Count; ++i)
+            for (int i = 0; i < _watchList.Count; ++i)
             {
-                var ticker = _watch_list[i];
-                var figi = _ticker_to_figi[ticker];
+                var ticker = _watchList[i];
+                var figi = _tickerToFigi[ticker];
                 await _context.SendStreamingRequestAsync(StreamingRequest.SubscribeCandle(figi, CandleInterval.FiveMinutes));
             }
         }
