@@ -11,26 +11,20 @@ namespace TradingBot
         private static async Task Main(string[] args)
         {
             var token = (await File.ReadAllTextAsync(args[0])).Trim();
-            var connection = ConnectionFactory.GetConnection(token);
+            BaseBot bot;
 
-            //*
-            // Rocket bot
-            await using var bot = new RocketBot(connection.Context, args[1]);
-            await bot.StartAsync();
-            while (true)
-                System.Threading.Thread.Sleep(50000);
-
+            /*
+                    bot = new RocketBot(token, args[1]);
             /*/
+                    bot = new Screener(token, args[1]);
+            //*/
 
-            // Screener
-            await using var bot = new Screener(connection.Context, args[1]);
             await bot.StartAsync();
             while (true)
             {
-                bot.ShowStats();
+                bot.ShowStatus();
                 System.Threading.Thread.Sleep(60000);
             }
-            //*/
         }
     }
 }

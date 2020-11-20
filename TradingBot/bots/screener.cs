@@ -51,17 +51,20 @@ namespace TradingBot
         private Dictionary<string, List<CandlePayload>> _candles = new Dictionary<string, List<CandlePayload>>();
         DateTime _lastCandleReceived;
 
-        public Screener(Context context, string config_path) : base(context, config_path)
+        public Screener(string token, string config_path) : base(token, config_path)
         {
         }
 
-        public async Task StartAsync()
+        public override async Task StartAsync()
         {
+            await base.StartAsync();
+
             _context.StreamingEventReceived += OnStreamingEventReceived;
             _context.WebSocketException += OnWebSocketExceptionReceived;
             _context.StreamingClosed += OnStreamingClosedReceived;
 
             await GetHistory();
+            await SubscribeCandles();
         }
 
         public async Task GetHistory()
@@ -101,12 +104,10 @@ namespace TradingBot
                 }
             }
 
-            await SubscribeCandles();
-
             Console.WriteLine("Done query candle history...");
         }
 
-        public void ShowStats()
+        public override void ShowStatus()
         {
             Console.Clear();
             List<Stat> day1Change = new List<Stat>();
@@ -151,11 +152,17 @@ namespace TradingBot
                         var index = candles.FindIndex(x => x.Time >= start_time);
                         if (index >= 0)
                         {
+                            bool hasZeroCandles = false;
                             decimal volume = 0;
                             for (int j = index; j < candles.Count; ++j)
+                            {
                                 volume += candles[j].Volume;
 
-                            if (volume >= 100)
+                                if (candles[index].Volume < 5 || (candles[index].Open == candles[index].Close && candles[index].Low == candles[index].High))
+                                    hasZeroCandles = true;
+                            }
+
+                            if (volume >= 100 && !hasZeroCandles)
                                 min15Change.Add(new Stat(figi, candles[index].Close, candles[candles.Count - 1].Close));
                         }
                     }
@@ -166,11 +173,17 @@ namespace TradingBot
                         var index = candles.FindIndex(x => x.Time >= start_time);
                         if (index >= 0)
                         {
+                            bool hasZeroCandles = false;
                             decimal volume = 0;
                             for (int j = index; j < candles.Count; ++j)
+                            {
                                 volume += candles[j].Volume;
 
-                            if (volume >= 30)
+                                if (candles[index].Volume < 10 || (candles[index].Open == candles[index].Close && candles[index].Low == candles[index].High))
+                                    hasZeroCandles = true;
+                            }
+
+                            if (volume >= 30 && !hasZeroCandles)
                                 min5Change.Add(new Stat(figi, candles[index].Close, candles[candles.Count - 1].Close));
                         }
                     }
@@ -291,22 +304,19 @@ namespace TradingBot
         private void OnWebSocketExceptionReceived(object s, WebSocketException e)
         {
             Console.WriteLine(e.Message);
+
+            Connect();
+            _context.StreamingEventReceived += OnStreamingEventReceived;
+            _context.WebSocketException += OnWebSocketExceptionReceived;
+            _context.StreamingClosed += OnStreamingClosedReceived;
+
             _ = SubscribeCandles();
         }
 
         private void OnStreamingClosedReceived(object s, EventArgs args)
         {
             Console.WriteLine("OnStreamingClosedReceived");
-        }
-
-        private async Task SubscribeCandles()
-        {
-            for (int i = 0; i < _watchList.Count; ++i)
-            {
-                var ticker = _watchList[i];
-                var figi = _tickerToFigi[ticker];
-                await _context.SendStreamingRequestAsync(StreamingRequest.SubscribeCandle(figi, CandleInterval.FiveMinutes));
-            }
+            throw new Exception("Stream closed for unknown reasons...");
         }
     }
 }

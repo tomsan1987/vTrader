@@ -16,7 +16,8 @@ namespace TradingBot
     public class BaseBot : IAsyncDisposable
     {
         //private static readonly Random Random = new Random();
-        protected readonly Context _context;
+        protected Context _context;
+        protected string _token;
         protected string _accountId;
         protected List<MarketInstrument> _instruments;
         protected IList<string> _watchList;
@@ -25,27 +26,40 @@ namespace TradingBot
         protected Dictionary<string, string> _tickerToFigi = new Dictionary<string, string>();
         protected string _configPath;
 
-        public BaseBot(Context context, string configPath)
+        public BaseBot(string token, string configPath)
         {
-            _context = context;
+            _token = token;
             _configPath = configPath;
-            Init();
         }
 
-        public void Init()
+        public virtual async Task StartAsync()
+        {
+            Connect();
+            await Init();
+        }
+
+        public virtual void ShowStatus()
+        {        
+        }
+
+        public async ValueTask DisposeAsync()
+        {
+            await Task.Yield();
+        }
+
+        protected async Task Init()
         {
             var configJson = JObject.Parse(File.ReadAllText(_configPath));
             _watchList = ((JArray)configJson["watch-list"]).ToObject<IList<string>>();
 
             // get account ID
-            var accounts = _context.AccountsAsync();
-            accounts.Wait();
-            foreach (var acc in accounts.Result)
+            var accounts = await _context.AccountsAsync();
+            foreach (var acc in accounts)
             {
                 _accountId = acc.BrokerAccountId;
             }
 
-            var stocks = _context.MarketStocksAsync().Result;
+            var stocks = await _context.MarketStocksAsync();
             _instruments = stocks.Instruments;
 
             foreach (var ticker in _watchList)
@@ -63,14 +77,30 @@ namespace TradingBot
                 }
             }
         }
-        public async ValueTask DisposeAsync()
+
+        protected void Connect()
         {
-            await Task.Yield();
+            var connection = ConnectionFactory.GetConnection(_token);
+            _context = connection.Context;
         }
 
         protected decimal getMinIncrement(string figi)
         {
             return _figiToInstrument[figi].MinPriceIncrement;
+        }
+
+        protected async Task SubscribeCandles()
+        {
+            Console.WriteLine("Start subscribing candles...");
+
+            for (int i = 0; i < _watchList.Count; ++i)
+            {
+                var ticker = _watchList[i];
+                var figi = _tickerToFigi[ticker];
+                await _context.SendStreamingRequestAsync(StreamingRequest.SubscribeCandle(figi, CandleInterval.FiveMinutes));
+            }
+
+            Console.WriteLine("End of subscribing candles...");
         }
     }
 }

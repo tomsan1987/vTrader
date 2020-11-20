@@ -19,7 +19,7 @@ namespace TradingBot
         {
             _figi = figi;
             _ticker = ticker;
-            _file = new StreamWriter(ticker + ".csv", false);
+            _file = new StreamWriter("quotes\\" + ticker + ".csv", false);
             _file.AutoFlush = true;
             _file.WriteLine("Time;Quote;Volume");
         }
@@ -28,8 +28,7 @@ namespace TradingBot
         {
             if (res.Payload.Figi == _figi)
             {
-                var str = String.Format("{0};{1};{2}", res.Time.ToString(), res.Payload.Close, res.Payload.Volume);
-                _file.WriteLine(str);
+                _file.WriteLine("{0};{1};{2}", res.Time.ToString(), res.Payload.Close, res.Payload.Volume);
             }
         }
     }

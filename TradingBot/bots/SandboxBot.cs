@@ -16,12 +16,14 @@ namespace TradingBot
         private bool _work = true;
         private Dictionary<string, CandlePayload> _quotes = new Dictionary<string, CandlePayload>();
 
-        public SandboxBot(Context context, string configPath) : base(context, configPath)
+        public SandboxBot(string token, string configPath) : base(token, configPath)
         {
         }
 
-        public async Task StartAsync()
+        public override async Task StartAsync()
         {
+            await base.StartAsync();
+
             // register new sandbox account
             var sandboxAccount = await _context.AccountsAsync();
             foreach (var acc in sandboxAccount)
@@ -53,7 +55,7 @@ namespace TradingBot
             Query5MinTop();
 
             //RequestCandles();
-            //SubscribeCandles();
+            //_context.StreamingEventReceived += OnStreamingEventReceived;
 
             // select TESLA
             //var instrumentList = await _context.MarketStocksAsync();
@@ -214,43 +216,6 @@ namespace TradingBot
             }
 
             Console.WriteLine("End of query candles...");
-        }
-
-        public async void SubscribeCandles()
-        {
-            Console.WriteLine("Start subscribing candles...");
-
-            // subscribe to candles
-            _context.StreamingEventReceived += OnStreamingEventReceived;
-
-            int processed = 0;
-            for (int i = 0; i < _watchList.Count; ++i)
-            {
-                var ticker = _watchList[i];
-                var figi = _tickerToFigi[ticker];
-                if (figi.Length > 0)
-                {
-                    bool ok = false;
-                    while (!ok)
-                    {
-                        try
-                        {
-                            await _context.SendStreamingRequestAsync(StreamingRequest.SubscribeCandle(figi, CandleInterval.Minute));
-                            ok = true;
-                        }
-                        catch (OpenApiException)
-                        {
-                            Console.WriteLine("Context: waiting after {0} queries....", processed);
-                            ok = false;
-                            await Task.Delay(60000); // sleep for a while
-                        }
-                    }
-
-                    ++processed;
-                }
-            }
-
-            Console.WriteLine("End of subscribing candles...");
         }
 
         private void OnStreamingEventReceived(object s, StreamingEventReceivedEventArgs e)
