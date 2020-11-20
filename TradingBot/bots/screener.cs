@@ -49,10 +49,12 @@ namespace TradingBot
         }
 
         private Dictionary<string, List<CandlePayload>> _candles = new Dictionary<string, List<CandlePayload>>();
+        private Dictionary<string, QuoteLogger> _loggers = new Dictionary<string, QuoteLogger>();
         DateTime _lastCandleReceived;
 
         public Screener(string token, string config_path) : base(token, config_path)
         {
+            Logger.Write("Screener created");
         }
 
         public override async Task StartAsync()
@@ -63,13 +65,20 @@ namespace TradingBot
             _context.WebSocketException += OnWebSocketExceptionReceived;
             _context.StreamingClosed += OnStreamingClosedReceived;
 
+            // create loggers
+            foreach (var ticker in _watchList)
+            {
+                var figi = _tickerToFigi[ticker];
+                _loggers.Add(_tickerToFigi[ticker], new QuoteLogger(figi, ticker));
+            }
+
             await GetHistory();
             await SubscribeCandles();
         }
 
         public async Task GetHistory()
         {
-            Console.WriteLine("Query candle history...");            
+            Logger.Write("Query candle history...");
 
             int idx = 0;
             for (int i = 0; i < _watchList.Count; ++i)
@@ -92,19 +101,19 @@ namespace TradingBot
                     }
                     catch (OpenApiException)
                     {
-                        Console.WriteLine("Context: waiting after {0} queries....", idx);
+                        Logger.Write("Context: waiting after {0} queries....", idx);
                         ok = false;
                         idx = 0;
                         await Task.Delay(30000); // sleep for a while
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("Excetion: " + e.Message);
+                        Logger.Write("Excetion: " + e.Message);
                     }
                 }
             }
 
-            Console.WriteLine("Done query candle history...");
+            Logger.Write("Done query candle history...");
         }
 
         public override void ShowStatus()
@@ -294,16 +303,18 @@ namespace TradingBot
                     list.Add(cr.Payload);
                     _candles.Add(cr.Payload.Figi, list);
                 }
+
+                _loggers[cr.Payload.Figi].onQuoteReceived(cr);
             }
             else
             {
-                Console.WriteLine(e.Response);
+                Logger.Write("Unknown event received: {0}", e.Response);
             }
         }
 
         private void OnWebSocketExceptionReceived(object s, WebSocketException e)
         {
-            Console.WriteLine(e.Message);
+            Logger.Write("OnWebSocketExceptionReceived: {0}", e.Message);
 
             Connect();
             _context.StreamingEventReceived += OnStreamingEventReceived;
@@ -315,7 +326,7 @@ namespace TradingBot
 
         private void OnStreamingClosedReceived(object s, EventArgs args)
         {
-            Console.WriteLine("OnStreamingClosedReceived");
+            Logger.Write("OnStreamingClosedReceived");
             throw new Exception("Stream closed for unknown reasons...");
         }
     }

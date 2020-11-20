@@ -22,6 +22,7 @@ namespace TradingBot
 
         public RocketBot(string token, string config_path) : base(token, config_path)
         {
+            Logger.Write("Rocket bot created");
         }
 
         public override async Task StartAsync()
@@ -31,14 +32,14 @@ namespace TradingBot
             _context.WebSocketException += OnWebSocketExceptionReceived;
             _context.StreamingClosed += OnStreamingClosedReceived;
 
-            await SubscribeCandles();
-
             // create loggers
             foreach (var ticker in _watchList)
             {
                 var figi = _tickerToFigi[ticker];
                 _loggers.Add(_tickerToFigi[ticker], new QuoteLogger(figi, ticker));
             }
+
+            await SubscribeCandles();
         }
 
         public override void ShowStatus()
@@ -80,13 +81,13 @@ namespace TradingBot
             }
             else
             {
-                Console.WriteLine(e.Response);
+                Logger.Write("Unknown event received: {0}", e.Response);
             }
         }
 
         private void OnWebSocketExceptionReceived(object s, WebSocketException e)
         {
-            Console.WriteLine(e.Message);
+            Logger.Write("OnWebSocketExceptionReceived: {0}", e.Message);
 
             Connect();
             _context.StreamingEventReceived += OnStreamingEventReceived;
@@ -98,7 +99,7 @@ namespace TradingBot
 
         private void OnStreamingClosedReceived(object s, EventArgs args)
         {
-            Console.WriteLine("OnStreamingClosedReceived");
+            Logger.Write("OnStreamingClosedReceived");
             throw new Exception("Stream closed for unknown reasons...");
         }
     }

@@ -82,6 +82,7 @@ namespace TradingBot
         {
             var connection = ConnectionFactory.GetConnection(_token);
             _context = connection.Context;
+            Logger.Write("Connection created");
         }
 
         protected decimal getMinIncrement(string figi)
@@ -91,7 +92,7 @@ namespace TradingBot
 
         protected async Task SubscribeCandles()
         {
-            Console.WriteLine("Start subscribing candles...");
+            Logger.Write("Start subscribing candles...");
 
             for (int i = 0; i < _watchList.Count; ++i)
             {
@@ -100,7 +101,7 @@ namespace TradingBot
                 await _context.SendStreamingRequestAsync(StreamingRequest.SubscribeCandle(figi, CandleInterval.FiveMinutes));
             }
 
-            Console.WriteLine("End of subscribing candles...");
+            Logger.Write("End of subscribing candles...");
         }
     }
 }
