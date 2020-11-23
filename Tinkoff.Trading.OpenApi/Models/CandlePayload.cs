@@ -5,10 +5,15 @@ namespace Tinkoff.Trading.OpenApi.Models
 {
     public class CandlePayload
     {
+        [JsonProperty("o")]
         public decimal Open { get; }
+        [JsonProperty("c")]
         public decimal Close { get; }
+        [JsonProperty("h")]
         public decimal High { get; }
+        [JsonProperty("l")]
         public decimal Low { get; }
+        [JsonProperty("v")]
         public decimal Volume { get; }
         public DateTime Time { get; }
         public CandleInterval Interval { get; }

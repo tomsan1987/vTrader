@@ -29,11 +29,17 @@ namespace TradingBot
             var bot = new TradeBot(token, args[1]);
             await bot.StartAsync();
 
-            var session_begin = DateTime.Today.AddDays(-1).AddHours(10).ToUniversalTime();
-            var session_end = DateTime.Today.AddDays(-1).AddHours(24).ToUniversalTime();
-            await bot.SaveHistory(session_begin, session_end);
+            //var session_begin = new DateTime(2020, 11, 16).AddHours(10).ToUniversalTime();
+            //var session_end = session_begin.AddHours(14).ToUniversalTime();
 
-            var res = bot.TradeByHistory("E:\\tinkoff\\TradingBot\\bin\\Debug\\netcoreapp3.1\\quote_history\\2020_11_20");
+            //for (int i = 0; i < 4; ++i)
+            //{
+            //    await bot.SaveHistory(session_begin, session_end);
+            //    session_begin = session_begin.AddDays(1);
+            //    session_end = session_end.AddDays(1);
+            //}
+
+            var res = bot.TradeByHistory("E:\\tinkoff\\TradingBot\\bin\\Debug\\netcoreapp3.1\\quote_history\\2020_11_17", "");
         }
     }
 }
