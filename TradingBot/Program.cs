@@ -13,25 +13,25 @@ namespace TradingBot
             var token = (await File.ReadAllTextAsync(args[0])).Trim();
 
             // Screener
-            //{
-            //    var bot = new Screener(token, args[1]);
-            //    await bot.StartAsync();
-            //    while (true)
-            //    {
-            //        bot.ShowStatus();
-            //        System.Threading.Thread.Sleep(60000);
-            //    }
-            //}
+            {
+                var bot = new Screener(token, args[1]);
+                await bot.StartAsync();
+                while (true)
+                {
+                    bot.ShowStatus();
+                    System.Threading.Thread.Sleep(60000);
+                }
+            }
 
             // Rocket bot
             //{
-            var bot = new RocketBot(token, args[1]);
-            await bot.StartAsync();
-            while (true)
-            {
-                bot.ShowStatus();
-                System.Threading.Thread.Sleep(60000);
-            }
+            //var bot = new RocketBot(token, args[1]);
+            //await bot.StartAsync();
+            //while (true)
+            //{
+            //    bot.ShowStatus();
+            //    System.Threading.Thread.Sleep(60000);
+            //}
             //}
 
             // Trade bot

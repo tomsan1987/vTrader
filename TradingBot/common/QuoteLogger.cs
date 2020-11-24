@@ -20,9 +20,10 @@ namespace TradingBot
         {
             _figi = figi;
             _ticker = ticker;
+
+            Directory.CreateDirectory("quotes");
             _file = new StreamWriter("quotes\\" + ticker + ".csv", true);
             _file.AutoFlush = true;
-            _file.WriteLine("Time;Quote;Volume");
         }
 
         public void onQuoteReceived(CandlePayload candle)

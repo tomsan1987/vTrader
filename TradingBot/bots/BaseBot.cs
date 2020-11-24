@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Net.WebSockets;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tinkoff.Trading.OpenApi.Models;
@@ -15,7 +16,6 @@ namespace TradingBot
     //     Base class for all trade bots.
     public class BaseBot : IAsyncDisposable
     {
-        //private static readonly Random Random = new Random();
         protected IContext _context;
         protected string _token;
         protected string _accountId;
@@ -24,6 +24,8 @@ namespace TradingBot
         protected Dictionary<string, string> _figiToTicker = new Dictionary<string, string>();
         protected Dictionary<string, MarketInstrument> _figiToInstrument = new Dictionary<string, MarketInstrument>();
         protected Dictionary<string, string> _tickerToFigi = new Dictionary<string, string>();
+        protected Dictionary<string, Quotes> _candles = new Dictionary<string, Quotes>();
+        protected DateTime _lastCandleReceived;
         protected string _configPath;
 
         public BaseBot(string token, string configPath)
@@ -36,6 +38,10 @@ namespace TradingBot
         {
             Connect();
             await Init();
+
+            _context.StreamingEventReceived += OnStreamingEventReceived;
+            _context.WebSocketException += OnWebSocketExceptionReceived;
+            _context.StreamingClosed += OnStreamingClosedReceived;
         }
 
         public virtual void ShowStatus()
@@ -86,9 +92,62 @@ namespace TradingBot
             Logger.Write("Connection created");
         }
 
-        protected decimal getMinIncrement(string figi)
+        protected virtual void OnStreamingEventReceived(object s, StreamingEventReceivedEventArgs e)
         {
-            return _figiToInstrument[figi].MinPriceIncrement;
+            if (e.Response.Event == "candle")
+            {
+                _lastCandleReceived = DateTime.Now;
+
+                var cr = (CandleResponse)e.Response;
+
+                Quotes candles;
+                if (_candles.TryGetValue(cr.Payload.Figi, out candles))
+                {
+                    if (candles.Candles.Count > 0 && candles.Candles[candles.Candles.Count - 1].Time == cr.Payload.Time)
+                    {
+                        // update
+                        candles.Candles[candles.Candles.Count - 1] = cr.Payload;
+                        candles.Raw.Add(new Quotes.Quote(cr.Payload.Close, cr.Payload.Volume));
+                    }
+                    else
+                    {
+                        // add new one
+                        candles.Candles.Add(cr.Payload);
+                        candles.Raw.Clear();
+                        candles.Raw.Add(new Quotes.Quote(cr.Payload.Close, cr.Payload.Volume));
+                    }
+                }
+                else
+                {
+                    var list = new Quotes(cr.Payload.Figi, _figiToTicker[cr.Payload.Figi]);
+                    list.Candles.Add(cr.Payload);
+                    _candles.Add(cr.Payload.Figi, list);
+                }
+
+                _candles[cr.Payload.Figi].QuoteLogger.onQuoteReceived(cr.Payload);
+            }
+            else
+            {
+                Logger.Write("Unknown event received: {0}", e.Response);
+            }
+        }
+
+        protected void OnWebSocketExceptionReceived(object s, WebSocketException e)
+        {
+            Logger.Write("OnWebSocketExceptionReceived: {0}", e.Message);
+
+            Connect();
+            _context.StreamingEventReceived += OnStreamingEventReceived;
+            _context.WebSocketException += OnWebSocketExceptionReceived;
+            _context.StreamingClosed += OnStreamingClosedReceived;
+
+            _ = SubscribeCandles();
+        }
+
+        protected void OnStreamingClosedReceived(object s, EventArgs args)
+        {
+            Logger.Write("OnStreamingClosedReceived");
+            throw new Exception("Stream closed for unknown reasons...");
         }
 
         protected async Task SubscribeCandles()

@@ -48,10 +48,6 @@ namespace TradingBot
             }
         }
 
-        private Dictionary<string, List<CandlePayload>> _candles = new Dictionary<string, List<CandlePayload>>();
-        private Dictionary<string, QuoteLogger> _loggers = new Dictionary<string, QuoteLogger>();
-        DateTime _lastCandleReceived;
-
         public Screener(string token, string configPath) : base(token, configPath)
         {
             Logger.Write("Screener created");
@@ -60,17 +56,6 @@ namespace TradingBot
         public override async Task StartAsync()
         {
             await base.StartAsync();
-
-            _context.StreamingEventReceived += OnStreamingEventReceived;
-            _context.WebSocketException += OnWebSocketExceptionReceived;
-            _context.StreamingClosed += OnStreamingClosedReceived;
-
-            // create loggers
-            foreach (var ticker in _watchList)
-            {
-                var figi = _tickerToFigi[ticker];
-                _loggers.Add(_tickerToFigi[ticker], new QuoteLogger(figi, ticker));
-            }
 
             await GetHistory();
             await SubscribeCandles();
@@ -95,7 +80,9 @@ namespace TradingBot
                         ++idx;
                         var session_begin = DateTime.Today.AddHours(10).ToUniversalTime();
                         var candleList = await _context.MarketCandlesAsync(figi, session_begin, DateTime.Now, CandleInterval.FiveMinutes);
-                        _candles.Add(figi, candleList.Candles);
+                        var quotes = new Quotes(figi, ticker);
+                        quotes.Candles = candleList.Candles;
+                        _candles.Add(figi, quotes);
 
                         ok = true;
                     }
@@ -127,7 +114,7 @@ namespace TradingBot
             foreach (var c in _candles)
             {
                 var figi = c.Key;
-                var candles = c.Value;
+                var candles = c.Value.Candles;
                 if (candles.Count > 2)
                 {
                     // fill day change
@@ -136,7 +123,7 @@ namespace TradingBot
                         for (int j = 0; j < candles.Count; ++j)
                             volume += candles[j].Volume;
 
-                        if (volume >= 1000)
+                        if (volume >= 10000)
                             day1Change.Add(new Stat(figi, candles[0].Close, candles[candles.Count - 1].Close));
                     }
 
@@ -150,7 +137,7 @@ namespace TradingBot
                             for (int j = index; j < candles.Count; ++j)
                                 volume += candles[j].Volume;
 
-                            if (volume >= 100)
+                            if (volume >= 2000)
                                 hour1Change.Add(new Stat(figi, candles[index].Close, candles[candles.Count - 1].Close));
                         }
                     }
@@ -167,11 +154,11 @@ namespace TradingBot
                             {
                                 volume += candles[j].Volume;
 
-                                if (candles[index].Volume < 5 || (candles[index].Open == candles[index].Close && candles[index].Low == candles[index].High))
+                                if (candles[index].Volume < 20 || (candles[index].Open == candles[index].Close && candles[index].Low == candles[index].High))
                                     hasZeroCandles = true;
                             }
 
-                            if (volume >= 100 && !hasZeroCandles)
+                            if (volume >= 1000 && !hasZeroCandles)
                                 min15Change.Add(new Stat(figi, candles[index].Close, candles[candles.Count - 1].Close));
                         }
                     }
@@ -188,11 +175,11 @@ namespace TradingBot
                             {
                                 volume += candles[j].Volume;
 
-                                if (candles[index].Volume < 10 || (candles[index].Open == candles[index].Close && candles[index].Low == candles[index].High))
+                                if (candles[index].Volume < 20 || (candles[index].Open == candles[index].Close && candles[index].Low == candles[index].High))
                                     hasZeroCandles = true;
                             }
 
-                            if (volume >= 30 && !hasZeroCandles)
+                            if (volume >= 500 && !hasZeroCandles)
                                 min5Change.Add(new Stat(figi, candles[index].Close, candles[candles.Count - 1].Close));
                         }
                     }
@@ -270,64 +257,8 @@ namespace TradingBot
                 Console.Write("\n\r");
             }
 
-
             Console.ResetColor();
             Console.WriteLine();
-        }
-
-        private void OnStreamingEventReceived(object s, StreamingEventReceivedEventArgs e)
-        {
-            if (e.Response.Event == "candle")
-            {
-                _lastCandleReceived = DateTime.Now;
-
-                var cr = (CandleResponse)e.Response;
-
-                List<CandlePayload> candles;
-                if (_candles.TryGetValue(cr.Payload.Figi, out candles))
-                {
-                    if (candles.Count > 0 && candles[candles.Count - 1].Time == cr.Payload.Time)
-                    {
-                        // update
-                        candles[candles.Count - 1] = cr.Payload;
-                    }
-                    else
-                    {
-                        // add new one
-                        candles.Add(cr.Payload);
-                    }
-                }
-                else
-                {
-                    var list = new List<CandlePayload>();
-                    list.Add(cr.Payload);
-                    _candles.Add(cr.Payload.Figi, list);
-                }
-
-                _loggers[cr.Payload.Figi].onQuoteReceived(cr.Payload);
-            }
-            else
-            {
-                Logger.Write("Unknown event received: {0}", e.Response);
-            }
-        }
-
-        private void OnWebSocketExceptionReceived(object s, WebSocketException e)
-        {
-            Logger.Write("OnWebSocketExceptionReceived: {0}", e.Message);
-
-            Connect();
-            _context.StreamingEventReceived += OnStreamingEventReceived;
-            _context.WebSocketException += OnWebSocketExceptionReceived;
-            _context.StreamingClosed += OnStreamingClosedReceived;
-
-            _ = SubscribeCandles();
-        }
-
-        private void OnStreamingClosedReceived(object s, EventArgs args)
-        {
-            Logger.Write("OnStreamingClosedReceived");
-            throw new Exception("Stream closed for unknown reasons...");
         }
     }
 }

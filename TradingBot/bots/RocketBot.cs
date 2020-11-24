@@ -17,31 +17,17 @@ namespace TradingBot
     //     The Bot subcribes for instruments from watch list and keeps track of abrupt change of price.
     public class RocketBot : BaseBot
     {
-        private Dictionary<string, Quotes> _candles = new Dictionary<string, Quotes>();
         private Dictionary<string, TradeData> _tradeData = new Dictionary<string, TradeData>();
-        private DateTime _lastCandleReceived;
         private TradeStatistic _stats = new TradeStatistic();
-
 
         public RocketBot(string token, string configPath) : base(token, configPath)
         {
             Logger.Write("Rocket bot created");
         }
 
-        public override async ValueTask DisposeAsync()
-        {
-            //_status = Status.ShutDown;
-            //_candleReceivedEvent.Set();
-            //_tradeTask.Dispose();
-            await Task.Yield();
-        }
-
         public override async Task StartAsync()
         {
             await base.StartAsync();
-            _context.StreamingEventReceived += OnStreamingEventReceived;
-            _context.WebSocketException += OnWebSocketExceptionReceived;
-            _context.StreamingClosed += OnStreamingClosedReceived;
 
             foreach (var ticker in _watchList)
             {
@@ -70,7 +56,7 @@ namespace TradingBot
                 // conditions: 
                 //      - quote is actual
                 //      - last 3 candles should be positives and at least by 0.2% grow
-                //      - momentum change: current price - min(current or previous candle) > 1%
+                //      - momentum change: current price - min(current or previous candle) > 1.2%
                 //      - volume
 
                 // make sure that we got actual candle
@@ -98,7 +84,7 @@ namespace TradingBot
                     momentumChange = Math.Max(momentumChange, Helpers.GetChangeInPercent(candles[candles.Count - 1].Low, candle.Close));
 
                 // checked that it is not a grow after a fall
-                decimal localChange = 0;
+                decimal localChange = decimal.MinValue;
                 int j = Math.Max(0, candles.Count - 13);
                 if (candles.Count - 3 > 0)
                     localChange = Helpers.GetChangeInPercent(candles[j].Close, candles[candles.Count - 3].Close);
@@ -114,7 +100,7 @@ namespace TradingBot
 
                 if (volume > 1000)
                 {
-                    if (localChange >= 0 && historyGrow)
+                    if (localChange >= (decimal)-0.2 && historyGrow)
                     {
                         // buy 1 lot
                         var price = candle.Close + 2 * instrument.MinPriceIncrement;
@@ -130,7 +116,7 @@ namespace TradingBot
                         Logger.Write("{0}: Buy. Price: {1}. StopPrice: {2}. Candle: {3}. Details: Reason: 'localChange >= 0 && historyGrow', Status - {4}, RejectReason -  {5}",
                             instrument.Ticker, tradeData.BuyPrice, tradeData.StopPrice, JsonConvert.SerializeObject(candle), placedOrder.Status.ToString(), placedOrder.RejectReason);
                     }
-                    else if (momentumChange >= 1 && (localChange >= 0 || momentumChange >= 2 * Math.Abs(localChange)))
+                    else if (momentumChange >= (decimal)1.2 && (localChange >= (decimal)-0.2 || momentumChange >= 2 * Math.Abs(localChange)))
                     {
                         // buy 1 lot
                         var price = candle.Close + 2 * instrument.MinPriceIncrement;
@@ -219,63 +205,13 @@ namespace TradingBot
             }
         }
 
-        private void OnStreamingEventReceived(object s, StreamingEventReceivedEventArgs e)
+        protected override void OnStreamingEventReceived(object s, StreamingEventReceivedEventArgs e)
         {
             if (e.Response.Event == "candle")
             {
-                _lastCandleReceived = DateTime.Now;
-
-                var cr = (CandleResponse)e.Response;
-
-                Quotes candles;
-                if (_candles.TryGetValue(cr.Payload.Figi, out candles))
-                {
-                    if (candles.Candles.Count > 0 && candles.Candles[candles.Candles.Count - 1].Time == cr.Payload.Time)
-                    {
-                        // update
-                        candles.Candles[candles.Candles.Count - 1] = cr.Payload;
-                        candles.Raw.Add(new Quotes.Quote(cr.Payload.Close, cr.Payload.Volume));
-                    }
-                    else
-                    {
-                        // add new one
-                        candles.Candles.Add(cr.Payload);
-                        candles.Raw.Clear();
-                        candles.Raw.Add(new Quotes.Quote(cr.Payload.Close, cr.Payload.Volume));
-                    }
-                }
-                else
-                {
-                    var list = new Quotes(cr.Payload.Figi, _figiToTicker[cr.Payload.Figi]);
-                    list.Candles.Add(cr.Payload);
-                    _candles.Add(cr.Payload.Figi, list);
-                }
-
-                _candles[cr.Payload.Figi].QuoteLogger.onQuoteReceived(cr.Payload);
-                OnCandleUpdate(cr.Payload.Figi);
+                base.OnStreamingEventReceived(s, e);
+                OnCandleUpdate(((CandleResponse)e.Response).Payload.Figi);
             }
-            else
-            {
-                Logger.Write("Unknown event received: {0}", e.Response);
-            }
-        }
-
-        private void OnWebSocketExceptionReceived(object s, WebSocketException e)
-        {
-            Logger.Write("OnWebSocketExceptionReceived: {0}", e.Message);
-
-            Connect();
-            _context.StreamingEventReceived += OnStreamingEventReceived;
-            _context.WebSocketException += OnWebSocketExceptionReceived;
-            _context.StreamingClosed += OnStreamingClosedReceived;
-
-            _ = SubscribeCandles();
-        }
-
-        private void OnStreamingClosedReceived(object s, EventArgs args)
-        {
-            Logger.Write("OnStreamingClosedReceived");
-            throw new Exception("Stream closed for unknown reasons...");
         }
     }
 }

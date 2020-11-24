@@ -217,30 +217,5 @@ namespace TradingBot
 
             Console.WriteLine("End of query candles...");
         }
-
-        private void OnStreamingEventReceived(object s, StreamingEventReceivedEventArgs e)
-        {
-            if (e.Response.Event == "candle")
-            {
-                var cr = (CandleResponse)e.Response;
-
-                var q = _quotes[cr.Payload.Figi];
-                if (q.Time.Minute == cr.Payload.Time.Minute)
-                {
-                    // update current candle
-                    q = cr.Payload;
-                }
-                else
-                {
-                    //q.Close = cr.Payload.Close;
-                }
-                Console.WriteLine("{0}:{1}", _figiToTicker[cr.Payload.Figi], cr.Payload.Close);
-            }
-            else
-            {
-                Console.WriteLine(e.Response);
-                //_work = false;
-            }
-        }
     }
 }
