@@ -190,4 +190,14 @@ namespace Tinkoff.Trading.OpenApi.Network
 
         public override Context Context => new Context(this);
     }
+
+    public class FakeConnection : Connection<FakeContext>
+    {
+        public FakeConnection(string baseUri, string webSocketBaseUri, string token, HttpClient httpClient)
+            : base(baseUri, webSocketBaseUri, token, httpClient)
+        {
+        }
+
+        public override FakeContext Context => new FakeContext(this);
+    }
 }

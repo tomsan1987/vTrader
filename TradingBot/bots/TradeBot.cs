@@ -22,7 +22,7 @@ namespace TradingBot
         private int _negativeDeals = 0;
         private int _totalDeals = 0;
 
-        public TradeBot(string token, string config_path) : base(token, config_path)
+        public TradeBot(string token, string configPath) : base(token, configPath)
         {
             Logger.Write("TradeBot created");
         }
@@ -52,10 +52,10 @@ namespace TradingBot
                     {
                         // query history candles
                         ++idx;
-                        var candleList = await _context.MarketCandlesAsync(figi, sessionBegin, sessionEnd, CandleInterval.FiveMinutes);
+                        var candleList = await _context.MarketCandlesAsync(figi, sessionBegin, sessionEnd, CandleInterval.Minute);
                         ok = true;
 
-                        var file = new StreamWriter(path + "\\" + ticker + ".csv", false);
+                        var file = new StreamWriter(path + "\\" + ticker + ".csv", true);
                         file.AutoFlush = true;
                         foreach (var candle in candleList.Candles)
                             file.WriteLine(JsonConvert.SerializeObject(candle));

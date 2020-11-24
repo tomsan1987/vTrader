@@ -19,6 +19,16 @@ namespace Tinkoff.Trading.OpenApi.Network
         }
 
         /// <summary>
+        /// Создаёт объект подключения к OpenAPI. Торговля запрещена.
+        /// </summary>
+        /// <param name="token">Токен аутентификации.</param>
+        /// <returns>Подключение к бирже.</returns>
+        public static FakeConnection GetFakeConnection(string token)
+        {
+            return new FakeConnection(BaseUri, WebSocketBaseUri, token, new HttpClient());
+        }
+
+        /// <summary>
         /// Создаёт объект подключения к OpenAPI в режиме песочницы.
         /// </summary>
         /// <param name="token">Токен аутентификации.</param>

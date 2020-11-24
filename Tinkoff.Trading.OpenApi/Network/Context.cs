@@ -34,7 +34,7 @@ namespace Tinkoff.Trading.OpenApi.Network
             return response?.Payload?.Accounts;
         }
 
-        public async Task<List<Order>> OrdersAsync(string brokerAccountId = null)
+        public virtual async Task<List<Order>> OrdersAsync(string brokerAccountId = null)
         {
             var endpoint = AppendQueryParams(Endpoints.Orders, (BrokerAccountId, brokerAccountId));
             var response = await Connection.SendGetRequestAsync<List<Order>>(endpoint)
@@ -42,7 +42,7 @@ namespace Tinkoff.Trading.OpenApi.Network
             return response?.Payload;
         }
 
-        public async Task<PlacedLimitOrder> PlaceLimitOrderAsync(LimitOrder limitOrder)
+        public virtual async Task<PlacedLimitOrder> PlaceLimitOrderAsync(LimitOrder limitOrder)
         {
             var endpoint = AppendQueryParams(Endpoints.OrdersLimitOrder, 
                 ("figi", limitOrder.Figi), (BrokerAccountId, limitOrder.BrokerAccountId));
@@ -62,7 +62,7 @@ namespace Tinkoff.Trading.OpenApi.Network
             return response?.Payload;
         }
 
-        public async Task CancelOrderAsync(string id, string brokerAccountId = null)
+        public virtual async Task CancelOrderAsync(string id, string brokerAccountId = null)
         {  
             var endpoint = AppendQueryParams(Endpoints.OrdersCancel, 
                 ("orderId", id), (BrokerAccountId, brokerAccountId));

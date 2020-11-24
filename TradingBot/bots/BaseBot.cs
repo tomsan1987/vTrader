@@ -16,7 +16,7 @@ namespace TradingBot
     public class BaseBot : IAsyncDisposable
     {
         //private static readonly Random Random = new Random();
-        protected Context _context;
+        protected IContext _context;
         protected string _token;
         protected string _accountId;
         protected List<MarketInstrument> _instruments;
@@ -42,7 +42,7 @@ namespace TradingBot
         {        
         }
 
-        public async ValueTask DisposeAsync()
+        public virtual async ValueTask DisposeAsync()
         {
             await Task.Yield();
         }
@@ -80,7 +80,8 @@ namespace TradingBot
 
         protected void Connect()
         {
-            var connection = ConnectionFactory.GetConnection(_token);
+            //var connection = ConnectionFactory.GetConnection(_token);
+            var connection = ConnectionFactory.GetFakeConnection(_token);
             _context = connection.Context;
             Logger.Write("Connection created");
         }

@@ -13,4 +13,8 @@
     <ItemGroup>
       <ProjectReference Include="..\Tinkoff.Trading.OpenApi\Tinkoff.Trading.OpenApi.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="extension\" />
+    </ItemGroup>
 </Project>

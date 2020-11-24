@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Text;
 using Tinkoff.Trading.OpenApi.Models;
+using Newtonsoft.Json;
 
 namespace TradingBot
 {
@@ -19,16 +20,16 @@ namespace TradingBot
         {
             _figi = figi;
             _ticker = ticker;
-            _file = new StreamWriter("quotes\\" + ticker + ".csv", false);
+            _file = new StreamWriter("quotes\\" + ticker + ".csv", true);
             _file.AutoFlush = true;
             _file.WriteLine("Time;Quote;Volume");
         }
 
-        public void onQuoteReceived(CandleResponse res)
+        public void onQuoteReceived(CandlePayload candle)
         {
-            if (res.Payload.Figi == _figi)
+            if (candle.Figi == _figi)
             {
-                _file.WriteLine("{0};{1};{2}", res.Time.ToString(), res.Payload.Close, res.Payload.Volume);
+                _file.WriteLine(JsonConvert.SerializeObject(candle));
             }
         }
     }

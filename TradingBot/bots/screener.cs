@@ -52,7 +52,7 @@ namespace TradingBot
         private Dictionary<string, QuoteLogger> _loggers = new Dictionary<string, QuoteLogger>();
         DateTime _lastCandleReceived;
 
-        public Screener(string token, string config_path) : base(token, config_path)
+        public Screener(string token, string configPath) : base(token, configPath)
         {
             Logger.Write("Screener created");
         }
@@ -304,7 +304,7 @@ namespace TradingBot
                     _candles.Add(cr.Payload.Figi, list);
                 }
 
-                _loggers[cr.Payload.Figi].onQuoteReceived(cr);
+                _loggers[cr.Payload.Figi].onQuoteReceived(cr.Payload);
             }
             else
             {

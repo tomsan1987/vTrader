@@ -11,35 +11,46 @@ namespace TradingBot
         private static async Task Main(string[] args)
         {
             var token = (await File.ReadAllTextAsync(args[0])).Trim();
-            //BaseBot bot;
 
-            /*
-                    bot = new RocketBot(token, args[1]);
-            /*/
-            //bot = new Screener(token, args[1]);
-            //*/
-
-            //await bot.StartAsync();
-            //while (true)
+            // Screener
             //{
-            //    bot.ShowStatus();
-            //    System.Threading.Thread.Sleep(60000);
+            //    var bot = new Screener(token, args[1]);
+            //    await bot.StartAsync();
+            //    while (true)
+            //    {
+            //        bot.ShowStatus();
+            //        System.Threading.Thread.Sleep(60000);
+            //    }
             //}
 
-            var bot = new TradeBot(token, args[1]);
+            // Rocket bot
+            //{
+            var bot = new RocketBot(token, args[1]);
             await bot.StartAsync();
+            while (true)
+            {
+                bot.ShowStatus();
+                System.Threading.Thread.Sleep(60000);
+            }
+            //}
 
-            //var session_begin = new DateTime(2020, 11, 16).AddHours(10).ToUniversalTime();
-            //var session_end = session_begin.AddHours(14).ToUniversalTime();
+            // Trade bot
+            //{
+            //var bot = new TradeBot(token, args[1]);
+            //await bot.StartAsync();
 
-            //for (int i = 0; i < 4; ++i)
+            //var session_begin = new DateTime(2020, 11, 23).AddHours(10).ToUniversalTime();
+            //var session_end = session_begin.AddHours(1).ToUniversalTime();
+
+            //for (int i = 0; i < 10; ++i)
             //{
             //    await bot.SaveHistory(session_begin, session_end);
-            //    session_begin = session_begin.AddDays(1);
-            //    session_end = session_end.AddDays(1);
+            //    session_begin = session_begin.AddHours(1);
+            //    session_end = session_end.AddHours(1);
             //}
 
-            var res = bot.TradeByHistory("E:\\tinkoff\\TradingBot\\bin\\Debug\\netcoreapp3.1\\quote_history\\2020_11_17", "");
+            //    var res = bot.TradeByHistory("E:\\tinkoff\\TradingBot\\bin\\Debug\\netcoreapp3.1\\quote_history\\2020_11_17", "");
+            //}
         }
     }
 }
