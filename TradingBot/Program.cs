@@ -12,27 +12,30 @@ namespace TradingBot
         {
             var token = (await File.ReadAllTextAsync(args[0])).Trim();
 
-            // Screener
-            {
-                var bot = new Screener(token, args[1]);
-                await bot.StartAsync();
-                while (true)
-                {
-                    bot.ShowStatus();
-                    System.Threading.Thread.Sleep(60000);
-                }
-            }
+            //Screener
+            //{
+            //    var bot = new Screener(token, args[1]);
+            //    await bot.StartAsync();
+            //    while (true)
+            //    {
+            //        bot.ShowStatus();
+            //        System.Threading.Thread.Sleep(60000);
+            //    }
+            //}
 
             // Rocket bot
             //{
-            //var bot = new RocketBot(token, args[1]);
-            //await bot.StartAsync();
-            //while (true)
-            //{
-            //    bot.ShowStatus();
-            //    System.Threading.Thread.Sleep(60000);
+            //    var bot = new RocketBot(token, args[1]);
+            //    await bot.StartAsync();
+            //    while (true)
+            //    {
+            //        bot.ShowStatus();
+            //        System.Threading.Thread.Sleep(60000);
+            //    }
+            //    await bot.DisposeAsync();
             //}
-            //}
+
+            await TestRocketBot(token, args[1]);
 
             // Trade bot
             //{
@@ -52,5 +55,15 @@ namespace TradingBot
             //    var res = bot.TradeByHistory("E:\\tinkoff\\TradingBot\\bin\\Debug\\netcoreapp3.1\\quote_history\\2020_11_17", "");
             //}
         }
+
+        private static async Task TestRocketBot(string token, string configPath)
+        {
+            var bot = new RocketBot(token, configPath);
+            await bot.StartAsync();
+            //await bot.TradeByHistory("E:\\tinkoff\\TestData\\RawQuotes\\5m\\quotes_2020-11-24_12_18", "");
+            await bot.TradeByHistory("E:\\tinkoff\\TestData\\RawQuotes\\5m\\quotes_2020-11-25_12_06", "");
+            await bot.DisposeAsync();
+        }
+
     }
 }

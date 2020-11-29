@@ -21,8 +21,9 @@ namespace TradingBot
             _figi = figi;
             _ticker = ticker;
 
-            Directory.CreateDirectory("quotes");
-            _file = new StreamWriter("quotes\\" + ticker + ".csv", true);
+            string dirName = "quotes_" + DateTime.Now.ToString("yyyy-MM-dd_HH_mm");
+            Directory.CreateDirectory(dirName);
+            _file = new StreamWriter(dirName + "\\" + ticker + ".csv", true);
             _file.AutoFlush = true;
         }
 

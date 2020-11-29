@@ -24,7 +24,7 @@ namespace TradingBot
         protected Dictionary<string, string> _figiToTicker = new Dictionary<string, string>();
         protected Dictionary<string, MarketInstrument> _figiToInstrument = new Dictionary<string, MarketInstrument>();
         protected Dictionary<string, string> _tickerToFigi = new Dictionary<string, string>();
-        protected Dictionary<string, Quotes> _candles = new Dictionary<string, Quotes>();
+        protected Dictionary<string, Quotes> _candles;
         protected DateTime _lastCandleReceived;
         protected string _configPath;
 
@@ -38,10 +38,11 @@ namespace TradingBot
         {
             Connect();
             await Init();
+            InitCandles();
 
-            _context.StreamingEventReceived += OnStreamingEventReceived;
-            _context.WebSocketException += OnWebSocketExceptionReceived;
-            _context.StreamingClosed += OnStreamingClosedReceived;
+            //_context.StreamingEventReceived += OnStreamingEventReceived;
+            //_context.WebSocketException += OnWebSocketExceptionReceived;
+            //_context.StreamingClosed += OnStreamingClosedReceived;
         }
 
         public virtual void ShowStatus()
@@ -100,31 +101,22 @@ namespace TradingBot
 
                 var cr = (CandleResponse)e.Response;
 
-                Quotes candles;
-                if (_candles.TryGetValue(cr.Payload.Figi, out candles))
+                var candles = _candles[cr.Payload.Figi];
+                if (candles.Candles.Count > 0 && candles.Candles[candles.Candles.Count - 1].Time == cr.Payload.Time)
                 {
-                    if (candles.Candles.Count > 0 && candles.Candles[candles.Candles.Count - 1].Time == cr.Payload.Time)
-                    {
-                        // update
-                        candles.Candles[candles.Candles.Count - 1] = cr.Payload;
-                        candles.Raw.Add(new Quotes.Quote(cr.Payload.Close, cr.Payload.Volume));
-                    }
-                    else
-                    {
-                        // add new one
-                        candles.Candles.Add(cr.Payload);
-                        candles.Raw.Clear();
-                        candles.Raw.Add(new Quotes.Quote(cr.Payload.Close, cr.Payload.Volume));
-                    }
+                    // update
+                    candles.Candles[candles.Candles.Count - 1] = cr.Payload;
+                    candles.Raw.Add(new Quotes.Quote(cr.Payload.Close, cr.Payload.Volume));
                 }
                 else
                 {
-                    var list = new Quotes(cr.Payload.Figi, _figiToTicker[cr.Payload.Figi]);
-                    list.Candles.Add(cr.Payload);
-                    _candles.Add(cr.Payload.Figi, list);
+                    // add new one
+                    candles.Candles.Add(cr.Payload);
+                    candles.Raw.Clear();
+                    candles.Raw.Add(new Quotes.Quote(cr.Payload.Close, cr.Payload.Volume));
                 }
 
-                _candles[cr.Payload.Figi].QuoteLogger.onQuoteReceived(cr.Payload);
+                candles.QuoteLogger.onQuoteReceived(cr.Payload);
             }
             else
             {
@@ -155,13 +147,20 @@ namespace TradingBot
             Logger.Write("Start subscribing candles...");
 
             for (int i = 0; i < _watchList.Count; ++i)
+                await _context.SendStreamingRequestAsync(StreamingRequest.SubscribeCandle(_tickerToFigi[_watchList[i]], CandleInterval.FiveMinutes));
+
+            Logger.Write("End of subscribing candles...");
+        }
+
+        protected void InitCandles()
+        {
+            _candles = new Dictionary<string, Quotes>();
+            for (int i = 0; i < _watchList.Count; ++i)
             {
                 var ticker = _watchList[i];
                 var figi = _tickerToFigi[ticker];
-                await _context.SendStreamingRequestAsync(StreamingRequest.SubscribeCandle(figi, CandleInterval.FiveMinutes));
+                _candles.Add(figi, new Quotes(figi, ticker));
             }
-
-            Logger.Write("End of subscribing candles...");
         }
     }
 }

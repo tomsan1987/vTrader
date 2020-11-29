@@ -18,25 +18,17 @@ namespace TradingBot
     {
         private class Stat : IComparable<Stat>
         {
-            public string figi;
+            public string ticker;
             public decimal change;
             public decimal open;
             public decimal close;
 
-            public Stat(string f, decimal o, decimal c)
+            public Stat(string t, decimal o, decimal c)
             {
-                figi = f;
+                ticker = t;
                 open = o;
                 close = c;
-
-                if (o <= c)
-                {
-                    change = Math.Round((c / o - 1) * 100, 2);
-                }
-                else
-                {
-                    change = -Math.Round((1 - c/ o) * 100, 2);
-                }
+                change = Helpers.GetChangeInPercent(o, c);
             }
 
             public int CompareTo(Stat right)
@@ -44,7 +36,7 @@ namespace TradingBot
                 if (this.change != right.change)
                     return (this.change < right.change) ? 1 : -1;
 
-                return this.figi.CompareTo(right.figi);
+                return this.ticker.CompareTo(right.ticker);
             }
         }
 
@@ -80,9 +72,7 @@ namespace TradingBot
                         ++idx;
                         var session_begin = DateTime.Today.AddHours(10).ToUniversalTime();
                         var candleList = await _context.MarketCandlesAsync(figi, session_begin, DateTime.Now, CandleInterval.FiveMinutes);
-                        var quotes = new Quotes(figi, ticker);
-                        quotes.Candles = candleList.Candles;
-                        _candles.Add(figi, quotes);
+                        _candles[figi].Candles = candleList.Candles;
 
                         ok = true;
                     }
@@ -106,16 +96,21 @@ namespace TradingBot
         public override void ShowStatus()
         {
             Console.Clear();
+            ShowStatusStatic(_figiToTicker, _lastCandleReceived, _candles);
+        }
+
+        public static void ShowStatusStatic(Dictionary<string, string> figiToTicker, DateTime lastCandleReceived, Dictionary<string, Quotes> allCandles)
+        {
             List<Stat> day1Change = new List<Stat>();
             List<Stat> hour1Change = new List<Stat>();
             List<Stat> min15Change = new List<Stat>();
             List<Stat> min5Change = new List<Stat>();
 
-            foreach (var c in _candles)
+            foreach (var c in allCandles)
             {
-                var figi = c.Key;
+                var ticker = figiToTicker[c.Key];
                 var candles = c.Value.Candles;
-                if (candles.Count > 2)
+                if (candles.Count >= 2)
                 {
                     // fill day change
                     {
@@ -124,7 +119,7 @@ namespace TradingBot
                             volume += candles[j].Volume;
 
                         if (volume >= 10000)
-                            day1Change.Add(new Stat(figi, candles[0].Close, candles[candles.Count - 1].Close));
+                            day1Change.Add(new Stat(ticker, candles[0].Close, candles[candles.Count - 1].Close));
                     }
 
                     // fill 1 hour change
@@ -138,7 +133,7 @@ namespace TradingBot
                                 volume += candles[j].Volume;
 
                             if (volume >= 2000)
-                                hour1Change.Add(new Stat(figi, candles[index].Close, candles[candles.Count - 1].Close));
+                                hour1Change.Add(new Stat(ticker, candles[index].Close, candles[candles.Count - 1].Close));
                         }
                     }
 
@@ -159,7 +154,7 @@ namespace TradingBot
                             }
 
                             if (volume >= 1000 && !hasZeroCandles)
-                                min15Change.Add(new Stat(figi, candles[index].Close, candles[candles.Count - 1].Close));
+                                min15Change.Add(new Stat(ticker, candles[index].Close, candles[candles.Count - 1].Close));
                         }
                     }
 
@@ -180,7 +175,7 @@ namespace TradingBot
                             }
 
                             if (volume >= 500 && !hasZeroCandles)
-                                min5Change.Add(new Stat(figi, candles[index].Close, candles[candles.Count - 1].Close));
+                                min5Change.Add(new Stat(ticker, candles[index].Close, candles[candles.Count - 1].Close));
                         }
                     }
 
@@ -218,14 +213,14 @@ namespace TradingBot
                 }
             }
 
-            Console.WriteLine("LastUpdate: {0}               Last quote: {1}", DateTime.Now.ToString("HH:mm:ss"), _lastCandleReceived.ToString("HH:mm:ss"));
+            Console.WriteLine("LastUpdate: {0}               Last quote: {1}", DateTime.Now.ToString("HH:mm:ss"), lastCandleReceived.ToString("HH:mm:ss"));
             ShowStats("Top of change DAY:", day1Change);
             ShowStats("Top of change 1H:", hour1Change);
             ShowStats("Top of change 15M:", min15Change);
             ShowStats("Top of change 5M:", min5Change);
         }
 
-        private void ShowStats(string message, List<Stat> stat)
+        private static void ShowStats(string message, List<Stat> stat)
         {
             const int cMaxOutput = 10;
             
@@ -235,7 +230,7 @@ namespace TradingBot
             var j = stat.Count - 1;
             for (var i = 0; i < Math.Min(stat.Count, cMaxOutput); ++i)
             {
-                String lOutput = String.Format("{0}:", _figiToTicker[stat[i].figi]).PadLeft(7);
+                String lOutput = String.Format("{0}:", stat[i].ticker).PadLeft(7);
                 lOutput += String.Format("{0}%", stat[i].change).PadLeft(7);
                 lOutput += String.Format("({0} ->> {1})", stat[i].open, stat[i].close).PadLeft(20);
                 lOutput = lOutput.PadRight(10);
@@ -245,7 +240,7 @@ namespace TradingBot
 
                 if (j >= cMaxOutput)
                 {
-                    String rOutput = String.Format("{0}:", _figiToTicker[stat[j].figi]).PadLeft(7);
+                    String rOutput = String.Format("{0}:", stat[j].ticker).PadLeft(7);
                     rOutput += String.Format("{0}%", stat[j].change).PadLeft(7);
                     rOutput += String.Format("({0} ->> {1})", stat[j].open, stat[j].close).PadLeft(20);
 

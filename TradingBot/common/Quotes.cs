@@ -33,7 +33,7 @@ namespace TradingBot
         }
 
         // number of quotes at the last specified interval
-        public int getNumberOfQuotes(int minutes = 1)
+        public int GetNumberOfQuotes(int minutes = 1)
         {
             var threshold = DateTime.Now.AddMinutes(-1 * minutes);
 
@@ -42,6 +42,54 @@ namespace TradingBot
                 ++count;
 
             return count;
+        }
+        
+        // Return average change of candles for the last hour
+        public decimal GetAvgCandleChange()
+        {
+            int count = 0;
+            decimal summ = 0;
+            for (int i = Math.Max(0, Candles.Count - 1 - 12); i < Candles.Count - 1; ++i)
+            {
+                if (Candles[i].Volume > 50)
+                {
+                    ++count;
+                    summ += Math.Abs(Helpers.GetChangeInPercent(Candles[i]));
+                }
+            }
+
+            if (count > 0)
+                return summ / count;
+
+            return 0;
+        }
+
+        // Check if last quote was a spike
+        public bool IsSpike()
+        {
+            // spike is a quote that diff against previous 3 quotes more than 0.5%
+            if (Raw.Count > 1 && Raw[Raw.Count - 1].Volume > 10)
+            {
+                var lastPrice = Raw[Raw.Count - 1].Price;
+
+                // get average of previous 3 quotes
+                decimal summ = 0;
+                int count = 0;
+                for (int i = Math.Max(0, Raw.Count - 3); i < Raw.Count - 1; ++i)
+                {
+                    summ += Raw[i].Price;
+                    ++count;
+                }
+
+                if (count > 0)
+                {
+                    decimal avg = summ / count;
+                    var res = Math.Abs(Helpers.GetChangeInPercent(avg, lastPrice));
+                    return res > (decimal)3.0;
+                }
+            }
+
+            return false;
         }
     }
 }
