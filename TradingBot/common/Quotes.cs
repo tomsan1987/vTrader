@@ -25,11 +25,11 @@ namespace TradingBot
         public List<Quote> Raw { get; set; }
         public QuoteLogger QuoteLogger { get; set; }
 
-        public Quotes(string figi, string ticker)
+        public Quotes(string figi, string ticker, bool dumpQuotes)
         {
             Candles = new List<CandlePayload>();
             Raw = new List<Quote>();
-            QuoteLogger = new QuoteLogger(figi, ticker);
+            QuoteLogger = new QuoteLogger(figi, ticker, dumpQuotes);
         }
 
         // number of quotes at the last specified interval

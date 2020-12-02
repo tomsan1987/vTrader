@@ -5,9 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tinkoff.Trading.OpenApi.Models;
 using Tinkoff.Trading.OpenApi.Network;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Runtime.InteropServices;
 
 namespace TradingBot
 {
@@ -17,7 +15,7 @@ namespace TradingBot
     public class BaseBot : IAsyncDisposable
     {
         protected IContext _context;
-        protected string _token;
+        protected Settings _settings;
         protected string _accountId;
         protected List<MarketInstrument> _instruments;
         protected IList<string> _watchList;
@@ -26,23 +24,29 @@ namespace TradingBot
         protected Dictionary<string, string> _tickerToFigi = new Dictionary<string, string>();
         protected Dictionary<string, Quotes> _candles;
         protected DateTime _lastCandleReceived;
-        protected string _configPath;
 
-        public BaseBot(string token, string configPath)
+        public class Settings
         {
-            _token = token;
-            _configPath = configPath;
+            public bool SubscribeQuotes { get; set; } = false;
+            public bool RequestCandlesHistory { get; set; } = false;
+            public bool FakeConnection { get; set; } = true;
+            public bool DumpQuotes { get; set; } = true;
+            public string Token { get; set; }
+            public string ConfigPath { get; set; }
+        }
+
+        public BaseBot(Settings settings)
+        {
+            _settings = settings;
         }
 
         public virtual async Task StartAsync()
         {
             Connect();
-            await Init();
+            await InitInstruments();
             InitCandles();
-
-            //_context.StreamingEventReceived += OnStreamingEventReceived;
-            //_context.WebSocketException += OnWebSocketExceptionReceived;
-            //_context.StreamingClosed += OnStreamingClosedReceived;
+            await RequestCandleHistory();
+            await SubscribeCandles();
         }
 
         public virtual void ShowStatus()
@@ -54,9 +58,9 @@ namespace TradingBot
             await Task.Yield();
         }
 
-        protected async Task Init()
+        protected async Task InitInstruments()
         {
-            var configJson = JObject.Parse(File.ReadAllText(_configPath));
+            var configJson = JObject.Parse(File.ReadAllText(_settings.ConfigPath));
             _watchList = ((JArray)configJson["watch-list"]).ToObject<IList<string>>();
 
             // get account ID
@@ -87,10 +91,18 @@ namespace TradingBot
 
         protected void Connect()
         {
-            //var connection = ConnectionFactory.GetConnection(_token);
-            var connection = ConnectionFactory.GetFakeConnection(_token);
-            _context = connection.Context;
-            Logger.Write("Connection created");
+            if (_settings.FakeConnection)
+            {
+                var connection = ConnectionFactory.GetFakeConnection(_settings.Token);
+                _context = connection.Context;
+               Logger.Write("Fake connection created");
+            }
+            else
+            {
+                var connection = ConnectionFactory.GetConnection(_settings.Token);
+                _context = connection.Context;
+                Logger.Write("Real connection created");
+            }
         }
 
         protected virtual void OnStreamingEventReceived(object s, StreamingEventReceivedEventArgs e)
@@ -129,10 +141,6 @@ namespace TradingBot
             Logger.Write("OnWebSocketExceptionReceived: {0}", e.Message);
 
             Connect();
-            _context.StreamingEventReceived += OnStreamingEventReceived;
-            _context.WebSocketException += OnWebSocketExceptionReceived;
-            _context.StreamingClosed += OnStreamingClosedReceived;
-
             _ = SubscribeCandles();
         }
 
@@ -142,14 +150,64 @@ namespace TradingBot
             throw new Exception("Stream closed for unknown reasons...");
         }
 
-        protected async Task SubscribeCandles()
+        private async Task SubscribeCandles()
         {
-            Logger.Write("Start subscribing candles...");
+            if (_settings.SubscribeQuotes)
+            {
+                _context.StreamingEventReceived += OnStreamingEventReceived;
+                _context.WebSocketException += OnWebSocketExceptionReceived;
+                _context.StreamingClosed += OnStreamingClosedReceived;
 
-            for (int i = 0; i < _watchList.Count; ++i)
-                await _context.SendStreamingRequestAsync(StreamingRequest.SubscribeCandle(_tickerToFigi[_watchList[i]], CandleInterval.FiveMinutes));
+                Logger.Write("Start subscribing candles...");
 
-            Logger.Write("End of subscribing candles...");
+                for (int i = 0; i < _watchList.Count; ++i)
+                    await _context.SendStreamingRequestAsync(StreamingRequest.SubscribeCandle(_tickerToFigi[_watchList[i]], CandleInterval.FiveMinutes));
+
+                Logger.Write("End of subscribing candles...");
+            }
+        }
+
+        private async Task RequestCandleHistory()
+        {
+            if (_settings.RequestCandlesHistory)
+            {
+                Logger.Write("Query candle history...");
+
+                int idx = 0;
+                for (int i = 0; i < _watchList.Count; ++i)
+                {
+                    var ticker = _watchList[i];
+                    var figi = _tickerToFigi[ticker];
+
+                    bool ok = false;
+                    while (!ok)
+                    {
+                        try
+                        {
+                            // query history candles
+                            ++idx;
+                            var session_begin = DateTime.Today.AddHours(10).ToUniversalTime();
+                            var candleList = await _context.MarketCandlesAsync(figi, session_begin, DateTime.Now, CandleInterval.FiveMinutes);
+                            _candles[figi].Candles = candleList.Candles;
+
+                            ok = true;
+                        }
+                        catch (OpenApiException)
+                        {
+                            Logger.Write("Context: waiting after {0} queries....", idx);
+                            ok = false;
+                            idx = 0;
+                            await Task.Delay(30000); // sleep for a while
+                        }
+                        catch (Exception e)
+                        {
+                            Logger.Write("Excetion: " + e.Message);
+                        }
+                    }
+                }
+
+                Logger.Write("Done query candle history...");
+            }
         }
 
         protected void InitCandles()
@@ -159,7 +217,7 @@ namespace TradingBot
             {
                 var ticker = _watchList[i];
                 var figi = _tickerToFigi[ticker];
-                _candles.Add(figi, new Quotes(figi, ticker));
+                _candles.Add(figi, new Quotes(figi, ticker, _settings.DumpQuotes));
             }
         }
     }

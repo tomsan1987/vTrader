@@ -16,20 +16,23 @@ namespace TradingBot
         private readonly string _ticker;
         private readonly StreamWriter _file;
 
-        public QuoteLogger(string figi, string ticker)
+        public QuoteLogger(string figi, string ticker, bool dumpQuotes)
         {
             _figi = figi;
             _ticker = ticker;
 
-            string dirName = "quotes_" + DateTime.Now.ToString("yyyy-MM-dd_HH_mm");
-            Directory.CreateDirectory(dirName);
-            _file = new StreamWriter(dirName + "\\" + ticker + ".csv", true);
-            _file.AutoFlush = true;
+            if (dumpQuotes)
+            {
+                string dirName = "quotes_" + DateTime.Now.ToString("yyyy-MM-dd");
+                Directory.CreateDirectory(dirName);
+                _file = new StreamWriter(dirName + "\\" + ticker + ".csv", true);
+                _file.AutoFlush = true;
+            }
         }
 
         public void onQuoteReceived(CandlePayload candle)
         {
-            if (candle.Figi == _figi)
+            if (candle.Figi == _figi && _file != null)
             {
                 _file.WriteLine(JsonConvert.SerializeObject(candle));
             }

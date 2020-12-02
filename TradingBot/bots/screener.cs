@@ -1,13 +1,8 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Net.WebSockets;
 using Tinkoff.Trading.OpenApi.Models;
 using Tinkoff.Trading.OpenApi.Network;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Runtime.InteropServices;
 
 namespace TradingBot
 {
@@ -16,7 +11,7 @@ namespace TradingBot
     //     Stocks screener. Show day statistic for instuments.
     public class Screener : BaseBot
     {
-        private class Stat : IComparable<Stat>
+        public class Stat : IComparable<Stat>
         {
             public string ticker;
             public decimal change;
@@ -40,57 +35,9 @@ namespace TradingBot
             }
         }
 
-        public Screener(string token, string configPath) : base(token, configPath)
+        public Screener(Settings settings) : base(settings)
         {
             Logger.Write("Screener created");
-        }
-
-        public override async Task StartAsync()
-        {
-            await base.StartAsync();
-
-            await GetHistory();
-            await SubscribeCandles();
-        }
-
-        public async Task GetHistory()
-        {
-            Logger.Write("Query candle history...");
-
-            int idx = 0;
-            for (int i = 0; i < _watchList.Count; ++i)
-            {
-                var ticker = _watchList[i];
-                var figi = _tickerToFigi[ticker];
-
-                bool ok = false;
-                while (!ok)
-                {
-                    try
-                    {
-                        // query history candles
-                        ++idx;
-                        var session_begin = DateTime.Today.AddHours(10).ToUniversalTime();
-                        var candleList = await _context.MarketCandlesAsync(figi, session_begin, DateTime.Now, CandleInterval.FiveMinutes);
-                        _candles[figi].Candles = candleList.Candles;
-
-                        ok = true;
-                    }
-                    catch (OpenApiException)
-                    {
-                        Logger.Write("Context: waiting after {0} queries....", idx);
-                        ok = false;
-                        idx = 0;
-                        await Task.Delay(30000); // sleep for a while
-                    }
-                    catch (Exception e)
-                    {
-                        Logger.Write("Excetion: " + e.Message);
-                    }
-                }
-            }
-
-            Logger.Write("Done query candle history...");
         }
 
         public override void ShowStatus()
@@ -220,7 +167,7 @@ namespace TradingBot
             ShowStats("Top of change 5M:", min5Change);
         }
 
-        private static void ShowStats(string message, List<Stat> stat)
+        public static void ShowStats(string message, List<Stat> stat)
         {
             const int cMaxOutput = 10;
             

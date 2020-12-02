@@ -3,12 +3,9 @@ using System.IO;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Net.WebSockets;
 using Tinkoff.Trading.OpenApi.Models;
 using Tinkoff.Trading.OpenApi.Network;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Runtime.InteropServices;
 
 namespace TradingBot
 {
@@ -20,26 +17,33 @@ namespace TradingBot
         private Dictionary<string, TradeData> _tradeData = new Dictionary<string, TradeData>();
         private TradeStatistic _stats = new TradeStatistic();
         private bool _isShutingDown = false;
+        private Task _tradeTask;
+        private Dictionary<string, int> _newQuotes = new Dictionary<string, int>();
+        private object _quotesLock = new object();
+        private AutoResetEvent _quoteReceivedEvent = new AutoResetEvent(false);
+        private AutoResetEvent _quoteProcessedEvent = new AutoResetEvent(false);
 
-        public RocketBot(string token, string configPath) : base(token, configPath)
+        public RocketBot(Settings settings) : base(settings)
         {
             Logger.Write("Rocket bot created");
         }
 
         public override async ValueTask DisposeAsync()
         {
-            await CloseAll();
-
-            String message = "Orders statistic:";
-            foreach (var it in _stats.logMessages)
+            if (_settings.FakeConnection)
             {
-                message += "\n";
-                message += it;
-            }
-            Logger.Write(message);
+                await CloseAll();
 
-            Logger.Write("Trade statistic. Total/Pos/Neg {0}/{1}/{2}. Profit: {3}. Volume: {4}. MaxVolume: {5}. Comission: {6}", _stats.totalOrders, _stats.posOrders, _stats.negOrders, _stats.totalProfit, _stats.volume, _stats.maxVolume, _stats.comission);
-            await Task.Yield();
+                String message = "Orders statistic:";
+                foreach (var it in _stats.logMessages)
+                {
+                    message += "\n";
+                    message += it;
+                }
+                Logger.Write(message);
+
+                Logger.Write("Trade statistic. Total/Pos/Neg {0}/{1}/{2}. Profit: {3}. Volume: {4}. MaxVolume: {5}. Comission: {6}", _stats.totalOrders, _stats.posOrders, _stats.negOrders, _stats.totalProfit, _stats.volume, _stats.maxVolume, _stats.comission);
+            }
         }
 
         public override async Task StartAsync()
@@ -48,11 +52,31 @@ namespace TradingBot
 
             foreach (var ticker in _watchList)
             {
-                var figi = _tickerToFigi[ticker];
                 _tradeData.Add(_tickerToFigi[ticker], new TradeData());
             }
 
-            //await SubscribeCandles();
+            _tradeTask = Task.Run(async () =>
+            {
+                while (_quoteReceivedEvent.WaitOne())
+                {
+                    Dictionary<string, int> newQuotes = null;
+                    lock (_quotesLock)
+                    {
+                        newQuotes = _newQuotes;
+                        _newQuotes = new Dictionary<string, int>();
+                    }
+
+                    foreach (var it in newQuotes)
+                    {
+                        if (it.Value > 1)
+                            Logger.Write("{0}: Quotes queue size: {1}", _figiToTicker[it.Key], it.Value);
+
+                        await OnCandleUpdate(it.Key);
+                    }
+
+                    _quoteProcessedEvent.Set();
+                }
+            });
         }
 
         public override void ShowStatus()
@@ -81,16 +105,15 @@ namespace TradingBot
                 return;
             }
 
-            //if (candle.Close < 100)
-            //    return;
-
             if (tradeData.Status == Status.Watching)
             {
-                // make sure that we got actual candle
-                //TimeSpan elapsedSpan = new TimeSpan(DateTime.Now.AddMinutes(-5).ToUniversalTime().Ticks - candle.Time.Ticks);
-                //if (elapsedSpan.TotalSeconds > 5)
-                //    return;
-
+                if (_settings.SubscribeQuotes)
+                {
+                    // make sure that we got actual candle
+                    TimeSpan elapsedSpan = new TimeSpan(DateTime.Now.AddMinutes(-5).ToUniversalTime().Ticks - candle.Time.Ticks);
+                    if (elapsedSpan.TotalSeconds > 5)
+                        return;
+                }
 
                 decimal volume = 0;
                 for (int i = Math.Max(0, candles.Count - 3); i < candles.Count; ++i)
@@ -120,155 +143,105 @@ namespace TradingBot
                                 // check that it is not grow after fall
                                 int timeAgoStart = Math.Max(0, start - 24);
                                 var localChange = Helpers.GetChangeInPercent(candles[timeAgoStart].Close, candles[start - 1].Close);
-                                if (localChange > 0 || 2 * Math.Abs(localChange) < change)
+                                if (localChange > 0 || 4 * Math.Abs(localChange) < change)
                                 {
                                     posGrow = true;
                                     reason = String.Format("{0} candles, grow +{1}%, local change {2}%", candlesRequired, change, localChange);
                                 }
                             }
                         }
-
-                        //int postiveCandles = 0;
-                        //for (int k = Math.Max(0, candles.Count - candlesRequired); k < candles.Count; ++k)
-                        //{
-                        //    if (Helpers.GetChangeInPercent(candles[k]) >= sConditions[i])
-                        //        ++postiveCandles;
-                        //}
-
-                        //if (postiveCandles == candlesRequired)
-                        //{
-                        //    posGrow = true;
-                        //    reason = String.Format("{0} candles, +{1}%", postiveCandles, sConditions[i]);
-                        //}
                     }
 
-                    //decimal momentumChange = Helpers.GetChangeInPercent(candle.Low, candle.Close);
-                    //if (candles.Count > 1)
-                    //    momentumChange = Math.Max(momentumChange, Helpers.GetChangeInPercent(candles[candles.Count - 1].Low, candle.Close));
-
-                    // checked that it is not a grow after a fall
-                    //decimal localChange = 0;
-                    //int j = Math.Max(0, candles.Count - 13);
-                    //if (candles.Count - 3 > 0)
-                    //    localChange = Helpers.GetChangeInPercent(candles[j].Close, candles[candles.Count - 3].Close);
-
-                    // try to buy if it down well
-
-
-                    if (/*localChange >= (decimal)-0.2 &&*/ posGrow)
+                    if (posGrow)
                     {
                         // buy 1 lot
-                        var price = candle.Close + instrument.MinPriceIncrement;
-                        var order = new LimitOrder(instrument.Figi, 1, OperationType.Buy, price);
+                        tradeData.BuyPrice = candle.Close + instrument.MinPriceIncrement;
+                        //tradeData.StopPrice = Helpers.RoundPrice(tradeData.BuyPrice * 0.98m, instrument.MinPriceIncrement);
+
+                        Logger.Write("{0}: BuyPending. Price: {1}. StopPrice: {2}. Candle: {3}. Details: Reason: {4}", instrument.Ticker, tradeData.BuyPrice, tradeData.StopPrice, JsonConvert.SerializeObject(candle), reason);
+
+                        var order = new LimitOrder(instrument.Figi, 1, OperationType.Buy, tradeData.BuyPrice);
                         var placedOrder = await _context.PlaceLimitOrderAsync(order);
 
                         tradeData.OrderId = placedOrder.OrderId;
-                        tradeData.BuyPrice = price;
-                        tradeData.StopPrice = Helpers.RoundPrice(tradeData.BuyPrice * (decimal)0.98, instrument.MinPriceIncrement);
                         tradeData.Status = Status.BuyPending;
                         tradeData.Time = candle.Time;
-                        _stats.Buy(tradeData.BuyPrice);
-
-                        Logger.Write("{0}: Buy. Price: {1}. StopPrice: {2}. Candle: {3}. Details: Reason: {4}, Status - {5}, RejectReason -  {6}",
-                            instrument.Ticker, tradeData.BuyPrice, tradeData.StopPrice, JsonConvert.SerializeObject(candle), reason, placedOrder.Status.ToString(), placedOrder.RejectReason);
+                        Logger.Write("{0}: OrderId: {1}. Details: Status - {2}, RejectReason -  {3}", instrument.Ticker, tradeData.OrderId, placedOrder.Status.ToString(), placedOrder.RejectReason);
                     }
-                    //else if (momentumChange >= (decimal)1.5 && (localChange >= (decimal)-0.2 || momentumChange >= 2 * Math.Abs(localChange)))
-                    //{
-                    //    // buy 1 lot
-                    //    var price = candle.Close + 2 * instrument.MinPriceIncrement;
-                    //    var order = new LimitOrder(instrument.Figi, 1, OperationType.Buy, price);
-                    //    var placedOrder = await _context.PlaceLimitOrderAsync(order);
-
-                    //    tradeData.OrderId = placedOrder.OrderId;
-                    //    tradeData.BuyPrice = price;
-                    //    tradeData.StopPrice = Helpers.RoundPrice(tradeData.BuyPrice * (decimal)0.98, instrument.MinPriceIncrement);
-                    //    tradeData.Status = Status.BuyPending;
-                    //    tradeData.Time = candle.Time;
-                    //    _stats.Buy(tradeData.BuyPrice);
-
-                    //    Logger.Write("{0}: Buy. BuyPrice: {1}. StopPrice: {2}. Candle: {3}. Details: Reason: 'momentumChange', Status - {4}, RejectReason -  {5}",
-                    //        instrument.Ticker, tradeData.BuyPrice, tradeData.StopPrice, JsonConvert.SerializeObject(candle), placedOrder.Status.ToString(), placedOrder.RejectReason);
-                    //}
                 }
             }
             else if (tradeData.Status == Status.BuyPending)
             {
-                // check if limited order executed
-                
+                // check if limited order executed                
                 if (await IsOrderExecuted(tradeData.OrderId))
                 {
                     // order executed
                     tradeData.Status = Status.BuyDone;
                     tradeData.Time = candle.Time;
+                    _stats.Buy(tradeData.BuyPrice);
+
+                    Logger.Write("{0}: OrderId: {1} executed", instrument.Ticker, tradeData.OrderId);
                 }
                 else
                 {
                     // check if price changed is not significantly
                     var change = Helpers.GetChangeInPercent(tradeData.BuyPrice, candle.Close);
-                    if (change >= (decimal)0.5)
+                    if (change >= 0.5m)
                     {
-                        Logger.Write("{0}: Cancel. Candle: {1}. Details: price change {2}", instrument.Ticker, JsonConvert.SerializeObject(candle), change);
+                        Logger.Write("{0}: Cancel order. Candle: {1}. Details: price change {2}", instrument.Ticker, JsonConvert.SerializeObject(candle), change);
 
                         await _context.CancelOrderAsync(tradeData.OrderId);
                         tradeData.OrderId = null;
                         tradeData.BuyPrice = 0;
+                        tradeData.Status = Status.Watching;
                     }
                 }
             }
             else if (tradeData.Status == Status.BuyDone)
             {
-                // check if we reach stop conditions
-                //if (candle.Close <= tradeData.StopPrice)
-                //{
-                //    var price = candle.Close - 2 * instrument.MinPriceIncrement;
-                //    var order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, price);
-                //    var placedOrder = await _context.PlaceLimitOrderAsync(order);
-
-                //    Logger.Write("{0}: Sell by SL. Close price: {1}. Candle: {2}. Profit: {3}({4}%)", instrument.Ticker, price, JsonConvert.SerializeObject(candle), price - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, price));
-                //    tradeData.Status = Status.SellPending;
-                //    tradeData.Time = candle.Time;
-                //    _stats.Sell(tradeData.BuyPrice);
-
-                //    _stats.Update(tradeData.BuyPrice, price);
-                //}
-                //else if (tradeData.StopPrice < tradeData.BuyPrice && Helpers.GetChangeInPercent(tradeData.BuyPrice, candle.Close) >= (decimal)1.0)
-                //{
-                //    // move stop loss to no loss
-                //    tradeData.StopPrice = tradeData.BuyPrice;//Helpers.RoundPrice(tradeData.BuyPrice * (decimal)1.005, instrument.MinPriceIncrement);
-                //    tradeData.Time = candle.Time;
-                //    Logger.Write("{0}: Moving stop loss to no loss. Price: {1} Candle: {2}.", instrument.Ticker, tradeData.StopPrice, JsonConvert.SerializeObject(candle));
-                //}
-                //else if (tradeData.StopPrice >= tradeData.BuyPrice && Helpers.GetChangeInPercent(tradeData.StopPrice, candle.Close) >= (decimal)2.0)
-                //{
-                //    // pulling the stop to the price
-                //    tradeData.StopPrice = Helpers.RoundPrice(candle.Close * (decimal)0.99, instrument.MinPriceIncrement);
-                //    tradeData.Time = candle.Time;
-                //    Logger.Write("{0}: Pulling stop loss to current price. Price: {1} Candle: {2}.", instrument.Ticker, tradeData.StopPrice, JsonConvert.SerializeObject(candle));
-                //}
-
-                // check that it is not a Rocket!
-                //var time = tradeData.Time.AddMinutes(10);
-                //if (candle.Time == time)
-                //{
-                //    if (candles[candles.Count - 1].Close < tradeData.BuyPrice)
-                //    {
-                //        var price = candle.Close - 2 * instrument.MinPriceIncrement;
-                //        var order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, price);
-                //        var placedOrder = await _context.PlaceLimitOrderAsync(order);
-
-                //        Logger.Write("{0}: Sell by not Rocket reasons. Close price: {1}. Candle: {2}. Profit: {3}({4}%)", instrument.Ticker, price, JsonConvert.SerializeObject(candle), price - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, price));
-                //        tradeData.Status = Status.SellPending;
-                //        tradeData.Time = candle.Time;
-                //        _stats.Sell(tradeData.BuyPrice);
-
-                //        _stats.Update(instrument.Ticker, tradeData.BuyPrice, price);
-                //    }
-                //}
-
-
-                TimeSpan elapsedTime = new TimeSpan(DateTime.Now.ToUniversalTime().Ticks - tradeData.Time.Ticks);
-                if (elapsedTime.TotalMinutes > 25)
+                //check if we reach stop conditions
+                if (candle.Close < tradeData.StopPrice)
                 {
+                    // sell 1 lot
+                    tradeData.SellPrice = candle.Close - instrument.MinPriceIncrement;
+                    Logger.Write("{0}: SL reached. Pending. Close price: {1}. Candle: {2}. Profit: {3}({4}%)", instrument.Ticker, tradeData.SellPrice, JsonConvert.SerializeObject(candle), tradeData.SellPrice - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, tradeData.SellPrice));
+
+                    var order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, tradeData.SellPrice);
+                    var placedOrder = await _context.PlaceLimitOrderAsync(order);
+
+                    tradeData.Status = Status.SellPending;
+                    tradeData.Time = candle.Time;
+                    Logger.Write("{0}: OrderId: {1}. Details: Status - {2}, RejectReason -  {3}", instrument.Ticker, tradeData.OrderId, placedOrder.Status.ToString(), placedOrder.RejectReason);
+                }
+                else if (tradeData.StopPrice == 0 && candle.Time > tradeData.Time.AddMinutes(5))
+                {
+                    var change = Helpers.GetChangeInPercent(tradeData.BuyPrice, candle.Close);
+                    if (change >= 1m)
+                    {
+                        // move stop loss to no loss
+                        tradeData.StopPrice = tradeData.BuyPrice + instrument.MinPriceIncrement;//Helpers.RoundPrice(tradeData.BuyPrice * 1.005m, instrument.MinPriceIncrement);
+                        tradeData.Time = candle.Time;
+                        Logger.Write("{0}: Moving stop loss to no loss. Price: {1} Candle: {2}.", instrument.Ticker, tradeData.StopPrice, JsonConvert.SerializeObject(candle));
+                    }
+                    else if (change < 0m)
+                    {
+                        // seems not a Rocket
+                        tradeData.StopPrice = candle.Close;
+                        tradeData.Time = candle.Time;
+                        Logger.Write("{0}: Seems not a Rocket. Set stop loss. Price: {1} Candle: {2}.", instrument.Ticker, tradeData.StopPrice, JsonConvert.SerializeObject(candle));
+                    }
+                }
+                else if (tradeData.StopPrice > tradeData.BuyPrice && Helpers.GetChangeInPercent(tradeData.StopPrice, candle.Close) >= 2.0m)
+                {
+                    // pulling the stop to the price
+                    tradeData.StopPrice = Helpers.RoundPrice(candle.Close * 0.99m, instrument.MinPriceIncrement);
+                    tradeData.Time = candle.Time;
+                    Logger.Write("{0}: Pulling stop loss to current price. Price: {1} Candle: {2}.", instrument.Ticker, tradeData.StopPrice, JsonConvert.SerializeObject(candle));
+                }
+
+                //TimeSpan elapsedTime = new TimeSpan(DateTime.Now.ToUniversalTime().Ticks - tradeData.Time.Ticks);
+                //if (elapsedTime.TotalMinutes > 25)
+                //{
                     //if (tradeData.BuyPrice > candle.Close)
                     //{
                     //    // close order forcibly
@@ -283,6 +256,23 @@ namespace TradingBot
 
                     //    _stats.Update(tradeData.BuyPrice, price);
                     //}
+                //}
+            }
+            else if (tradeData.Status == Status.SellPending)
+            {
+                // check if limited order executed                
+                if (await IsOrderExecuted(tradeData.OrderId))
+                {
+                    // order executed
+                    Logger.Write("{0}: OrderId: {1} executed", instrument.Ticker, tradeData.OrderId);
+
+                    _stats.Sell(tradeData.BuyPrice);
+                    _stats.Update(instrument.Ticker, tradeData.BuyPrice, tradeData.SellPrice);
+                    tradeData.Reset();
+                }
+                else
+                {
+                    // TODO ?
                 }
             }
             else if (tradeData.Status == Status.ShutDown)
@@ -297,7 +287,7 @@ namespace TradingBot
             }
         }
 
-        private async Task CloseAll()   
+        private async Task CloseAll()
         {
             _isShutingDown = true;
             foreach (var it in _tradeData)
@@ -367,21 +357,18 @@ namespace TradingBot
             if (e.Response.Event == "candle")
             {
                 base.OnStreamingEventReceived(s, e);
-                OnCandleUpdate(((CandleResponse)e.Response).Payload.Figi);
+                lock (_quotesLock)
+                {
+                    if (!_newQuotes.TryAdd(((CandleResponse)e.Response).Payload.Figi, 1))
+                        _newQuotes[((CandleResponse)e.Response).Payload.Figi]++;
+
+                    _quoteReceivedEvent.Set();
+                }
             }
         }
 
-        public async Task TradeByHistory(string folderPath, string tickets = "")
+        public void TradeByHistory(string folderPath, string tickets = "")
         {
-            // unsubscribe from candles
-            _context.StreamingEventReceived -= base.OnStreamingEventReceived;
-            _context.WebSocketException -= base.OnWebSocketExceptionReceived;
-            _context.StreamingClosed -= base.OnStreamingClosedReceived;
-            foreach (var it in _candles)
-            {
-                it.Value.Candles.Clear();
-            }
-
             var filter = tickets.Split(",", StringSplitOptions.RemoveEmptyEntries);
 
             for (int i = 0; i < _watchList.Count; ++i)
@@ -398,10 +385,87 @@ namespace TradingBot
 
                 foreach (var candle in candleList)
                 {
-                    base.OnStreamingEventReceived(this, new StreamingEventReceivedEventArgs(new CandleResponse(candle, DateTime.Now)));
-                    await OnCandleUpdate(candle.Figi);
+                    OnStreamingEventReceived(this, new StreamingEventReceivedEventArgs(new CandleResponse(candle, DateTime.Now)));
+                    _quoteProcessedEvent.WaitOne();
                 }
             }
+        }
+
+        public void CreateCandlesStatistic(string folderPath)
+        {
+            // read candles for each instrument and create dayly statistic
+            // results will save to a file
+
+            List<Screener.Stat> openToClose = new List<Screener.Stat>();
+            List<Screener.Stat> lowToHigh = new List<Screener.Stat>();
+
+            DirectoryInfo folder = new DirectoryInfo(folderPath);
+            foreach (FileInfo f in folder.GetFiles())
+            {
+                if (f.Extension == ".csv")
+                {
+                    var candleList = ReadCandles(f.FullName);
+                    if (candleList.Count > 0)
+                    {
+                        decimal open = candleList[0].Open;
+                        decimal close = candleList[0].Close;
+                        decimal low = candleList[0].Low;
+                        decimal high = candleList[0].High;
+
+                        for (int i = 1; i < candleList.Count; ++i)
+                        {
+                            low = Math.Min(low, candleList[i].Low);
+                            high = Math.Max(high, candleList[i].High);
+                        }
+
+                        close = candleList[candleList.Count - 1].Close;
+
+                        var ticker = f.Name.Substring(0, f.Name.Length - 4);
+                        openToClose.Add(new Screener.Stat(ticker, open, close));
+                        lowToHigh.Add(new Screener.Stat(ticker, low, high));
+                    }
+                }
+            }
+
+            openToClose.Sort();
+            lowToHigh.Sort();
+
+            // create output file
+            var file = new StreamWriter(folderPath + "\\_stat.txt", false);
+            file.AutoFlush = true;
+
+            const int cMaxOutput = 15;
+            Action<string, List<Screener.Stat>> showStat = (message, list) =>
+            {
+                file.WriteLine(message);
+                var j = list.Count - 1;
+                for (var i = 0; i < Math.Min(list.Count, cMaxOutput); ++i)
+                {
+                    String lOutput = String.Format("{0}:", list[i].ticker).PadLeft(7);
+                    lOutput += String.Format("{0}%", list[i].change).PadLeft(7);
+                    lOutput += String.Format("({0} ->> {1})", list[i].open, list[i].close).PadLeft(20);
+                    lOutput = lOutput.PadRight(10);
+
+                    file.Write(lOutput);
+
+                    if (j >= cMaxOutput)
+                    {
+                        String rOutput = String.Format("{0}:", list[j].ticker).PadLeft(7);
+                        rOutput += String.Format("{0}%", list[j].change).PadLeft(7);
+                        rOutput += String.Format("({0} ->> {1})", list[j].open, list[j].close).PadLeft(20);
+
+                        file.Write(rOutput);
+                        --j;
+                    }
+
+                    file.Write("\n");
+                }
+            };
+
+            showStat("Open to Close statistics:", openToClose);
+            showStat("Low to High statistics:", lowToHigh);
+
+            file.Close();
         }
 
         private List<CandlePayload> ReadCandles(string filePath)
