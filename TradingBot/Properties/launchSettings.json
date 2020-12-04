@@ -2,7 +2,7 @@
   "profiles": {
     "TradingBot": {
       "commandName": "Project",
-      "commandLineArgs": "\"..\\..\\..\\..\\Configuration\\token.txt\" \"..\\..\\..\\..\\Configuration\\config.json\""
+      "commandLineArgs": "mode=\"Screener\" DumpQuotes=true SubscribeQuotes=true RequestCandlesHistory=true Token=\"..\\..\\..\\..\\Configuration\\token.txt\" ConfigPath=\"..\\..\\..\\..\\Configuration\\config.json\""
     }
   }
 }

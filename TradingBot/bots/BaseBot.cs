@@ -33,6 +33,27 @@ namespace TradingBot
             public bool DumpQuotes { get; set; } = true;
             public string Token { get; set; }
             public string ConfigPath { get; set; }
+
+            public Settings(ProgramOptions po)
+            {
+                if (po.HasValue("SubscribeQuotes"))
+                    SubscribeQuotes = po.Get<bool>("SubscribeQuotes");
+
+                if (po.HasValue("RequestCandlesHistory"))
+                    RequestCandlesHistory = po.Get<bool>("RequestCandlesHistory");
+
+                if (po.HasValue("FakeConnection"))
+                    FakeConnection = po.Get<bool>("FakeConnection");
+
+                if (po.HasValue("DumpQuotes"))
+                    DumpQuotes = po.Get<bool>("DumpQuotes");
+
+                if (po.HasValue("Token"))
+                    Token = po.Get<string>("Token");
+
+                if (po.HasValue("ConfigPath"))
+                    ConfigPath = po.Get<string>("ConfigPath");
+            }
         }
 
         public BaseBot(Settings settings)

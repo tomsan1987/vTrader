@@ -10,55 +10,62 @@ namespace TradingBot
     {
         private static async Task Main(string[] args)
         {
-            var settings = new BaseBot.Settings();
-            settings.Token = (await File.ReadAllTextAsync(args[0])).Trim();
-            settings.ConfigPath = args[1];
+            var po = new ProgramOptions(args);
+            var settings = new BaseBot.Settings(po);
 
-            // Screener
-            //{
-            //    settings.DumpQuotes = true;
-            //    settings.SubscribeQuotes = true;
-            //    settings.RequestCandlesHistory = true;
+            var mode = po.Get<string>("mode");
+            switch (mode)
+            {
+                case "Screener":
+                    {
+                        var bot = new Screener(settings);
+                        await bot.StartAsync();
+                        while (true)
+                        {
+                            bot.ShowStatus();
+                            System.Threading.Thread.Sleep(60000);
+                        }
+                    }
+                    break;
 
-            //    var bot = new Screener(settings);
-            //    await bot.StartAsync();
-            //    while (true)
-            //    {
-            //        bot.ShowStatus();
-            //        System.Threading.Thread.Sleep(60000);
-            //    }
-            //}
+                case "RocketBot":
+                    {
+                        var bot = new RocketBot(settings);
+                        await bot.StartAsync();
+                        while (true)
+                        {
+                            bot.ShowStatus();
+                            System.Threading.Thread.Sleep(60000);
+                        }
+                    }
+                    break;
 
-            // Rocket bot
-            //{
-            //    settings.FakeConnection = false;
-            //    settings.SubscribeQuotes = true;
+                case "TestRocketBot":
+                    {
+                        await TestRocketBot(settings, po);
+                    }
+                    break;
 
-            //    var bot = new RocketBot(settings);
-            //    await bot.StartAsync();
-            //    while (true)
-            //    {
-            //        bot.ShowStatus();
-            //        System.Threading.Thread.Sleep(60000);
-            //    }
-            //    await bot.DisposeAsync();
-            //}
+                case "CreateCandlesStatistic":
+                    {
+                        var bot = new RocketBot(settings);
+                        bot.CreateCandlesStatistic(po.Get<string>("CandlesPath"));
+                    }
+                    break;
 
-            await TestRocketBot(settings);
+                default: Console.WriteLine("TODO: Help"); break;
+            }
         }
 
-        private static async Task TestRocketBot(BaseBot.Settings settings)
+        private static async Task TestRocketBot(BaseBot.Settings settings, ProgramOptions po)
         {
-            settings.FakeConnection = true;
-            settings.DumpQuotes = false;
+            string candlesPath = po.Get<string>("CandlesPath");
+            string tickerFilter = po.Get<string>("TickerFilter");
 
             var bot = new RocketBot(settings);
-            //bot.CreateCandlesStatistic("E:\\tinkoff\\TestData\\RawQuotes\\5m\\quotes_2020-11-24_12_18");
-
             await bot.StartAsync();
-            bot.TradeByHistory("E:\\tinkoff\\TestData\\RawQuotes\\5m\\quotes_2020-11-24_12_18", "");
+            bot.TradeByHistory(candlesPath, tickerFilter);
             await bot.DisposeAsync();
         }
-
     }
 }
