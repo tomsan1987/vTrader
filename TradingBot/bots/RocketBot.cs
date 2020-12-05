@@ -115,6 +115,10 @@ namespace TradingBot
                         return;
                 }
 
+                //// check that we did not bought it recently
+                //if (tradeData.Time.AddMinutes(10) >= candle.Time)
+                //    return;
+
                 decimal volume = 0;
                 for (int i = Math.Max(0, candles.Count - 3); i < candles.Count; ++i)
                 {
@@ -126,7 +130,7 @@ namespace TradingBot
 
                 if (volume > 1000)
                 {
-                    decimal[] sConditions = new decimal[] {3m, 2m};
+                    decimal[] sConditions = new decimal[] {3m};
 
                     bool posGrow = false;
                     string reason = "";
@@ -367,9 +371,12 @@ namespace TradingBot
             }
         }
 
-        public void TradeByHistory(string folderPath, string tickets = "")
+        public void TradeByHistory(string folderPath, string tickers = "")
         {
-            var filter = tickets.Split(",", StringSplitOptions.RemoveEmptyEntries);
+            if (tickers == null)
+                tickers = "";
+
+            var filter = tickers.Split(",", StringSplitOptions.RemoveEmptyEntries);
 
             for (int i = 0; i < _watchList.Count; ++i)
             {

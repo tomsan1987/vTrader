@@ -67,7 +67,7 @@ namespace TradingBot
         // Check if last quote was a spike
         public bool IsSpike()
         {
-            // spike is a quote that diff against previous 3 quotes more than 0.5%
+            // spike is a quote that diff against previous 3 quotes more than 3%
             if (Raw.Count > 1 && Raw[Raw.Count - 1].Volume > 10)
             {
                 var lastPrice = Raw[Raw.Count - 1].Price;

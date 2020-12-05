@@ -14,6 +14,7 @@ namespace TradingBot
         public TradeData()
         {
             Status = Status.Watching;
+            Time = DateTime.Today.ToUniversalTime();
         }
 
         public void Reset()

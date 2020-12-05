@@ -49,7 +49,7 @@ namespace TradingBot
                     DumpQuotes = po.Get<bool>("DumpQuotes");
 
                 if (po.HasValue("Token"))
-                    Token = po.Get<string>("Token");
+                    Token = (File.ReadAllText(po.Get<string>("Token"))).Trim();
 
                 if (po.HasValue("ConfigPath"))
                     ConfigPath = po.Get<string>("ConfigPath");
@@ -88,7 +88,8 @@ namespace TradingBot
             var accounts = await _context.AccountsAsync();
             foreach (var acc in accounts)
             {
-                _accountId = acc.BrokerAccountId;
+                if (acc.BrokerAccountType == BrokerAccountType.Tinkoff)
+                    _accountId = acc.BrokerAccountId;
             }
 
             var stocks = await _context.MarketStocksAsync();
