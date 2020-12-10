@@ -23,7 +23,7 @@ namespace TradingBot
                         while (true)
                         {
                             bot.ShowStatus();
-                            System.Threading.Thread.Sleep(60000);
+                            System.Threading.Thread.Sleep(20000);
                         }
                     }
                     break;
@@ -35,7 +35,7 @@ namespace TradingBot
                         while (true)
                         {
                             bot.ShowStatus();
-                            System.Threading.Thread.Sleep(60000);
+                            System.Threading.Thread.Sleep(20000);
                         }
                     }
                     break;

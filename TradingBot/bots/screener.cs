@@ -65,7 +65,7 @@ namespace TradingBot
                         for (int j = 0; j < candles.Count; ++j)
                             volume += candles[j].Volume;
 
-                        if (volume >= 10000)
+                        if (volume >= 10000 && candles[candles.Count - 1].Volume > 10)
                             day1Change.Add(new Stat(ticker, candles[0].Close, candles[candles.Count - 1].Close));
                     }
 
@@ -79,7 +79,7 @@ namespace TradingBot
                             for (int j = index; j < candles.Count; ++j)
                                 volume += candles[j].Volume;
 
-                            if (volume >= 2000)
+                            if (volume >= 2000 && candles[candles.Count - 1].Volume > 10)
                                 hour1Change.Add(new Stat(ticker, candles[index].Close, candles[candles.Count - 1].Close));
                         }
                     }
