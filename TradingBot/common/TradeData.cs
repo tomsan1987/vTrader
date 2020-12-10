@@ -14,7 +14,7 @@ namespace TradingBot
         public TradeData()
         {
             Status = Status.Watching;
-            Time = DateTime.Today.ToUniversalTime();
+            Time = DateTime.Today.AddYears(-10).ToUniversalTime();
         }
 
         public void Reset()

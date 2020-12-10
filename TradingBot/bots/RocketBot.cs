@@ -115,9 +115,9 @@ namespace TradingBot
                         return;
                 }
 
-                //// check that we did not bought it recently
-                //if (tradeData.Time.AddMinutes(10) >= candle.Time)
-                //    return;
+                // check that we did not bought it recently
+                if (tradeData.Time.AddMinutes(10) >= candle.Time)
+                    return;
 
                 decimal volume = 0;
                 for (int i = Math.Max(0, candles.Count - 3); i < candles.Count; ++i)
@@ -144,13 +144,25 @@ namespace TradingBot
                             var change = Helpers.GetChangeInPercent(candles[start].Open, candle.Close);
                             if (change >= sConditions[i])
                             {
-                                // check that it is not grow after fall
-                                int timeAgoStart = Math.Max(0, start - 24);
-                                var localChange = Helpers.GetChangeInPercent(candles[timeAgoStart].Close, candles[start - 1].Close);
-                                if (localChange > 0 || 4 * Math.Abs(localChange) < change)
+                                // check previous candle
+                                if (start - 1 >= 0)
                                 {
-                                    posGrow = true;
-                                    reason = String.Format("{0} candles, grow +{1}%, local change {2}%", candlesRequired, change, localChange);
+                                    var changePrevCandle = Helpers.GetChangeInPercent(candles[start - 1]);
+                                    if (changePrevCandle > -1.0m)
+                                    {
+                                        // check that it is not grow after fall
+                                        int timeAgoStart = Math.Max(0, start - 24);
+                                        var localChange = Helpers.GetChangeInPercent(candles[timeAgoStart].Close, candles[start - 1].Close);
+                                        if ((localChange >= 0 && localChange < change) || (localChange < 0 && 4 * Math.Abs(localChange) < change))
+                                        {
+                                            // high of previous candle should be less than current price
+                                            if (candles[start - 1].High < candle.Close)
+                                            {
+                                                posGrow = true;
+                                                reason = String.Format("{0} candles, grow +{1}%, local change {2}%, prev change {3}%", candlesRequired, change, localChange, changePrevCandle);
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -429,7 +441,11 @@ namespace TradingBot
 
                         var ticker = f.Name.Substring(0, f.Name.Length - 4);
                         openToClose.Add(new Screener.Stat(ticker, open, close));
-                        lowToHigh.Add(new Screener.Stat(ticker, low, high));
+
+                        if (close >= open)
+                            lowToHigh.Add(new Screener.Stat(ticker, low, high));
+                        else
+                            lowToHigh.Add(new Screener.Stat(ticker, high, low));
                     }
                 }
             }
