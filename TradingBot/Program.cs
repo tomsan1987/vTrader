@@ -12,6 +12,7 @@ namespace TradingBot
         {
             var po = new ProgramOptions(args);
             var settings = new BaseBot.Settings(po);
+            Logger.Write(po.ToString());
 
             var mode = po.Get<string>("mode");
             switch (mode)
@@ -30,7 +31,7 @@ namespace TradingBot
 
                 case "RocketBot":
                     {
-                        var bot = new RocketBot(settings);
+                        var bot = new TradeBot(settings);
                         await bot.StartAsync();
                         while (true)
                         {
@@ -48,7 +49,7 @@ namespace TradingBot
 
                 case "CreateCandlesStatistic":
                     {
-                        var bot = new RocketBot(settings);
+                        var bot = new TradeBot(settings);
                         bot.CreateCandlesStatistic(po.Get<string>("CandlesPath"));
                     }
                     break;
@@ -68,7 +69,7 @@ namespace TradingBot
             string candlesPath = po.Get<string>("CandlesPath");
             string tickerFilter = po.Get<string>("TickerFilter");
 
-            var bot = new RocketBot(settings);
+            var bot = new TradeBot(settings);
             await bot.StartAsync();
             bot.TradeByHistory(candlesPath, tickerFilter);
             await bot.DisposeAsync();

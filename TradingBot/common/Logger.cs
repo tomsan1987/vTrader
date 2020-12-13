@@ -14,7 +14,8 @@ namespace TradingBot
         private static Logger _instance;
         private Logger()
         {
-            _file = new StreamWriter("app_log.log", false);
+            var file_name = DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss");
+            _file = new StreamWriter(file_name + ".log", false);
             _file.AutoFlush = true;
         }
 

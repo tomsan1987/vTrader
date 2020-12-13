@@ -34,5 +34,14 @@ namespace TradingBot
             string value;
             return _options.TryGetValue(name, out value);
         }
+
+        public override string ToString()
+        {
+            string res = "";
+            foreach (var it in _options)
+                res += it.Key + "=" + it.Value + ";";
+
+            return res;
+        }
     }
 }

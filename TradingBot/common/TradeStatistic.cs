@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using Tinkoff.Trading.OpenApi.Models;
 
 namespace TradingBot
 {
@@ -12,8 +12,7 @@ namespace TradingBot
         public int totalOrders = 0;
         public int posOrders = 0;
         public int negOrders = 0;
-        public decimal currVolume = 0;
-        public decimal maxVolume = 0;
+        public Dictionary<string, decimal> volumes = new Dictionary<string, decimal>();
         public List<string> logMessages = new List<string>();
 
         public void Update(string ticker, decimal buyPrice, decimal sellPrice)
@@ -36,14 +35,30 @@ namespace TradingBot
 
         public void Buy(decimal price)
         {
-            currVolume += price;
-            if (currVolume > maxVolume)
-                maxVolume = currVolume;
         }
 
-        public void Sell(decimal price)
+        public void Sell(DateTime buyTime, DateTime sellTime, decimal price)
         {
-            currVolume -= price;
+            do
+            {
+                var key = buyTime.ToString("yyyy-MM-dd-HH-mm");
+                if (volumes.ContainsKey(key))
+                    volumes[key] += price;
+                else
+                    volumes.Add(key, price);
+
+                buyTime = buyTime.AddMinutes(5);
+            }
+            while (buyTime <= sellTime);
+        }
+
+        public decimal GetMaxVolume()
+        {
+            decimal max = 0;
+            foreach (var it in volumes)
+                max = Math.Max(max, it.Value);
+
+            return max;
         }
     }
 }
