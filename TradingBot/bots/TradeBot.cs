@@ -12,7 +12,7 @@ namespace TradingBot
     //
     // Summary:
     //     The Bot subcribes for instruments from watch list and keeps track of abrupt change of price.
-    public class RocketBot : BaseBot
+    public class TradeBot : BaseBot
     {
         private Dictionary<string, TradeData> _tradeData = new Dictionary<string, TradeData>();
         private TradeStatistic _stats = new TradeStatistic();
@@ -22,10 +22,15 @@ namespace TradingBot
         private object _quotesLock = new object();
         private AutoResetEvent _quoteReceivedEvent = new AutoResetEvent(false);
         private AutoResetEvent _quoteProcessedEvent = new AutoResetEvent(false);
+        private IStrategy[] _strategies;
 
-        public RocketBot(Settings settings) : base(settings)
+        public TradeBot(Settings settings) : base(settings)
         {
             Logger.Write("Rocket bot created");
+
+            _strategies = new IStrategy[2];
+            //_strategies[0] = new RocketStrategy();
+            _strategies[1] = new GoodGrowStrategy();
         }
 
         public override async ValueTask DisposeAsync()
@@ -41,8 +46,7 @@ namespace TradingBot
                     message += it;
                 }
                 Logger.Write(message);
-
-                Logger.Write("Trade statistic. Total/Pos/Neg {0}/{1}/{2}. Profit: {3}. Volume: {4}. MaxVolume: {5}. Comission: {6}", _stats.totalOrders, _stats.posOrders, _stats.negOrders, _stats.totalProfit, _stats.volume, _stats.maxVolume, _stats.comission);
+                Logger.Write("Trade statistic. Total/Pos/Neg {0}/{1}/{2}. Profit: {3}. Volume: {4}. MaxVolume: {5}. Comission: {6}", _stats.totalOrders, _stats.posOrders, _stats.negOrders, _stats.totalProfit, _stats.volume, _stats.GetMaxVolume(), _stats.comission);
             }
         }
 
@@ -105,90 +109,35 @@ namespace TradingBot
                 return;
             }
 
+            if (_settings.SubscribeQuotes)
+            {
+                // make sure that we got actual candle
+                TimeSpan elapsedSpan = new TimeSpan(DateTime.Now.AddMinutes(-5).ToUniversalTime().Ticks - candle.Time.Ticks);
+                if (elapsedSpan.TotalSeconds > 5)
+                    return;
+            }
+
             if (tradeData.Status == Status.Watching)
             {
-                if (_settings.SubscribeQuotes)
+                foreach (var strategy in _strategies)
                 {
-                    // make sure that we got actual candle
-                    TimeSpan elapsedSpan = new TimeSpan(DateTime.Now.AddMinutes(-5).ToUniversalTime().Ticks - candle.Time.Ticks);
-                    if (elapsedSpan.TotalSeconds > 5)
-                        return;
-                }
-
-                // check that we did not bought it recently
-                if (tradeData.Time.AddMinutes(10) >= candle.Time)
-                    return;
-
-                decimal volume = 0;
-                for (int i = Math.Max(0, candles.Count - 3); i < candles.Count; ++i)
-                {
-                    if (candles[i].Volume < 10)
-                        volume = decimal.MinValue;
-
-                    volume += candles[i].Volume;
-                }
-
-                if (volume > 1000)
-                {
-                    decimal[] sConditions = new decimal[] {3m};
-
-                    bool posGrow = false;
-                    string reason = "";
-                    for (int i = 0; i < sConditions.Length && !posGrow; ++i)
+                    if (strategy != null && strategy.Process(instrument, tradeData, _candles[figi]) == IStrategy.StrategyResultType.Buy)
                     {
-                        int candlesRequired = i + 1;
-
-                        int start = candles.Count - candlesRequired;
-                        if (start > 0)
-                        {
-                            var change = Helpers.GetChangeInPercent(candles[start].Open, candle.Close);
-                            if (change >= sConditions[i])
-                            {
-                                // check previous candle
-                                if (start - 1 >= 0)
-                                {
-                                    var changePrevCandle = Helpers.GetChangeInPercent(candles[start - 1]);
-                                    if (changePrevCandle > -1.0m)
-                                    {
-                                        // check that it is not grow after fall
-                                        int timeAgoStart = Math.Max(0, start - 24);
-                                        var localChange = Helpers.GetChangeInPercent(candles[timeAgoStart].Close, candles[start - 1].Close);
-                                        if ((localChange >= 0 && localChange < change) || (localChange < 0 && 4 * Math.Abs(localChange) < change))
-                                        {
-                                            // high of previous candle should be less than current price
-                                            if (candles[start - 1].High < candle.Close)
-                                            {
-                                                posGrow = true;
-                                                reason = String.Format("{0} candles, grow +{1}%, local change {2}%, prev change {3}%", candlesRequired, change, localChange, changePrevCandle);
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if (posGrow)
-                    {
-                        // buy 1 lot
-                        tradeData.BuyPrice = candle.Close + instrument.MinPriceIncrement;
-                        //tradeData.StopPrice = Helpers.RoundPrice(tradeData.BuyPrice * 0.98m, instrument.MinPriceIncrement);
-
-                        Logger.Write("{0}: BuyPending. Price: {1}. StopPrice: {2}. Candle: {3}. Details: Reason: {4}", instrument.Ticker, tradeData.BuyPrice, tradeData.StopPrice, JsonConvert.SerializeObject(candle), reason);
-
                         var order = new LimitOrder(instrument.Figi, 1, OperationType.Buy, tradeData.BuyPrice);
                         var placedOrder = await _context.PlaceLimitOrderAsync(order);
 
+                        tradeData.Strategy = strategy;
                         tradeData.OrderId = placedOrder.OrderId;
                         tradeData.Status = Status.BuyPending;
                         tradeData.Time = candle.Time;
+                        tradeData.BuyTime = candle.Time;
                         Logger.Write("{0}: OrderId: {1}. Details: Status - {2}, RejectReason -  {3}", instrument.Ticker, tradeData.OrderId, placedOrder.Status.ToString(), placedOrder.RejectReason);
                     }
                 }
             }
             else if (tradeData.Status == Status.BuyPending)
             {
-                // check if limited order executed                
+                // check if limited order executed
                 if (await IsOrderExecuted(tradeData.OrderId))
                 {
                     // order executed
@@ -215,13 +164,9 @@ namespace TradingBot
             }
             else if (tradeData.Status == Status.BuyDone)
             {
-                //check if we reach stop conditions
-                if (candle.Close < tradeData.StopPrice)
+                if (tradeData.Strategy.Process(instrument, tradeData, _candles[figi]) == IStrategy.StrategyResultType.Sell)
                 {
                     // sell 1 lot
-                    tradeData.SellPrice = candle.Close - instrument.MinPriceIncrement;
-                    Logger.Write("{0}: SL reached. Pending. Close price: {1}. Candle: {2}. Profit: {3}({4}%)", instrument.Ticker, tradeData.SellPrice, JsonConvert.SerializeObject(candle), tradeData.SellPrice - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, tradeData.SellPrice));
-
                     var order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, tradeData.SellPrice);
                     var placedOrder = await _context.PlaceLimitOrderAsync(order);
 
@@ -229,60 +174,16 @@ namespace TradingBot
                     tradeData.Time = candle.Time;
                     Logger.Write("{0}: OrderId: {1}. Details: Status - {2}, RejectReason -  {3}", instrument.Ticker, tradeData.OrderId, placedOrder.Status.ToString(), placedOrder.RejectReason);
                 }
-                else if (tradeData.StopPrice == 0 && candle.Time > tradeData.Time.AddMinutes(5))
-                {
-                    var change = Helpers.GetChangeInPercent(tradeData.BuyPrice, candle.Close);
-                    if (change >= 1m)
-                    {
-                        // move stop loss to no loss
-                        tradeData.StopPrice = tradeData.BuyPrice + instrument.MinPriceIncrement;//Helpers.RoundPrice(tradeData.BuyPrice * 1.005m, instrument.MinPriceIncrement);
-                        tradeData.Time = candle.Time;
-                        Logger.Write("{0}: Moving stop loss to no loss. Price: {1} Candle: {2}.", instrument.Ticker, tradeData.StopPrice, JsonConvert.SerializeObject(candle));
-                    }
-                    else if (change < 0m)
-                    {
-                        // seems not a Rocket
-                        tradeData.StopPrice = candle.Close;
-                        tradeData.Time = candle.Time;
-                        Logger.Write("{0}: Seems not a Rocket. Set stop loss. Price: {1} Candle: {2}.", instrument.Ticker, tradeData.StopPrice, JsonConvert.SerializeObject(candle));
-                    }
-                }
-                else if (tradeData.StopPrice > tradeData.BuyPrice && Helpers.GetChangeInPercent(tradeData.StopPrice, candle.Close) >= 2.0m)
-                {
-                    // pulling the stop to the price
-                    tradeData.StopPrice = Helpers.RoundPrice(candle.Close * 0.99m, instrument.MinPriceIncrement);
-                    tradeData.Time = candle.Time;
-                    Logger.Write("{0}: Pulling stop loss to current price. Price: {1} Candle: {2}.", instrument.Ticker, tradeData.StopPrice, JsonConvert.SerializeObject(candle));
-                }
-
-                //TimeSpan elapsedTime = new TimeSpan(DateTime.Now.ToUniversalTime().Ticks - tradeData.Time.Ticks);
-                //if (elapsedTime.TotalMinutes > 25)
-                //{
-                    //if (tradeData.BuyPrice > candle.Close)
-                    //{
-                    //    // close order forcibly
-                    //    var price = candle.Close - 2 * instrument.MinPriceIncrement;
-                    //    var order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, price);
-                    //    var placedOrder = await _context.PlaceLimitOrderAsync(order);
-
-                    //    Logger.Write("{0}: Sell by Timeout. Close price: {1}. Candle: {2}. Profit: {3}({4}%)", instrument.Ticker, price, JsonConvert.SerializeObject(candle), price - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, price));
-                    //    tradeData.Status = Status.SellPending;
-                    //    tradeData.Time = candle.Time;
-                    //    _stats.Sell(tradeData.BuyPrice);
-
-                    //    _stats.Update(tradeData.BuyPrice, price);
-                    //}
-                //}
             }
             else if (tradeData.Status == Status.SellPending)
             {
-                // check if limited order executed                
+                // check if limited order executed
                 if (await IsOrderExecuted(tradeData.OrderId))
                 {
                     // order executed
                     Logger.Write("{0}: OrderId: {1} executed", instrument.Ticker, tradeData.OrderId);
 
-                    _stats.Sell(tradeData.BuyPrice);
+                    _stats.Sell(tradeData.BuyTime, candle.Time, tradeData.BuyPrice);
                     _stats.Update(instrument.Ticker, tradeData.BuyPrice, tradeData.SellPrice);
                     tradeData.Reset();
                 }
@@ -325,7 +226,7 @@ namespace TradingBot
 
                                     Logger.Write("{0}: Closing dayly orders. Close price: {1}. Candle: {2}. Profit: {3}({4}%)", instrument.Ticker, price, JsonConvert.SerializeObject(candle), price - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, price));
 
-                                    _stats.Sell(tradeData.BuyPrice);
+                                    _stats.Sell(tradeData.BuyTime, candle.Time, tradeData.BuyPrice);
                                     _stats.Update(instrument.Ticker, tradeData.BuyPrice, price);
                                 }
                                 else
@@ -345,7 +246,7 @@ namespace TradingBot
 
                                 Logger.Write("{0}: Closing dayly orders. Close price: {1}. Candle: {2}. Profit: {3}({4}%)", instrument.Ticker, price, JsonConvert.SerializeObject(candle), price - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, price));
 
-                                _stats.Sell(tradeData.BuyPrice);
+                                _stats.Sell(tradeData.BuyTime, candle.Time, tradeData.BuyPrice);
                                 _stats.Update(instrument.Ticker, tradeData.BuyPrice, price);
                             }
                             break;
@@ -377,9 +278,9 @@ namespace TradingBot
                 {
                     if (!_newQuotes.TryAdd(((CandleResponse)e.Response).Payload.Figi, 1))
                         _newQuotes[((CandleResponse)e.Response).Payload.Figi]++;
-
-                    _quoteReceivedEvent.Set();
                 }
+
+                _quoteReceivedEvent.Set();
             }
         }
 
