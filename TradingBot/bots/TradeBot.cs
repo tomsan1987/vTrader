@@ -46,6 +46,10 @@ namespace TradingBot
                     message += it;
                 }
                 Logger.Write(message);
+
+                Logger.Write("Volume distribution statistic:");
+                Logger.Write(_stats.GetVolumeDistribution());
+
                 Logger.Write("Trade statistic. Total/Pos/Neg {0}/{1}/{2}. Profit: {3}. Volume: {4}. MaxVolume: {5}. Comission: {6}", _stats.totalOrders, _stats.posOrders, _stats.negOrders, _stats.totalProfit, _stats.volume, _stats.GetMaxVolume(), _stats.comission);
             }
         }
@@ -183,7 +187,7 @@ namespace TradingBot
                     // order executed
                     Logger.Write("{0}: OrderId: {1} executed", instrument.Ticker, tradeData.OrderId);
 
-                    _stats.Sell(tradeData.BuyTime, candle.Time, tradeData.BuyPrice);
+                    _stats.Sell(tradeData.BuyTime, candle.Time, tradeData.BuyPrice, instrument.Ticker);
                     _stats.Update(instrument.Ticker, tradeData.BuyPrice, tradeData.SellPrice);
                     tradeData.Reset();
                 }
@@ -226,7 +230,7 @@ namespace TradingBot
 
                                     Logger.Write("{0}: Closing dayly orders. Close price: {1}. Candle: {2}. Profit: {3}({4}%)", instrument.Ticker, price, JsonConvert.SerializeObject(candle), price - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, price));
 
-                                    _stats.Sell(tradeData.BuyTime, candle.Time, tradeData.BuyPrice);
+                                    _stats.Sell(tradeData.BuyTime, candle.Time, tradeData.BuyPrice, instrument.Ticker);
                                     _stats.Update(instrument.Ticker, tradeData.BuyPrice, price);
                                 }
                                 else
@@ -246,7 +250,7 @@ namespace TradingBot
 
                                 Logger.Write("{0}: Closing dayly orders. Close price: {1}. Candle: {2}. Profit: {3}({4}%)", instrument.Ticker, price, JsonConvert.SerializeObject(candle), price - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, price));
 
-                                _stats.Sell(tradeData.BuyTime, candle.Time, tradeData.BuyPrice);
+                                _stats.Sell(tradeData.BuyTime, candle.Time, tradeData.BuyPrice, instrument.Ticker);
                                 _stats.Update(instrument.Ticker, tradeData.BuyPrice, price);
                             }
                             break;

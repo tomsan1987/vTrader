@@ -13,6 +13,7 @@ namespace TradingBot
         public int posOrders = 0;
         public int negOrders = 0;
         public Dictionary<string, decimal> volumes = new Dictionary<string, decimal>();
+        public Dictionary<string, bool[]> volumesPerTicker = new Dictionary<string, bool[]>();
         public List<string> logMessages = new List<string>();
 
         public void Update(string ticker, decimal buyPrice, decimal sellPrice)
@@ -37,19 +38,53 @@ namespace TradingBot
         {
         }
 
-        public void Sell(DateTime buyTime, DateTime sellTime, decimal price)
+        public void Sell(DateTime buyTime, DateTime sellTime, decimal price, string ticker)
         {
             do
             {
+                // update volume
                 var key = buyTime.ToString("yyyy-MM-dd-HH-mm");
                 if (volumes.ContainsKey(key))
                     volumes[key] += price;
                 else
                     volumes.Add(key, price);
 
+                // update duration
+                if (!volumesPerTicker.ContainsKey(ticker))
+                    volumesPerTicker.Add(ticker, new bool[12 * 17]);
+                volumesPerTicker[ticker][(buyTime.Hour - 7) * 12 + buyTime.Minute / 5] = true;
+
                 buyTime = buyTime.AddMinutes(5);
             }
             while (buyTime <= sellTime);
+        }
+
+        public string GetVolumeDistribution()
+        {
+            string result = "\nTicker;";
+            DateTime start = DateTime.Today.AddHours(10).ToUniversalTime();
+            for (int i = 0; i < 12 * 17; ++i)
+            {
+                result += start.ToString("HH-mm");
+                result += ";";
+                start = start.AddMinutes(5);
+            }
+            result += "\n";
+
+            foreach (var it in volumesPerTicker)
+            {
+                result += it.Key;
+                result += ";";
+                foreach (var x in it.Value)
+                {
+                    if (x)
+                        result += "x";
+                    result += ";";
+                }
+                result += "\n";
+            }
+
+            return result;
         }
 
         public decimal GetMaxVolume()

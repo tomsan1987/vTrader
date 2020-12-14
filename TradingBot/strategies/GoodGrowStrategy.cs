@@ -148,7 +148,7 @@ namespace TradingBot
                         //}
                         //else if (tradeData.StopPrice >= tradeData.BuyPrice && candle.Close >= tradeData.MaxPrice)
 
-                        if (candles[candles.Count - 2].Open < candles[candles.Count - 2].Close && candle.Close >= tradeData.MaxPrice)
+                        if (candles[candles.Count - 2].Open < candles[candles.Count - 2].Close && candle.Close * 1.001m >= tradeData.MaxPrice)
                         {
                             var minPrice = Math.Min(candles[candles.Count - 3].Open, candles[candles.Count - 3].Close);
                             if (tradeData.StopPrice < minPrice)
