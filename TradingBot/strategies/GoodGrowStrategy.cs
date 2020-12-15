@@ -144,6 +144,7 @@ namespace TradingBot
                     tradeData.MaxPrice = Math.Max(tradeData.MaxPrice, candles[candles.Count - 2].Open);
 
                     // do not make any action if candle is red
+                    bool SLset = false;
                     if (candle.Open < candle.Close)
                     {
                         //if (tradeData.StopLoss < tradeData.BuyPrice && candle.Close > tradeData.BuyPrice)
@@ -164,38 +165,40 @@ namespace TradingBot
                                 tradeData.StopLoss = minPrice;
                                 tradeData.Time = candle.Time;
                                 Logger.Write("{0}: Pulling stop loss to current price. Price: {1}. MaxPrice: {2}. Candle: {3}.", instrument.Ticker, tradeData.StopLoss, tradeData.MaxPrice, JsonConvert.SerializeObject(candle));
+                                SLset = true;
                             }
                         }
                     }
-                }
-                else if (candle.Time > tradeData.BuyTime.AddMinutes(20) && tradeData.BuyTime == tradeData.Time)
-                {
-                    if (tradeData.BuyPrice >= candle.Close && tradeData.BuyPrice * 1.002m < candle.Close)
+
+                    if (!SLset && candle.Time > tradeData.BuyTime.AddMinutes(15) && tradeData.BuyTime == tradeData.Time)
                     {
-                        // we have a little profit, but the price does not grow, close the order with minimal profit
-                        tradeData.StopLoss = candle.Close;
-                        tradeData.Time = candle.Time;
-                        Logger.Write("{0}: Price does not grow. Closing with minimal profit. Price: {1}. Candle: {2}.", instrument.Ticker, tradeData.StopLoss, JsonConvert.SerializeObject(candle));
-                    }
-                    else if (tradeData.StopLoss < tradeData.BuyPrice && tradeData.BuyPrice > candle.Close)
-                    {
-                        // something went wrong, suffer losses
-                        // try to set up Take Profit by previous candles
-                        var start = Math.Max(0, candles.Count - 4);
-                        while (start < candles.Count && candles[start].Time <= tradeData.BuyTime)
-                            ++start;
-
-                        decimal avg = 0m;
-                        for (int i = start; i < candles.Count - 1; ++i)
-                            avg += Math.Max(candles[i].Open, candles[i].Close);
-
-                        avg = avg / candles.Count - start - 2;
-
-                        if (avg > tradeData.StopLoss)
+                        if (tradeData.BuyPrice >= candle.Close && tradeData.BuyPrice * 1.002m < candle.Close)
                         {
-                            tradeData.TakeProfit = avg;
+                            // we have a little profit, but the price does not grow, close the order with minimal profit
+                            tradeData.StopLoss = candle.Close;
                             tradeData.Time = candle.Time;
-                            Logger.Write("{0}: Price does not grow. Try to set TakeProfit. Price: {1}. Candle: {2}.", instrument.Ticker, tradeData.TakeProfit, JsonConvert.SerializeObject(candle));
+                            Logger.Write("{0}: Price does not grow. Closing with minimal profit. Price: {1}. Candle: {2}.", instrument.Ticker, tradeData.StopLoss, JsonConvert.SerializeObject(candle));
+                        }
+                        else if (tradeData.StopLoss < tradeData.BuyPrice && tradeData.BuyPrice > candle.Close)
+                        {
+                            // something went wrong, suffer losses
+                            // try to set up Take Profit by previous candles
+                            var start = Math.Max(0, candles.Count - 4);
+                            while (start < candles.Count && candles[start].Time <= tradeData.BuyTime)
+                                ++start;
+
+                            decimal avg = 0m;
+                            for (int i = start; i < candles.Count - 1; ++i)
+                                avg += Math.Max(candles[i].Open, candles[i].Close);
+
+                            avg = Helpers.RoundPrice(avg / (candles.Count - start - 1), instrument.MinPriceIncrement);
+
+                            if (avg > tradeData.StopLoss)
+                            {
+                                tradeData.TakeProfit = avg;
+                                tradeData.Time = candle.Time;
+                                Logger.Write("{0}: Price does not grow. Try to set TakeProfit. Price: {1}. Candle: {2}.", instrument.Ticker, tradeData.TakeProfit, JsonConvert.SerializeObject(candle));
+                            }
                         }
                     }
                 }
