@@ -9,7 +9,7 @@ namespace TradingBot
 {
     //
     // Summary:
-    //     Simple dunper quotes to text file.
+    //     Simple dumper quotes to text file.
     public class QuoteLogger
     {
         private readonly string _figi;

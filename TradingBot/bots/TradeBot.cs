@@ -11,7 +11,7 @@ namespace TradingBot
 {
     //
     // Summary:
-    //     The Bot subcribes for instruments from watch list and keeps track of abrupt change of price.
+    //     The Bot subscribes for instruments from watch list and keeps track of abrupt change of price.
     public class TradeBot : BaseBot
     {
         private Dictionary<string, TradeData> _tradeData = new Dictionary<string, TradeData>();
@@ -50,7 +50,7 @@ namespace TradingBot
                 Logger.Write("Volume distribution statistic:");
                 Logger.Write(_stats.GetVolumeDistribution());
 
-                Logger.Write("Trade statistic. Total/Pos/Neg {0}/{1}/{2}. Profit: {3}. Volume: {4}. MaxVolume: {5}. Comission: {6}", _stats.totalOrders, _stats.posOrders, _stats.negOrders, _stats.totalProfit, _stats.volume, _stats.GetMaxVolume(), _stats.comission);
+                Logger.Write("Trade statistic. Total/Pos/Neg {0}/{1}/{2}. Profit: {3}. Volume: {4}. MaxVolume: {5}. Commission: {6}", _stats.totalOrders, _stats.posOrders, _stats.negOrders, _stats.totalProfit, _stats.volume, _stats.GetMaxVolume(), _stats.comission);
             }
         }
 

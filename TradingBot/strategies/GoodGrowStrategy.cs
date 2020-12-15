@@ -30,7 +30,7 @@ namespace TradingBot
                 if (start < 0)
                     return IStrategy.StrategyResultType.NoOp;
 
-                // check that is is not fall before
+                // check that is not fall before
                 decimal min = decimal.MaxValue;
                 decimal max = decimal.MinValue;
                 int timeAgoStart = Math.Max(0, start - 24); // last 2 hours

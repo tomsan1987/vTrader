@@ -8,7 +8,7 @@ namespace TradingBot
 {
     //
     // Summary:
-    //     Stocks screener. Show day statistic for instuments.
+    //     Stocks screener. Show day statistic for instruments.
     public class Screener : BaseBot
     {
         public class Stat : IComparable<Stat>
@@ -169,9 +169,9 @@ namespace TradingBot
 
         public static void ShowStats(string message, List<Stat> stat)
         {
-            const int cMaxOutput = 10;
-            
-            Console.WriteLine(message);            
+            const int cMaxOutput = 12;
+
+            Console.WriteLine(message);
             stat.Sort();
 
             var j = stat.Count - 1;

@@ -25,7 +25,7 @@ namespace TradingBot
             else
                 negOrders++;
 
-            // comission
+            // commission
             comission += buyPrice * (decimal)0.0005;
             comission += sellPrice * (decimal)0.0005;
 
