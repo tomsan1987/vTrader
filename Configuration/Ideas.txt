@@ -1,0 +1,13 @@
+Косяк в начале торгов. не правильно считается максимум
+2020-12-14 22:11:42 09      PBF: BuyPending. Strategy: GoodGrowStrategy. Price: 9,22. StopPrice: 8,98. Candle: {"o":9.22,"c":9.22,"h":9.22,"l":9.22,"v":30.0,"Time":"2020-12-11T07:20:00Z","Interval":"5min","Figi":"BBG002832GV8"}. Details: Reason: DayMax: 8,86. Current change: +4,06%
+2020-12-14 22:11:42 09      PBF: OrderId: test_order. Details: Status - New, RejectReason -  
+2020-12-14 22:11:42 09      PBF: OrderId: test_order executed
+2020-12-14 22:11:42 09      PBF: SL reached. Pending. Close price: 8,95. Candle: {"o":9.03,"c":8.95,"h":9.03,"l":8.95,"v":121.0,"Time":"2020-12-11T08:40:00Z","Interval":"5min","Figi":"BBG002832GV8"}. Profit: -0,27(-2,93%)
+2020-12-14 22:11:42 09      PBF: OrderId: test_order. Details: Status - New, RejectReason -  
+2020-12-14 22:11:42 09      PBF: OrderId: test_order executed
+
+Если через 4 свечи после покупки, мы ниже покупки, то попробовать минимизировать убытки по ТП
+Проверять на длинные хвосты?
+
+Мого зелёных свечей и возможно одна небольшая красная
+Если 5 свечей боковик - ну его нахуй, продать.
