@@ -15,25 +15,27 @@ namespace TradingBot
 
             if (tradeData.Status == Status.Watching)
             {
+                // do not buy on first candle
+                if (candles.Count <= 2)
+                    return IStrategy.StrategyResultType.NoOp;
+
                 // check that we did not bought it recently
                 if (tradeData.Time.AddMinutes(10) >= candle.Time)
                     return IStrategy.StrategyResultType.NoOp;
 
                 decimal volume = 0;
-                for (int i = Math.Max(0, candles.Count - 3); i < candles.Count; ++i)
+                for (int i = Math.Max(1, candles.Count - 3); i < candles.Count; ++i)
                     volume += candles[i].Volume;
 
                 if (volume < 1000)
                     return IStrategy.StrategyResultType.NoOp;
 
-                int start = candles.Count - 4;
-                if (start < 0)
-                    return IStrategy.StrategyResultType.NoOp;
-
                 // check that is not fall before
                 decimal min = decimal.MaxValue;
                 decimal max = decimal.MinValue;
-                int timeAgoStart = Math.Max(0, start - 24); // last 2 hours
+                int start = Math.Max(1, candles.Count - 4);
+
+                int timeAgoStart = Math.Max(1, start - 24); // last 2 hours
                 for (int i = timeAgoStart; i < start; ++i)
                 {
                     if (candles[i].Close != candles[i].Open) // ignore zero candles
@@ -87,9 +89,9 @@ namespace TradingBot
                         return IStrategy.StrategyResultType.NoOp;
                 }
 
-
+                var idx = candles.Count > 3 ? candles.Count - 3 : 1;
                 tradeData.BuyPrice = candle.Close;
-                tradeData.StopLoss = candles[candles.Count - 3].Open;
+                tradeData.StopLoss =  candles[idx].Open;
                 tradeData.MaxPrice = candle.Close;
                 Logger.Write("{0}: BuyPending. Strategy: {1}. Price: {2}. StopLoss: {3}. Candle: {4}. Details: Reason: {5}", instrument.Ticker, Description(), tradeData.BuyPrice, tradeData.StopLoss, JsonConvert.SerializeObject(candle), reason);
                 return IStrategy.StrategyResultType.Buy;
@@ -170,7 +172,7 @@ namespace TradingBot
                         }
                     }
 
-                    if (!SLset && candle.Time > tradeData.BuyTime.AddMinutes(15) && tradeData.BuyTime == tradeData.Time)
+                    if (!SLset && candle.Time > tradeData.BuyTime.AddMinutes(15) && (tradeData.BuyTime == tradeData.Time || tradeData.TakeProfit > 0m))
                     {
                         if (tradeData.BuyPrice >= candle.Close && tradeData.BuyPrice * 1.002m < candle.Close)
                         {
