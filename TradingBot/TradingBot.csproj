@@ -5,6 +5,11 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+      <Optimize>true</Optimize>
+      <NoWarn>1701;1702;0162;8632</NoWarn>
+    </PropertyGroup>
+
     <ItemGroup>
       <Compile Remove="extension\**" />
       <EmbeddedResource Remove="extension\**" />
