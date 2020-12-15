@@ -49,7 +49,7 @@ namespace TradingBot
                                 {
                                     tradeData.BuyPrice = candle.Close + instrument.MinPriceIncrement;
                                     reason = String.Format("grow +{0}%, local change {1}%, prev change {2}%", change, localChange, changePrevCandle);
-                                    Logger.Write("{0}: BuyPending. Strategy: {1}. Price: {2}. StopPrice: {3}. Candle: {4}. Details: Reason: {4}", instrument.Ticker, Description(), tradeData.BuyPrice, tradeData.StopPrice, JsonConvert.SerializeObject(candle), reason);
+                                    Logger.Write("{0}: BuyPending. Strategy: {1}. Price: {2}. StopLoss: {3}. Candle: {4}. Details: Reason: {4}", instrument.Ticker, Description(), tradeData.BuyPrice, tradeData.StopLoss, JsonConvert.SerializeObject(candle), reason);
                                     return IStrategy.StrategyResultType.Buy;
                                 }
                             }
@@ -60,37 +60,37 @@ namespace TradingBot
             else if (tradeData.Status == Status.BuyDone)
             {
                 //check if we reach stop conditions
-                if (candle.Close < tradeData.StopPrice)
+                if (candle.Close < tradeData.StopLoss)
                 {
                     tradeData.SellPrice = candle.Close - instrument.MinPriceIncrement;
                     Logger.Write("{0}: SL reached. Pending. Close price: {1}. Candle: {2}. Profit: {3}({4}%)", instrument.Ticker, tradeData.SellPrice, JsonConvert.SerializeObject(candle), tradeData.SellPrice - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, tradeData.SellPrice));
 
                     return IStrategy.StrategyResultType.Sell;
                 }
-                else if (tradeData.StopPrice == 0 && candle.Time > tradeData.Time.AddMinutes(5))
+                else if (tradeData.StopLoss == 0 && candle.Time > tradeData.Time.AddMinutes(5))
                 {
                     var change = Helpers.GetChangeInPercent(tradeData.BuyPrice, candle.Close);
                     if (change >= 1m)
                     {
                         // move stop loss to no loss
-                        tradeData.StopPrice = tradeData.BuyPrice + instrument.MinPriceIncrement;//Helpers.RoundPrice(tradeData.BuyPrice * 1.005m, instrument.MinPriceIncrement);
+                        tradeData.StopLoss = tradeData.BuyPrice + instrument.MinPriceIncrement;//Helpers.RoundPrice(tradeData.BuyPrice * 1.005m, instrument.MinPriceIncrement);
                         tradeData.Time = candle.Time;
-                        Logger.Write("{0}: Moving stop loss to no loss. Price: {1} Candle: {2}.", instrument.Ticker, tradeData.StopPrice, JsonConvert.SerializeObject(candle));
+                        Logger.Write("{0}: Moving stop loss to no loss. Price: {1} Candle: {2}.", instrument.Ticker, tradeData.StopLoss, JsonConvert.SerializeObject(candle));
                     }
                     else if (change < 0m)
                     {
                         // seems not a Rocket
-                        tradeData.StopPrice = candle.Close;
+                        tradeData.StopLoss = candle.Close;
                         tradeData.Time = candle.Time;
-                        Logger.Write("{0}: Seems not a Rocket. Set stop loss. Price: {1} Candle: {2}.", instrument.Ticker, tradeData.StopPrice, JsonConvert.SerializeObject(candle));
+                        Logger.Write("{0}: Seems not a Rocket. Set stop loss. Price: {1} Candle: {2}.", instrument.Ticker, tradeData.StopLoss, JsonConvert.SerializeObject(candle));
                     }
                 }
-                else if (tradeData.StopPrice > tradeData.BuyPrice && Helpers.GetChangeInPercent(tradeData.StopPrice, candle.Close) >= 2.0m)
+                else if (tradeData.StopLoss > tradeData.BuyPrice && Helpers.GetChangeInPercent(tradeData.StopLoss, candle.Close) >= 2.0m)
                 {
                     // pulling the stop to the price
-                    tradeData.StopPrice = Helpers.RoundPrice(candle.Close * 0.99m, instrument.MinPriceIncrement);
+                    tradeData.StopLoss = Helpers.RoundPrice(candle.Close * 0.99m, instrument.MinPriceIncrement);
                     tradeData.Time = candle.Time;
-                    Logger.Write("{0}: Pulling stop loss to current price. Price: {1} Candle: {2}.", instrument.Ticker, tradeData.StopPrice, JsonConvert.SerializeObject(candle));
+                    Logger.Write("{0}: Pulling stop loss to current price. Price: {1} Candle: {2}.", instrument.Ticker, tradeData.StopLoss, JsonConvert.SerializeObject(candle));
                 }
             }
 

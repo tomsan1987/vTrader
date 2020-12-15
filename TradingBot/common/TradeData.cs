@@ -7,7 +7,8 @@ namespace TradingBot
         public string OrderId { get; set; }
         public decimal BuyPrice { get; set; }
         public decimal SellPrice { get; set; }
-        public decimal StopPrice { get; set; }
+        public decimal StopLoss { get; set; }
+        public decimal TakeProfit { get; set; }
         public decimal MaxPrice { get; set; }
         public Status Status { get; set; }
         public DateTime Time { get; set; }
@@ -25,7 +26,7 @@ namespace TradingBot
             OrderId = "";
             BuyPrice = 0;
             SellPrice = 0;
-            StopPrice = 0;
+            StopLoss = 0;
             MaxPrice = 0;
             Status = Status.Watching;
         }

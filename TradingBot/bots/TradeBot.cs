@@ -47,9 +47,7 @@ namespace TradingBot
                 }
                 Logger.Write(message);
 
-                Logger.Write("Volume distribution statistic:");
-                Logger.Write(_stats.GetVolumeDistribution());
-
+                Logger.Write("Volume distribution statistic:" + _stats.GetVolumeDistribution());
                 Logger.Write("Trade statistic. Total/Pos/Neg {0}/{1}/{2}. Profit: {3}. Volume: {4}. MaxVolume: {5}. Commission: {6}", _stats.totalOrders, _stats.posOrders, _stats.negOrders, _stats.totalProfit, _stats.volume, _stats.GetMaxVolume(), _stats.comission);
             }
         }
