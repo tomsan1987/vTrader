@@ -19,10 +19,17 @@ namespace TradingBot
             {
                 case "Screener":
                     {
-                        var bot = new Screener(settings);
-                        await bot.StartAsync();
+                        Screener bot = null;
+                        DateTime startTime = DateTime.UtcNow;
                         while (true)
                         {
+                            if (bot == null || (startTime.Day < DateTime.UtcNow.Day && DateTime.UtcNow.Hour >= 1))
+                            {
+                                startTime = DateTime.UtcNow;
+                                bot = new Screener(settings);
+                                await bot.StartAsync();
+                            }
+
                             bot.ShowStatus();
                             System.Threading.Thread.Sleep(20000);
                         }
