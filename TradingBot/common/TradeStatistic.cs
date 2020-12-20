@@ -7,6 +7,7 @@ namespace TradingBot
     class TradeStatistic
     {
         public decimal volume = 0;
+        public decimal maxVolume = 0;
         public decimal comission = 0;
         public decimal totalProfit = 0;
         public int totalOrders = 0;
@@ -25,11 +26,13 @@ namespace TradingBot
             else
                 negOrders++;
 
-            // commission
-            comission += buyPrice * (decimal)0.0005;
-            comission += sellPrice * (decimal)0.0005;
-
             volume += buyPrice;
+
+            decimal k = volume * 2 > 2740 ? 0.00025m : 0.0005m; // when volume > 200k RUB, commission is reduced to 0.025%
+
+            // commission
+            comission += buyPrice * k;
+            comission += sellPrice * k;
 
             logMessages.Add(String.Format("{0};{1};{2}", ticker, sellPrice - buyPrice, Helpers.GetChangeInPercent(buyPrice, sellPrice)));
         }
@@ -61,11 +64,11 @@ namespace TradingBot
 
         public string GetVolumeDistribution()
         {
-            string result = "\nTicker;";
+            string result = "Ticker;";
             DateTime start = DateTime.Today.AddHours(10).ToUniversalTime();
             for (int i = 0; i < 12 * 17; ++i)
             {
-                result += start.ToString("HH-mm");
+                result += start.ToString("HH:mm");
                 result += ";";
                 start = start.AddMinutes(5);
             }
@@ -89,11 +92,20 @@ namespace TradingBot
 
         public decimal GetMaxVolume()
         {
-            decimal max = 0;
-            foreach (var it in volumes)
-                max = Math.Max(max, it.Value);
+            decimal max = maxVolume;
+
+            if (volumes.Count > 0)
+            {
+                foreach (var it in volumes)
+                    max = Math.Max(max, it.Value);
+            }
 
             return max;
+        }
+
+        public string GetStringStat()
+        {
+            return String.Format("Trade statistic. Total/Pos/Neg {0}/{1}/{2}. Profit: {3}. Volume: {4}. MaxVolume: {5}. Commission: {6}.", totalOrders, posOrders, negOrders, totalProfit, volume, GetMaxVolume(), comission);
         }
     }
 }

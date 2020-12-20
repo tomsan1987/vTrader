@@ -1,1 +1,1 @@
-..\TradingBot\bin\Release\netcoreapp3.1\TradingBot.exe mode="CreateCandlesStatistic" CandlesPath="E:\tinkoff\TestData\RawQuotes\5m\uncompressed\quotes_2020-12-03"
+..\TradingBot\bin\Release\netcoreapp3.1\TradingBot.exe mode="CreateCandlesStatistic" CandlesPath="E:\tinkoff\TestData\RawQuotes\5m\uncompressed\quotes_2020-12-17"

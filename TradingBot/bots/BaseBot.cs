@@ -81,6 +81,9 @@ namespace TradingBot
 
         protected async Task InitInstruments()
         {
+            if (!File.Exists(_settings.ConfigPath))
+                throw new Exception("Configuration file " + _settings.ConfigPath + " does not exists!");
+
             var configJson = JObject.Parse(File.ReadAllText(_settings.ConfigPath));
             _watchList = ((JArray)configJson["watch-list"]).ToObject<IList<string>>();
 

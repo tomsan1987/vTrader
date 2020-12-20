@@ -95,33 +95,6 @@ namespace TradingBot
                 tradeData.MaxPrice = candle.Close;
                 Logger.Write("{0}: BuyPending. Strategy: {1}. Price: {2}. StopLoss: {3}. Candle: {4}. Details: Reason: {5}", instrument.Ticker, Description(), tradeData.BuyPrice, tradeData.StopLoss, JsonConvert.SerializeObject(candle), reason);
                 return IStrategy.StrategyResultType.Buy;
-
-                //var change = Helpers.GetChangeInPercent(candles[candles.Count - 1].Open, candle.Close);
-                //if (change >= sGrowSize)
-                //{
-                //    // check previous candle
-                //    if (candles.Count - 2 >= 0)
-                //    {
-                //        var changePrevCandle = Helpers.GetChangeInPercent(candles[candles.Count - 2]);
-                //        if (changePrevCandle > -1.0m)
-                //        {
-                //            // check that it is not grow after fall
-                //            int timeAgoStart = Math.Max(0, candles.Count - 24);
-                //            var localChange = Helpers.GetChangeInPercent(candles[timeAgoStart].Close, candles[candles.Count - 2].Close);
-                //            if ((localChange >= 0 && localChange < change) || (localChange < 0 && 4 * Math.Abs(localChange) < change))
-                //            {
-                //                // high of previous candle should be less than current price
-                //                if (candles[candles.Count - 2].High < candle.Close)
-                //                {
-                //                    tradeData.BuyPrice = candle.Close + instrument.MinPriceIncrement;
-                //                    reason = String.Format("grow +{0}%, local change {1}%, prev change {2}%", change, localChange, changePrevCandle);
-                //                    Logger.Write("{0}: BuyPending. Strategy: {1}. Price: {2}. StopLoss: {3}. Candle: {4}. Details: Reason: {4}", instrument.Ticker, Description(), tradeData.BuyPrice, tradeData.StopLoss, JsonConvert.SerializeObject(candle), reason);
-                //                    return IStrategy.StrategyResultType.Buy;
-                //                }
-                //            }
-                //        }
-                //    }
-                //}
             }
             else if (tradeData.Status == Status.BuyDone)
             {
@@ -190,10 +163,10 @@ namespace TradingBot
                                 ++start;
 
                             decimal avg = 0m;
-                            for (int i = start; i < candles.Count - 1; ++i)
+                            for (int i = start; i < candles.Count; ++i)
                                 avg += Math.Max(candles[i].Open, candles[i].Close);
 
-                            avg = Helpers.RoundPrice(avg / (candles.Count - start - 1), instrument.MinPriceIncrement);
+                            avg = Helpers.RoundPrice(avg / (candles.Count - start), instrument.MinPriceIncrement);
 
                             if (avg > tradeData.StopLoss)
                             {

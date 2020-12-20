@@ -12,10 +12,11 @@ namespace TradingBot
     {
         private readonly StreamWriter _file;
         private static Logger _instance;
+        private string _fileName;
         private Logger()
         {
-            var file_name = DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss");
-            _file = new StreamWriter(file_name + ".log", false);
+            _fileName = DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".log";
+            _file = new StreamWriter(_fileName, false);
             _file.AutoFlush = true;
         }
 
@@ -27,6 +28,14 @@ namespace TradingBot
             var message = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss ff").PadRight(28);
             message += string.Format(format, args);
             _instance._file.WriteLine(message);
+        }
+
+        public static string FileName()
+        {
+            if (_instance == null)
+                _instance = new Logger();
+
+            return _instance._fileName;
         }
     }
 }
