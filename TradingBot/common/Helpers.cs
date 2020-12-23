@@ -26,5 +26,10 @@ namespace TradingBot{
 
             return -Math.Round((1 - close / open) * 100, 2);
         }
+
+        static public bool IsRed(CandlePayload candle)
+        {
+            return candle.Open > candle.Close;
+        }
     }
 }

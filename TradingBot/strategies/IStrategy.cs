@@ -11,7 +11,7 @@ namespace TradingBot
         {
             Buy,
             Sell,
-            Hold,
+            CancelOrder,
             NoOp
         }
         public StrategyResultType Process(MarketInstrument instrument, TradeData tradeData, Quotes quotes);

@@ -142,8 +142,9 @@ namespace TradingBot
                 if (candles.Candles.Count > 0 && candles.Candles[candles.Candles.Count - 1].Time == cr.Payload.Time)
                 {
                     // update
+                    var volume = cr.Payload.Volume - candles.Candles[candles.Candles.Count - 1].Volume;
                     candles.Candles[candles.Candles.Count - 1] = cr.Payload;
-                    candles.Raw.Add(new Quotes.Quote(cr.Payload.Close, cr.Payload.Volume));
+                    candles.Raw.Add(new Quotes.Quote(cr.Payload.Close, volume));
                 }
                 else
                 {
@@ -211,8 +212,10 @@ namespace TradingBot
                         {
                             // query history candles
                             ++idx;
-                            var session_begin = DateTime.Today.AddHours(10).ToUniversalTime();
-                            var candleList = await _context.MarketCandlesAsync(figi, session_begin, DateTime.Now, CandleInterval.FiveMinutes);
+                            var sessionBegin = DateTime.Today.AddHours(10).ToUniversalTime();
+                            if (DateTime.Now.Hour < 3) // in case app run after midnight
+                                sessionBegin = sessionBegin.AddDays(-1);
+                            var candleList = await _context.MarketCandlesAsync(figi, sessionBegin, DateTime.Now, CandleInterval.FiveMinutes);
                             _candles[figi].Candles = candleList.Candles;
 
                             ok = true;

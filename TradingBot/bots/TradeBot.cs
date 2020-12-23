@@ -29,9 +29,11 @@ namespace TradingBot
         {
             Logger.Write("Trade bot created");
 
-            _strategies = new IStrategy[2];
+            _strategies = new IStrategy[4];
             //_strategies[0] = new RocketStrategy();
-            _strategies[1] = new GoodGrowStrategy();
+            //_strategies[1] = new GoodGrowStrategy();
+            _strategies[2] = new ImpulseStrategy();
+            //_strategies[3] = new SpykeStrategy();
         }
 
         public override async ValueTask DisposeAsync()
@@ -171,16 +173,29 @@ namespace TradingBot
                     }
                     else
                     {
-                        // check if price changed is not significantly
-                        var change = Helpers.GetChangeInPercent(tradeData.BuyPrice, candle.Close);
-                        if (change >= 0.5m)
+                        bool cancel = true;
+                        if (tradeData.Strategy is SpykeStrategy)
                         {
-                            Logger.Write("{0}: Cancel order. Candle: {1}. Details: price change {2}", instrument.Ticker, JsonConvert.SerializeObject(candle), change);
+                            if (tradeData.Strategy.Process(instrument, tradeData, _candles[figi]) != IStrategy.StrategyResultType.CancelOrder)
+                            {
+                                cancel = false;
+                            }
+                        }
 
-                            await _context.CancelOrderAsync(tradeData.OrderId);
-                            tradeData.OrderId = null;
-                            tradeData.BuyPrice = 0;
-                            tradeData.Status = Status.Watching;
+                        if (cancel)
+                        {
+                            // check if price changed is not significantly
+                            var change = Helpers.GetChangeInPercent(tradeData.BuyPrice, candle.Close);
+                            if (change >= 0.5m)
+                            {
+                                Logger.Write("{0}: Cancel order. Candle: {1}. Details: price change {2}", instrument.Ticker, JsonConvert.SerializeObject(candle), change);
+
+                                await _context.CancelOrderAsync(tradeData.OrderId);
+                                tradeData.OrderId = null;
+                                tradeData.BuyPrice = 0;
+                                tradeData.Status = Status.Watching;
+                                tradeData.Time = candle.Time.AddMinutes(-15); // this is for try to buy it again
+                            }
                         }
                     }
                 }
@@ -227,9 +242,13 @@ namespace TradingBot
             }
             catch (OpenApiException e)
             {
-                // seems timeout, disable operations for 15 seconds
                 Logger.Write(e.Message);
-                _lastTimeOut = DateTime.UtcNow;
+
+                // seems timeout, disable operations for 15 seconds
+                if (e.HttpStatusCode == System.Net.HttpStatusCode.TooManyRequests)
+                    _lastTimeOut = DateTime.UtcNow;
+
+                //OrderNotAvailable - no money
             }
         }
 
@@ -246,9 +265,9 @@ namespace TradingBot
                     {
                         case Status.BuyPending:
                             {
+                                var instrument = _figiToInstrument[it.Key];
                                 if (await IsOrderExecuted(it.Key, tradeData.OrderId))
                                 {
-                                    var instrument = _figiToInstrument[it.Key];
                                     var price = candle.Close - 2 * instrument.MinPriceIncrement;
                                     var order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, price);
                                     var placedOrder = await _context.PlaceLimitOrderAsync(order);
@@ -261,6 +280,7 @@ namespace TradingBot
                                 else
                                 {
                                     // just cancel order
+                                    Logger.Write("{0}: Cancel order. Candle: {1}. Details: end of day", instrument.Ticker, JsonConvert.SerializeObject(candle));
                                     await _context.CancelOrderAsync(tradeData.OrderId);
                                 }
                             }
@@ -434,7 +454,7 @@ namespace TradingBot
             file.Close();
         }
 
-        private List<CandlePayload> ReadCandles(string filePath)
+        static public List<CandlePayload> ReadCandles(string filePath)
         {
             List<CandlePayload> result = new List<CandlePayload>();
 

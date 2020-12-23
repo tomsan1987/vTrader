@@ -16,7 +16,15 @@ namespace TradingBot
             if (tradeData.Status == Status.Watching)
             {
                 // do not buy on first candle
+                if (candle.Close > 500m)
+                    return IStrategy.StrategyResultType.NoOp;
+
+                // do not buy on first candle
                 if (candles.Count <= 2)
+                    return IStrategy.StrategyResultType.NoOp;
+
+                // ignore candles on closing main session
+                if (candle.Time.Hour == 21 && candle.Time.Minute == 0)
                     return IStrategy.StrategyResultType.NoOp;
 
                 // check that we did not bought it recently
@@ -58,6 +66,9 @@ namespace TradingBot
 
                 if (candle.Close < max)
                     return IStrategy.StrategyResultType.NoOp;
+
+                //if (Helpers.GetChangeInPercent(min, candle.Close) > 5m)
+                //    return IStrategy.StrategyResultType.NoOp;
 
                 string reason;
                 var changeFromMax = Helpers.GetChangeInPercent(max, candle.Close);
@@ -113,7 +124,7 @@ namespace TradingBot
 
                     return IStrategy.StrategyResultType.Sell;
                 }
-                else if (candle.Time > tradeData.Time.AddMinutes(5))
+                else if (candle.Time > tradeData.Time/*.AddMinutes(5)*/)
                 {
                     tradeData.MaxPrice = Math.Max(tradeData.MaxPrice, candles[candles.Count - 2].Close);
                     tradeData.MaxPrice = Math.Max(tradeData.MaxPrice, candles[candles.Count - 2].Open);
@@ -173,6 +184,19 @@ namespace TradingBot
                                 tradeData.TakeProfit = avg;
                                 tradeData.Time = candle.Time;
                                 Logger.Write("{0}: Price does not grow. Try to set TakeProfit. Price: {1}. Candle: {2}.", instrument.Ticker, tradeData.TakeProfit, JsonConvert.SerializeObject(candle));
+                            }
+                        }
+                    }
+
+                    if (candles.Count > 3 && Helpers.IsRed(candle) && Helpers.IsRed(candles[candles.Count - 2]) && Helpers.IsRed(candles[candles.Count - 3]))
+                    {
+                        if (candle.Close > tradeData.StopLoss)
+                        {
+                            if (candles[candles.Count - 3].Close > candles[candles.Count - 2].Close && candles[candles.Count - 2].Close > candle.Close)
+                            {
+                                tradeData.StopLoss = candle.Close;
+                                tradeData.Time = candle.Time;
+                                Logger.Write("{0}: Seems price is decreases. Closing by current price. Price: {1}. Candle: {2}.", instrument.Ticker, tradeData.StopLoss, JsonConvert.SerializeObject(candle));
                             }
                         }
                     }

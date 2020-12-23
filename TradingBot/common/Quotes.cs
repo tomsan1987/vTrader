@@ -38,23 +38,27 @@ namespace TradingBot
             var threshold = DateTime.Now.AddMinutes(-1 * minutes);
 
             int count = 0;
-            while (Raw.Count - count > 0 && Raw[Raw.Count - count].Time >= threshold)
+            while (Raw.Count - count > 0 && Raw[Raw.Count - 1 - count].Time >= threshold)
                 ++count;
 
             return count;
         }
-        
-        // Return average change of candles for the last hour
+
+        // Return average change of candles for the last 2 hours
         public decimal GetAvgCandleChange()
         {
             int count = 0;
             decimal summ = 0;
-            for (int i = Math.Max(0, Candles.Count - 1 - 12); i < Candles.Count - 1; ++i)
+            for (int i = Math.Max(0, Candles.Count - 1 - 24); i < Candles.Count - 1; ++i)
             {
                 if (Candles[i].Volume > 50)
                 {
-                    ++count;
-                    summ += Math.Abs(Helpers.GetChangeInPercent(Candles[i]));
+                    var change = Math.Abs(Helpers.GetChangeInPercent(Candles[i]));
+                    if (change > 0.0m)
+                    {
+                        ++count;
+                        summ += change;
+                    }
                 }
             }
 
@@ -67,15 +71,21 @@ namespace TradingBot
         // Check if last quote was a spike
         public bool IsSpike()
         {
+            decimal temp;
+            return IsSpike(out temp);
+        }
+        public bool IsSpike(out decimal change)
+        {
             // spike is a quote that diff against previous 3 quotes more than 3%
-            if (Raw.Count > 1 && Raw[Raw.Count - 1].Volume > 10)
+            change = 0;
+            if (Raw.Count > 2 && Raw[Raw.Count - 1].Volume > 50)
             {
                 var lastPrice = Raw[Raw.Count - 1].Price;
 
-                // get average of previous 3 quotes
+                // get average of previous 5 quotes
                 decimal summ = 0;
                 int count = 0;
-                for (int i = Math.Max(0, Raw.Count - 3); i < Raw.Count - 1; ++i)
+                for (int i = Math.Max(0, Raw.Count - 4); i < Raw.Count - 1; ++i)
                 {
                     summ += Raw[i].Price;
                     ++count;
@@ -84,8 +94,8 @@ namespace TradingBot
                 if (count > 0)
                 {
                     decimal avg = summ / count;
-                    var res = Math.Abs(Helpers.GetChangeInPercent(avg, lastPrice));
-                    return res > (decimal)3.0;
+                    change = Helpers.GetChangeInPercent(avg, lastPrice);
+                    return Math.Abs(change) > 3.0m;
                 }
             }
 

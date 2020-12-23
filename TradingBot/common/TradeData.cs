@@ -14,6 +14,7 @@ namespace TradingBot
         public DateTime Time { get; set; }
         public DateTime BuyTime { get; set; }
         public IStrategy Strategy { get; set; }
+        public IStrategyData StrategyData { get; set; }
 
         public TradeData()
         {
@@ -27,8 +28,16 @@ namespace TradingBot
             BuyPrice = 0;
             SellPrice = 0;
             StopLoss = 0;
+            TakeProfit = 0;
             MaxPrice = 0;
             Status = Status.Watching;
+            BuyTime = DateTime.Today.AddYears(-10).ToUniversalTime();
+            Strategy = null;
+            StrategyData = null;
         }
+    }
+
+    public interface IStrategyData
+    {
     }
 }

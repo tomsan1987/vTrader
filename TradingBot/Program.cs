@@ -210,35 +210,6 @@ namespace TradingBot
 
         private static void TestMode(BaseBot.Settings settings, ProgramOptions po)
         {
-            string destinationFolder = new string("E:\\tinkoff\\TestData\\RawQuotes\\5m\\quotes_2020-12-02");
-            DirectoryInfo folder = new DirectoryInfo("E:\\tinkoff\\TestData\\RawQuotes\\5m\\quotes_2020-12-02_18_04");
-            foreach (FileInfo f in folder.GetFiles("*.csv"))
-            {
-                var destinationPath = destinationFolder + "\\" + f.Name;
-                if (File.Exists(destinationPath))
-                {
-                    // if file exist in sorce folder
-                    var file = new StreamWriter(destinationPath, true);
-                    file.AutoFlush = true;
-
-                    var fileStream = File.OpenRead(f.FullName);
-                    var streamReader = new StreamReader(fileStream);
-                    String line;
-                    while ((line = streamReader.ReadLine()) != null)
-                    {
-                        file.WriteLine(line);
-                    }
-
-                    file.Close();
-                    streamReader.Close();
-                    fileStream.Close();
-                }
-                else
-                {
-                    // copy to source folder
-                    File.Copy(f.FullName, destinationPath);
-                }
-            }
         }
     }
 }
