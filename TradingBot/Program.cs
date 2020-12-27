@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tinkoff.Trading.OpenApi.Models;
 using Tinkoff.Trading.OpenApi.Network;
@@ -52,7 +53,7 @@ namespace TradingBot
 
                     case "TestTradeBot":
                         {
-                            await TestRocketBot(settings, po);
+                            await TestTradeBot(settings, po);
                         }
                         break;
 
@@ -84,7 +85,7 @@ namespace TradingBot
             }
         }
 
-        private static async Task TestRocketBot(BaseBot.Settings settings, ProgramOptions po)
+        private static async Task TestTradeBot(BaseBot.Settings settings, ProgramOptions po)
         {
             string candlesPath = po.Get<string>("CandlesPath");
             string tickerFilter = po.Get<string>("TickerFilter");
@@ -210,6 +211,41 @@ namespace TradingBot
 
         private static void TestMode(BaseBot.Settings settings, ProgramOptions po)
         {
+            // convert csv json quotes to simple csv data
+            string candlesPath = po.Get<string>("CandlesPath");
+            var list = TradeBot.ReadCandles(candlesPath);
+
+            var fileName = Path.GetFileNameWithoutExtension(candlesPath);
+            var dir = Path.GetDirectoryName(candlesPath);
+
+            var outputName = dir + "\\" + fileName + "_simple.csv";
+            var file = new StreamWriter(outputName, false);
+            file.AutoFlush = true;
+
+            List<Quotes.Quote> raw = new List<Quotes.Quote>();
+
+            // write header
+            file.WriteLine("#;Time;Price;Volume;A;B;Change");
+            for (int i = 0; i < list.Count; ++i)
+            {
+                var candle = list[i];
+
+                raw.Add(new Quotes.Quote(candle.Close, candle.Volume));
+
+                decimal a = 0 , b = 0, change = 0;
+                if (raw.Count > 500)
+                {
+                    decimal step = 1m / 1000;
+                    Helpers.Approximate(raw, raw.Count - 500, raw.Count, step, out a, out b);
+                    change = Helpers.GetChangeInPercent(candle);
+                }
+
+                string message = String.Format("{0};{1};{2};{3};{4};{5};{6}", i, candle.Time.ToShortTimeString(), candle.Close, candle.Volume, a, b, change);
+                message.Replace('.', ',');
+                file.WriteLine(message);
+            }
+
+            file.Close();
         }
     }
 }

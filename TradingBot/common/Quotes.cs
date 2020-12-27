@@ -22,14 +22,23 @@ namespace TradingBot
         }
 
         public List<CandlePayload> Candles { get; set; }
+        public List<Trend> Trends { get; set; }
         public List<Quote> Raw { get; set; }
         public QuoteLogger QuoteLogger { get; set; }
 
         public Quotes(string figi, string ticker, bool dumpQuotes)
         {
             Candles = new List<CandlePayload>();
+            Trends = new List<Trend>();
             Raw = new List<Quote>();
             QuoteLogger = new QuoteLogger(figi, ticker, dumpQuotes);
+
+            var trend = new Trend();
+            trend.StartPos = 1;
+            trend.EndPos = 1;
+            trend.M = decimal.MaxValue;
+            trend.S = decimal.MaxValue;
+            Trends.Add(trend);
         }
 
         // number of quotes at the last specified interval

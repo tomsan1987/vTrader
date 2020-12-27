@@ -55,6 +55,11 @@ namespace TradingBot
                     }
                 }
 
+                if (tradeData.BuyTime >= candle.Time)
+                    return IStrategy.StrategyResultType.NoOp;
+
+                tradeData.BuyTime = candle.Time;
+
                 // check if it was `outset`
                 int startOutset = candles.Count - 8;
                 int endOutset = candles.Count - 2;
@@ -63,16 +68,35 @@ namespace TradingBot
                 decimal max = candles[startOutset].High;
                 decimal volume = candles[startOutset].Volume;
                 decimal avgChange = Math.Abs(Helpers.GetChangeInPercent(candles[startOutset]));
+                //decimal M = candles[startOutset].Low + candles[startOutset].Open + candles[startOutset].Close + candles[startOutset].High;
+                decimal M = candles[startOutset].Close;
                 for (int i = startOutset + 1; i < endOutset; ++i)
                 {
                     min = Math.Min(min, Math.Min(candles[i].Close, candles[i].Open));
                     max = Math.Max(max, Math.Max(candles[i].Close, candles[i].Open));
                     volume += candles[i].Volume;
                     avgChange += Math.Abs(Helpers.GetChangeInPercent(candles[i]));
+                    //M += candles[i].Low + candles[i].Open + candles[i].Close + candles[i].High;
+                    M += candles[i].Close;
                 }
 
                 if (volume < 200)
                     return IStrategy.StrategyResultType.NoOp;
+
+                M = M / ((endOutset - startOutset) /** 4*/);
+
+                decimal S = 0;
+                for (int i = startOutset; i < endOutset; ++i)
+                {
+                    //S += (candles[i].Low - M) * (candles[i].Low - M);
+                    //S += (candles[i].Open - M) * (candles[i].Open - M);
+                    S += (candles[i].Close - M) * (candles[i].Close - M);
+                    //S += (candles[i].High - M) * (candles[i].High- M);
+                }
+
+                S /= (endOutset - startOutset) /** 4*/;
+                S = Math.Round((decimal)Math.Sqrt((double)S), 3);
+                M = Math.Round(M, 2);
 
                 avgChange /= (endOutset - startOutset);
                 var outsetChange = Math.Abs(Helpers.GetChangeInPercent(min, max));

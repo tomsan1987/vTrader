@@ -71,7 +71,7 @@ namespace TradingBot
         }
 
         public virtual void ShowStatus()
-        {        
+        {
         }
 
         public virtual async ValueTask DisposeAsync()
@@ -137,8 +137,21 @@ namespace TradingBot
                 _lastCandleReceived = DateTime.Now;
 
                 var cr = (CandleResponse)e.Response;
-
                 var candles = _candles[cr.Payload.Figi];
+
+                // test block
+                {
+                    var start = candles.Trends[0].StartPos;
+                    var end = candles.Raw.Count;
+                    if (end - start > 1)
+                    {
+                        decimal a, b;
+                        decimal step = 1m / 1000;
+                        Helpers.Approximate(candles.Raw, start, end, step, out a, out b);
+                        var change = Helpers.GetChangeInPercent(candles.Candles[candles.Candles.Count - 1]);
+                    }
+                }
+
                 if (candles.Candles.Count > 0 && candles.Candles[candles.Candles.Count - 1].Time == cr.Payload.Time)
                 {
                     // update
@@ -148,11 +161,42 @@ namespace TradingBot
                 }
                 else
                 {
+                    candles.Trends[0].StartPos = candles.Raw.Count;
+
                     // add new one
                     candles.Candles.Add(cr.Payload);
-                    candles.Raw.Clear();
+                    //candles.Raw.Clear();
                     candles.Raw.Add(new Quotes.Quote(cr.Payload.Close, cr.Payload.Volume));
                 }
+
+                // update trends
+                //foreach (var it in _candles)
+                //{
+                //    //Logger.Write("Build trends for {0}", it.Key);
+
+                //    //bool finished = false;
+                //    //while (!finished)
+                //    {
+                //        var lastTrend = candles.Trends[candles.Trends.Count - 1];
+
+                //        // update trend each 10 quotes
+                //        if (lastTrend.EndPos + 10 < candles.Raw.Count)
+                //        {
+                //            // estimate trend with a new range
+                //            decimal M, S;
+                //            Helpers.GetMS(candles.Raw, lastTrend.StartPos, candles.Raw.Count, out M, out S);
+
+                //            // compare it to existing trend
+                //            if (M <= lastTrend.M && S <= lastTrend.S)
+                //            {
+                //                // it is continuqtion of current trend
+                //                lastTrend.EndPos = candles.Raw.Count;
+                //                lastTrend.M = M;
+                //                lastTrend.S = S;
+                //            }
+                //        }
+                //    }
+                //}
 
                 candles.QuoteLogger.onQuoteReceived(cr.Payload);
             }

@@ -31,5 +31,44 @@ namespace TradingBot{
         {
             return candle.Open > candle.Close;
         }
+
+        // get average and standard deviation
+        static public void GetMS(List<Quotes.Quote> raw, int start, int end, out decimal M, out decimal S)
+        {
+            M = 0m;
+            S = 0m;
+
+            for (int i = start; i < end; ++i)
+                M += raw[i].Price;
+
+            M /= (end - start);
+
+            for (int i = start; i < end; ++i)
+                S += (raw[i].Price - M) * (raw[i].Price - M);
+
+            S /= (end - start) /** 4*/;
+            S = Math.Round((decimal)Math.Sqrt((double)S), 3);
+            M = Math.Round(M, 2);
+        }
+
+        static public void Approximate(List<Quotes.Quote> raw, int start, int end, decimal step, out decimal a, out decimal b)//(double** m, double* a, double* b, int n)
+        {
+            decimal sumx = 0;
+            decimal sumy = 0;
+            decimal sumx2 = 0;
+            decimal sumxy = 0;
+            for (int i = start; i < end; ++i)
+            {
+                var arg = (i - start) * step;
+                sumx += arg;
+                sumy += raw[i].Price;
+                sumx2 += arg * arg;
+                sumxy += arg * raw[i].Price;
+            }
+
+            int n = end - start;
+            a = (n * sumxy - (sumx * sumy)) / (n * sumx2 - sumx * sumx);
+            b = (sumy - a * sumx) / n;
+        }
     }
 }

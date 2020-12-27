@@ -31,8 +31,8 @@ namespace TradingBot
 
             _strategies = new IStrategy[4];
             //_strategies[0] = new RocketStrategy();
-            //_strategies[1] = new GoodGrowStrategy();
-            _strategies[2] = new ImpulseStrategy();
+            _strategies[1] = new GoodGrowStrategy();
+            //_strategies[2] = new ImpulseStrategy();
             //_strategies[3] = new SpykeStrategy();
         }
 
