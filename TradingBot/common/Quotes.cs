@@ -13,15 +13,17 @@ namespace TradingBot
             public decimal Volume { get; set; }
             public DateTime Time { get; set; }
 
-            public Quote(decimal price, decimal volume)
+            public Quote(decimal price, decimal volume, DateTime time)
             {
                 Price = price;
                 Volume = volume;
-                Time = DateTime.Now;
+                Time = time;
             }
         }
 
         public List<CandlePayload> Candles { get; set; }
+        public decimal AvgCandleChange { get; set; } // average candle change for last 2 hours
+        public List<int> RawPosStart { get; set; } // n-th element is a start pos in Raw of correspondent candle
         public List<Trend> Trends { get; set; }
         public List<Quote> Raw { get; set; }
         public QuoteLogger QuoteLogger { get; set; }
@@ -31,13 +33,12 @@ namespace TradingBot
             Candles = new List<CandlePayload>();
             Trends = new List<Trend>();
             Raw = new List<Quote>();
+            RawPosStart = new List<int>();
             QuoteLogger = new QuoteLogger(figi, ticker, dumpQuotes);
 
             var trend = new Trend();
             trend.StartPos = 1;
             trend.EndPos = 1;
-            trend.M = decimal.MaxValue;
-            trend.S = decimal.MaxValue;
             Trends.Add(trend);
         }
 

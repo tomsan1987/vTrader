@@ -8,7 +8,8 @@ namespace TradingBot
     {
         public int StartPos { get; set; }
         public int EndPos { get; set; }
-        public decimal M { get; set; }
-        public decimal S { get; set; }
+        public decimal MaxFall { get; set; } // max negative deviation from trend line
+        public decimal A { get; set; }
+        public decimal B { get; set; }
     }
 }

@@ -223,20 +223,81 @@ namespace TradingBot
             file.AutoFlush = true;
 
             List<Quotes.Quote> raw = new List<Quotes.Quote>();
+            List<Trend> trends = new List<Trend>();
 
             // write header
             file.WriteLine("#;Time;Price;Volume;A;B;Change");
             for (int i = 0; i < list.Count; ++i)
             {
                 var candle = list[i];
+                raw.Add(new Quotes.Quote(candle.Close, candle.Volume, candle.Time));
 
-                raw.Add(new Quotes.Quote(candle.Close, candle.Volume));
+                //if (trends.Count == 0)
+                //{
+                //    if (raw.Count > 20)
+                //    {
+                //        // build new trend
+                //        var newTrend = new Trend();
+                //        newTrend.StartPos = 1;
+                //        newTrend.EndPos = raw.Count;
 
-                decimal a = 0 , b = 0, change = 0;
+                //        decimal a = 0, b = 0;
+                //        double duration = (raw[newTrend.EndPos - 1].Time - raw[newTrend.StartPos].Time).TotalSeconds;
+                //        if (duration == 0)
+                //            duration = 600;
+                //        decimal step = (decimal)(duration / (newTrend.EndPos - newTrend.StartPos));
+                //        Helpers.Approximate(raw, newTrend.StartPos, newTrend.EndPos, step, out a, out b);
+                //        // change = Helpers.GetChangeInPercent(candle);
+
+                //        newTrend.A = a;
+                //        newTrend.B = b;
+
+                //        trends.Add(newTrend);
+                //    }
+
+                //    continue;
+                //}
+
+                //var lastTrend = trends[trends.Count - 1];
+
+                //// check if current quote fits last trend
+                //decimal teoreticalPrice = lastTrend.A * raw.Count + lastTrend.B;
+                //var change = Helpers.GetChangeInPercent(teoreticalPrice, candle.Close);
+                //if (Math.Abs(change) < 0.5m)
+                //{
+                //    // continuation of trend
+                //    lastTrend.EndPos = raw.Count;
+                //    continue;
+                //}
+                //else
+                //{
+                //    // new trend?
+                //    var newTrend = new Trend();
+                //    newTrend.StartPos = lastTrend.EndPos - 20;
+                //    newTrend.EndPos = raw.Count;
+
+                //    decimal a = 0, b = 0;
+                //    double duration = (raw[newTrend.EndPos - 1].Time - raw[newTrend.StartPos].Time).TotalSeconds;
+                //    if (duration == 0)
+                //        duration = 600;
+                //    decimal step = (decimal)(duration / (newTrend.EndPos - newTrend.StartPos));
+                //    Helpers.Approximate(raw, newTrend.StartPos, newTrend.EndPos, step, out a, out b);
+                //    // change = Helpers.GetChangeInPercent(candle);
+
+                //    newTrend.A = a;
+                //    newTrend.B = b;
+
+                //    trends.Add(newTrend);
+                //}
+
+                decimal a = 0, b = 0, change = 0;
                 if (raw.Count > 500)
                 {
-                    decimal step = 1m / 1000;
-                    Helpers.Approximate(raw, raw.Count - 500, raw.Count, step, out a, out b);
+                    double duration = (raw[raw.Count - 1].Time - raw[raw.Count - 500].Time).TotalSeconds;
+                    if (duration == 0)
+                        duration = 600;
+                    decimal step = (decimal)(duration / 500);
+                    Helpers.Approximate(raw, raw.Count - 500, raw.Count, step, out a, out b, out change);
                     change = Helpers.GetChangeInPercent(candle);
                 }
 

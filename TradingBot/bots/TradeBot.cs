@@ -31,8 +31,8 @@ namespace TradingBot
 
             _strategies = new IStrategy[4];
             //_strategies[0] = new RocketStrategy();
-            _strategies[1] = new GoodGrowStrategy();
-            //_strategies[2] = new ImpulseStrategy();
+            //_strategies[1] = new GoodGrowStrategy();
+            _strategies[2] = new ImpulseStrategy();
             //_strategies[3] = new SpykeStrategy();
         }
 
@@ -226,7 +226,15 @@ namespace TradingBot
                     }
                     else
                     {
-                        // TODO ?
+                        // check if price changed is not significantly
+                        var change = Helpers.GetChangeInPercent(tradeData.SellPrice, candle.Close);
+                        if (change <= -0.2m)
+                        {
+                            Logger.Write("{0}: Cancel order. Candle: {1}. Details: price change {2}", instrument.Ticker, JsonConvert.SerializeObject(candle), change);
+
+                            await _context.CancelOrderAsync(tradeData.OrderId);
+                            tradeData.Status = Status.BuyDone;
+                        }
                     }
                 }
                 else if (tradeData.Status == Status.ShutDown)
@@ -249,6 +257,10 @@ namespace TradingBot
                     _lastTimeOut = DateTime.UtcNow;
 
                 //OrderNotAvailable - no money
+            }
+            catch (Exception e)
+            {
+                Logger.Write(e.Message);
             }
         }
 

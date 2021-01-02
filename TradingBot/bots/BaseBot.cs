@@ -140,33 +140,49 @@ namespace TradingBot
                 var candles = _candles[cr.Payload.Figi];
 
                 // test block
-                {
-                    var start = candles.Trends[0].StartPos;
-                    var end = candles.Raw.Count;
-                    if (end - start > 1)
-                    {
-                        decimal a, b;
-                        decimal step = 1m / 1000;
-                        Helpers.Approximate(candles.Raw, start, end, step, out a, out b);
-                        var change = Helpers.GetChangeInPercent(candles.Candles[candles.Candles.Count - 1]);
-                    }
-                }
+                //{
+                //    var start = candles.Trends[0].StartPos;
+                //    var end = candles.Raw.Count;
+                //    if (end - start > 1)
+                //    {
+                //        decimal a, b;
+                //        decimal step = 1m / 1000;
+                //        Helpers.Approximate(candles.Raw, start, end, step, out a, out b);
+                //        var change = Helpers.GetChangeInPercent(candles.Candles[candles.Candles.Count - 1]);
+                //    }
+                //}
 
                 if (candles.Candles.Count > 0 && candles.Candles[candles.Candles.Count - 1].Time == cr.Payload.Time)
                 {
                     // update
                     var volume = cr.Payload.Volume - candles.Candles[candles.Candles.Count - 1].Volume;
                     candles.Candles[candles.Candles.Count - 1] = cr.Payload;
-                    candles.Raw.Add(new Quotes.Quote(cr.Payload.Close, volume));
+                    candles.Raw.Add(new Quotes.Quote(cr.Payload.Close, volume, cr.Payload.Time));
                 }
                 else
                 {
+                    decimal avg = 0;
+                    int candlesCount = 0;
+                    for (int i = Math.Max(1, candles.Candles.Count - 24); i < candles.Candles.Count; ++i)
+                    {
+                        var candle = candles.Candles[i];
+                        if (candle.Volume > 50)
+                        {
+                            avg += Math.Abs(Helpers.GetChangeInPercent(candle));
+                            ++candlesCount;
+                        }
+                    }
+
+                    if (candlesCount > 0)
+                        candles.AvgCandleChange = avg / candlesCount;
+
                     candles.Trends[0].StartPos = candles.Raw.Count;
 
                     // add new one
                     candles.Candles.Add(cr.Payload);
                     //candles.Raw.Clear();
-                    candles.Raw.Add(new Quotes.Quote(cr.Payload.Close, cr.Payload.Volume));
+                    candles.Raw.Add(new Quotes.Quote(cr.Payload.Close, cr.Payload.Volume, cr.Payload.Time));
+                    candles.RawPosStart.Add(candles.Raw.Count);
                 }
 
                 // update trends

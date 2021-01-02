@@ -15,6 +15,7 @@ namespace TradingBot
         public DateTime BuyTime { get; set; }
         public IStrategy Strategy { get; set; }
         public IStrategyData StrategyData { get; set; }
+        public Trend Trend { get; set; }
 
         public TradeData()
         {
@@ -34,6 +35,7 @@ namespace TradingBot
             BuyTime = DateTime.Today.AddYears(-10).ToUniversalTime();
             Strategy = null;
             StrategyData = null;
+            Trend = null;
         }
     }
 

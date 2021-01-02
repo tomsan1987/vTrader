@@ -67,8 +67,8 @@ namespace TradingBot
                 if (candle.Close < max)
                     return IStrategy.StrategyResultType.NoOp;
 
-                //if (Helpers.GetChangeInPercent(min, candle.Close) > 5m)
-                //    return IStrategy.StrategyResultType.NoOp;
+                if (Helpers.GetChangeInPercent(min, candle.Close) > 5m)
+                    return IStrategy.StrategyResultType.NoOp;
 
                 string reason;
                 var changeFromMax = Helpers.GetChangeInPercent(max, candle.Close);
