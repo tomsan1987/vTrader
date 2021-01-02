@@ -6,18 +6,22 @@ namespace Tinkoff.Trading.OpenApi.Models
     public class CandlePayload
     {
         [JsonProperty("o")]
-        public decimal Open { get; }
+        public decimal Open { get; set; }
         [JsonProperty("c")]
-        public decimal Close { get; }
+        public decimal Close { get; set; }
         [JsonProperty("h")]
-        public decimal High { get; }
+        public decimal High { get; set; }
         [JsonProperty("l")]
-        public decimal Low { get; }
+        public decimal Low { get; set; }
         [JsonProperty("v")]
-        public decimal Volume { get; }
-        public DateTime Time { get; }
-        public CandleInterval Interval { get; }
-        public string Figi { get; }
+        public decimal Volume { get; set; }
+        public DateTime Time { get; set; }
+        public CandleInterval Interval { get; set; }
+        public string Figi { get; set; }
+
+        public CandlePayload()
+        {
+        }
 
         [JsonConstructor]
         public CandlePayload(

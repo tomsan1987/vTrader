@@ -15,18 +15,23 @@ namespace TradingBot
         private readonly string _figi;
         private readonly string _ticker;
         private readonly StreamWriter _file;
+        private int _quotesCount;
 
         public QuoteLogger(string figi, string ticker, bool dumpQuotes)
         {
             _figi = figi;
             _ticker = ticker;
+            _quotesCount = 0;
 
             if (dumpQuotes)
             {
                 string dirName = "quotes_" + DateTime.Now.ToString("yyyy-MM-dd");
                 Directory.CreateDirectory(dirName);
-                _file = new StreamWriter(dirName + "\\" + ticker + ".csv", true);
+
+                _file = new StreamWriter(dirName + "\\" + ticker + "_" + figi + DateTime.Now.ToString("_yyyy-MM-dd") + ".csv", true);
                 _file.AutoFlush = true;
+
+                _file.WriteLine("#;Time;Open;Close;Low;High;Volume");
             }
         }
 
@@ -34,7 +39,9 @@ namespace TradingBot
         {
             if (candle.Figi == _figi && _file != null)
             {
-                _file.WriteLine(JsonConvert.SerializeObject(candle));
+                string message = String.Format("{0};{1};{2};{3};{4};{5};{6}", _quotesCount++, candle.Time.ToShortTimeString(), candle.Open, candle.Close, candle.Low, candle.High, candle.Volume);
+                message.Replace('.', ',');
+                _file.WriteLine(message);
             }
         }
     }

@@ -76,6 +76,12 @@ namespace TradingBot
                         }
                         break;
 
+                    case "ConvertQuotes":
+                        {
+                            ConvertQuotes(settings, po);
+                        }
+                        break;
+
                     default: Console.WriteLine("TODO: Help"); break;
                 }
             }
@@ -232,63 +238,6 @@ namespace TradingBot
                 var candle = list[i];
                 raw.Add(new Quotes.Quote(candle.Close, candle.Volume, candle.Time));
 
-                //if (trends.Count == 0)
-                //{
-                //    if (raw.Count > 20)
-                //    {
-                //        // build new trend
-                //        var newTrend = new Trend();
-                //        newTrend.StartPos = 1;
-                //        newTrend.EndPos = raw.Count;
-
-                //        decimal a = 0, b = 0;
-                //        double duration = (raw[newTrend.EndPos - 1].Time - raw[newTrend.StartPos].Time).TotalSeconds;
-                //        if (duration == 0)
-                //            duration = 600;
-                //        decimal step = (decimal)(duration / (newTrend.EndPos - newTrend.StartPos));
-                //        Helpers.Approximate(raw, newTrend.StartPos, newTrend.EndPos, step, out a, out b);
-                //        // change = Helpers.GetChangeInPercent(candle);
-
-                //        newTrend.A = a;
-                //        newTrend.B = b;
-
-                //        trends.Add(newTrend);
-                //    }
-
-                //    continue;
-                //}
-
-                //var lastTrend = trends[trends.Count - 1];
-
-                //// check if current quote fits last trend
-                //decimal teoreticalPrice = lastTrend.A * raw.Count + lastTrend.B;
-                //var change = Helpers.GetChangeInPercent(teoreticalPrice, candle.Close);
-                //if (Math.Abs(change) < 0.5m)
-                //{
-                //    // continuation of trend
-                //    lastTrend.EndPos = raw.Count;
-                //    continue;
-                //}
-                //else
-                //{
-                //    // new trend?
-                //    var newTrend = new Trend();
-                //    newTrend.StartPos = lastTrend.EndPos - 20;
-                //    newTrend.EndPos = raw.Count;
-
-                //    decimal a = 0, b = 0;
-                //    double duration = (raw[newTrend.EndPos - 1].Time - raw[newTrend.StartPos].Time).TotalSeconds;
-                //    if (duration == 0)
-                //        duration = 600;
-                //    decimal step = (decimal)(duration / (newTrend.EndPos - newTrend.StartPos));
-                //    Helpers.Approximate(raw, newTrend.StartPos, newTrend.EndPos, step, out a, out b);
-                //    // change = Helpers.GetChangeInPercent(candle);
-
-                //    newTrend.A = a;
-                //    newTrend.B = b;
-
-                //    trends.Add(newTrend);
-                //}
 
                 decimal a = 0, b = 0, change = 0;
                 if (raw.Count > 500)
@@ -307,6 +256,48 @@ namespace TradingBot
             }
 
             file.Close();
+        }
+
+        private static void ConvertQuotes(BaseBot.Settings settings, ProgramOptions po)
+        {
+            string candlesPath = po.Get<string>("CandlesPath");
+            DirectoryInfo folder = new DirectoryInfo(candlesPath);
+            foreach (FileInfo f in folder.GetFiles("*.json"))
+            {
+                // convert json quotes to simple csv data
+                var list = TradeBot.ReadCandles(f.FullName);
+                if (list.Count == 0)
+                {
+                    Logger.Write("No data found for " + f.FullName);
+                    continue;
+                }
+
+                var figi = list[list.Count / 2].Figi;
+                var date = list[list.Count / 2].Time.ToString("_yyyy-MM-dd");
+                var fileName = Path.GetFileNameWithoutExtension(f.FullName) + "_" + figi + date;
+                var dir = Path.GetDirectoryName(f.FullName);
+
+                var outputName = dir + "\\" + fileName + ".csv";
+                var file = new StreamWriter(outputName, false);
+                file.AutoFlush = true;
+
+                List<Quotes.Quote> raw = new List<Quotes.Quote>();
+                List<Trend> trends = new List<Trend>();
+
+                // write header
+                file.WriteLine("#;Time;Open;Close;Low;High;Volume");
+                for (int i = 0; i < list.Count; ++i)
+                {
+                    var candle = list[i];
+                    raw.Add(new Quotes.Quote(candle.Close, candle.Volume, candle.Time));
+
+                    string message = String.Format("{0};{1};{2};{3};{4};{5};{6}", i, candle.Time.ToShortTimeString(), candle.Open, candle.Close, candle.Low, candle.High, candle.Volume);
+                    message.Replace('.', ',');
+                    file.WriteLine(message);
+                }
+
+                file.Close();
+            }
         }
     }
 }

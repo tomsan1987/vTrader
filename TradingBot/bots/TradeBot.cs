@@ -368,6 +368,8 @@ namespace TradingBot
 
             var filter = tickers.Split(",", StringSplitOptions.RemoveEmptyEntries);
 
+            int totalCandles = 0;
+
             for (int i = 0; i < _watchList.Count; ++i)
             {
                 var ticker = _watchList[i];
@@ -376,16 +378,33 @@ namespace TradingBot
                 if (filter.Length > 0 && Array.FindIndex(filter, x => x == ticker) == -1)
                     continue;
 
-                // read history candles
-                var filePath = folderPath + "\\" + ticker + ".csv";
-                var candleList = ReadCandles(filePath);
-
-                foreach (var candle in candleList)
+                string fileName = "";
+                DirectoryInfo folder = new DirectoryInfo(folderPath);
+                var files = folder.GetFiles(ticker + "_*.csv");
+                if (files.Length == 1)
+                    fileName = files[0].FullName;
+                else
                 {
-                    OnStreamingEventReceived(this, new StreamingEventReceivedEventArgs(new CandleResponse(candle, DateTime.Now)));
-                    _quoteProcessedEvent.WaitOne();
+                    files = folder.GetFiles(ticker + ".json");
+                    if (files.Length == 1)
+                        fileName = files[0].FullName;
+                }
+
+
+                if (fileName.Length > 0)
+                {
+                    // read history candles
+                    var candleList = ReadCandles(files[0].FullName);
+                    totalCandles += candleList.Count;
+                    foreach (var candle in candleList)
+                    {
+                        OnStreamingEventReceived(this, new StreamingEventReceivedEventArgs(new CandleResponse(candle, DateTime.Now)));
+                        _quoteProcessedEvent.WaitOne();
+                    }
                 }
             }
+
+            Logger.Write("Total candles read: {0}", totalCandles);
         }
 
         public void CreateCandlesStatistic(string folderPath)
@@ -472,12 +491,65 @@ namespace TradingBot
 
             if (File.Exists(filePath))
             {
-                var fileStream = File.OpenRead(filePath);
-                var streamReader = new StreamReader(fileStream);
-                String line;
-                while ((line = streamReader.ReadLine()) != null)
+                if (Path.GetExtension(filePath) == ".json")
                 {
-                    result.Add(JsonConvert.DeserializeObject<CandlePayload>(line));
+                    var fileStream = File.OpenRead(filePath);
+                    var streamReader = new StreamReader(fileStream);
+                    String line;
+                    while ((line = streamReader.ReadLine()) != null)
+                    {
+                        result.Add(JsonConvert.DeserializeObject<CandlePayload>(line));
+                    }
+                }
+                else if (Path.GetExtension(filePath) == ".csv")
+                {
+                    var fileName = Path.GetFileNameWithoutExtension(filePath);
+                    var fileParts = fileName.Split("_");
+                    if (fileParts.Length < 3)
+                        throw new Exception("Wrong file name format with candles");
+
+                    var fileStream = File.OpenRead(filePath);
+                    var streamReader = new StreamReader(fileStream);
+
+                    var line = streamReader.ReadLine(); // skip header
+                    var values = line.Split(";");
+                    if (values.Length < 7)
+                        throw new Exception("Wrong file format with candles");
+
+                    string prevTime = "";
+                    CandlePayload candle = null;
+
+                    while ((line = streamReader.ReadLine()) != null)
+                    {
+                        values = line.Split(";");
+
+                        if (candle == null)
+                        {
+                            candle = new CandlePayload();
+                            candle.Figi = fileParts[1];
+                            candle.Interval = CandleInterval.FiveMinutes;
+                        }
+
+                        if (prevTime != values[1])
+                        {
+                            // new candle
+                            var time = fileParts[2] + " " + values[1];
+                            candle.Time = DateTime.Parse(time);
+                            candle.Time = DateTime.SpecifyKind(candle.Time, DateTimeKind.Utc);
+
+                            prevTime = values[1];
+                        }
+
+                        // update candle
+                        candle.Open = decimal.Parse(values[2]);
+                        candle.Close= decimal.Parse(values[3]);
+                        candle.Low= decimal.Parse(values[4]);
+                        candle.High = decimal.Parse(values[5]);
+                        candle.Volume = decimal.Parse(values[6]);
+
+                        result.Add(new CandlePayload(candle.Open, candle.Close, candle.High, candle.Low, candle.Volume, candle.Time, candle.Interval, candle.Figi));
+                        //result.Add(candle);
+                    }
                 }
             }
 
