@@ -63,7 +63,7 @@ namespace TradingBot
                     tradeData.BuyPrice = candle.Close;
                     tradeData.StopLoss = candle.Low;
                     string reason = String.Format("No history due to low volumes. CandleChange: +{0}%.", change);
-                    Logger.Write("{0}: BuyPending. Strategy: {1}. Price: {2}. StopLoss: {3}. Candle: {4}. Details: {5}", instrument.Ticker, Description(), tradeData.BuyPrice, tradeData.StopLoss, JsonConvert.SerializeObject(candle), reason);
+                    Logger.Write("{0}: BuyPending. Strategy: {1}. Price: {2}. StopLoss: {3}. Candle: ID:{4}, Time: {5}, Close: {6}. Details: {7}", instrument.Ticker, Description(), tradeData.BuyPrice, tradeData.StopLoss, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close, reason);
                     return IStrategy.StrategyResultType.Buy;
                 }
 
@@ -95,7 +95,7 @@ namespace TradingBot
                     }
 
                     var chageMinMax = Helpers.GetChangeInPercent(min, max);
-                    if (candle.Close > max && change > chageMinMax)
+                    if (chageMinMax < 1m && candle.Close > max && change > chageMinMax)
                     {
                         var timeFrom = candles[startOutset].Time.ToShortTimeString();
                         var timeTo = candles[endOutset].Time.ToShortTimeString();
@@ -115,7 +115,7 @@ namespace TradingBot
                             tradeData.Trend = candleTrend;
                             tradeData.BuyPrice = candle.Close;
                             tradeData.StopLoss = candle.Low;
-                            Logger.Write("{0}: BuyPending. Strategy: {1}. Price: {2}. StopLoss: {3}. Candle: {4}. Details: {5}", instrument.Ticker, Description(), tradeData.BuyPrice, tradeData.StopLoss, JsonConvert.SerializeObject(candle), reason);
+                            Logger.Write("{0}: BuyPending. Strategy: {1}. Price: {2}. StopLoss: {3}. Candle: ID:{4}, Time: {5}, Close: {6}. Details: {7}", instrument.Ticker, Description(), tradeData.BuyPrice, tradeData.StopLoss, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close, reason);
                             return IStrategy.StrategyResultType.Buy;
                         }
                     }
@@ -229,14 +229,14 @@ namespace TradingBot
                 if (candle.Close < tradeData.StopLoss)
                 {
                     tradeData.SellPrice = candle.Close;
-                    Logger.Write("{0}: SL reached. Pending. Close price: {1}. Candle: {2}. Profit: {3}({4}%)", instrument.Ticker, tradeData.SellPrice, JsonConvert.SerializeObject(candle), tradeData.SellPrice - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, tradeData.SellPrice));
+                    Logger.Write("{0}: SL reached. Pending. Close price: {1}. Candle: ID:{2}, Time: {3}, Close: {4}. Profit: {5}({6}%)", instrument.Ticker, tradeData.SellPrice, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close, tradeData.SellPrice - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, tradeData.SellPrice));
 
                     return IStrategy.StrategyResultType.Sell;
                 }
                 else if (tradeData.TakeProfit > 0m && candle.Close >= tradeData.TakeProfit)
                 {
                     tradeData.SellPrice = candle.Close;
-                    Logger.Write("{0}: TP reached. Pending. Close price: {1}. Candle: {2}. Profit: {3}({4}%)", instrument.Ticker, tradeData.SellPrice, JsonConvert.SerializeObject(candle), tradeData.SellPrice - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, tradeData.SellPrice));
+                    Logger.Write("{0}: TP reached. Pending. Close price: {1}. Candle: ID:{2}, Time: {3}, Close: {4}. Profit: {5}({6}%)", instrument.Ticker, tradeData.SellPrice, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close, tradeData.SellPrice - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, tradeData.SellPrice));
 
                     return IStrategy.StrategyResultType.Sell;
                 }
@@ -249,7 +249,7 @@ namespace TradingBot
                         // pulling the stop to no loss
                         tradeData.StopLoss = tradeData.BuyPrice;
                         tradeData.Time = candle.Time;
-                        Logger.Write("{0}: Pulling stop loss to no loss. Price: {1}. Candle: {2}.", instrument.Ticker, tradeData.StopLoss, JsonConvert.SerializeObject(candle));
+                        Logger.Write("{0}: Pulling stop loss to no loss. Price: {1}. Candle: ID:{2}, Time: {3}, Close: {4}.", instrument.Ticker, tradeData.StopLoss, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close);
                         return IStrategy.StrategyResultType.NoOp;
                     }
 
@@ -260,7 +260,7 @@ namespace TradingBot
                         // pulling the stop to price
                         tradeData.StopLoss = Helpers.RoundPrice(candle.Close * 0.99m, instrument.MinPriceIncrement);
                         tradeData.Time = candle.Time;
-                        Logger.Write("{0}: Pulling stop loss to current price. Price: {1}. Candle: {2}.", instrument.Ticker, tradeData.StopLoss, JsonConvert.SerializeObject(candle));
+                        Logger.Write("{0}: Pulling stop loss to current price. Price: {1}. Candle: ID:{2}, Time: {3}, Close: {4}.", instrument.Ticker, tradeData.StopLoss, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close);
                         return IStrategy.StrategyResultType.NoOp;
                     }
 
@@ -281,7 +281,7 @@ namespace TradingBot
                                     // pulling the stop to price
                                     tradeData.StopLoss = newSL;
                                     tradeData.Time = candle.Time;
-                                    Logger.Write("{0}: Price is diff from trend. Move SL to some profit zone. Price: {1}. ChangeFromTrend: {2}. Candle: {3}.", instrument.Ticker, tradeData.StopLoss, changeFromTrend, JsonConvert.SerializeObject(candle));
+                                    Logger.Write("{0}: Price is diff from trend. Move SL to some profit zone. Price: {1}. ChangeFromTrend: {2}. Candle: ID:{3}, Time: {4}, Close: {5}.", instrument.Ticker, tradeData.StopLoss, changeFromTrend, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close);
                                     return IStrategy.StrategyResultType.NoOp;
                                 }
                             }
@@ -312,7 +312,7 @@ namespace TradingBot
                                 // pulling the stop to the price
                                 tradeData.StopLoss = minPrice;
                                 tradeData.Time = candle.Time;
-                                Logger.Write("{0}: Pulling stop loss to current price. Price: {1}. MaxPrice: {2}. Candle: {3}.", instrument.Ticker, tradeData.StopLoss, tradeData.MaxPrice, JsonConvert.SerializeObject(candle));
+                                Logger.Write("{0}: Pulling stop loss to current price. Price: {1}. MaxPrice: {2}. Candle: ID:{3}, Time: {4}, Close: {5}.", instrument.Ticker, tradeData.StopLoss, tradeData.MaxPrice, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close);
                                 SLset = true;
                             }
                         }
@@ -325,7 +325,7 @@ namespace TradingBot
                             // we have a little profit, but the price does not grow, close the order with minimal profit
                             tradeData.StopLoss = candle.Close;
                             tradeData.Time = candle.Time;
-                            Logger.Write("{0}: Price does not grow. Closing with minimal profit. Price: {1}. Candle: {2}.", instrument.Ticker, tradeData.StopLoss, JsonConvert.SerializeObject(candle));
+                            Logger.Write("{0}: Price does not grow. Closing with minimal profit. Price: {1}. Candle: ID:{2}, Time: {3}, Close: {4}.", instrument.Ticker, tradeData.StopLoss, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close);
                         }
                         else if (tradeData.StopLoss < tradeData.BuyPrice && tradeData.BuyPrice > candle.Close)
                         {
@@ -345,7 +345,7 @@ namespace TradingBot
                             {
                                 tradeData.TakeProfit = avg;
                                 tradeData.Time = candle.Time;
-                                Logger.Write("{0}: Price does not grow. Try to set TakeProfit. Price: {1}. Candle: {2}.", instrument.Ticker, tradeData.TakeProfit, JsonConvert.SerializeObject(candle));
+                                Logger.Write("{0}: Price does not grow. Try to set TakeProfit. Price: {1}. Candle: ID:{2}, Time: {3}, Close: {4}.", instrument.Ticker, tradeData.TakeProfit, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close);
                             }
                         }
                     }
