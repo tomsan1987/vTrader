@@ -34,6 +34,8 @@ namespace TradingBot
             public string Token { get; set; }
             public string ConfigPath { get; set; }
 
+            public string Strategies { get; set; }
+
             public Settings(ProgramOptions po)
             {
                 if (po.HasValue("SubscribeQuotes"))
@@ -53,6 +55,9 @@ namespace TradingBot
 
                 if (po.HasValue("ConfigPath"))
                     ConfigPath = po.Get<string>("ConfigPath");
+
+                if (po.HasValue("Strategies"))
+                    Strategies = po.Get<string>("Strategies");
             }
         }
 

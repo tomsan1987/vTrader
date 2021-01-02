@@ -29,11 +29,25 @@ namespace TradingBot
         {
             Logger.Write("Trade bot created");
 
-            _strategies = new IStrategy[4];
-            //_strategies[0] = new RocketStrategy();
-            //_strategies[1] = new GoodGrowStrategy();
-            _strategies[2] = new ImpulseStrategy();
-            //_strategies[3] = new SpykeStrategy();
+            if (settings.Strategies != null && settings.Strategies.Length > 0)
+            {
+                var strategyNames = settings.Strategies.Split(",");
+                _strategies = new IStrategy[strategyNames.Length];
+
+                for (int i = 0; i < strategyNames.Length; ++i)
+                {
+                    switch (strategyNames[i])
+                    {
+                        case "RocketStrategy": _strategies[i] = new RocketStrategy(); break;
+                        case "GoodGrowStrategy": _strategies[i] = new GoodGrowStrategy(); break;
+                        case "ImpulseStrategy": _strategies[i] = new ImpulseStrategy(); break;
+                        case "SpykeStrategy": _strategies[i] = new SpykeStrategy(); break;
+                        default: Logger.Write("Unknown strategy name '{0}'", strategyNames[i]); break;
+                    }
+                }
+            }
+            else
+              Logger.Write("No strategies specified!");
         }
 
         public override async ValueTask DisposeAsync()
@@ -363,6 +377,12 @@ namespace TradingBot
 
         public void TradeByHistory(string folderPath, string tickers = "")
         {
+            if (!Directory.Exists(folderPath))
+            {
+                Logger.Write("Directory does not exists: {0}", folderPath);
+                return;
+            }
+
             if (tickers == null)
                 tickers = "";
 
