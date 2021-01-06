@@ -454,7 +454,12 @@ namespace TradingBot
 
                     close = candleList[candleList.Count - 1].Close;
 
-                    var ticker = f.Name.Substring(0, f.Name.Length - 4);
+                    var fileName = Path.GetFileNameWithoutExtension(f.FullName);
+                    var fileParts = fileName.Split("_");
+                    if (fileParts.Length < 3)
+                        throw new Exception("Wrong file name format with candles");
+
+                    var ticker = fileParts[0];
                     openToClose.Add(new Screener.Stat(ticker, open, close));
 
                     if (close >= open)

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tinkoff.Trading.OpenApi.Models;
 using Tinkoff.Trading.OpenApi.Network;
+using Newtonsoft.Json.Linq;
 
 namespace TradingBot
 {
@@ -79,6 +80,12 @@ namespace TradingBot
                     case "ConvertQuotes":
                         {
                             ConvertQuotes(settings, po);
+                        }
+                        break;
+
+                    case "CreateWatchList":
+                        {
+                            await CreateWatchList(settings, po);
                         }
                         break;
 
@@ -298,6 +305,49 @@ namespace TradingBot
 
                 file.Close();
             }
+        }
+
+        private async static Task CreateWatchList(BaseBot.Settings settings, ProgramOptions po)
+        {
+            var connection = ConnectionFactory.GetConnection(settings.Token);
+            var context = connection.Context;
+
+            string _accountId = "";
+            var accounts = await context.AccountsAsync();
+            foreach (var acc in accounts)
+            {
+                if (acc.BrokerAccountType == BrokerAccountType.Tinkoff)
+                    _accountId = acc.BrokerAccountId;
+            }
+
+            var instruments = (await context.MarketStocksAsync()).Instruments;
+
+            Action<Currency> store = c =>
+            {
+                List<string> list = new List<string>();
+                foreach (var it in instruments)
+                {
+                    if (it.Currency == c)
+                        list.Add(it.Ticker);
+                }
+
+                list.Sort();
+
+                JArray array = new JArray();
+                foreach (var ticker in list)
+                    array.Add(ticker);
+
+                JObject json = new JObject();
+                json["watch-list"] = array;
+
+                var file = new StreamWriter(c.ToString() + ".json", false);
+                file.AutoFlush = true;
+                file.Write(json.ToString());
+                file.Close();
+            };
+
+            store(Currency.Rub);
+            store(Currency.Usd);
         }
     }
 }
