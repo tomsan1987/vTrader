@@ -1,23 +1,18 @@
-Косяк в начале торгов. не правильно считается максимум
-2020-12-14 22:11:42 09      PBF: BuyPending. Strategy: GoodGrowStrategy. Price: 9,22. StopPrice: 8,98. Candle: {"o":9.22,"c":9.22,"h":9.22,"l":9.22,"v":30.0,"Time":"2020-12-11T07:20:00Z","Interval":"5min","Figi":"BBG002832GV8"}. Details: Reason: DayMax: 8,86. Current change: +4,06%
-2020-12-14 22:11:42 09      PBF: OrderId: test_order. Details: Status - New, RejectReason -  
-2020-12-14 22:11:42 09      PBF: OrderId: test_order executed
-2020-12-14 22:11:42 09      PBF: SL reached. Pending. Close price: 8,95. Candle: {"o":9.03,"c":8.95,"h":9.03,"l":8.95,"v":121.0,"Time":"2020-12-11T08:40:00Z","Interval":"5min","Figi":"BBG002832GV8"}. Profit: -0,27(-2,93%)
-2020-12-14 22:11:42 09      PBF: OrderId: test_order. Details: Status - New, RejectReason -  
-2020-12-14 22:11:42 09      PBF: OrderId: test_order executed
-
-Если через 4 свечи после покупки, мы ниже покупки, то попробовать минимизировать убытки по ТП
-Проверять на длинные хвосты?
-
-Мого зелёных свечей и возможно одна небольшая красная
-Если 5 свечей боковик - ну его нахуй, продать.
+FTI_BBG00DL8NMV2_2021-01-06.csv
+FTI: BuyPending. Strategy: GoodGrowStrategy. Price: 10,74. StopLoss: 10,5. Candle: ID:94, Time: 8:05, Close: 10,74. Details: Reason: DayMax: 10,52. Current change: +2,09%
+Мало котировок, купили прям по хаям, цена пошла вниз
++
 
 
-- Close all deals on US session end
+DVN_BBG000BBVJZ8_2021-01-06
+DVN: BuyPending. Strategy: GoodGrowStrategy. Price: 18,05. StopLoss: 17,62. Candle: ID:147, Time: 10:55, Close: 18,05. Details: Reason: DayMax: 17,68. Current change: +2,09%
+Мало котировок, не покупать на первом откате
 
 
-- OLLI	-1,46	-1,68
-Zero candles before///
 
+CNK_BBG000QDVR53_2021-01-06
+CNK: BuyPending. Strategy: GoodGrowStrategy. Price: 17,18. StopLoss: 16,76. Candle: ID:2204, Time: 14:30, Close: 17,18. Details: Reason: DayMax: 16,82. Current change: +2,14%
+ROKU_BBG001ZZPQJ6_2021-01-06
+Улучшить стоп в первую пятиминутку
++
 
-CNK дрянь свечи, дрянь тренд
