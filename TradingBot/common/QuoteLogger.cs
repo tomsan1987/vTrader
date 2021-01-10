@@ -28,10 +28,14 @@ namespace TradingBot
                 string dirName = "quotes_" + DateTime.Now.ToString("yyyy-MM-dd");
                 Directory.CreateDirectory(dirName);
 
-                _file = new StreamWriter(dirName + "\\" + ticker + "_" + figi + DateTime.Now.ToString("_yyyy-MM-dd") + ".csv", true);
+                var fileName = dirName + "\\" + ticker + "_" + figi + DateTime.Now.ToString("_yyyy-MM-dd") + ".csv";
+                bool exists = File.Exists(fileName);
+
+                _file = new StreamWriter(fileName, true);
                 _file.AutoFlush = true;
 
-                _file.WriteLine("#;Time;Open;Close;Low;High;Volume");
+                if (!exists)
+                    _file.WriteLine("#;Time;Open;Close;Low;High;Volume");
             }
         }
 

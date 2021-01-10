@@ -58,6 +58,13 @@ namespace TradingBot
                         }
                         break;
 
+                    case "RunTests":
+                        {
+                            var tester = new TradeBotTester(po);
+                            tester.Run();
+                        }
+                        break;
+
                     case "AnalyzeLogs":
                         {
                             AnalyzeLogs(settings, po);
@@ -246,18 +253,18 @@ namespace TradingBot
                 raw.Add(new Quotes.Quote(candle.Close, candle.Volume, candle.Time));
 
 
-                decimal a = 0, b = 0, change = 0;
+                decimal a = 0, b = 0, max = 0, change = 0;
                 if (raw.Count > 500)
                 {
                     double duration = (raw[raw.Count - 1].Time - raw[raw.Count - 500].Time).TotalSeconds;
                     if (duration == 0)
                         duration = 600;
                     decimal step = (decimal)(duration / 500);
-                    Helpers.Approximate(raw, raw.Count - 500, raw.Count, step, out a, out b, out change);
+                    Helpers.Approximate(raw, raw.Count - 500, raw.Count, step, out a, out b, out max, out change);
                     change = Helpers.GetChangeInPercent(candle);
                 }
 
-                string message = String.Format("{0};{1};{2};{3};{4};{5};{6}", i, candle.Time.ToShortTimeString(), candle.Close, candle.Volume, a, b, change);
+                string message = String.Format("{0};{1};{2};{3};{4};{5};{6};{7}", i, candle.Time.ToShortTimeString(), candle.Close, candle.Volume, a, b, max, change);
                 message.Replace('.', ',');
                 file.WriteLine(message);
             }

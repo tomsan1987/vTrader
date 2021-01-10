@@ -51,7 +51,7 @@ namespace TradingBot{
             M = Math.Round(M, 2);
         }
 
-        static public void Approximate(List<Quotes.Quote> raw, int start, int end, decimal step, out decimal a, out decimal b, out decimal maxDeviation)
+        static public void Approximate(List<Quotes.Quote> raw, int start, int end, decimal step, out decimal a, out decimal b, out decimal max, out decimal maxDeviation)
         {
             decimal sumx = 0;
             decimal sumy = 0;
@@ -71,11 +71,13 @@ namespace TradingBot{
             b = (sumy - a * sumx) / n;
 
             maxDeviation = 0;
+            max = 0;
             for (int i = start; i < end; ++i)
             {
                 var arg = (i - start) * step;
                 var price = a * arg + b;
                 maxDeviation = Math.Min(maxDeviation, Helpers.GetChangeInPercent(price, raw[i].Price));
+                max = Math.Max(max, raw[i].Price);
             }
 
             maxDeviation = Math.Abs(maxDeviation);

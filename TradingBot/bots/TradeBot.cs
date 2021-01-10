@@ -410,7 +410,6 @@ namespace TradingBot
                         fileName = files[0].FullName;
                 }
 
-
                 if (fileName.Length > 0)
                 {
                     // read history candles
@@ -425,6 +424,22 @@ namespace TradingBot
             }
 
             Logger.Write("Total candles read: {0}", totalCandles);
+        }
+
+        public TradeStatistic TradeByHistory(List<CandlePayload> candleList)
+        {
+            _isShutingDown = false;
+            InitCandles();
+            _stats = new TradeStatistic();
+            foreach (var candle in candleList)
+            {
+                OnStreamingEventReceived(this, new StreamingEventReceivedEventArgs(new CandleResponse(candle, DateTime.Now)));
+                _quoteProcessedEvent.WaitOne();
+            }
+
+            CloseAll().Wait();
+
+            return _stats;
         }
 
         public void CreateCandlesStatistic(string folderPath)

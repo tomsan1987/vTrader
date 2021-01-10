@@ -4,7 +4,7 @@ using Tinkoff.Trading.OpenApi.Models;
 
 namespace TradingBot
 {
-    class TradeStatistic
+    public class TradeStatistic
     {
         public decimal volume = 0;
         public decimal maxVolume = 0;
