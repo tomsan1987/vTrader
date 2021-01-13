@@ -47,7 +47,10 @@ namespace TradingBot
                 }
             }
             else
-              Logger.Write("No strategies specified!");
+            {
+                Logger.Write("No strategies specified!");
+                throw new Exception("No strategies specified!");
+            }
         }
 
         public override async ValueTask DisposeAsync()
@@ -105,7 +108,7 @@ namespace TradingBot
 
                     foreach (var it in newQuotes)
                     {
-                        if (it.Value > 1)
+                        if (it.Value > 5)
                             Logger.Write("{0}: Quotes queue size: {1}", _figiToTicker[it.Key], it.Value);
 
                         await OnCandleUpdate(it.Key);
