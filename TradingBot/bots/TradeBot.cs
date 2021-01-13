@@ -581,14 +581,13 @@ namespace TradingBot
                         }
 
                         // update candle
-                        candle.Open = decimal.Parse(values[2]);
-                        candle.Close= decimal.Parse(values[3]);
-                        candle.Low= decimal.Parse(values[4]);
-                        candle.High = decimal.Parse(values[5]);
-                        candle.Volume = decimal.Parse(values[6]);
+                        candle.Open = Helpers.Parse(values[2]);
+                        candle.Close= Helpers.Parse(values[3]);
+                        candle.Low= Helpers.Parse(values[4]);
+                        candle.High = Helpers.Parse(values[5]);
+                        candle.Volume = Helpers.Parse(values[6]);
 
                         result.Add(new CandlePayload(candle.Open, candle.Close, candle.High, candle.Low, candle.Volume, candle.Time, candle.Interval, candle.Figi));
-                        //result.Add(candle);
                     }
                 }
             }

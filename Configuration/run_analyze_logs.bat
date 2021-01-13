@@ -1,1 +1,1 @@
-..\TradingBot\bin\Release\netcoreapp3.1\TradingBot.exe mode="AnalyzeLogs" Token="token.txt" ConfigPath="config.json" SourceFolder="E:\tinkoff\Configuration\GoodGrowStrategy"
+..\TradingBot\bin\Release\netcoreapp3.1\TradingBot.exe mode="AnalyzeLogs" Token="token.txt" ConfigPath="config.json" SourceFolder="D:\Documents\House\vTrader\Configuration\stat"

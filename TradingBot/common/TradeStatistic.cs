@@ -105,7 +105,7 @@ namespace TradingBot
 
         public string GetStringStat()
         {
-            return String.Format("Trade statistic. Total/Pos/Neg {0}/{1}/{2}. Profit: {3}. Volume: {4}. MaxVolume: {5}. Commission: {6}.", totalOrders, posOrders, negOrders, totalProfit, volume, GetMaxVolume(), comission);
+            return String.Format("Trade statistic. Total/Pos/Neg: {0}/{1}/{2}; Profit: {3}; Volume: {4}; MaxVolume: {5}; Commission: {6};", totalOrders, posOrders, negOrders, totalProfit, volume, GetMaxVolume(), comission);
         }
     }
 }

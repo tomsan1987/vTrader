@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Tinkoff.Trading.OpenApi.Models;
+using System.Globalization;
 
 namespace TradingBot{
     class Helpers
@@ -81,6 +82,12 @@ namespace TradingBot{
             }
 
             maxDeviation = Math.Abs(maxDeviation);
+        }
+
+        static public decimal Parse(string s)
+        {
+            s = s.Replace(",", CultureInfo.InvariantCulture.NumberFormat.NumberDecimalSeparator);
+            return decimal.Parse(s, NumberStyles.Any, CultureInfo.InvariantCulture);
         }
     }
 }
