@@ -21,10 +21,14 @@ namespace TradingBot
             SetUp();
 
             // Positive tests
-            //PositiveTest("FATE_BBG000QP35H2_2021-01-07", 2, 5m);
-            //PositiveTest("TRIP_BBG001M8HHB7_2021-01-08", 1, 1m);
-            //PositiveTest("CNK_BBG000QDVR53_2020-12-28", 2, 0.9m);
-            PositiveTest("CF_BBG000BWJFZ4_2020-12-28", 1, 1m);
+            PositiveTest("FATE_BBG000QP35H2_2021-01-07", 2, 5m);
+            PositiveTest("TRIP_BBG001M8HHB7_2021-01-08", 2, 1m);
+            PositiveTest("CNK_BBG000QDVR53_2020-12-28", 2, 0.9m);
+            PositiveTest("OIS_BBG000BDDN94_2021-01-14", 1, 0.3m);
+            PositiveTest("BBBY_BBG000CSY9H9_2021-01-14", 3, 1.7m);
+
+            // TODO
+            //PositiveTest("CF_BBG000BWJFZ4_2020-12-28", 1, 1m);
             //PositiveTest("", 1, 0m);
 
             TearDown();

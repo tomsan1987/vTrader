@@ -144,7 +144,7 @@ namespace TradingBot
                         var changeFromBuy = Helpers.GetChangeInPercent(tradeData.BuyPrice, candle.Close);
 
                         // check that the price does not less than max fall of the trend
-                        if (changeFromBuy < 0 && Math.Abs(changeFromBuy) > tradeData.Trend.MaxFall)
+                        if (changeFromBuy < 0 && Math.Abs(changeFromBuy) > 2 * tradeData.Trend.MaxFall)
                         {
                             tradeData.SellPrice = candle.Close;
                             Logger.Write("{0}: Price much differ between Buy and Max trend fall. MaxFall: {1}%, BuyPrice: {2}, ChangeFromBuy: {3}%. Pending. Close price: {4}. Candle: ID:{5}, Time: {6}, Close: {7}. Profit: {8}({9}%)",
@@ -153,16 +153,17 @@ namespace TradingBot
                         }
 
                         // check that the price does not less than max fall of the trend
-                        if (changeFromMax < 0 && Math.Abs(changeFromMax) > tradeData.Trend.MaxFall)
+                        if (changeFromMax < 0 && Math.Abs(changeFromMax) > 2 * tradeData.Trend.MaxFall)
                         {
                             tradeData.SellPrice = candle.Close;
-                            Logger.Write("{0}: Price is fallsing Closing. MaxFall: {1}%, Max: {2}, ChangeFromMax: {3}%. Pending. Close price: {1}. Candle: ID:{4}, Time: {5}, Close: {6}. Profit: {7}({8}%)", instrument.Ticker, tradeData.Trend.MaxFall, tradeData.Trend.Max, changeFromMax, tradeData.SellPrice, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close, tradeData.SellPrice - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, tradeData.SellPrice));
+                            Logger.Write("{0}: Price is falling. Closing. MaxFall: {1}%, Max: {2}, ChangeFromMax: {3}%. Pending. Close price: {4}. Candle: ID:{5}, Time: {6}, Close: {7}. Profit: {8}({9}%)",
+                                instrument.Ticker, tradeData.Trend.MaxFall, tradeData.Trend.Max, changeFromMax, tradeData.SellPrice, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close, tradeData.SellPrice - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, tradeData.SellPrice));
                             return IStrategy.StrategyResultType.Sell;
                         }
 
 
                         // check that price does not much different from the trend
-                        if (changeFromTrend > tradeData.Trend.MaxFall)
+                        if (changeFromTrend > tradeData.Trend.MaxFall && tradeData.Trend.EndPos + 30 < quotes.Raw.Count) // rebuild trend once on 30 quotes if need
                         {
                             // rebuild trend
                             decimal A, B, maxPrice, maxDeviation;
@@ -312,7 +313,7 @@ namespace TradingBot
             trend.MaxFall = maxDeviation;
 
             // check how good this trend
-            if (change > maxDeviation * 3)
+            if (change < maxDeviation * 3)
                 return IStrategy.StrategyResultType.NoOp;
 
             if (A > 0)
