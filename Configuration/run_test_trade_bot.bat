@@ -49,3 +49,9 @@ timeout /T 2 /NOBREAK
 start ..\TradingBot\bin\Release\netcoreapp3.1\TradingBot.exe mode="TestTradeBot" DumpQuotes=false SubscribeQuotes=false Strategies="GoodGrowStrategy" Token="token.txt" ConfigPath="usd.json" CandlesPath="..\TestData\RawQuotes\5m\uncompressed\quotes_2021-01-11"
 timeout /T 2 /NOBREAK
 start ..\TradingBot\bin\Release\netcoreapp3.1\TradingBot.exe mode="TestTradeBot" DumpQuotes=false SubscribeQuotes=false Strategies="GoodGrowStrategy" Token="token.txt" ConfigPath="usd.json" CandlesPath="..\TestData\RawQuotes\5m\uncompressed\quotes_2021-01-12"
+timeout /T 2 /NOBREAK
+start ..\TradingBot\bin\Release\netcoreapp3.1\TradingBot.exe mode="TestTradeBot" DumpQuotes=false SubscribeQuotes=false Strategies="GoodGrowStrategy" Token="token.txt" ConfigPath="usd.json" CandlesPath="..\TestData\RawQuotes\5m\uncompressed\quotes_2021-01-13"
+
+
+timeout /T 40 /NOBREAK
+start ..\TradingBot\bin\Release\netcoreapp3.1\TradingBot.exe mode="TestTradeBot" DumpQuotes=false SubscribeQuotes=false Strategies="GoodGrowStrategy" Token="token.txt" ConfigPath="usd.json" CandlesPath="..\TestData\RawQuotes\5m\uncompressed\quotes_2021-01-14"
