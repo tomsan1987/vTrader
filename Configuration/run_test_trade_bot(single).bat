@@ -1,1 +1,1 @@
-..\TradingBot\bin\Release\netcoreapp3.1\TradingBot.exe mode="TestTradeBot" DumpQuotes=false SubscribeQuotes=false Strategies="ImpulseStrategy" Token="token.txt" ConfigPath="config.json" CandlesPath="..\TestData\RawQuotes\5m\uncompressed\quotes_2020-12-28"
+..\TradingBot\bin\Release\netcoreapp3.1\TradingBot.exe mode="TestTradeBot" DumpQuotes=false SubscribeQuotes=false Strategies="GoodGrowStrategy" Token="token.txt" ConfigPath="usd.json" CandlesPath="..\TestData\RawQuotes\5m\uncompressed\quotes_2021-01-14"

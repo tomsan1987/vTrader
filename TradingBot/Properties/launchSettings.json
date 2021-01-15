@@ -2,7 +2,7 @@
   "profiles": {
     "TradingBot": {
       "commandName": "Project",
-      "commandLineArgs": "mode=\"TestMode\" FakeConnection=true DumpQuotes=false SubscribeQuotes=false RequestCandlesHistory=false Token=\"..\\..\\..\\..\\Configuration\\token.txt\" ConfigPath=\"..\\..\\..\\..\\Configuration\\config.json\" CandlesPath=\"E:\\tinkoff\\TestData\\RawQuotes\\5m\\uncompressed\\quotes_2020-12-23\\ABNB.csv\" TickerFilter=\"M\""
+      "commandLineArgs": "mode=\"TradeBot\" FakeConnection=true DumpQuotes=false SubscribeQuotes=true RequestCandlesHistory=true Token=\"..\\..\\..\\..\\Configuration\\token.txt\" ConfigPath=\"..\\..\\..\\..\\Configuration\\usd.json\" CandlesPath=\"E:\\tinkoff\\TestData\\RawQuotes\\5m\\uncompressed\\quotes_2020-12-23\\ABNB.csv\" TickerFilter=\"M\""
     }
   }
 }

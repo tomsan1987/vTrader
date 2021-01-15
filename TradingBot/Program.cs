@@ -144,13 +144,13 @@ namespace TradingBot
                         int start = 0;
                         int end = 0;
 
-                        start = lastStr.IndexOf("Total/Pos/Neg ");
+                        start = lastStr.IndexOf("Total/Pos/Neg: ");
                         if (start > 0)
                         {
-                            end = lastStr.IndexOf('.', start);
+                            end = lastStr.IndexOf(';', start);
                             if (end > start)
                             {
-                                var str = lastStr.Substring(start + 14, end - (start + 14));
+                                var str = lastStr.Substring(start + 15, end - (start + 15));
                                 var array = str.Split("/");
                                 if (array.Length == 3)
                                 {
@@ -166,11 +166,11 @@ namespace TradingBot
                         start = lastStr.IndexOf("Profit: ");
                         if (start > 0)
                         {
-                            end = lastStr.IndexOf('.', start);
+                            end = lastStr.IndexOf(';', start);
                             if (end > start)
                             {
                                 var str = lastStr.Substring(start + 8, end - (start + 8));
-                                stat.totalProfit += decimal.Parse(str);
+                                stat.totalProfit += Helpers.Parse(str);
                             }
                         }
                         else
@@ -179,11 +179,11 @@ namespace TradingBot
                         start = lastStr.IndexOf("Volume: ");
                         if (start > 0)
                         {
-                            end = lastStr.IndexOf('.', start);
+                            end = lastStr.IndexOf(';', start);
                             if (end > start)
                             {
                                 var str = lastStr.Substring(start + 8, end - (start + 8));
-                                stat.volume += decimal.Parse(str);
+                                stat.volume += Helpers.Parse(str);
                             }
                         }
                         else
@@ -192,11 +192,11 @@ namespace TradingBot
                         start = lastStr.IndexOf("MaxVolume: ");
                         if (start > 0)
                         {
-                            end = lastStr.IndexOf('.', start);
+                            end = lastStr.IndexOf(';', start);
                             if (end > start)
                             {
                                 var str = lastStr.Substring(start + 11, end - (start + 11));
-                                stat.maxVolume = Math.Max(stat.maxVolume, decimal.Parse(str));
+                                stat.maxVolume = Math.Max(stat.maxVolume, Helpers.Parse(str));
                             }
                         }
                         else
@@ -206,11 +206,11 @@ namespace TradingBot
                         start = lastStr.IndexOf("Commission: ");
                         if (start > 0)
                         {
-                            end = lastStr.IndexOf('.', start);
+                            end = lastStr.IndexOf(';', start);
                             if (end > start)
                             {
                                 var str = lastStr.Substring(start + 12, end - (start + 12));
-                                stat.comission += decimal.Parse(str);
+                                stat.comission += Helpers.Parse(str);
                             }
                         }
                         else
