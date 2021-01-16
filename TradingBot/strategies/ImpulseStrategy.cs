@@ -125,7 +125,7 @@ namespace TradingBot
                     //    return IStrategy.StrategyResultType.NoOp;
                     //}
 
-                    // if price frow from SL more than 2% - pull SL to price for 1%
+                    // if price grow from SL more than 2% - pull SL to price for 1%
                     change = Helpers.GetChangeInPercent(tradeData.StopLoss, candle.Close);
                     if (tradeData.BuyTime == candle.Time && change > 2m && tradeData.StopLoss >= tradeData.BuyPrice)
                     {
@@ -257,13 +257,24 @@ namespace TradingBot
 
                             avg = Helpers.RoundPrice(avg / (candles.Count - start), instrument.MinPriceIncrement);
 
-                            if (avg > tradeData.StopLoss)
+                            if (avg > tradeData.StopLoss && avg != tradeData.TakeProfit)
                             {
                                 tradeData.TakeProfit = avg;
                                 tradeData.Time = candle.Time;
                                 Logger.Write("{0}: Price does not grow. Try to set TakeProfit. Price: {1}. Candle: ID:{2}, Time: {3}, Close: {4}.", instrument.Ticker, tradeData.TakeProfit, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close);
                             }
                         }
+                    }
+
+                    // if candle is too much red and we have some profit - close order
+                    change = Helpers.GetChangeInPercent(candle);
+                    var profit = Helpers.GetChangeInPercent(tradeData.BuyPrice, candle.Close);
+                    if (change < -2.0m && profit > 2.0m && tradeData.StopLoss < candle.Close)
+                    {
+                        tradeData.SellPrice = candle.Close;
+                        Logger.Write("{0}: Candle too red. Candle change: {1}; Closing. Candle: ID:{2}, Time: {3}, Close: {4}.",
+                            instrument.Ticker, change, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close);
+                        return IStrategy.StrategyResultType.Sell;
                     }
                 }
             }
@@ -299,7 +310,7 @@ namespace TradingBot
                 return IStrategy.StrategyResultType.NoOp;
 
             int startOutset = Math.Max(0, candles.Count - 6 - candlesToAnalyze);
-            int endOutset = candles.Count - 1;
+            int endOutset = candles.Count - candlesToAnalyze;
             decimal A, B, maxPrice, maxDeviation;
 
             Trend trend = new Trend();
@@ -336,7 +347,7 @@ namespace TradingBot
 
                     tradeData.Trend = trend;
                     tradeData.BuyPrice = candle.Close;
-                    tradeData.StopLoss = candle.Low;
+                    tradeData.StopLoss = Helpers.RoundPrice(candle.Close - candle.Close * (2 * quotes.AvgCandleChange / 100), instrument.MinPriceIncrement); // 2 ATR
                     Logger.Write("{0}: BuyPending. Strategy: {1}. Price: {2}. StopLoss: {3}. Candle: ID:{4}, Time: {5}, Close: {6}. Details: {7}", instrument.Ticker, Description(), tradeData.BuyPrice, tradeData.StopLoss, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close, reason);
                     return IStrategy.StrategyResultType.Buy;
                 }
