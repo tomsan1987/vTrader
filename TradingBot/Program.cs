@@ -232,48 +232,52 @@ namespace TradingBot
 
         private static void TestMode(BaseBot.Settings settings, ProgramOptions po)
         {
-            using QuoteLogger ql1 = new QuoteLogger("figi1", "ticker1", true);
+            string candlesPath = po.Get<string>("CandlesPath");
+            DirectoryInfo folder = new DirectoryInfo(candlesPath);
+            foreach (FileInfo f in folder.GetFiles("*.csv"))
+            {
+                var fileStream = File.OpenRead(f.FullName);
+                var streamReader = new StreamReader(fileStream);
 
+                var line = streamReader.ReadLine(); // skip header
+                var values = line.Split(";");
+                if (values.Length < 7)
+                    throw new Exception("Wrong file format with candles");
 
-            //// convert csv json quotes to simple csv data
-            //string candlesPath = po.Get<string>("CandlesPath");
-            //var list = TradeBot.ReadCandles(candlesPath);
+                int recSkip = 2;
+                DateTime prevTime = DateTime.Now;
 
-            //var fileName = Path.GetFileNameWithoutExtension(candlesPath);
-            //var dir = Path.GetDirectoryName(candlesPath);
+                var outputName = po.Get<string>("OutputFolder") + "\\" + f.Name;
+                var file = new StreamWriter(outputName, false);
+                file.AutoFlush = true;
+                file.WriteLine(line);
 
-            //var outputName = dir + "\\" + fileName + "_simple.csv";
-            //var file = new StreamWriter(outputName, false);
-            //file.AutoFlush = true;
+                while ((line = streamReader.ReadLine()) != null)
+                {
+                    values = line.Split(";");
+                    var currentTime = DateTime.Parse(values[1]);
 
-            //List<Quotes.Quote> raw = new List<Quotes.Quote>();
-            //List<Trend> trends = new List<Trend>();
+                    if (recSkip > 0)
+                    {
+                        prevTime = DateTime.Parse(values[1]);
+                        //file.WriteLine(line);
+                        recSkip--;
+                        continue;
+                    }
 
-            //// write header
-            //file.WriteLine("#;Time;Price;Volume;A;B;Change");
-            //for (int i = 0; i < list.Count; ++i)
-            //{
-            //    var candle = list[i];
-            //    raw.Add(new Quotes.Quote(candle.Close, candle.Volume, candle.Time));
+                    if (currentTime >= prevTime)
+                    {
+                        prevTime = currentTime;
+                        file.WriteLine(line);
+                    }
+                    else
+                        break; // finished
+                }
 
-
-            //    decimal a = 0, b = 0, max = 0, change = 0;
-            //    if (raw.Count > 500)
-            //    {
-            //        double duration = (raw[raw.Count - 1].Time - raw[raw.Count - 500].Time).TotalSeconds;
-            //        if (duration == 0)
-            //            duration = 600;
-            //        decimal step = (decimal)(duration / 500);
-            //        Helpers.Approximate(raw, raw.Count - 500, raw.Count, step, out a, out b, out max, out change);
-            //        change = Helpers.GetChangeInPercent(candle);
-            //    }
-
-            //    string message = String.Format("{0};{1};{2};{3};{4};{5};{6};{7}", i, candle.Time.ToShortTimeString(), candle.Close, candle.Volume, a, b, max, change);
-            //    message.Replace('.', ',');
-            //    file.WriteLine(message);
-            //}
-
-            //file.Close();
+                file.Close();
+                streamReader.Close();
+                fileStream.Close();
+            }
         }
 
         private static void ConvertQuotes(BaseBot.Settings settings, ProgramOptions po)
