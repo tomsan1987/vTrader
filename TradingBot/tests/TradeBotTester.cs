@@ -21,9 +21,8 @@ namespace TradingBot
             SetUp();
             RunPositiveTests();
 
-            //;
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
+            //PositiveTest("ETSY_BBG000N7MXL8_2021-01-12", 1, 0m);
+
             //PositiveTest("", 1, 0m);
             //PositiveTest("", 1, 0m);
             //PositiveTest("", 1, 0m);
@@ -108,6 +107,7 @@ namespace TradingBot
 
             // To improve
             PositiveTest("ABNB_BBG001Y2XS07_2021-01-13", 3, 3.02m);
+            PositiveTest("SFIX_BBG0046L1KL9_2021-01-12", 3, 2.23m); // impove SL when good profit
         }
 
         private void SetUp()

@@ -241,7 +241,7 @@ namespace TradingBot
 
                         _stats.Sell(tradeData.BuyTime, candle.Time, tradeData.BuyPrice, instrument.Ticker);
                         _stats.Update(instrument.Ticker, tradeData.BuyPrice, tradeData.SellPrice);
-                        tradeData.Reset();
+                        tradeData.Reset(false);
                     }
                     else
                     {
@@ -436,6 +436,10 @@ namespace TradingBot
             _isShutingDown = false;
             InitCandles();
             _stats = new TradeStatistic();
+
+            foreach (var it in _tradeData)
+                it.Value.Reset(true);
+
             foreach (var candle in candleList)
             {
                 OnStreamingEventReceived(this, new StreamingEventReceivedEventArgs(new CandleResponse(candle, DateTime.Now)));

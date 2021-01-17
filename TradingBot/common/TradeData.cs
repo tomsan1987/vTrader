@@ -23,7 +23,7 @@ namespace TradingBot
             Time = DateTime.Today.AddYears(-10).ToUniversalTime();
         }
 
-        public void Reset()
+        public void Reset(bool full)
         {
             OrderId = "";
             BuyPrice = 0;
@@ -36,6 +36,9 @@ namespace TradingBot
             Strategy = null;
             StrategyData = null;
             Trend = null;
+
+            if (full)
+                Time = DateTime.Today.AddYears(-10).ToUniversalTime();
         }
     }
 
