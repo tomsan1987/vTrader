@@ -5,10 +5,10 @@ using Tinkoff.Trading.OpenApi.Models;
 
 namespace TradingBot
 {
-    public class Quotes
+    public class Quotes : IDisposable
     {
         public class Quote
-        { 
+        {
             public decimal Price { get; set; }
             public decimal Volume { get; set; }
             public DateTime Time { get; set; }
@@ -24,22 +24,20 @@ namespace TradingBot
         public List<CandlePayload> Candles { get; set; }
         public decimal AvgCandleChange { get; set; } // average candle change for last 2 hours
         public List<int> RawPosStart { get; set; } // n-th element is a start pos in Raw of correspondent candle
-        public List<Trend> Trends { get; set; }
         public List<Quote> Raw { get; set; }
         public QuoteLogger QuoteLogger { get; set; }
 
         public Quotes(string figi, string ticker, bool dumpQuotes)
         {
             Candles = new List<CandlePayload>();
-            Trends = new List<Trend>();
             Raw = new List<Quote>();
             RawPosStart = new List<int>();
             QuoteLogger = new QuoteLogger(figi, ticker, dumpQuotes);
+        }
 
-            var trend = new Trend();
-            trend.StartPos = 1;
-            trend.EndPos = 1;
-            Trends.Add(trend);
+        public virtual void Dispose()
+        {
+            QuoteLogger?.Dispose();
         }
 
         // number of quotes at the last specified interval

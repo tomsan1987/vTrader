@@ -14,6 +14,8 @@ namespace TradingBot
     //     Base class for all trade bots.
     public class BaseBot : IAsyncDisposable
     {
+        protected FakeConnection _fakeConnection;
+        protected Connection _connection;
         protected IContext _context;
         protected Settings _settings;
         protected string _accountId;
@@ -80,7 +82,12 @@ namespace TradingBot
 
         public virtual async ValueTask DisposeAsync()
         {
-            await Task.Yield();
+            await UnSubscribeCandles();
+            _fakeConnection?.Dispose();
+            _connection?.Dispose();
+
+            foreach (var it in _candles)
+                it.Value.Dispose();
         }
 
         protected async Task InitInstruments()
@@ -122,14 +129,16 @@ namespace TradingBot
         {
             if (_settings.FakeConnection)
             {
-                var connection = ConnectionFactory.GetFakeConnection(_settings.Token);
-                _context = connection.Context;
+                _fakeConnection?.Dispose();
+                _fakeConnection = ConnectionFactory.GetFakeConnection(_settings.Token);
+                _context = _fakeConnection.Context;
                Logger.Write("Fake connection created");
             }
             else
             {
-                var connection = ConnectionFactory.GetConnection(_settings.Token);
-                _context = connection.Context;
+                _connection?.Dispose();
+                _connection = ConnectionFactory.GetConnection(_settings.Token);
+                _context = _connection.Context;
                 Logger.Write("Real connection created");
             }
         }
@@ -184,6 +193,7 @@ namespace TradingBot
         protected void OnWebSocketExceptionReceived(object s, WebSocketException e)
         {
             Logger.Write("OnWebSocketExceptionReceived: {0}", e.Message);
+           _ =  UnSubscribeCandles();
 
             Connect();
             _ = SubscribeCandles();
@@ -209,6 +219,23 @@ namespace TradingBot
                     await _context.SendStreamingRequestAsync(StreamingRequest.SubscribeCandle(_tickerToFigi[_watchList[i]], CandleInterval.FiveMinutes));
 
                 Logger.Write("End of subscribing candles...");
+            }
+        }
+
+        private async Task UnSubscribeCandles()
+        {
+            if (_settings.SubscribeQuotes && _context != null)
+            {
+                _context.StreamingEventReceived -= OnStreamingEventReceived;
+                _context.WebSocketException -= OnWebSocketExceptionReceived;
+                _context.StreamingClosed -= OnStreamingClosedReceived;
+
+                Logger.Write("Start unsubscribing candles...");
+
+                for (int i = 0; i < _watchList.Count; ++i)
+                    await _context.SendStreamingRequestAsync(StreamingRequest.UnsubscribeCandle(_tickerToFigi[_watchList[i]], CandleInterval.FiveMinutes));
+
+                Logger.Write("End of unsubscribing candles...");
             }
         }
 
@@ -259,6 +286,12 @@ namespace TradingBot
 
         protected void InitCandles()
         {
+            if (_candles != null)
+            {
+                foreach (var it in _candles)
+                    it.Value.Dispose();
+            }
+
             _candles = new Dictionary<string, Quotes>();
             for (int i = 0; i < _watchList.Count; ++i)
             {

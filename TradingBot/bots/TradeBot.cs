@@ -84,6 +84,8 @@ namespace TradingBot
                 // common stat
                 Logger.Write(_stats.GetStringStat());
             }
+
+            await base.DisposeAsync();
         }
 
         public override async Task StartAsync()

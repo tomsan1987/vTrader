@@ -10,7 +10,7 @@ namespace TradingBot
     //
     // Summary:
     //     Simple dumper quotes to text file.
-    public class QuoteLogger
+    public class QuoteLogger: IDisposable
     {
         private readonly string _figi;
         private readonly string _ticker;
@@ -47,6 +47,11 @@ namespace TradingBot
                 message.Replace('.', ',');
                 _file.WriteLine(message);
             }
+        }
+
+        public virtual void Dispose()
+        {
+            _file?.Dispose();
         }
     }
 }
