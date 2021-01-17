@@ -19,12 +19,9 @@ namespace TradingBot
         public void Run()
         {
             SetUp();
-            RunPositiveTests();
+            //RunPositiveTests();
 
-            //PositiveTest("ETSY_BBG000N7MXL8_2021-01-12", 1, 0m);
-
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
+            //PositiveTest("W_BBG001B17MV2_2021-01-12", 1, 0m);
             //PositiveTest("", 1, 0m);
             //PositiveTest("", 1, 0m);
             //PositiveTest("", 1, 0m);
@@ -103,6 +100,7 @@ namespace TradingBot
             PositiveTest("INTC_BBG000C0G1D1_2021-01-13", 1, 5.66m);
             PositiveTest("HALO_BBG000CZ8W54_2021-01-13", 2, 1.45m);
             PositiveTest("BILI_BBG00K7T3037_2021-01-13", 1, 4.18m);
+            PositiveTest("GM_BBG000NDYB67_2021-01-12", 2, 2.45m);
 
 
             // To improve
