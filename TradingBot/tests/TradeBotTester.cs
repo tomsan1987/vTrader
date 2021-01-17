@@ -19,8 +19,75 @@ namespace TradingBot
         public void Run()
         {
             SetUp();
+            RunPositiveTests();
 
-            // Positive tests
+            //;
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+            //PositiveTest("", 1, 0m);
+
+
+
+
+            // TODO
+            //PositiveTest("BBBY_BBG000CSY9H9_2021-01-13", 1, 0m);
+            //PositiveTest("SPCE_BBG00HTN2CQ3_2021-01-13", 1, 0m); //very intresting... 7 orders
+            //PositiveTest("CF_BBG000BWJFZ4_2020-12-28", 1, 1m);
+            //PositiveTest("ZYXI_BBG000BJBXZ2_2021-01-14", 1, 0m);
+
+            TearDown();
+        }
+
+        private void RunPositiveTests()
+        {
             PositiveTest("FATE_BBG000QP35H2_2021-01-07", 3, 5.48m);
             PositiveTest("TRIP_BBG001M8HHB7_2021-01-08", 2, 1m);
             PositiveTest("CNK_BBG000QDVR53_2020-12-28", 2, 0.87m);
@@ -31,75 +98,16 @@ namespace TradingBot
             PositiveTest("PBI_BBG000BQTMJ9_2021-01-14", 2, 0.33m);
             PositiveTest("ETSY_BBG000N7MXL8_2021-01-14", 1, 8.85m);
             PositiveTest("NVTA_BBG005DJFD43_2021-01-14", 2, 0.93m);
-            PositiveTest("W_BBG001B17MV2_2021-01-14", 3, 38.76m);
+            PositiveTest("W_BBG001B17MV2_2021-01-14", 3, 38.03m);
             PositiveTest("F_BBG000BQPC32_2021-01-14", 1, 0.28m);
             PositiveTest("ENPH_BBG001R3MNY9_2021-01-14", 1, 2.29m);
             PositiveTest("INTC_BBG000C0G1D1_2021-01-13", 1, 5.66m);
-
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
+            PositiveTest("HALO_BBG000CZ8W54_2021-01-13", 2, 1.45m);
+            PositiveTest("BILI_BBG00K7T3037_2021-01-13", 1, 4.18m);
 
 
-            // TODO
-            //PositiveTest("CF_BBG000BWJFZ4_2020-12-28", 1, 1m);
-            //PositiveTest("ZYXI_BBG000BJBXZ2_2021-01-14", 1, 0m);
-
-            TearDown();
+            // To improve
+            PositiveTest("ABNB_BBG001Y2XS07_2021-01-13", 3, 3.02m);
         }
 
         private void SetUp()
@@ -131,6 +139,7 @@ namespace TradingBot
 
         private void PositiveTest(string testName, int orders, decimal profit)
         {
+            Logger.Write("Test name: " + testName);
             _writer.WriteLine(testName);
 
             try

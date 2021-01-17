@@ -62,7 +62,7 @@ namespace TradingBot
                 trend.Max = maxPrice;
                 trend.MaxFall = maxDeviation;
 
-                if (A > 0)
+                if (A > 0 && change > 2 * maxDeviation)
                 {
                     decimal min = candles[startOutset].Low;
                     decimal max = candles[startOutset].High;
@@ -77,7 +77,8 @@ namespace TradingBot
                     {
                         var timeFrom = candles[startOutset].Time.ToShortTimeString();
                         var timeTo = candles[endOutset].Time.ToShortTimeString();
-                        string reason = String.Format("OutletTime: {0}({1})-{2}({3}). OutletMinMax: {4}/{5}. OutletAB: {6}/{7}. CurrentChange: +{8}%. DayAvgChange: {9}%", timeFrom, trend.StartPos, timeTo, trend.EndPos, min, max, A, B, change, quotes.AvgCandleChange);
+                        string reason = String.Format("OutletTime: {0}({1})-{2}({3}). OutletMinMax: {4}/{5}. OutletAB: {6}/{7}. CurrentChange: +{8}%. DayAvgChange: {9}%",
+                            timeFrom, trend.StartPos, timeTo, trend.EndPos, min, max, A, B, change, quotes.AvgCandleChange);
 
                         var candleTrend = trend;
                         if (A > 0)
@@ -93,7 +94,8 @@ namespace TradingBot
                     }
                 }
 
-                return IStrategy.StrategyResultType.NoOp;
+                //return IStrategy.StrategyResultType.NoOp;
+                return TrendFallback(instrument, tradeData, quotes);
             }
             else if (tradeData.Status == Status.BuyDone)
             {

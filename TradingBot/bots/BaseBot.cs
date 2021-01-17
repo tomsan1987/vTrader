@@ -174,7 +174,7 @@ namespace TradingBot
                     }
 
                     if (candlesCount > 0)
-                        candles.AvgCandleChange = avg / candlesCount;
+                        candles.AvgCandleChange = Math.Round(avg / candlesCount, 2);
 
                     // add new one
                     candles.Candles.Add(cr.Payload);

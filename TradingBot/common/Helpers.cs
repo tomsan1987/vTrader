@@ -82,6 +82,8 @@ namespace TradingBot{
             }
 
             maxDeviation = Math.Abs(maxDeviation);
+            a = Math.Round(a, 5);
+            b = Math.Round(b, 5);
         }
 
         static public decimal Parse(string s)
