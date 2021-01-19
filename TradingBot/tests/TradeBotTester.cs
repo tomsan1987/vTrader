@@ -26,7 +26,6 @@ namespace TradingBot
             SetUp();
             RunPositiveTests();
 
-            //PositiveTest("MAC_BBG000BL9C59_2021-01-14", 1, 0m);
             //PositiveTest("", 1, 0m);
             //PositiveTest("", 1, 0m);
             //PositiveTest("", 1, 0m);
@@ -49,27 +48,6 @@ namespace TradingBot
             //PositiveTest("", 1, 0m);
             //PositiveTest("", 1, 0m);
             //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-
-
 
 
             // TODO
@@ -85,7 +63,7 @@ namespace TradingBot
 
         private void RunPositiveTests()
         {
-            PositiveTest("FATE_BBG000QP35H2_2021-01-07", 2, 6.21m);
+            PositiveTest("FATE_BBG000QP35H2_2021-01-07", 2, 5.72m);
             PositiveTest("TRIP_BBG001M8HHB7_2021-01-08", 2, 1m);
             PositiveTest("CNK_BBG000QDVR53_2020-12-28", 2, 0.87m);
             PositiveTest("OIS_BBG000BDDN94_2021-01-14", 1, 0.3m);
@@ -106,11 +84,30 @@ namespace TradingBot
             PositiveTest("NTLA_BBG007KC7PB0_2021-01-15", 2, 3.26m); // too small quotes?
             PositiveTest("ILMN_BBG000DSMS70_2021-01-15", 1, 14.01m);
             PositiveTest("LTHM_BBG00LV3NRG0_2021-01-15", 2, 0.46m); //-
-
+            PositiveTest("MAC_BBG000BL9C59_2021-01-14", 1, 1.22m);
+            PositiveTest("W_BBG001B17MV2_2021-01-13", 1, 19.13m);
+            PositiveTest("MOMO_BBG007HTCQT0_2021-01-13", 2, 0.32m);
+            PositiveTest("BYND_BBG003CVJP50_2021-01-13", 2, 2.66m); // -
+            PositiveTest("FTI_BBG00DL8NMV2_2021-01-12", 2, 0.44m);
+            PositiveTest("EXAS_BBG000CWL0F5_2021-01-11", 1, 10.64m);
+            PositiveTest("CREE_BBG000BG14P4_2021-01-11", 1, 5.75m);
+            PositiveTest("DD_BBG00BN961G4_2021-01-11", 1, 3.79m);
+            PositiveTest("DBX_BBG0018SLDN0_2021-01-11", 1, 1.03m);
+            PositiveTest("BIIB_BBG000C17X76_2021-01-11", 2, 21.70m);
+            PositiveTest("PBF_BBG002832GV8_2021-01-11", 2, 0.20m);
+            PositiveTest("AMD_BBG000BBQCY0_2021-01-11", 1, 3.6m);
+            PositiveTest("GH_BBG006D97VY9_2021-01-11", 1, 5.99m);
+            PositiveTest("SPR_BBG000PRJ2Z9_2021-01-11", 1, 1.41m);
+            PositiveTest("ROKU_BBG001ZZPQJ6_2021-01-11", 2, 9.80m);
+            PositiveTest("EDIT_BBG005MX5GZ2_2021-01-07", 2, 5.29m); // -
 
             // To improve
             PositiveTest("ABNB_BBG001Y2XS07_2021-01-13", 2, 2.8m);
             PositiveTest("SFIX_BBG0046L1KL9_2021-01-12", 2, 2.33m); // impove SL when good profit
+            PositiveTest("PTON_BBG00JG0FFZ2_2021-01-13", 2, 5.53m); // improve SL --> 1 order
+            PositiveTest("ZM_BBG0042V6JM8_2021-01-13", 3, 2.78m); // improve SL --> 2 orders
+            PositiveTest("SNAP_BBG00441QMJ7_2021-01-11", 2, 1.51m); // good deals, but improve closing
+
         }
 
         private void SetUp()

@@ -268,14 +268,16 @@ namespace TradingBot
                         }
                     }
 
+                    // if price too much changed from maxPrice and we have some profit - close order
+
                     // if candle is too much red and we have some profit - close order
-                    change = Helpers.GetChangeInPercent(candle);
+                    change = Helpers.GetChangeInPercent(/*candle*/tradeData.MaxPrice, candle.Close);
                     var profit = Helpers.GetChangeInPercent(tradeData.BuyPrice, candle.Close);
                     if (change < -2.0m && profit > 2.0m && tradeData.StopLoss < candle.Close)
                     {
                         tradeData.SellPrice = candle.Close;
-                        Logger.Write("{0}: Candle too red. Candle change: {1}; Closing. Candle: ID:{2}, Time: {3}, Close: {4}. Profit: {5}({6}%)",
-                            instrument.Ticker, change, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close, tradeData.SellPrice - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, tradeData.SellPrice));
+                        Logger.Write("{0}: Price too fall from max. Max: {1}. Price change: {2}; Closing. Candle: ID:{3}, Time: {4}, Close: {5}. Profit: {6}({7}%)",
+                            instrument.Ticker, tradeData.MaxPrice, change, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close, tradeData.SellPrice - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, tradeData.SellPrice));
                         return IStrategy.StrategyResultType.Sell;
                     }
                 }
