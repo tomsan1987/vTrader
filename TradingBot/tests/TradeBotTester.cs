@@ -11,6 +11,11 @@ namespace TradingBot
         private StreamWriter _writer;
         private string _basePath;
         private TradeBot _bot;
+
+        // stat
+        private int _totalOrders = 0;
+        private decimal _totalProfit = 0;
+
         public TradeBotTester(ProgramOptions options)
         {
             _options = options;
@@ -19,15 +24,9 @@ namespace TradingBot
         public void Run()
         {
             SetUp();
-            //RunPositiveTests();
+            RunPositiveTests();
 
-            //PositiveTest("W_BBG001B17MV2_2021-01-12", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
+            //PositiveTest("MAC_BBG000BL9C59_2021-01-14", 1, 0m);
             //PositiveTest("", 1, 0m);
             //PositiveTest("", 1, 0m);
             //PositiveTest("", 1, 0m);
@@ -78,18 +77,20 @@ namespace TradingBot
             //PositiveTest("SPCE_BBG00HTN2CQ3_2021-01-13", 1, 0m); //very intresting... 7 orders
             //PositiveTest("CF_BBG000BWJFZ4_2020-12-28", 1, 1m);
             //PositiveTest("ZYXI_BBG000BJBXZ2_2021-01-14", 1, 0m);
+            //PositiveTest("VIPS_BBG002NLDLV8_2021-01-15", 1, 0m); // should not buy?
+            //PositiveTest("W_BBG001B17MV2_2021-01-12", 1, 7.87m); // good profit but big degradation in tests
 
             TearDown();
         }
 
         private void RunPositiveTests()
         {
-            PositiveTest("FATE_BBG000QP35H2_2021-01-07", 3, 5.48m);
+            PositiveTest("FATE_BBG000QP35H2_2021-01-07", 2, 6.21m);
             PositiveTest("TRIP_BBG001M8HHB7_2021-01-08", 2, 1m);
             PositiveTest("CNK_BBG000QDVR53_2020-12-28", 2, 0.87m);
             PositiveTest("OIS_BBG000BDDN94_2021-01-14", 1, 0.3m);
-            PositiveTest("BBBY_BBG000CSY9H9_2021-01-14", 3, 1.7m);
-            PositiveTest("SFIX_BBG0046L1KL9_2021-01-14", 2, 3.1m);
+            PositiveTest("BBBY_BBG000CSY9H9_2021-01-14", 1, 1.7m);
+            PositiveTest("SFIX_BBG0046L1KL9_2021-01-14", 1, 3.56m);
             PositiveTest("CNK_BBG000QDVR53_2021-01-14", 1, 1.31m);
             PositiveTest("PBI_BBG000BQTMJ9_2021-01-14", 2, 0.33m);
             PositiveTest("ETSY_BBG000N7MXL8_2021-01-14", 1, 8.85m);
@@ -101,11 +102,15 @@ namespace TradingBot
             PositiveTest("HALO_BBG000CZ8W54_2021-01-13", 2, 1.45m);
             PositiveTest("BILI_BBG00K7T3037_2021-01-13", 1, 4.18m);
             PositiveTest("GM_BBG000NDYB67_2021-01-12", 2, 2.45m);
+            PositiveTest("EDIT_BBG005MX5GZ2_2021-01-15", 3, 2.26m);
+            PositiveTest("NTLA_BBG007KC7PB0_2021-01-15", 2, 3.26m); // too small quotes?
+            PositiveTest("ILMN_BBG000DSMS70_2021-01-15", 1, 14.01m);
+            PositiveTest("LTHM_BBG00LV3NRG0_2021-01-15", 2, 0.46m); //-
 
 
             // To improve
-            PositiveTest("ABNB_BBG001Y2XS07_2021-01-13", 3, 3.02m);
-            PositiveTest("SFIX_BBG0046L1KL9_2021-01-12", 3, 2.23m); // impove SL when good profit
+            PositiveTest("ABNB_BBG001Y2XS07_2021-01-13", 2, 2.8m);
+            PositiveTest("SFIX_BBG0046L1KL9_2021-01-12", 2, 2.33m); // impove SL when good profit
         }
 
         private void SetUp()
@@ -131,6 +136,10 @@ namespace TradingBot
 
         private void TearDown()
         {
+            _writer.WriteLine("\n_____Total_____:");
+            _writer.WriteLine("Total orders: " + _totalOrders);
+            _writer.WriteLine("Total profit: " + _totalProfit);
+
             _writer.Close();
             _bot.DisposeAsync().AsTask().Wait();
         }
@@ -161,6 +170,9 @@ namespace TradingBot
                         _writer.WriteLine("TotalOrders: {0}[{1}]", res.totalOrders, orders);
                         _writer.WriteLine("TotalProfit: {0}[{1}]", res.totalProfit, profit);
                     }
+
+                    _totalOrders += res.totalOrders;
+                    _totalProfit += res.totalProfit;
                 }
                 else
                 {

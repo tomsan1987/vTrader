@@ -48,7 +48,6 @@ namespace TradingBot
             }
             else
             {
-                Logger.Write("No strategies specified!");
                 throw new Exception("No strategies specified!");
             }
         }

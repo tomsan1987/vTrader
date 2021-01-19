@@ -74,6 +74,7 @@ namespace TradingBot
 
                     case "CreateCandlesStatistic":
                         {
+                            settings.Strategies = "GoodGrowStrategy"; // dummy strategy
                             var bot = new TradeBot(settings);
                             bot.CreateCandlesStatistic(po.Get<string>("CandlesPath"));
                         }
