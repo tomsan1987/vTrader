@@ -54,7 +54,6 @@ namespace TradingBot
             //Test("", 1, 0m);
             //Test("", 1, 0m);
             //Test("", 1, 0m);
-            //Test("", 1, 0m);
             //Test("TRIP_BBG001M8HHB7_2021-01-19", 1, 0m);
             //
 
@@ -103,19 +102,19 @@ namespace TradingBot
             Test("MAC_BBG000BL9C59_2021-01-14", 1, 1.22m);
             Test("W_BBG001B17MV2_2021-01-13", 1, 19.13m);
             Test("MOMO_BBG007HTCQT0_2021-01-13", 2, 0.32m);
-            Test("BYND_BBG003CVJP50_2021-01-13", 2, 2.66m); // -
+            Test("BYND_BBG003CVJP50_2021-01-13", 3, 0.97m); // -
             Test("FTI_BBG00DL8NMV2_2021-01-12", 2, 0.44m);
             Test("EXAS_BBG000CWL0F5_2021-01-11", 1, 10.64m);
             Test("CREE_BBG000BG14P4_2021-01-11", 1, 5.75m);
             Test("DD_BBG00BN961G4_2021-01-11", 1, 3.79m);
             Test("DBX_BBG0018SLDN0_2021-01-11", 1, 1.03m);
             Test("BIIB_BBG000C17X76_2021-01-11", 2, 7.35m);
-            Test("PBF_BBG002832GV8_2021-01-11", 2, 0.20m);
+            Test("PBF_BBG002832GV8_2021-01-11", 2, 0.16m);
             Test("AMD_BBG000BBQCY0_2021-01-11", 1, 3.6m);
             Test("GH_BBG006D97VY9_2021-01-11", 1, 5.99m);
             Test("SPR_BBG000PRJ2Z9_2021-01-11", 1, 1.41m);
             Test("ROKU_BBG001ZZPQJ6_2021-01-11", 2, 9.95m);
-            Test("EDIT_BBG005MX5GZ2_2021-01-07", 2, 5.29m); // -
+            Test("EDIT_BBG005MX5GZ2_2021-01-07", 3, 4.04m); // -
             Test("ROKU_BBG001ZZPQJ6_2021-01-07", 2, 14.27m);
             Test("BILI_BBG00K7T3037_2021-01-07", 1, 3.88m);
             Test("AMD_BBG000BBQCY0_2021-01-07", 1, 3.30m);
@@ -135,6 +134,8 @@ namespace TradingBot
             Test("TOT_BBG000CHZ857_2021-01-06", 1, 1.58m);
             Test("JWN_BBG000G8N9C6_2021-01-06", 1, 1.15m);
             Test("PBCT_BBG000BQT4L6_2021-01-06", 1, 0.42m);
+            Test("TDOC_BBG0019T5SG0_2021-01-20", 1, 9.25m);
+
 
             // To improve
             Test("ABNB_BBG001Y2XS07_2021-01-13", 2, 2.8m);
@@ -156,7 +157,7 @@ namespace TradingBot
             Test("LITE_BBG0073F9RT7_2021-01-19", 0, 0m); // do not buy after fall
 
             Test("FDX_BBG000BJF1Z8_2021-01-19", 1, -0.43m); // should be minimal losses
-            Test("EDIT_BBG005MX5GZ2_2021-01-19", 1, -0.4m); // should be minimal losses
+            Test("EDIT_BBG005MX5GZ2_2021-01-19", 1, -1.14m); // should be minimal losses... improve?!
             Test("JWN_BBG000G8N9C6_2021-01-20", 1, -0.39m); // should be minimal losses
 
             _basePath = basePath;
