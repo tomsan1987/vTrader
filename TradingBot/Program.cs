@@ -82,7 +82,8 @@ namespace TradingBot
 
                     case "TestMode":
                         {
-                            TestMode(settings, po);
+                            CorrectCandleID(po);
+                            //TestMode(settings, po);
                         }
                         break;
 
@@ -278,6 +279,36 @@ namespace TradingBot
                 file.Close();
                 streamReader.Close();
                 fileStream.Close();
+            }
+        }
+
+        // When Screener was restarted at the midle of the day - CandleID starter from zero
+        // Method enumerates CandleIDs for whole file
+        private static void CorrectCandleID(ProgramOptions po)
+        {
+            string candlesPath = po.Get<string>("CandlesPath");
+            DirectoryInfo folder = new DirectoryInfo(candlesPath);
+            foreach (FileInfo f in folder.GetFiles("*.csv"))
+            {
+                var array = File.ReadAllLines(f.FullName);
+                if (array.Length == 0)
+                    continue; // do nothing for empty files
+
+                var file = new StreamWriter(f.FullName, false);
+                file.AutoFlush = true;
+                file.WriteLine(array[0]); // header
+
+                for(int i = 1; i < array.Length; ++i)
+                {
+                    var line = array[i];
+                    var idx = line.IndexOf(';');
+                    if (idx > 0)
+                        line = (i - 1).ToString() + ";" + line.Substring(idx + 1);
+
+                    file.WriteLine(line);
+                }
+
+                file.Close();
             }
         }
 

@@ -16,6 +16,10 @@ namespace TradingBot
 
             if (tradeData.Status == Status.Watching)
             {
+                // do not buy on market open
+                if (candle.Time.Hour == 7 && candle.Time.Minute == 0)
+                    return IStrategy.StrategyResultType.NoOp;
+
                 // check that we did not bought it recently
                 if (tradeData.Time.AddMinutes(10) >= candle.Time)
                     return IStrategy.StrategyResultType.NoOp;

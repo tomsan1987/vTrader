@@ -25,29 +25,46 @@ namespace TradingBot
         {
             SetUp();
             RunPositiveTests();
+            RunNegativeTests();
 
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
-            //PositiveTest("", 1, 0m);
+            //Test("MLCO_BBG000BHP8J4_2021-01-19", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+
 
 
             // TODO
@@ -63,51 +80,84 @@ namespace TradingBot
 
         private void RunPositiveTests()
         {
-            PositiveTest("FATE_BBG000QP35H2_2021-01-07", 2, 5.72m);
-            PositiveTest("TRIP_BBG001M8HHB7_2021-01-08", 2, 1m);
-            PositiveTest("CNK_BBG000QDVR53_2020-12-28", 2, 0.87m);
-            PositiveTest("OIS_BBG000BDDN94_2021-01-14", 1, 0.3m);
-            PositiveTest("BBBY_BBG000CSY9H9_2021-01-14", 1, 1.7m);
-            PositiveTest("SFIX_BBG0046L1KL9_2021-01-14", 1, 3.56m);
-            PositiveTest("CNK_BBG000QDVR53_2021-01-14", 1, 1.31m);
-            PositiveTest("PBI_BBG000BQTMJ9_2021-01-14", 2, 0.33m);
-            PositiveTest("ETSY_BBG000N7MXL8_2021-01-14", 1, 8.85m);
-            PositiveTest("NVTA_BBG005DJFD43_2021-01-14", 2, 0.93m);
-            PositiveTest("W_BBG001B17MV2_2021-01-14", 3, 38.03m);
-            PositiveTest("F_BBG000BQPC32_2021-01-14", 1, 0.28m);
-            PositiveTest("ENPH_BBG001R3MNY9_2021-01-14", 1, 2.29m);
-            PositiveTest("INTC_BBG000C0G1D1_2021-01-13", 1, 5.66m);
-            PositiveTest("HALO_BBG000CZ8W54_2021-01-13", 2, 1.45m);
-            PositiveTest("BILI_BBG00K7T3037_2021-01-13", 1, 4.18m);
-            PositiveTest("GM_BBG000NDYB67_2021-01-12", 2, 2.45m);
-            PositiveTest("EDIT_BBG005MX5GZ2_2021-01-15", 3, 2.26m);
-            PositiveTest("NTLA_BBG007KC7PB0_2021-01-15", 2, 3.26m); // too small quotes?
-            PositiveTest("ILMN_BBG000DSMS70_2021-01-15", 1, 14.01m);
-            PositiveTest("LTHM_BBG00LV3NRG0_2021-01-15", 2, 0.46m); //-
-            PositiveTest("MAC_BBG000BL9C59_2021-01-14", 1, 1.22m);
-            PositiveTest("W_BBG001B17MV2_2021-01-13", 1, 19.13m);
-            PositiveTest("MOMO_BBG007HTCQT0_2021-01-13", 2, 0.32m);
-            PositiveTest("BYND_BBG003CVJP50_2021-01-13", 2, 2.66m); // -
-            PositiveTest("FTI_BBG00DL8NMV2_2021-01-12", 2, 0.44m);
-            PositiveTest("EXAS_BBG000CWL0F5_2021-01-11", 1, 10.64m);
-            PositiveTest("CREE_BBG000BG14P4_2021-01-11", 1, 5.75m);
-            PositiveTest("DD_BBG00BN961G4_2021-01-11", 1, 3.79m);
-            PositiveTest("DBX_BBG0018SLDN0_2021-01-11", 1, 1.03m);
-            PositiveTest("BIIB_BBG000C17X76_2021-01-11", 2, 21.70m);
-            PositiveTest("PBF_BBG002832GV8_2021-01-11", 2, 0.20m);
-            PositiveTest("AMD_BBG000BBQCY0_2021-01-11", 1, 3.6m);
-            PositiveTest("GH_BBG006D97VY9_2021-01-11", 1, 5.99m);
-            PositiveTest("SPR_BBG000PRJ2Z9_2021-01-11", 1, 1.41m);
-            PositiveTest("ROKU_BBG001ZZPQJ6_2021-01-11", 2, 9.80m);
-            PositiveTest("EDIT_BBG005MX5GZ2_2021-01-07", 2, 5.29m); // -
+            var basePath = _basePath;
+            _basePath += "Positive\\";
+
+            Test("FATE_BBG000QP35H2_2021-01-07", 2, 5.72m);
+            Test("TRIP_BBG001M8HHB7_2021-01-08", 2, 1m);
+            Test("CNK_BBG000QDVR53_2020-12-28", 1, 0.85m);
+            Test("OIS_BBG000BDDN94_2021-01-14", 1, 0.3m);
+            Test("BBBY_BBG000CSY9H9_2021-01-14", 1, 1.7m);
+            Test("SFIX_BBG0046L1KL9_2021-01-14", 1, 3.56m);
+            Test("CNK_BBG000QDVR53_2021-01-14", 1, 1.31m);
+            Test("PBI_BBG000BQTMJ9_2021-01-14", 2, 0.33m);
+            Test("ETSY_BBG000N7MXL8_2021-01-14", 1, 8.85m);
+            Test("NVTA_BBG005DJFD43_2021-01-14", 2, 0.93m);
+            Test("W_BBG001B17MV2_2021-01-14", 3, 38.03m);
+            Test("F_BBG000BQPC32_2021-01-14", 1, 0.28m);
+            Test("ENPH_BBG001R3MNY9_2021-01-14", 1, 2.29m);
+            Test("INTC_BBG000C0G1D1_2021-01-13", 1, 5.66m);
+            Test("HALO_BBG000CZ8W54_2021-01-13", 2, 1.45m);
+            Test("BILI_BBG00K7T3037_2021-01-13", 1, 4.18m);
+            Test("GM_BBG000NDYB67_2021-01-12", 2, 2.45m);
+            Test("EDIT_BBG005MX5GZ2_2021-01-15", 3, 2.26m);
+            Test("NTLA_BBG007KC7PB0_2021-01-15", 2, 3.26m); // too small quotes?
+            Test("ILMN_BBG000DSMS70_2021-01-15", 1, 14.01m);
+            Test("LTHM_BBG00LV3NRG0_2021-01-15", 2, 0.46m); //-
+            Test("MAC_BBG000BL9C59_2021-01-14", 1, 1.22m);
+            Test("W_BBG001B17MV2_2021-01-13", 1, 19.13m);
+            Test("MOMO_BBG007HTCQT0_2021-01-13", 2, 0.32m);
+            Test("BYND_BBG003CVJP50_2021-01-13", 2, 2.66m); // -
+            Test("FTI_BBG00DL8NMV2_2021-01-12", 2, 0.44m);
+            Test("EXAS_BBG000CWL0F5_2021-01-11", 1, 10.64m);
+            Test("CREE_BBG000BG14P4_2021-01-11", 1, 5.75m);
+            Test("DD_BBG00BN961G4_2021-01-11", 1, 3.79m);
+            Test("DBX_BBG0018SLDN0_2021-01-11", 1, 1.03m);
+            Test("BIIB_BBG000C17X76_2021-01-11", 2, 21.70m);
+            Test("PBF_BBG002832GV8_2021-01-11", 2, 0.20m);
+            Test("AMD_BBG000BBQCY0_2021-01-11", 1, 3.6m);
+            Test("GH_BBG006D97VY9_2021-01-11", 1, 5.99m);
+            Test("SPR_BBG000PRJ2Z9_2021-01-11", 1, 1.41m);
+            Test("ROKU_BBG001ZZPQJ6_2021-01-11", 2, 9.80m);
+            Test("EDIT_BBG005MX5GZ2_2021-01-07", 2, 5.29m); // -
+            Test("ROKU_BBG001ZZPQJ6_2021-01-07", 2, 14.27m);
+            Test("BILI_BBG00K7T3037_2021-01-07", 1, 3.88m);
+            Test("AMD_BBG000BBQCY0_2021-01-07", 1, 3.30m);
+            Test("RDFN_BBG001Q7HP63_2021-01-07", 1, 2.17m);
+            Test("NTES_BBG000BX72V8_2021-01-07", 3, 3.32m); // reduce orders count
+            Test("UBER_BBG002B04MT8_2021-01-07", 1, 1.21m);
+            Test("TDOC_BBG0019T5SG0_2021-01-07", 3, 2.53m); // example of long trend, improve to 1 order
+            Test("EDIT_BBG005MX5GZ2_2021-01-06", 1, 7.99m);
+            Test("SEDG_BBG0084BBZY6_2021-01-06", 1, 22.45m);
+            Test("GE_BBG000BK6MB5_2021-01-06", 1, 0.60m);
+            Test("SIG_BBG000C4ZZ10_2021-01-06", 1, 1.44m);
+            Test("FITB_BBG000BJL3N0_2021-01-06", 1, 1.35m);
+            Test("GPS_BBG000BKLH74_2021-01-06", 1, 0.89m);
+            Test("EBAY_BBG000C43RR5_2021-01-06", 1, 2.12m);
+            Test("OLLI_BBG0098VVDT9_2021-01-06", 1, 3.44m);
+            Test("OMC_BBG000BS9489_2021-01-06", 1, 2.32m);
+            Test("TOT_BBG000CHZ857_2021-01-06", 1, 1.58m);
+            Test("JWN_BBG000G8N9C6_2021-01-06", 1, 1.15m);
+            Test("PBCT_BBG000BQT4L6_2021-01-06", 1, 0.42m);
 
             // To improve
-            PositiveTest("ABNB_BBG001Y2XS07_2021-01-13", 2, 2.8m);
-            PositiveTest("SFIX_BBG0046L1KL9_2021-01-12", 2, 2.33m); // impove SL when good profit
-            PositiveTest("PTON_BBG00JG0FFZ2_2021-01-13", 2, 5.53m); // improve SL --> 1 order
-            PositiveTest("ZM_BBG0042V6JM8_2021-01-13", 3, 2.78m); // improve SL --> 2 orders
-            PositiveTest("SNAP_BBG00441QMJ7_2021-01-11", 2, 1.51m); // good deals, but improve closing
+            Test("ABNB_BBG001Y2XS07_2021-01-13", 2, 2.8m);
+            Test("SFIX_BBG0046L1KL9_2021-01-12", 2, 2.33m); // impove SL when good profit
+            Test("PTON_BBG00JG0FFZ2_2021-01-13", 2, 5.53m); // improve SL --> 1 order
+            Test("ZM_BBG0042V6JM8_2021-01-13", 3, 2.78m); // improve SL --> 2 orders
+            Test("SNAP_BBG00441QMJ7_2021-01-11", 2, 1.51m); // good deals, but improve closing
 
+            _basePath = basePath;
+        }
+
+        private void RunNegativeTests()
+        {
+            var basePath = _basePath;
+            _basePath += "Negative\\";
+
+            Test("INTC_BBG000C0G1D1_2021-01-19", 0, 0m); // market open
+
+            _basePath = basePath;
         }
 
         private void SetUp()
@@ -141,7 +191,7 @@ namespace TradingBot
             _bot.DisposeAsync().AsTask().Wait();
         }
 
-        private void PositiveTest(string testName, int orders, decimal profit)
+        private void Test(string testName, int orders, decimal profit)
         {
             Logger.Write("Test name: " + testName);
             _writer.WriteLine(testName);
