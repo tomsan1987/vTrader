@@ -24,8 +24,8 @@ namespace TradingBot
         public void Run()
         {
             SetUp();
-            //RunPositiveTests();
-            //RunNegativeTests();
+            RunPositiveTests();
+            RunNegativeTests();
 
             //Test("", 1, 0m);
             //Test("", 1, 0m);
@@ -55,12 +55,7 @@ namespace TradingBot
             //Test("", 1, 0m);
             //Test("", 1, 0m);
             //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
+            //Test("TRIP_BBG001M8HHB7_2021-01-19", 1, 0m);
             //
 
 
@@ -73,6 +68,8 @@ namespace TradingBot
             //Test("ZYXI_BBG000BJBXZ2_2021-01-14", 1, 0m);
             //Test("VIPS_BBG002NLDLV8_2021-01-15", 1, 0m); // should not buy?
             //Test("W_BBG001B17MV2_2021-01-12", 1, 7.87m); // good profit but big degradation in tests
+            //Test("IOVA_BBG000FTLBV7_2021-01-19", 1, 0m); // bad entry point, do not want to buy
+            //Test("TRIP_BBG001M8HHB7_2021-01-19", 1, 0m); // do not want to buy after fall
 
             TearDown();
         }
@@ -117,7 +114,7 @@ namespace TradingBot
             Test("AMD_BBG000BBQCY0_2021-01-11", 1, 3.6m);
             Test("GH_BBG006D97VY9_2021-01-11", 1, 5.99m);
             Test("SPR_BBG000PRJ2Z9_2021-01-11", 1, 1.41m);
-            Test("ROKU_BBG001ZZPQJ6_2021-01-11", 2, 9.80m);
+            Test("ROKU_BBG001ZZPQJ6_2021-01-11", 2, 9.95m);
             Test("EDIT_BBG005MX5GZ2_2021-01-07", 2, 5.29m); // -
             Test("ROKU_BBG001ZZPQJ6_2021-01-07", 2, 14.27m);
             Test("BILI_BBG00K7T3037_2021-01-07", 1, 3.88m);
@@ -143,7 +140,7 @@ namespace TradingBot
             Test("ABNB_BBG001Y2XS07_2021-01-13", 2, 2.8m);
             Test("SFIX_BBG0046L1KL9_2021-01-12", 2, 2.33m); // impove SL when good profit
             Test("PTON_BBG00JG0FFZ2_2021-01-13", 2, 5.53m); // improve SL --> 1 order
-            Test("ZM_BBG0042V6JM8_2021-01-13", 3, 2.78m); // improve SL --> 2 orders
+            Test("ZM_BBG0042V6JM8_2021-01-13", 3, 3.17m); // improve SL --> 2 orders
             Test("SNAP_BBG00441QMJ7_2021-01-11", 2, 1.51m); // good deals, but improve closing
 
             _basePath = basePath;
@@ -155,8 +152,12 @@ namespace TradingBot
             _basePath += "Negative\\";
 
             Test("INTC_BBG000C0G1D1_2021-01-19", 0, 0m); // market open
+            Test("BABA_BBG006G2JVL2_2021-01-19", 0, 0m); // market open
             Test("LITE_BBG0073F9RT7_2021-01-19", 0, 0m); // do not buy after fall
 
+            Test("FDX_BBG000BJF1Z8_2021-01-19", 1, -0.43m); // should be minimal losses
+            Test("EDIT_BBG005MX5GZ2_2021-01-19", 1, -0.4m); // should be minimal losses
+            Test("JWN_BBG000G8N9C6_2021-01-20", 1, -0.39m); // should be minimal losses
 
             _basePath = basePath;
         }

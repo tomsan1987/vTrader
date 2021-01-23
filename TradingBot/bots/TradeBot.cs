@@ -346,8 +346,6 @@ namespace TradingBot
                     return candle.Close >= tradeData.SellPrice;
                 else
                     throw new Exception("Wrong trade data status on checking order execution!");
-
-                return false;
             }
             else
             {
@@ -355,9 +353,7 @@ namespace TradingBot
                 foreach (var order in orders)
                 {
                     if (order.OrderId == orderId)
-                    {
                         return false;
-                    }
                 }
             }
 
