@@ -23,6 +23,7 @@ namespace TradingBot
 
         public List<CandlePayload> Candles { get; set; }
         public decimal AvgCandleChange { get; set; } // average candle change for last 2 hours
+        public decimal DayMax { get; set; } // day maximum
         public List<int> RawPosStart { get; set; } // n-th element is a start pos in Raw of correspondent candle
         public List<Quote> Raw { get; set; }
         public QuoteLogger QuoteLogger { get; set; }

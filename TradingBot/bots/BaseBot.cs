@@ -182,6 +182,8 @@ namespace TradingBot
                     candles.RawPosStart.Add(candles.Raw.Count);
                 }
 
+                candles.DayMax = Math.Max(candles.DayMax, cr.Payload.Close);
+
                 candles.QuoteLogger.onQuoteReceived(cr.Payload);
             }
             else

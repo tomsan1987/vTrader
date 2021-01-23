@@ -24,10 +24,9 @@ namespace TradingBot
         public void Run()
         {
             SetUp();
-            RunPositiveTests();
-            RunNegativeTests();
+            //RunPositiveTests();
+            //RunNegativeTests();
 
-            //Test("MLCO_BBG000BHP8J4_2021-01-19", 1, 0m);
             //Test("", 1, 0m);
             //Test("", 1, 0m);
             //Test("", 1, 0m);
@@ -62,18 +61,18 @@ namespace TradingBot
             //Test("", 1, 0m);
             //Test("", 1, 0m);
             //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
+            //
 
 
 
             // TODO
-            //PositiveTest("BBBY_BBG000CSY9H9_2021-01-13", 1, 0m);
-            //PositiveTest("SPCE_BBG00HTN2CQ3_2021-01-13", 1, 0m); //very intresting... 7 orders
-            //PositiveTest("CF_BBG000BWJFZ4_2020-12-28", 1, 1m);
-            //PositiveTest("ZYXI_BBG000BJBXZ2_2021-01-14", 1, 0m);
-            //PositiveTest("VIPS_BBG002NLDLV8_2021-01-15", 1, 0m); // should not buy?
-            //PositiveTest("W_BBG001B17MV2_2021-01-12", 1, 7.87m); // good profit but big degradation in tests
+            //Test("UPWK_BBG00FBJ6390_2021-01-19", 1, 0m); // continue following trend if bougth at the end of 5 minutes
+            //Test("BBBY_BBG000CSY9H9_2021-01-13", 1, 0m);
+            //Test("SPCE_BBG00HTN2CQ3_2021-01-13", 1, 0m); //very intresting... 7 orders
+            //Test("CF_BBG000BWJFZ4_2020-12-28", 1, 1m);
+            //Test("ZYXI_BBG000BJBXZ2_2021-01-14", 1, 0m);
+            //Test("VIPS_BBG002NLDLV8_2021-01-15", 1, 0m); // should not buy?
+            //Test("W_BBG001B17MV2_2021-01-12", 1, 7.87m); // good profit but big degradation in tests
 
             TearDown();
         }
@@ -93,15 +92,15 @@ namespace TradingBot
             Test("PBI_BBG000BQTMJ9_2021-01-14", 2, 0.33m);
             Test("ETSY_BBG000N7MXL8_2021-01-14", 1, 8.85m);
             Test("NVTA_BBG005DJFD43_2021-01-14", 2, 0.93m);
-            Test("W_BBG001B17MV2_2021-01-14", 3, 38.03m);
+            Test("W_BBG001B17MV2_2021-01-14", 2, 40.76m);
             Test("F_BBG000BQPC32_2021-01-14", 1, 0.28m);
             Test("ENPH_BBG001R3MNY9_2021-01-14", 1, 2.29m);
             Test("INTC_BBG000C0G1D1_2021-01-13", 1, 5.66m);
             Test("HALO_BBG000CZ8W54_2021-01-13", 2, 1.45m);
             Test("BILI_BBG00K7T3037_2021-01-13", 1, 4.18m);
             Test("GM_BBG000NDYB67_2021-01-12", 2, 2.45m);
-            Test("EDIT_BBG005MX5GZ2_2021-01-15", 3, 2.26m);
-            Test("NTLA_BBG007KC7PB0_2021-01-15", 2, 3.26m); // too small quotes?
+            Test("EDIT_BBG005MX5GZ2_2021-01-15", 2, 2.37m);
+            Test("NTLA_BBG007KC7PB0_2021-01-15", 1, 4.71m); // too small quotes?
             Test("ILMN_BBG000DSMS70_2021-01-15", 1, 14.01m);
             Test("LTHM_BBG00LV3NRG0_2021-01-15", 2, 0.46m); //-
             Test("MAC_BBG000BL9C59_2021-01-14", 1, 1.22m);
@@ -113,7 +112,7 @@ namespace TradingBot
             Test("CREE_BBG000BG14P4_2021-01-11", 1, 5.75m);
             Test("DD_BBG00BN961G4_2021-01-11", 1, 3.79m);
             Test("DBX_BBG0018SLDN0_2021-01-11", 1, 1.03m);
-            Test("BIIB_BBG000C17X76_2021-01-11", 2, 21.70m);
+            Test("BIIB_BBG000C17X76_2021-01-11", 2, 7.35m);
             Test("PBF_BBG002832GV8_2021-01-11", 2, 0.20m);
             Test("AMD_BBG000BBQCY0_2021-01-11", 1, 3.6m);
             Test("GH_BBG006D97VY9_2021-01-11", 1, 5.99m);
@@ -156,6 +155,8 @@ namespace TradingBot
             _basePath += "Negative\\";
 
             Test("INTC_BBG000C0G1D1_2021-01-19", 0, 0m); // market open
+            Test("LITE_BBG0073F9RT7_2021-01-19", 0, 0m); // do not buy after fall
+
 
             _basePath = basePath;
         }
