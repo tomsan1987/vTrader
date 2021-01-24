@@ -27,8 +27,7 @@ namespace TradingBot
             RunPositiveTests();
             RunNegativeTests();
 
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
+            
             //Test("", 1, 0m);
             //Test("", 1, 0m);
             //Test("", 1, 0m);
@@ -94,7 +93,7 @@ namespace TradingBot
             Test("INTC_BBG000C0G1D1_2021-01-13", 1, 5.66m);
             Test("HALO_BBG000CZ8W54_2021-01-13", 2, 1.45m);
             Test("BILI_BBG00K7T3037_2021-01-13", 1, 4.18m);
-            Test("GM_BBG000NDYB67_2021-01-12", 2, 2.45m);
+            Test("GM_BBG000NDYB67_2021-01-12", 1, 2.0m);
             Test("EDIT_BBG005MX5GZ2_2021-01-15", 2, 2.37m);
             Test("NTLA_BBG007KC7PB0_2021-01-15", 1, 4.71m); // too small quotes?
             Test("ILMN_BBG000DSMS70_2021-01-15", 1, 14.01m);
@@ -134,7 +133,11 @@ namespace TradingBot
             Test("TOT_BBG000CHZ857_2021-01-06", 1, 1.58m);
             Test("JWN_BBG000G8N9C6_2021-01-06", 1, 1.15m);
             Test("PBCT_BBG000BQT4L6_2021-01-06", 1, 0.42m);
-            Test("TDOC_BBG0019T5SG0_2021-01-20", 1, 9.25m);
+            Test("TDOC_BBG0019T5SG0_2021-01-20", 2, 6.00m);
+            Test("DT_BBG00PNN7C40_2021-01-20", 1, 2.11m);
+            Test("AAPL_BBG000B9XRY4_2021-01-20", 1, 2.18m);
+            Test("MSFT_BBG000BPH459_2021-01-20", 1, 3.17m);
+            Test("CHRW_BBG000BTCH57_2021-01-20", 1, 1.29m);
 
 
             // To improve

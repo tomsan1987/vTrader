@@ -20,6 +20,10 @@ namespace TradingBot
                 if (candle.Time.Hour == 7 && candle.Time.Minute == 0)
                     return IStrategy.StrategyResultType.NoOp;
 
+                // do not buy on post market
+                if (candle.Time.Hour >= 21)
+                    return IStrategy.StrategyResultType.NoOp;
+
                 //// check for zero candles and high volatile on premarket
                 //// doesnt work: in premarket it could be high volatile and it does not mean mothing
                 //bool badPremarket = false;
@@ -125,6 +129,15 @@ namespace TradingBot
             }
             else if (tradeData.Status == Status.BuyDone)
             {
+                // close on market closing
+                if (candle.Time.Hour >= 20 && candle.Time.Minute >= 55 || candle.Time.Hour >= 21)
+                {
+                    tradeData.SellPrice = candle.Close;
+                    Logger.Write("{0}: Market closing. Close price: {1}. Candle: ID:{2}, Time: {3}, Close: {4}. Profit: {5}({6}%)", instrument.Ticker, tradeData.SellPrice, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close, tradeData.SellPrice - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, tradeData.SellPrice));
+
+                    return IStrategy.StrategyResultType.Sell;
+                }
+
                 //check if we reach stop conditions
                 if (candle.Close < tradeData.StopLoss)
                 {
