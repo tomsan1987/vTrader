@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Tinkoff.Trading.OpenApi.Models;
 using Tinkoff.Trading.OpenApi.Network;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace TradingBot
 {
@@ -306,13 +307,63 @@ namespace TradingBot
 
             var instruments = (await context.MarketStocksAsync()).Instruments;
 
-            Action<Currency> store = c =>
+            Action<Currency, decimal, decimal, decimal> store = (c, minPrice, maxPrice, minVolume) =>
             {
+                int idx = 0;
                 List<string> list = new List<string>();
                 foreach (var it in instruments)
                 {
                     if (it.Currency == c)
-                        list.Add(it.Ticker);
+                    {
+                        if (minPrice > 0 || maxPrice > 0)
+                        {
+                            decimal price = 0;
+                            decimal volume = 0;
+                            bool ok = false;
+                            while (!ok)
+                            {
+                                try
+                                {
+                                    ++idx;
+                                    var task = context.MarketCandlesAsync(it.Figi, DateTime.UtcNow.AddMonths(-6), DateTime.UtcNow, CandleInterval.Month);
+                                    task.Wait();
+                                    var candles = task.Result.Candles;
+                                    if (candles.Count > 0)
+                                    {
+                                        price = candles[candles.Count - 1].Close;
+                                        foreach (var candle in candles)
+                                            volume += candle.Volume;
+
+                                        volume /= candles.Count;
+                                    }
+
+                                    ok = true;
+                                }
+                                catch (Exception)
+                                {
+                                    Logger.Write("Context: waiting after {0} queries....", idx);
+                                    ok = false;
+                                    idx = 0;
+                                    Task.Delay(30000).Wait(); // sleep for a while
+                                }
+                            }
+
+                            if (price > 0)
+                            {
+                                var minPriceOk = (price >= minPrice);
+                                var maxPriceOk = (maxPrice == 0 || price <= maxPrice);
+                                var minVoulmeOk = (minVolume == 0 || volume > minVolume);
+                                if (minPriceOk && maxPriceOk && minVoulmeOk)
+                                    list.Add(it.Ticker);
+                            }
+                            else
+                            {
+                                Logger.Write("Can't get price for {0}. Instrument will be skipped...", it.Ticker);
+                            }
+                        }
+                        else
+                            list.Add(it.Ticker);
+                    }
                 }
 
                 list.Sort();
@@ -330,8 +381,12 @@ namespace TradingBot
                 file.Close();
             };
 
-            store(Currency.Rub);
-            store(Currency.Usd);
+            Currency currency = (Currency)Enum.Parse(typeof(Currency), po.Get<string>("Currency"), true);
+            var minPrice = po.Get<decimal>("MinPrice");
+            var maxPrice = po.Get<decimal>("MaxPrice");
+            var minVolume = po.Get<decimal>("MinVolume");
+
+            store(currency, minPrice, maxPrice, minVolume);
         }
     }
 }

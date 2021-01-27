@@ -9,6 +9,7 @@ namespace TradingBot
     public class ImpulseStrategy : IStrategy
     {
         static public decimal step = 1m / 1000;
+        static public int s_min_quotes_per_candle = 40;
         public IStrategy.StrategyResultType Process(MarketInstrument instrument, TradeData tradeData, Quotes quotes)
         {
             var candles = quotes.Candles;
@@ -59,7 +60,7 @@ namespace TradingBot
                     return IStrategy.StrategyResultType.NoOp;
 
                 var countQuotes = quotes.Raw.Count - quotes.RawPosStart[candles.Count - 1];
-                if (countQuotes < 40)
+                if (countQuotes < s_min_quotes_per_candle)
                     return IStrategy.StrategyResultType.NoOp;
 
                 // do nothing if price is already increased more than 10% for a day
@@ -364,8 +365,25 @@ namespace TradingBot
                 if (candles.Count < candlesToAnalyze)
                     continue;
 
+                //// check that each candle has enough quotes
+                //bool quotesOK = true;
+                //var offset = quotes.Raw.Count;
+                //for (var i = 0; i < candlesToAnalyze; ++i)
+                //{
+                //    var countQuotes = offset - quotes.RawPosStart[candles.Count - i - 1];
+                //    if (countQuotes < s_min_quotes_per_candle)
+                //    {
+                //        quotesOK = false;
+                //        break;
+                //    }
+                //    offset -= countQuotes;
+                //}
+
+                //if (!quotesOK)
+                //    continue;
+
                 var countQuotes = quotes.Raw.Count - quotes.RawPosStart[candles.Count - candlesToAnalyze];
-                if (countQuotes < 80)
+                if (countQuotes < 2 * s_min_quotes_per_candle)
                     continue;
 
                 // check how much price changed last candles

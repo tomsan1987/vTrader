@@ -24,10 +24,47 @@ namespace TradingBot
         public void Run()
         {
             SetUp();
-            RunPositiveTests();
-            RunNegativeTests();
+            //RunPositiveTests();
+           //RunNegativeTests();
 
-            
+
+
+            //Test("BBBY_BBG000CSY9H9_2021-01-21", 1, 0m);
+            //Test("OSUR_BBG000J3D1Y8_2021-01-21", 1, 0m);
+            //Test("ABNB_BBG001Y2XS07_2021-01-21", 1, 0m);
+            //Test("BBBY_BBG000CSY9H9_2021-01-22", 1, 0m);
+            //Test("AMCX_BBG000H01H92_2021-01-22", 1, 0m); // -
+            //Test("SFIX_BBG0046L1KL9_2021-01-22", 1, 0m);
+            //Test("MAC_BBG000BL9C59_2021-01-22", 1, 0m);
+            //Test("FANG_BBG002PHSYX9_2021-01-22", 1, 0m);
+            //Test("M_BBG000C46HM9_2021-01-25", 1, 0m); // +
+            //Test("CNK_BBG000QDVR53_2021-01-25", 1, 0m); // +
+            //Test("KR_BBG000BMY992_2021-01-25", 1, 0m); // very good and stable grow
+            //Test("MAC_BBG000BL9C59_2021-01-26", 1, 0m);
+            //Test("BZUN_BBG008HNS333_2021-01-26", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+
+
+
+            // bad
+            //Test("FSLY_BBG004NLQHL0_2021-01-21", 1, 0m);
+            //Test("BKR_BBG00GBVBK51_2021-01-21", 1, 0m); // !! do not buy!!! fix me
+            //Test("RRC_BBG000FVXD63_2021-01-21", 1, 0m); // !! do not buy!!! fix me
+            //Test("TFC_BBG000BYYLS8_2021-01-21", 1, 0m); // !! do not buy!!! fix me
+            //Test("EQT_BBG000BHZ5J9_2021-01-21", 1, 0m); // !! do not buy!!! fix me
+            //Test("FSLY_BBG004NLQHL0_2021-01-22", 1, 0m);// !! do not buy!!! fix me
+            //Test("SIG_BBG000C4ZZ10_2021-01-25", 1, 0m);
+            //Test("NVTA_BBG005DJFD43_2021-01-25", 1, 0m); // bad
+            Test("NTLA_BBG007KC7PB0_2021-01-26", 1, 0m); // bad fixed
+//            Test("HFC_BBG000BL9JQ1_2021-01-26", 1, 0m); // ? 100 quotes ?
+
             //Test("", 1, 0m);
             //Test("", 1, 0m);
             //Test("", 1, 0m);
@@ -45,14 +82,7 @@ namespace TradingBot
             //Test("", 1, 0m);
             //Test("", 1, 0m);
             //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
+
             //Test("TRIP_BBG001M8HHB7_2021-01-19", 1, 0m);
             //
 
@@ -138,6 +168,16 @@ namespace TradingBot
             Test("AAPL_BBG000B9XRY4_2021-01-20", 1, 2.18m);
             Test("MSFT_BBG000BPH459_2021-01-20", 1, 3.17m);
             Test("CHRW_BBG000BTCH57_2021-01-20", 1, 1.29m);
+            Test("TAL_BBG0016XJ8S0_2021-01-21", 1, 13.23m);
+            Test("MAC_BBG000BL9C59_2021-01-25", 1, 3.47m);
+            Test("IRM_BBG000KCZPC3_2021-01-25", 1, 4.17m);
+            Test("VIAC_BBG000C496P7_2021-01-25", 1, 4.34m); // +
+            Test("OLLI_BBG0098VVDT9_2021-01-25", 1, 8.71m); // +
+            Test("URBN_BBG000BL79J3_2021-01-25", 1, 1.75m);
+            Test("BYND_BBG003CVJP50_2021-01-25", 1, 8.77m); // +
+            Test("BYND_BBG003CVJP50_2021-01-26", 1, 48.87m); // +++
+            Test("PBI_BBG000BQTMJ9_2021-01-26", 1, 1.92m); // +++
+            Test("TWTR_BBG000H6HNW3_2021-01-26", 1, 2.42m);
 
 
             // To improve
