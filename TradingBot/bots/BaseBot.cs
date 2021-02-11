@@ -183,6 +183,7 @@ namespace TradingBot
                 }
 
                 candles.DayMax = Math.Max(candles.DayMax, cr.Payload.Close);
+                candles.DayMin = Math.Min(candles.DayMin, cr.Payload.Close);
 
                 candles.QuoteLogger.onQuoteReceived(cr.Payload);
             }
