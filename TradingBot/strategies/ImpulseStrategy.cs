@@ -104,37 +104,45 @@ namespace TradingBot
                 trend.StartPos = quotes.RawPosStart[candles.Count - 1];
                 trend.EndPos = quotes.Raw.Count;
 
-                decimal A, B, maxPrice, maxFall, sd;
-                Helpers.Approximate(quotes.Raw, trend.StartPos, trend.EndPos, step, out A, out B, out maxPrice, out maxFall, out sd);
-                trend.A = A;
-                trend.B = B;
-                trend.Max = maxPrice;
-                trend.MaxFall = maxFall;
-                trend.SD = sd;
-
                 string reason = "";
-                if (A > 0 && change > 2 * maxFall)
+                if (change > 1.0m && change > chageMinMax && candle.Close > max)
                 {
-                    if (candle.Close > max && change > chageMinMax && change > 1.0m)
+                    // if change is not significantly greater than min max need to check some previous candles: it should not have big tails
+                    bool prevCandlesTestPassed = true;
+                    if (candles.Count > 3 && change - chageMinMax < 0.4m)
                     {
-                        var timeFrom = candles[startOutset].Time.ToShortTimeString();
-                        var timeTo = candles[endOutset].Time.ToShortTimeString();
-                        reason = String.Format("OutletTime: {0}({1})-{2}({3}). OutletMinMax: {4}/{5}. TrendAB: {6}/{7}. CurrentChange: +{8}%. DayAvgChange: {9}%",
-                            timeFrom, trend.StartPos, timeTo, trend.EndPos, min, max, A, B, change, quotes.AvgCandleChange);
+                        var prevCandle = candles[candles.Count - 2];
+                        var prevCandleChange = Helpers.GetChangeInPercent(prevCandle.Low, prevCandle.High);
+                        if (prevCandleChange > chageMinMax / 2)
+                            prevCandlesTestPassed = false;
 
-                        reason += String.Format(". MaxFall: {0}%, SD: {1}", maxFall, sd);
+                        if (prevCandlesTestPassed)
+                        {
+                            prevCandle = candles[candles.Count - 3];
+                            prevCandleChange = Helpers.GetChangeInPercent(prevCandle.Low, prevCandle.High);
+                            if (prevCandleChange > chageMinMax / 2)
+                                prevCandlesTestPassed = false;
+                        }
                     }
-                    else if (candle.Close > max && change > chageMinMax && countQuotes > 1000)
+
+                    if (prevCandlesTestPassed)
                     {
-                        var pullback = Helpers.GetChangeInPercent(trend.Max, candle.Close);
-                        if (pullback < 0 && Math.Abs(pullback) > trend.MaxFall && Math.Abs(pullback) < 2 * trend.MaxFall)
+                        decimal A, B, maxPrice, maxFall, sd;
+                        Helpers.Approximate(quotes.Raw, trend.StartPos, trend.EndPos, step, out A, out B, out maxPrice, out maxFall, out sd);
+                        trend.A = A;
+                        trend.B = B;
+                        trend.Max = maxPrice;
+                        trend.MaxFall = maxFall;
+                        trend.SD = sd;
+
+                        if (A > 0 && change > 2 * maxFall)
                         {
                             var timeFrom = candles[startOutset].Time.ToShortTimeString();
                             var timeTo = candles[endOutset].Time.ToShortTimeString();
-                            reason = String.Format("Buy on small pullback. OutletTime: {0}({1})-{2}({3}). OutletMinMax: {4}/{5}. TrendAB: {6}/{7}. CurrentChange: +{8}%. DayAvgChange: {9}%",
+                            reason = String.Format("OutletTime: {0}({1})-{2}({3}). OutletMinMax: {4}/{5}. TrendAB: {6}/{7}. CurrentChange: +{8}%. DayAvgChange: {9}%",
                                 timeFrom, trend.StartPos, timeTo, trend.EndPos, min, max, A, B, change, quotes.AvgCandleChange);
 
-                            reason += String.Format(". MaxFall: {0}%, SD: {1}, TrendMax: {2}, Pullback: {3}", maxFall, sd, trend.Max, pullback);
+                            reason += String.Format(". MaxFall: {0}%, SD: {1}", maxFall, sd);
                         }
                     }
                 }
@@ -434,6 +442,22 @@ namespace TradingBot
                 Trend trend = new Trend();
                 trend.StartPos = quotes.RawPosStart[candles.Count - candlesToAnalyze];
                 trend.EndPos = quotes.Raw.Count;
+
+                // correct start position if need
+                if (countQuotes > 500 && Helpers.GetChangeInPercent(candles[candles.Count - candlesToAnalyze].Close, candles[candles.Count - candlesToAnalyze].Low) < -0.7m)
+                {
+                    int minPos = trend.StartPos;
+                    for (int i = minPos; i < trend.EndPos; ++i)
+                    {
+                        if (quotes.Raw[i].Price <= quotes.Raw[minPos].Price)
+                            minPos = i;
+
+                        if (quotes.Raw[minPos].Price <= candles[candles.Count - candlesToAnalyze].Low)
+                            break;
+                    }
+
+                    trend.StartPos = minPos;
+                }
 
                 Helpers.Approximate(quotes.Raw, trend.StartPos, trend.EndPos, step, out A, out B, out maxPrice, out maxFall, out sd);
                 trend.A = A;
