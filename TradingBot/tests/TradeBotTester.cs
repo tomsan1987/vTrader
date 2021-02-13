@@ -56,14 +56,12 @@ namespace TradingBot
             //Test("HFC_BBG000BL9JQ1_2021-01-26", 1, 0m); // ? 100 quotes ?
 
             //Test("SPCE_BBG00HTN2CQ3_2021-02-04", 1, 0m);
-            //Test("ZGNX_BBG000VDC3G9_2021-02-03", 1, 0m);
-            //Test("ENDP_BBG000C0HQ54_2021-02-03", 1, 0m);
+            //Test("ENDP_BBG000C0HQ54_2021-02-03", 1, 0m); // not enough quotes?
             //Test("MYGN_BBG000D9H9F1_2021-02-03", 1, 0m);
             //Test("ARCT_BBG00NNW8JK1_2021-02-02", 1, 0m);
             //Test("CRUS_BBG000C1DHF5_2021-02-02", 1, 0m);
             //Test("VIPS_BBG002NLDLV8_2021-02-02", 1, 0m);
             //Test("GPS_BBG000BKLH74_2021-01-28", 1, 0m);
-            //Test("MRNA_BBG003PHHZT1_2021-01-28", 1, 0m);
             //Test("PBF_BBG002832GV8_2021-01-28", 1, 0m);
             //Test("PBI_BBG000BQTMJ9_2021-01-28", 1, 0m);
             //Test("", 1, 0m);
@@ -173,6 +171,7 @@ namespace TradingBot
             Test("ZM_BBG0042V6JM8_2021-01-13", 3, 3.17m); // improve SL --> 2 orders
             Test("SNAP_BBG00441QMJ7_2021-01-11", 2, 1.2m); // good deals, but improve closing
             Test("SFIX_BBG0046L1KL9_2021-01-12", 2, 2.33m); // impove SL when good profit
+            Test("MRNA_BBG003PHHZT1_2021-01-28", 4, 3m); // reduce orders count
 
             // TODO tests
             //Test("AAPL_BBG000B9XRY4_2021-01-20", 1, 2.18m);
@@ -200,6 +199,7 @@ namespace TradingBot
             Test("NVTA_BBG005DJFD43_2021-01-25", 0, 0m);
             Test("NTLA_BBG007KC7PB0_2021-01-26", 0, 0m);
             Test("FANG_BBG002PHSYX9_2021-02-04", 0, 0m);
+            Test("ZGNX_BBG000VDC3G9_2021-02-03", 0, 0m); // do not trade on spikes(high volatile +-5-6%)
 
             Test("EDIT_BBG005MX5GZ2_2021-01-19", 1, -1.5m); // should be minimal losses... improve?!
             Test("JWN_BBG000G8N9C6_2021-01-20", 1, -0.39m); // should be minimal losses

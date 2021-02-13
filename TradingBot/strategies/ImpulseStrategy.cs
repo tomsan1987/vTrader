@@ -25,6 +25,10 @@ namespace TradingBot
                 if (candle.Time.Hour >= 21)
                     return IStrategy.StrategyResultType.NoOp;
 
+                // do not trade on spikes
+                if (quotes.SpikePositions.Count > 0 && quotes.SpikePositions[quotes.SpikePositions.Count - 1] + s_min_quotes_per_candle > quotes.Raw.Count)
+                    return IStrategy.StrategyResultType.NoOp;
+
                 //// check for zero candles and high volatile on premarket
                 //// doesnt work: in premarket it could be high volatile and it does not mean mothing
                 //bool badPremarket = false;
@@ -135,7 +139,7 @@ namespace TradingBot
                         trend.MaxFall = maxFall;
                         trend.SD = sd;
 
-                        if (A > 0 && change > 2 * maxFall)
+                        if (A > 0 && change > 2 * maxFall && maxFall < 1.5m)
                         {
                             var timeFrom = candles[startOutset].Time.ToShortTimeString();
                             var timeTo = candles[endOutset].Time.ToShortTimeString();
@@ -153,7 +157,7 @@ namespace TradingBot
                     tradeData.BuyPrice = candle.Close;
                     tradeData.StopLoss = candle.Low;
                     Logger.Write("{0}: BuyPending. Strategy: {1}. Price: {2}. StopLoss: {3}. {4}. Details: {5}",
-                        instrument.Ticker, Description(), tradeData.BuyPrice, tradeData.StopLoss, Helpers.CandleDesc(quotes.Raw.Count, candle), reason);
+                        instrument.Ticker, Description(), tradeData.BuyPrice, tradeData.StopLoss, Helpers.CandleDesc(quotes.Raw.Count - 1, candle), reason);
 
                     return IStrategy.StrategyResultType.Buy;
                 }
@@ -167,7 +171,7 @@ namespace TradingBot
                 {
                     tradeData.SellPrice = candle.Close;
                     Logger.Write("{0}: Market closing. Close price: {1}. {2}. Profit: {3}({4}%)",
-                        instrument.Ticker, tradeData.SellPrice, Helpers.CandleDesc(quotes.Raw.Count, candle), tradeData.SellPrice - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, tradeData.SellPrice));
+                        instrument.Ticker, tradeData.SellPrice, Helpers.CandleDesc(quotes.Raw.Count - 1, candle), tradeData.SellPrice - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, tradeData.SellPrice));
 
                     return IStrategy.StrategyResultType.Sell;
                 }
@@ -177,7 +181,7 @@ namespace TradingBot
                 {
                     tradeData.SellPrice = candle.Close;
                     Logger.Write("{0}: SL reached. Pending. Close price: {1}. {2}. Profit: {3}({4}%)",
-                        instrument.Ticker, tradeData.SellPrice, Helpers.CandleDesc(quotes.Raw.Count, candle), tradeData.SellPrice - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, tradeData.SellPrice));
+                        instrument.Ticker, tradeData.SellPrice, Helpers.CandleDesc(quotes.Raw.Count - 1, candle), tradeData.SellPrice - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, tradeData.SellPrice));
 
                     return IStrategy.StrategyResultType.Sell;
                 }
@@ -185,7 +189,7 @@ namespace TradingBot
                 {
                     tradeData.SellPrice = candle.Close;
                     Logger.Write("{0}: TP reached. Pending. Close price: {1}. {2}. Profit: {3}({4}%)",
-                        instrument.Ticker, tradeData.SellPrice, Helpers.CandleDesc(quotes.Raw.Count, candle), tradeData.SellPrice - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, tradeData.SellPrice));
+                        instrument.Ticker, tradeData.SellPrice, Helpers.CandleDesc(quotes.Raw.Count - 1, candle), tradeData.SellPrice - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, tradeData.SellPrice));
 
                     return IStrategy.StrategyResultType.Sell;
                 }
@@ -228,7 +232,7 @@ namespace TradingBot
                         {
                             tradeData.SellPrice = candle.Close;
                             Logger.Write("{0}: Price much differ between Buy and Max trend fall. MaxFall: {1}%. BuyPrice: {2}. MaxPrice: {3}. ChangeFromBuy: {4}%. Pending. Close price: {5}. {6}. Profit: {7}({8}%)",
-                                instrument.Ticker, tradeData.Trend.MaxFall, tradeData.BuyPrice, tradeData.Trend.Max, changeFromBuy, tradeData.SellPrice, Helpers.CandleDesc(quotes.Raw.Count, candle), tradeData.SellPrice - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, tradeData.SellPrice));
+                                instrument.Ticker, tradeData.Trend.MaxFall, tradeData.BuyPrice, tradeData.Trend.Max, changeFromBuy, tradeData.SellPrice, Helpers.CandleDesc(quotes.Raw.Count - 1, candle), tradeData.SellPrice - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, tradeData.SellPrice));
                             return IStrategy.StrategyResultType.Sell;
                         }
 
@@ -240,7 +244,7 @@ namespace TradingBot
                             {
                                 tradeData.SellPrice = candle.Close;
                                 Logger.Write("{0}: Price is falling. Closing. MaxFall: {1}%, Max: {2}, ChangeFromMax: {3}%. Pending. Close price: {4}. {5}. Profit: {6}({7}%)",
-                                    instrument.Ticker, tradeData.Trend.MaxFall, tradeData.Trend.Max, changeFromMax, tradeData.SellPrice, Helpers.CandleDesc(quotes.Raw.Count, candle), tradeData.SellPrice - tradeData.BuyPrice, profitLocal);
+                                    instrument.Ticker, tradeData.Trend.MaxFall, tradeData.Trend.Max, changeFromMax, tradeData.SellPrice, Helpers.CandleDesc(quotes.Raw.Count - 1, candle), tradeData.SellPrice - tradeData.BuyPrice, profitLocal);
                                 return IStrategy.StrategyResultType.Sell;
                             }
                         }
@@ -254,7 +258,7 @@ namespace TradingBot
                             Helpers.Approximate(quotes.Raw, tradeData.Trend.StartPos, tradeData.Trend.EndPos, step, out A, out B, out maxPrice, out maxFall, out sd);
 
                             Logger.Write("{0}: Rebuild trend due to changeFromTrend({1}%) > MaxFall({2}%). {3}. Trend: A: {4}, B: {5}, Max: {6}, MaxFall: {7}, SD: {8}",
-                                instrument.Ticker, changeFromTrend, tradeData.Trend.MaxFall, Helpers.CandleDesc(quotes.Raw.Count, candle), A, B, maxPrice, maxFall, sd);
+                                instrument.Ticker, changeFromTrend, tradeData.Trend.MaxFall, Helpers.CandleDesc(quotes.Raw.Count - 1, candle), A, B, maxPrice, maxFall, sd);
 
                             tradeData.Trend.A = A;
                             tradeData.Trend.B = B;
@@ -296,6 +300,8 @@ namespace TradingBot
                     tradeData.MaxPrice = Math.Max(tradeData.MaxPrice, candles[candles.Count - 2].Close);
                     tradeData.MaxPrice = Math.Max(tradeData.MaxPrice, candles[candles.Count - 2].Open);
 
+                    var profit = Helpers.GetChangeInPercent(tradeData.BuyPrice, candle.Close);
+
                     // do not make any action if candle is red
                     bool SLset = false;
                     if (candle.Open < candle.Close)
@@ -312,7 +318,7 @@ namespace TradingBot
                                     tradeData.StopLoss = minPrice;
                                     tradeData.Time = candle.Time;
                                     Logger.Write("{0}: Pulling stop loss to current price. Price: {1}. MaxPrice: {2}. {3}.",
-                                        instrument.Ticker, tradeData.StopLoss, tradeData.MaxPrice, Helpers.CandleDesc(quotes.Raw.Count, candle));
+                                        instrument.Ticker, tradeData.StopLoss, tradeData.MaxPrice, Helpers.CandleDesc(quotes.Raw.Count - 1, candle));
                                     SLset = true;
                                 }
                             }
@@ -327,7 +333,7 @@ namespace TradingBot
                             tradeData.StopLoss = candle.Close;
                             tradeData.Time = candle.Time;
                             Logger.Write("{0}: Price does not grow. Closing with minimal profit. Price: {1}. {2}.",
-                                instrument.Ticker, tradeData.StopLoss, Helpers.CandleDesc(quotes.Raw.Count, candle));
+                                instrument.Ticker, tradeData.StopLoss, Helpers.CandleDesc(quotes.Raw.Count - 1, candle));
                         }
                         else if (tradeData.StopLoss < tradeData.BuyPrice && tradeData.BuyPrice > candle.Close)
                         {
@@ -352,7 +358,7 @@ namespace TradingBot
                                 tradeData.TakeProfit = avg;
                                 tradeData.Time = candle.Time;
                                 Logger.Write("{0}: Price does not grow. Try to set TakeProfit. Price: {1}. {2}.",
-                                    instrument.Ticker, tradeData.TakeProfit, Helpers.CandleDesc(quotes.Raw.Count, candle));
+                                    instrument.Ticker, tradeData.TakeProfit, Helpers.CandleDesc(quotes.Raw.Count - 1, candle));
                             }
 
                             if (tradeData.StopLoss < low && low < candle.Close)
@@ -360,19 +366,19 @@ namespace TradingBot
                                 tradeData.StopLoss = low;
                                 tradeData.Time = candle.Time;
                                 Logger.Write("{0}: Price does not grow. Pulling Stop Loss closer. Price: {1}. {2}.",
-                                    instrument.Ticker, tradeData.StopLoss, Helpers.CandleDesc(quotes.Raw.Count, candle));
+                                    instrument.Ticker, tradeData.StopLoss, Helpers.CandleDesc(quotes.Raw.Count - 1, candle));
                             }
                         }
                     }
 
                     // if price too much changed from maxPrice and we have some profit - close order
-                    change = Helpers.GetChangeInPercent(tradeData.MaxPrice, candle.Close);
-                    var profit = Helpers.GetChangeInPercent(tradeData.BuyPrice, candle.Close);
+                    var max = tradeData.MaxPrice;
+                    change = Helpers.GetChangeInPercent(max, candle.Close);
                     if (change < -2.0m && profit > 2.0m && tradeData.StopLoss < candle.Close)
                     {
                         tradeData.SellPrice = candle.Close;
-                        Logger.Write("{0}: Price too fall from max. Max: {1}. Price change: {2}; Closing. {3}. Profit: {4}({5}%)",
-                            instrument.Ticker, tradeData.MaxPrice, change, Helpers.CandleDesc(quotes.Raw.Count, candle), tradeData.SellPrice - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, tradeData.SellPrice));
+                        Logger.Write("{0}: Price too fall from max. Max: {1}. Threshold: {2}. Price change: {3}; Closing. {4}. Profit: {5}({6}%)",
+                            instrument.Ticker, max, 2.0m, change, Helpers.CandleDesc(quotes.Raw.Count - 1, candle), tradeData.SellPrice - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, tradeData.SellPrice));
                         return IStrategy.StrategyResultType.Sell;
                     }
 
@@ -495,7 +501,7 @@ namespace TradingBot
                         tradeData.BuyPrice = candle.Close;
                         tradeData.StopLoss = Helpers.RoundPrice(candle.Close - candle.Close * (2m * maxFall / 100), instrument.MinPriceIncrement);
                         Logger.Write("{0}: BuyPending. Strategy: {1}. Price: {2}. StopLoss: {3}. {4}. Details: {5}",
-                            instrument.Ticker, Description(), tradeData.BuyPrice, tradeData.StopLoss, Helpers.CandleDesc(quotes.Raw.Count, candle), reason);
+                            instrument.Ticker, Description(), tradeData.BuyPrice, tradeData.StopLoss, Helpers.CandleDesc(quotes.Raw.Count - 1, candle), reason);
 
                         return IStrategy.StrategyResultType.Buy;
                     }

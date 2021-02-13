@@ -26,6 +26,7 @@ namespace TradingBot
         public decimal DayMax { get; set; } // day maximum
         public decimal DayMin { get; set; } = decimal.MaxValue; // day minimum
         public List<int> RawPosStart { get; set; } // n-th element is a start pos in Raw of correspondent candle
+        public List<int> SpikePositions { get; set; } // indexes from raw data of spyke quotes
         public List<Quote> Raw { get; set; }
         public QuoteLogger QuoteLogger { get; set; }
 
@@ -34,6 +35,7 @@ namespace TradingBot
             Candles = new List<CandlePayload>();
             Raw = new List<Quote>();
             RawPosStart = new List<int>();
+            SpikePositions = new List<int>();
             QuoteLogger = new QuoteLogger(figi, ticker, dumpQuotes);
         }
 

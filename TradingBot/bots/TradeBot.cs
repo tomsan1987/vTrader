@@ -147,7 +147,8 @@ namespace TradingBot
 
                 if (_candles[figi].IsSpike())
                 {
-                    Logger.Write("{0}: SPYKE!. Candle: {1}", instrument.Ticker, JsonConvert.SerializeObject(candle));
+                    _candles[figi].SpikePositions.Add(_candles[figi].Raw.Count - 1);
+                    Logger.Write("{0}: SPYKE!. {1}", instrument.Ticker, Helpers.CandleDesc(_candles[figi].Raw.Count - 1, candle));
                     return;
                 }
 
@@ -206,7 +207,7 @@ namespace TradingBot
                             var change = Helpers.GetChangeInPercent(tradeData.BuyPrice, candle.Close);
                             if (change >= 0.5m)
                             {
-                                Logger.Write("{0}: Cancel order. {1}. Details: price change {2}", instrument.Ticker, Helpers.CandleDesc(_candles[figi].Raw.Count, candle), change);
+                                Logger.Write("{0}: Cancel order. {1}. Details: price change {2}", instrument.Ticker, Helpers.CandleDesc(_candles[figi].Raw.Count - 1, candle), change);
 
                                 await _context.CancelOrderAsync(tradeData.OrderId);
                                 tradeData.OrderId = null;
@@ -248,7 +249,7 @@ namespace TradingBot
                         var change = Helpers.GetChangeInPercent(tradeData.SellPrice, candle.Close);
                         if (change <= -0.2m)
                         {
-                            Logger.Write("{0}: Cancel order. {1}. Details: price change {2}", instrument.Ticker, Helpers.CandleDesc(_candles[figi].Raw.Count, candle), change);
+                            Logger.Write("{0}: Cancel order. {1}. Details: price change {2}", instrument.Ticker, Helpers.CandleDesc(_candles[figi].Raw.Count - 1, candle), change);
 
                             await _context.CancelOrderAsync(tradeData.OrderId);
                             tradeData.Status = Status.BuyDone;
@@ -303,7 +304,7 @@ namespace TradingBot
                                     var placedOrder = await _context.PlaceLimitOrderAsync(order);
 
                                     Logger.Write("{0}: Closing dayly orders. Close price: {1}. {2}. Profit: {3}({4}%)",
-                                        instrument.Ticker, price, Helpers.CandleDesc(_candles[it.Key].Raw.Count, candle), price - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, price));
+                                        instrument.Ticker, price, Helpers.CandleDesc(_candles[it.Key].Raw.Count - 1, candle), price - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, price));
 
                                     _stats.Sell(tradeData.BuyTime, candle.Time, tradeData.BuyPrice, instrument.Ticker);
                                     _stats.Update(instrument.Ticker, tradeData.BuyPrice, price);
@@ -311,7 +312,7 @@ namespace TradingBot
                                 else
                                 {
                                     // just cancel order
-                                    Logger.Write("{0}: Cancel order. {0}. Details: end of day", instrument.Ticker, Helpers.CandleDesc(_candles[it.Key].Raw.Count, candle));
+                                    Logger.Write("{0}: Cancel order. {0}. Details: end of day", instrument.Ticker, Helpers.CandleDesc(_candles[it.Key].Raw.Count - 1, candle));
                                     await _context.CancelOrderAsync(tradeData.OrderId);
                                 }
                             }
@@ -324,7 +325,7 @@ namespace TradingBot
                                 var order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, price);
                                 var placedOrder = await _context.PlaceLimitOrderAsync(order);
 
-                                Logger.Write("{0}: Closing dayly orders. Close price: {1}. Candle: {2}. Profit: {3}({4}%)", instrument.Ticker, price, JsonConvert.SerializeObject(candle), price - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, price));
+                                Logger.Write("{0}: Closing dayly orders. Close price: {1}. {2}. Profit: {3}({4}%)", instrument.Ticker, price, Helpers.CandleDesc(_candles[it.Key].Raw.Count - 1, candle), price - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, price));
 
                                 _stats.Sell(tradeData.BuyTime, candle.Time, tradeData.BuyPrice, instrument.Ticker);
                                 _stats.Update(instrument.Ticker, tradeData.BuyPrice, price);
