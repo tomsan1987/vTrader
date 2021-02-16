@@ -306,7 +306,7 @@ namespace TradingBot
                     bool SLset = false;
                     if (candle.Open < candle.Close)
                     {
-                        if (candles.Count > 2 && candles[candles.Count - 2].Open < candles[candles.Count - 2].Close && candle.Close * 1.001m >= tradeData.MaxPrice)
+                        if (candles[candles.Count - 2].Open < candles[candles.Count - 2].Close && candle.Close >= tradeData.MaxPrice * 1.001m)
                         {
                             // do not pull SL if previous candle has not significant body
                             if (Helpers.GetChangeInPercent(candles[candles.Count - 2]) > 0.12m)
@@ -499,7 +499,7 @@ namespace TradingBot
 
                         tradeData.Trend = trend;
                         tradeData.BuyPrice = candle.Close;
-                        tradeData.StopLoss = Helpers.RoundPrice(candle.Close - candle.Close * (2m * maxFall / 100), instrument.MinPriceIncrement);
+                        tradeData.StopLoss = Helpers.RoundPrice(candle.Close - candle.Close * (2m * Math.Max(0.5m, maxFall) / 100), instrument.MinPriceIncrement);
                         Logger.Write("{0}: BuyPending. Strategy: {1}. Price: {2}. StopLoss: {3}. {4}. Details: {5}",
                             instrument.Ticker, Description(), tradeData.BuyPrice, tradeData.StopLoss, Helpers.CandleDesc(quotes.Raw.Count - 1, candle), reason);
 

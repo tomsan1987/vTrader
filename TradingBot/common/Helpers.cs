@@ -79,7 +79,7 @@ namespace TradingBot{
                     low = raw[i].Price;
                 }
 
-                maxFall = Math.Max(maxFall, GetChangeInPercent(low, high));
+                maxFall = Math.Min(maxFall, GetChangeInPercent(high, low));
             }
 
             int n = end - start;
