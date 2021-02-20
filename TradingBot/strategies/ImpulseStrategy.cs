@@ -198,14 +198,14 @@ namespace TradingBot
                     // check if price is grow for 2% from buy price - set no loss
                     var change = Helpers.GetChangeInPercent(tradeData.BuyPrice, candle.Close);
                     // does not affect tests
-                    //if (tradeData.BuyTime == candle.Time && change > 2m && tradeData.StopLoss < tradeData.BuyPrice)
-                    //{
-                    //    // pulling the stop to no loss
-                    //    tradeData.StopLoss = tradeData.BuyPrice;
-                    //    tradeData.Time = candle.Time;
-                    //    Logger.Write("{0}: Pulling stop loss to no loss. Price: {1}. Candle: ID:{2}, Time: {3}, Close: {4}.", instrument.Ticker, tradeData.StopLoss, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close);
-                    //    return IStrategy.StrategyResultType.NoOp;
-                    //}
+                    if (tradeData.BuyTime.AddMinutes(5) >= candle.Time && change > 3m && tradeData.StopLoss < tradeData.BuyPrice)
+                    {
+                        // pulling the stop to no loss
+                        tradeData.StopLoss = tradeData.BuyPrice;
+                        tradeData.Time = candle.Time;
+                        Logger.Write("{0}: Pulling stop loss to no loss. Price: {1}. Candle: ID:{2}, Time: {3}, Close: {4}.", instrument.Ticker, tradeData.StopLoss, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close);
+                        return IStrategy.StrategyResultType.NoOp;
+                    }
 
                     // if price grow from SL more than 4% - pull SL to price for 2%
                     change = Helpers.GetChangeInPercent(tradeData.StopLoss, candle.Close);
@@ -413,6 +413,10 @@ namespace TradingBot
             for (var candlesToAnalyze = sMaxCandles; candlesToAnalyze >= sMinCandles; candlesToAnalyze--)
             {
                 if (candles.Count < candlesToAnalyze)
+                    continue;
+
+                // market open candles could have long tails, ignore it
+                if (candles[candles.Count - candlesToAnalyze].Time.Hour == 7 && candles[candles.Count - candlesToAnalyze].Time.Minute == 0)
                     continue;
 
                 //// check that each candle has enough quotes
