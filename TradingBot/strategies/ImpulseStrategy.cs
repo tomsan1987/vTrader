@@ -56,9 +56,16 @@ namespace TradingBot
                 if (fallChange < -4m)
                     return IStrategy.StrategyResultType.NoOp;
 
+                var dayMinMaxCahnge = Math.Abs(Helpers.GetChangeInPercent(quotes.DayMax, quotes.DayMin));
+                if (dayMinMaxCahnge >10m)
+                    return IStrategy.StrategyResultType.NoOp;
+
                 // found change for last hour
                 int startOutset = Math.Max(0, candles.Count - 8);
                 int endOutset = candles.Count - 1;
+
+                if (candles.Count > 1 && candles[startOutset].Time.Hour > candles[startOutset + 1].Time.Hour)
+                    ++startOutset; // do not take into account close candle of previous day
 
                 decimal min = candles[startOutset].Low;
                 decimal max = candles[startOutset].High;
@@ -197,12 +204,12 @@ namespace TradingBot
                 {
                     // check if price is grow for 2% from buy price - set no loss
                     var change = Helpers.GetChangeInPercent(tradeData.BuyPrice, candle.Close);
-                    // does not affect tests
                     if (tradeData.BuyTime.AddMinutes(5) >= candle.Time && change > 3m && tradeData.StopLoss < tradeData.BuyPrice)
                     {
                         // pulling the stop to no loss
                         tradeData.StopLoss = tradeData.BuyPrice;
                         tradeData.Time = candle.Time;
+
                         Logger.Write("{0}: Pulling stop loss to no loss. Price: {1}. Candle: ID:{2}, Time: {3}, Close: {4}.", instrument.Ticker, tradeData.StopLoss, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close);
                         return IStrategy.StrategyResultType.NoOp;
                     }
@@ -448,6 +455,9 @@ namespace TradingBot
                 int startOutset = Math.Max(0, candles.Count - 6 - candlesToAnalyze);
                 int endOutset = candles.Count - candlesToAnalyze;
                 decimal A, B, maxPrice, maxFall, sd;
+
+                if (candles.Count > 1 && candles[startOutset].Time.Hour > candles[startOutset + 1].Time.Hour)
+                    ++startOutset; // do not take into account close candle of previous day
 
                 Trend trend = new Trend();
                 trend.StartPos = quotes.RawPosStart[candles.Count - candlesToAnalyze];

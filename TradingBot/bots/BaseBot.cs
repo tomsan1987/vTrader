@@ -90,6 +90,61 @@ namespace TradingBot
                 it.Value.Dispose();
         }
 
+        public async Task OperationReport()
+        {
+            DateTime from = new DateTime(2020, 1, 1, 0, 0, 0).ToUniversalTime();
+            DateTime to = DateTime.UtcNow;
+            int idx = 0;
+
+            var writer = new StreamWriter("operation_report_" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".log", false);
+            writer.AutoFlush = true;
+
+            foreach (var instrument in _instruments)
+            {
+                decimal profit = 0;
+                decimal commission = 0;
+                int totalOrders = 0;
+
+                List<Operation> operations = null;
+                while (operations == null)
+                {
+                    try
+                    {
+                        ++idx;
+                        operations = await _context.OperationsAsync(from, DateTime.UtcNow, instrument.Figi);
+                    }
+                    catch (Exception)
+                    {
+                        Logger.Write("Context: waiting after {0} queries....", idx);
+                        operations = null;
+                        idx = 0;
+                        await Task.Delay(30000); // sleep for a while
+                    }
+                }
+
+                foreach (var it in operations)
+                {
+                    if (it.Status == OperationStatus.Done)
+                    {
+                        if (it.OperationType == ExtendedOperationType.Buy || it.OperationType == ExtendedOperationType.Sell)
+                        {
+                            profit += it.Payment;
+                            ++totalOrders;
+                        }
+                        else if (it.OperationType == ExtendedOperationType.BrokerCommission)
+                        {
+                            commission += it.Payment;
+                        }
+                    }
+                }
+
+                if (totalOrders > 0)
+                    writer.WriteLine("{0};{1};{2};{3};{4}", instrument.Ticker, totalOrders, profit, commission, instrument.Currency);
+            }
+
+            writer.Close();
+        }
+
         protected async Task InitInstruments()
         {
             if (!File.Exists(_settings.ConfigPath))

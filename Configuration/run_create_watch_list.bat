@@ -1,0 +1,1 @@
+..\TradingBot\bin\Release\netcoreapp3.1\TradingBot.exe mode="CreateWatchList" Currency="USD" MinPrice=10 MaxPrice=350 Token="token.txt" ConfigPath="config.json"

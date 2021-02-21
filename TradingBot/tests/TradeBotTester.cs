@@ -28,10 +28,7 @@ namespace TradingBot
             RunNegativeTests();
 
             // bad
-            //Test("HFC_BBG000BL9JQ1_2021-01-26", 1, 0m); // ? 100 quotes ?
-
             //Test("SPCE_BBG00HTN2CQ3_2021-02-04", 2, 0.4m); // profit could be much bigger...
-            //Test("ENDP_BBG000C0HQ54_2021-02-03", 1, 0m); // not enough quotes?
             //Test("MYGN_BBG000D9H9F1_2021-02-03", 1, 0m);
             //Test("ARCT_BBG00NNW8JK1_2021-02-02", 1, 0m);
 
@@ -103,7 +100,7 @@ namespace TradingBot
             _basePath += "Positive\\";
 
             Test("CF_BBG000BWJFZ4_2020-12-28", 1, 0.4m);
-            Test("FATE_BBG000QP35H2_2021-01-07", 2, 5.0m);
+            Test("FATE_BBG000QP35H2_2021-01-07", 1, 4.0m);
             Test("TRIP_BBG001M8HHB7_2021-01-08", 2, 1m);
             Test("CNK_BBG000QDVR53_2020-12-28", 1, 0.85m);
             Test("OIS_BBG000BDDN94_2021-01-14", 1, 0.3m);
@@ -115,7 +112,7 @@ namespace TradingBot
             Test("NVTA_BBG005DJFD43_2021-01-14", 1, 1.5m);
             Test("W_BBG001B17MV2_2021-01-14", 1, 40.76m); // possible 2 orders
             Test("F_BBG000BQPC32_2021-01-14", 1, 0.12m);
-            Test("ENPH_BBG001R3MNY9_2021-01-14", 1, 2.29m);
+            Test("ENPH_BBG001R3MNY9_2021-01-14", 1, -0.5m); // improve closing when price is growing
             Test("INTC_BBG000C0G1D1_2021-01-13", 1, 5.5m);
             Test("HALO_BBG000CZ8W54_2021-01-13", 1, 1m);
             Test("BILI_BBG00K7T3037_2021-01-13", 1, 1.5m); // improve
@@ -139,7 +136,7 @@ namespace TradingBot
             Test("GH_BBG006D97VY9_2021-01-11", 1, 4m);
             Test("SPR_BBG000PRJ2Z9_2021-01-11", 1, 1.2m);
             Test("ROKU_BBG001ZZPQJ6_2021-01-11", 1, 9.95m);
-            Test("EDIT_BBG005MX5GZ2_2021-01-07", 3, 3.5m); // -
+            Test("EDIT_BBG005MX5GZ2_2021-01-07", 1, 3.5m); // -
             Test("ROKU_BBG001ZZPQJ6_2021-01-07", 1, 10m);
             Test("BILI_BBG00K7T3037_2021-01-07", 1, 3.88m);
             Test("AMD_BBG000BBQCY0_2021-01-07", 1, 2.5m);
@@ -178,25 +175,24 @@ namespace TradingBot
             Test("AMCX_BBG000H01H92_2021-01-22", 2, 3m);
             Test("M_BBG000C46HM9_2021-01-25", 2, 1.5m); // +
             Test("SNAP_BBG00441QMJ7_2021-01-28", 1, 3m);
-            Test("CCL_BBG000BF6LY3_2021-01-28", 1, 2m); // +
+            Test("CCL_BBG000BF6LY3_2021-01-28", 2, 2m); // +. improve me: do not but first order: not enough quotes?
             Test("ENDP_BBG000C0HQ54_2021-02-02", 1, 0.4m);
             Test("MOMO_BBG007HTCQT0_2021-02-03", 2, 0.35m);
             Test("SAVE_BBG000BF6RQ9_2021-02-03", 1, 1.2m);
             Test("PSTG_BBG00212PVZ5_2021-02-03", 1, 1.5m);
             Test("FANG_BBG002PHSYX9_2021-01-22", 1, 1.5m);
             Test("MAC_BBG000BL9C59_2021-01-22", 3, 0.3m); // may be improved
-            Test("MAC_BBG000BL9C59_2021-01-28", 3, 0.7m);
             Test("UPWK_BBG00FBJ6390_2021-01-19", 2, 0.0m); // -
-            Test("FSLY_BBG004NLQHL0_2021-01-21", 3, 1.5m); // +-
+            Test("FSLY_BBG004NLQHL0_2021-01-21", 2, 1.5m); // +-
             Test("SPCE_BBG00HTN2CQ3_2021-01-13", 3, -0.1m); // 1+, 2-
 
             // To improve
-            Test("ABNB_BBG001Y2XS07_2021-01-13", 2, 2.8m);
+            Test("ABNB_BBG001Y2XS07_2021-01-13", 1, 2.8m);
             Test("ZM_BBG0042V6JM8_2021-01-13", 3, 2.15m); // improve SL --> 2 orders
             Test("SNAP_BBG00441QMJ7_2021-01-11", 2, 1.2m); // good deals, but improve closing
-            Test("SFIX_BBG0046L1KL9_2021-01-12", 2, 2.33m); // impove SL when good profit
+            Test("SFIX_BBG0046L1KL9_2021-01-12", 1, 2.33m); // impove SL when good profit
             Test("MRNA_BBG003PHHZT1_2021-01-28", 4, 2.9m); // reduce orders count
-            Test("ABNB_BBG001Y2XS07_2021-01-21", 3, 8m); // reduce orders count
+            Test("ABNB_BBG001Y2XS07_2021-01-21", 1, 8m); // reduce orders count
             Test("CNK_BBG000QDVR53_2021-01-25", 1, 0m); // improve EXIT: lossed 7% of profit! improve buy?
             Test("BZUN_BBG008HNS333_2021-01-26", 2, 1.9m); // TODO: do not measure fall from far maximum -> much better profit
             Test("W_BBG001B17MV2_2021-01-12", 1, 0.7m); // entry point could be improved =? profit > 7$
@@ -241,6 +237,8 @@ namespace TradingBot
             Test("CRUS_BBG000C1DHF5_2021-02-02", 1, -2.6m); // too bad trend...
             Test("VIPS_BBG002NLDLV8_2021-02-02", 1, -0.7m); // buy on the high...
             Test("TRIP_BBG001M8HHB7_2021-01-19", 1, -0.4m); // will be good to not buy. how?
+            Test("HFC_BBG000BL9JQ1_2021-01-26", 1, -0.7m); // will be good to do not by it. ? 100 quotes ?
+            Test("ENDP_BBG000C0HQ54_2021-02-03", 1, -0.3m); // not enough quotes?
 
 
             _basePath = basePath;

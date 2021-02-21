@@ -90,6 +90,20 @@ namespace TradingBot
                         }
                         break;
 
+                    case "OperationReport":
+                        {
+                            settings.DumpQuotes = false;
+                            settings.RequestCandlesHistory = false;
+                            settings.SubscribeQuotes = false;
+                            settings.FakeConnection = false;
+
+                            BaseBot bot = new BaseBot(settings);
+                            await bot.StartAsync();
+
+                            await bot.OperationReport();
+                        }
+                        break;
+
                     default: Console.WriteLine("TODO: Help"); break;
                 }
             }
