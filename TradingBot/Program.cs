@@ -78,9 +78,9 @@ namespace TradingBot
 
                     case "TestMode":
                         {
-                            Utils.CorrectCandleID(po.Get<string>("CandlesPath"));
+                            //Utils.CorrectCandleID(po.Get<string>("CandlesPath"));
                             //Utils.ConvertQuotes(po.Get<string>("CandlesPath"));
-                            //TestMode(settings, po);
+                            TestMode(settings, po);
                         }
                         break;
 
@@ -159,13 +159,11 @@ namespace TradingBot
                         continue;
                     }
 
-                    if (currentTime >= prevTime)
-                    {
-                        prevTime = currentTime;
-                        file.WriteLine(line);
-                    }
-                    else
+                    if (currentTime.Hour - prevTime.Hour > 3)
                         break; // finished
+
+                    prevTime = currentTime;
+                    file.WriteLine(line);
                 }
 
                 file.Close();
