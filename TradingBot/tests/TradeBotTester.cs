@@ -11,6 +11,7 @@ namespace TradingBot
         private StreamWriter _writer;
         private string _basePath;
         private TradeBot _bot;
+        private string _strategy;
 
         // stat
         private int _totalOrders = 0;
@@ -24,62 +25,15 @@ namespace TradingBot
         public void Run()
         {
             SetUp();
-            RunPositiveTests();
-            RunNegativeTests();
 
-            // bad
-            //Test("UPWK_BBG00FBJ6390_2021-01-27", 1, 0m);
-            //Test("SPR_BBG000PRJ2Z9_2021-01-28", 1, 0m);
-            //Test("PBF_BBG002832GV8_2020-12-08", 1, 0m); // improve me: price is falling, but no actions did
-            //Test("GSKY_BBG00KT2SCV8_2021-01-11", 1, 0m); // not enough quotes.
-            //Test("ZYXI_BBG000BJBXZ2_2021-01-12", 1, 0m); // so-so trend, small amount of quotes increased price
-            //Test("ZYXI_BBG000BJBXZ2_2021-01-27", 1, 0m); // why did not closed early?! price does not grow!
-            //Test("ICE_BBG000C1FB75_2021-01-12", 1, 0m); // improve closing or do not by
-            //Test("TTM_BBG000PVGDH9_2021-01-15", 1, 0m); // not enough quotes. truncate trend if starting quotes do not matter
-
-            // TODO
-            //Test("SIG_BBG000C4ZZ10_2021-02-04", 1, 0m); // bad trend, do not buy me!!!
-
-            //Test("MYGN_BBG000D9H9F1_2021-02-03", 1, -0.7m); // too late buy
-            //Test("BBBY_BBG000CSY9H9_2021-01-13", 1, 0m); // improve me: swing SL -> 1 order
-            //Test("ZYXI_BBG000BJBXZ2_2021-01-14", 1, 0m); // big grow with falls
-            //Test("MAC_BBG000BL9C59_2021-01-26", 1, 0m); // short squize
-            //Test("PBF_BBG002832GV8_2021-01-28", 1, 0m); // big losses. do not take into account max as day open
-            //Test("AAPL_BBG000B9XRY4_2021-01-20", 1, 2.18m); //good grow.  small fall, but candles is not so big
-            //Test("FSLY_BBG004NLQHL0_2021-01-22", 1, 0m); // do not by me...
-            //Test("CPRI_BBG0029SNR63_2021-02-04", 1, 0m); // exit on TP when proce is grow
-            //Test("NKTR_BBG000BHCYJ1_2021-02-04", 1, 0m); // do not buy or improve moving SL
-            //Test("PCAR_BBG000BQVTF5_2021-02-04", 1, 0m); // do not buy if possible: grow 2%, fall 1%
-
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
-
-
+            if (_strategy == "MorningOpenStrategy")
+            {
+                TestMorningOpenStrategy();
+            }
+            else if (_strategy == "ImpulseStrategy")
+            {
+                TestImpulseStrategy();
+            }
 
             TearDown();
         }
@@ -236,6 +190,7 @@ namespace TradingBot
             Test("ENDP_BBG000C0HQ54_2021-02-03", 1, -0.3m); // not enough quotes?
             Test("GPS_BBG000BKLH74_2021-01-28", 1, -1m); // 4% loss, someone sell by market price, try to average
             Test("EDIT_BBG005MX5GZ2_2020-12-30", 1, -2.5m); // will be good to not buy
+            Test("PBF_BBG002832GV8_2020-12-08", 1, -0.2m); // just minimize losses
 
 
             _basePath = basePath;
@@ -248,7 +203,11 @@ namespace TradingBot
             settings.DumpQuotes = false;
             settings.FakeConnection = true;
             settings.RequestCandlesHistory = false;
-            settings.Strategies = "ImpulseStrategy";
+
+            if (settings.Strategies.Length == 0)
+                settings.Strategies = "ImpulseStrategy";
+
+            _strategy = settings.Strategies;
 
             // create bot
             _bot = new TradeBot(settings);
@@ -258,7 +217,7 @@ namespace TradingBot
             if (!Directory.Exists(_basePath))
                 throw new Exception("Directory does not exists: " + _basePath);
 
-            _writer = new StreamWriter("test_results_" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".log", false);
+            _writer = new StreamWriter(_strategy + DateTime.Now.ToString("_yyyy_MM_dd_HH_mm_ss") + ".log", false);
             _writer.AutoFlush = true;
         }
 
@@ -314,6 +273,82 @@ namespace TradingBot
             }
 
             _writer.WriteLine("");
+        }
+
+        private void TestMorningOpenStrategy()
+        {
+            var stat = _bot.TradeByHistory(_options.Get<string>("CandlesPath"), _options.Get<string>("OutputFolder"));
+
+            // log results
+            foreach (var it in stat)
+            {
+                _writer.WriteLine(it.Key); // test name
+                _writer.WriteLine(it.Value.totalProfit >= 0 ? "PASSED" : "FAILED");
+                _writer.WriteLine("TotalOrders: " + it.Value.totalOrders);
+                _writer.WriteLine("TotalProfit: " + it.Value.totalProfit);
+
+                _totalOrders += it.Value.totalOrders;
+                _totalProfit += it.Value.totalProfit;
+
+                _writer.WriteLine("");
+            }
+        }
+
+        private void TestImpulseStrategy()
+        {
+            RunPositiveTests();
+            RunNegativeTests();
+
+            // bad
+            //Test("UPWK_BBG00FBJ6390_2021-01-27", 1, 0m);
+            //Test("SPR_BBG000PRJ2Z9_2021-01-28", 1, 0m);
+            //Test("GSKY_BBG00KT2SCV8_2021-01-11", 1, 0m); // not enough quotes.
+            //Test("ZYXI_BBG000BJBXZ2_2021-01-12", 1, 0m); // so-so trend, small amount of quotes increased price
+            //Test("ZYXI_BBG000BJBXZ2_2021-01-27", 1, 0m); // why did not closed early?! price does not grow!
+            //Test("ICE_BBG000C1FB75_2021-01-12", 1, 0m); // improve closing or do not by
+            //Test("TTM_BBG000PVGDH9_2021-01-15", 1, 0m); // not enough quotes. truncate trend if starting quotes do not matter
+
+            // TODO
+            //Test("SIG_BBG000C4ZZ10_2021-02-04", 1, 0m); // bad trend, do not buy me!!!
+
+            //Test("MYGN_BBG000D9H9F1_2021-02-03", 1, -0.7m); // too late buy
+            //Test("BBBY_BBG000CSY9H9_2021-01-13", 1, 0m); // improve me: swing SL -> 1 order
+            //Test("ZYXI_BBG000BJBXZ2_2021-01-14", 1, 0m); // big grow with falls
+            //Test("MAC_BBG000BL9C59_2021-01-26", 1, 0m); // short squize
+            //Test("PBF_BBG002832GV8_2021-01-28", 1, 0m); // big losses. do not take into account max as day open
+            //Test("AAPL_BBG000B9XRY4_2021-01-20", 1, 2.18m); //good grow.  small fall, but candles is not so big
+            //Test("FSLY_BBG004NLQHL0_2021-01-22", 1, 0m); // do not by me...
+            //Test("CPRI_BBG0029SNR63_2021-02-04", 1, 0m); // exit on TP when proce is grow
+            //Test("NKTR_BBG000BHCYJ1_2021-02-04", 1, 0m); // do not buy or improve moving SL
+            //Test("PCAR_BBG000BQVTF5_2021-02-04", 1, 0m); // do not buy if possible: grow 2%, fall 1%
+
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
+            //Test("", 1, 0m);
         }
     }
 }

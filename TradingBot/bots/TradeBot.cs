@@ -38,10 +38,11 @@ namespace TradingBot
                 {
                     switch (strategyNames[i])
                     {
-                        case "RocketStrategy": _strategies[i] = new RocketStrategy(); break;
-                        case "GoodGrowStrategy": _strategies[i] = new GoodGrowStrategy(); break;
-                        case "ImpulseStrategy": _strategies[i] = new ImpulseStrategy(); break;
-                        case "SpykeStrategy": _strategies[i] = new SpykeStrategy(); break;
+                        case "RocketStrategy":          _strategies[i] = new RocketStrategy(); break;
+                        case "GoodGrowStrategy":        _strategies[i] = new GoodGrowStrategy(); break;
+                        case "ImpulseStrategy":         _strategies[i] = new ImpulseStrategy(); break;
+                        case "SpykeStrategy":           _strategies[i] = new SpykeStrategy(); break;
+                        case "MorningOpenStrategy":     _strategies[i] = new MorningOpenStrategy(); break;
                         default: Logger.Write("Unknown strategy name '{0}'", strategyNames[i]); break;
                     }
                 }
@@ -193,7 +194,7 @@ namespace TradingBot
                     else
                     {
                         bool cancel = true;
-                        if (tradeData.Strategy is SpykeStrategy)
+                        if (tradeData.Strategy is MorningOpenStrategy)
                         {
                             if (tradeData.Strategy.Process(instrument, tradeData, _candles[figi]) != IStrategy.StrategyResultType.CancelOrder)
                             {
@@ -377,20 +378,23 @@ namespace TradingBot
             }
         }
 
-        public void TradeByHistory(string folderPath, string tickers = "")
+        public Dictionary<string, TradeStatistic> TradeByHistory(string candlesPath, string outputFolder, string tickers = "")
         {
-            if (!Directory.Exists(folderPath))
+            if (!Directory.Exists(candlesPath))
             {
-                Logger.Write("Directory does not exists: {0}", folderPath);
-                return;
+                Logger.Write("Directory does not exists: {0}", candlesPath);
+                return null;
             }
 
             if (tickers == null)
                 tickers = "";
 
+            Dictionary<string, TradeStatistic> globalStat = new Dictionary<string, TradeStatistic>();
+
             var filter = tickers.Split(",", StringSplitOptions.RemoveEmptyEntries);
 
             int totalCandles = 0;
+            TradeStatistic statPrev = (TradeStatistic)_stats.Clone();
 
             for (int i = 0; i < _watchList.Count; ++i)
             {
@@ -400,32 +404,66 @@ namespace TradingBot
                 if (filter.Length > 0 && Array.FindIndex(filter, x => x == ticker) == -1)
                     continue;
 
-                string fileName = "";
-                DirectoryInfo folder = new DirectoryInfo(folderPath);
-                var files = folder.GetFiles(ticker + "_*.csv");
-                if (files.Length == 1)
-                    fileName = files[0].FullName;
-                else
+                DirectoryInfo folder = new DirectoryInfo(candlesPath);
+                var files = folder.GetFiles(ticker + "_*.csv", SearchOption.AllDirectories);
+                foreach (var file in files)
                 {
-                    files = folder.GetFiles(ticker + ".json");
-                    if (files.Length == 1)
-                        fileName = files[0].FullName;
-                }
+                    {
+                        // reset some states members
+                        _isShutingDown = false;
+                        InitCandles();
+                        foreach (var it in _tradeData)
+                            it.Value.Reset(true);
+                    }
 
-                if (fileName.Length > 0)
-                {
+                    var fileName = file.Name.Substring(0, file.Name.LastIndexOf("."));
+                    Logger.Write(fileName);
+
                     // read history candles
-                    var candleList = ReadCandles(files[0].FullName);
+                    var candleList = ReadCandles(file.FullName);
                     totalCandles += candleList.Count;
                     foreach (var candle in candleList)
                     {
                         OnStreamingEventReceived(this, new StreamingEventReceivedEventArgs(new CandleResponse(candle, DateTime.Now)));
                         _quoteProcessedEvent.WaitOne();
                     }
+
+                    // final clean up
+                    CloseAll().Wait();
+
+                    if (statPrev.totalOrders < _stats.totalOrders)
+                    {
+                        TradeStatistic currentStat = new TradeStatistic();
+                        currentStat.totalOrders = _stats.totalOrders - statPrev.totalOrders;
+                        currentStat.posOrders = _stats.posOrders - statPrev.posOrders;
+                        currentStat.negOrders= _stats.negOrders- statPrev.negOrders;
+                        currentStat.volume = _stats.volume - statPrev.volume;
+                        currentStat.comission = _stats.comission - statPrev.comission;
+                        currentStat.totalProfit = _stats.totalProfit - statPrev.totalProfit;
+                        globalStat.Add(fileName, currentStat);
+
+
+                        if (outputFolder?.Length > 0)
+                        {
+                            // copy candles to output folder
+                            try
+                            {
+                                File.Copy(file.FullName, outputFolder + "\\" + file.Name);
+                            }
+                            catch (Exception e)
+                            {
+                                Logger.Write("Exception happened while copiyng file. Error: " + e.Message);
+                            }
+                        }
+
+                        statPrev = (TradeStatistic)_stats.Clone();
+                    }
                 }
             }
 
             Logger.Write("Total candles read: {0}", totalCandles);
+
+            return globalStat;
         }
 
         public TradeStatistic TradeByHistory(List<CandlePayload> candleList)
