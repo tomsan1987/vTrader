@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Tinkoff.Trading.OpenApi.Models;
 using Tinkoff.Trading.OpenApi.Network;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace TradingBot
 {
@@ -90,28 +91,46 @@ namespace TradingBot
                 it.Value.Dispose();
         }
 
+        protected class OperationStat : IComparable<OperationStat>
+        {
+            public string ticker = "";
+            public Currency currency;
+            public decimal profit = 0;
+            public decimal commission = 0;
+            public decimal dividents = 0;
+            public int totalOrders = 0;
+            public int CompareTo(OperationStat right)
+            {
+                if (this.currency != right.currency)
+                    return (this.currency < right.currency) ? 1 : -1;
+
+                if (this.profit!= right.profit)
+                    return (this.profit < right.profit) ? 1 : -1;
+
+                return this.ticker.CompareTo(right.ticker);
+            }
+        }
+
         public async Task OperationReport()
         {
             DateTime from = new DateTime(2020, 1, 1, 0, 0, 0).ToUniversalTime();
             DateTime to = DateTime.UtcNow;
             int idx = 0;
 
-            var writer = new StreamWriter("operation_report_" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".log", false);
+            var writer = new StreamWriter("operation_report_" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".csv", false);
             writer.AutoFlush = true;
 
-            foreach (var instrument in _instruments)
-            {
-                decimal profit = 0;
-                decimal commission = 0;
-                int totalOrders = 0;
+            Dictionary<string, OperationStat> operationsReport = new Dictionary<string, OperationStat>();
 
+            //foreach (var instrument in _instruments)
+            {
                 List<Operation> operations = null;
                 while (operations == null)
                 {
                     try
                     {
                         ++idx;
-                        operations = await _context.OperationsAsync(from, DateTime.UtcNow, instrument.Figi);
+                        operations = await _context.OperationsAsync(from, DateTime.UtcNow, "");
                     }
                     catch (Exception)
                     {
@@ -124,22 +143,49 @@ namespace TradingBot
 
                 foreach (var it in operations)
                 {
+                    if (it.Figi == null)
+                        continue;
+
+                    if (!operationsReport.ContainsKey(it.Figi))
+                    {
+                        operationsReport.Add(it.Figi, new OperationStat());
+                    }
+
                     if (it.Status == OperationStatus.Done)
                     {
                         if (it.OperationType == ExtendedOperationType.Buy || it.OperationType == ExtendedOperationType.Sell)
                         {
-                            profit += it.Payment;
-                            ++totalOrders;
+                            operationsReport[it.Figi].profit += it.Payment;
+                            operationsReport[it.Figi].totalOrders++;
                         }
                         else if (it.OperationType == ExtendedOperationType.BrokerCommission)
                         {
-                            commission += it.Payment;
+                            operationsReport[it.Figi].commission += it.Payment;
+                        }
+                        else if (it.OperationType == ExtendedOperationType.Dividend)
+                        {
+                            operationsReport[it.Figi].dividents += it.Payment;
                         }
                     }
                 }
 
-                if (totalOrders > 0)
-                    writer.WriteLine("{0};{1};{2};{3};{4}", instrument.Ticker, totalOrders, profit, commission, instrument.Currency);
+                // convert to list and sort
+                List<OperationStat> result = new List<OperationStat>();
+                foreach (var it in operationsReport)
+                {
+                    var instrument = _context.MarketSearchByFigiAsync(it.Key).Result;
+                    it.Value.ticker = instrument.Ticker;
+                    it.Value.currency = instrument.Currency;
+
+                    result.Add(it.Value);
+                }
+
+                // write header
+                writer.WriteLine("Ticker;TotalOrders;Profit;Dividents;Commission;Currency");
+
+                result.Sort();
+                foreach (var it in result)
+                    writer.WriteLine("{0};{1};{2};{3};{4}", it.ticker, it.totalOrders, it.profit, it.dividents, it.commission, JsonConvert.SerializeObject(it.currency, new Newtonsoft.Json.Converters.StringEnumConverter()));
             }
 
             writer.Close();

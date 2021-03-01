@@ -80,7 +80,7 @@ namespace TradingBot
                         {
                             //Utils.CorrectCandleID(po.Get<string>("CandlesPath"));
                             //Utils.ConvertQuotes(po.Get<string>("CandlesPath"));
-                            Utils.SelectHistoryData(po.Get<string>("CandlesPath"), po.Get<string>("OutputFolder"));
+                            //Utils.SelectHistoryData(po.Get<string>("CandlesPath"), po.Get<string>("OutputFolder"));
                             //Utils.CorrectHistoryData(po.Get<string>("CandlesPath"), po.Get<string>("OutputFolder"));
                             //TestMode(settings, po);
                         }
