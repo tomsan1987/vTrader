@@ -102,7 +102,7 @@ namespace TradingBot
             var accounts = await _context.AccountsAsync();
             foreach (var acc in accounts)
             {
-                if (acc.BrokerAccountType == BrokerAccountType.Tinkoff)
+                if (acc.BrokerAccountType == BrokerAccountType.TinkoffIis)
                     _accountId = acc.BrokerAccountId;
             }
 
