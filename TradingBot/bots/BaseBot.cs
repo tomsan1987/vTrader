@@ -98,7 +98,7 @@ namespace TradingBot
             public decimal profit = 0;
             public decimal commission = 0;
             public decimal dividents = 0;
-            public int totalOrders = 0;
+            public int operations = 0;
             public int CompareTo(OperationStat right)
             {
                 if (this.currency != right.currency)
@@ -115,63 +115,52 @@ namespace TradingBot
         {
             DateTime from = new DateTime(2020, 1, 1, 0, 0, 0).ToUniversalTime();
             DateTime to = DateTime.UtcNow;
-            int idx = 0;
 
-            var writer = new StreamWriter("operation_report_" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".csv", false);
-            writer.AutoFlush = true;
+            //string figi = _context.MarketSearchByTickerAsync("HYDR").Result.Instruments[0].Ticker;
+            string figi = "";
+
+            List<Operation> operations = new List<Operation>();
+            var accounts = await _context.AccountsAsync();
+            foreach (var acc in accounts)
+            {
+                var res = await _context.OperationsAsync(from, DateTime.UtcNow, figi, acc.BrokerAccountId);
+                operations.InsertRange(operations.Count, res);
+            }
 
             Dictionary<string, OperationStat> operationsReport = new Dictionary<string, OperationStat>();
-
-            //foreach (var instrument in _instruments)
+            foreach (var it in operations)
             {
-                List<Operation> operations = null;
-                while (operations == null)
+                if (it.Figi == null)
+                    continue;
+
+                if (!operationsReport.ContainsKey(it.Figi))
                 {
-                    try
-                    {
-                        ++idx;
-                        operations = await _context.OperationsAsync(from, DateTime.UtcNow, "");
-                    }
-                    catch (Exception)
-                    {
-                        Logger.Write("Context: waiting after {0} queries....", idx);
-                        operations = null;
-                        idx = 0;
-                        await Task.Delay(30000); // sleep for a while
-                    }
+                    operationsReport.Add(it.Figi, new OperationStat());
                 }
 
-                foreach (var it in operations)
+                if (it.Status == OperationStatus.Done)
                 {
-                    if (it.Figi == null)
-                        continue;
-
-                    if (!operationsReport.ContainsKey(it.Figi))
+                    if (it.OperationType == ExtendedOperationType.Buy || it.OperationType == ExtendedOperationType.BuyCard || it.OperationType == ExtendedOperationType.Sell)
                     {
-                        operationsReport.Add(it.Figi, new OperationStat());
+                        operationsReport[it.Figi].profit += it.Payment;
+                        operationsReport[it.Figi].operations++;
                     }
-
-                    if (it.Status == OperationStatus.Done)
+                    else if (it.OperationType == ExtendedOperationType.BrokerCommission)
                     {
-                        if (it.OperationType == ExtendedOperationType.Buy || it.OperationType == ExtendedOperationType.Sell)
-                        {
-                            operationsReport[it.Figi].profit += it.Payment;
-                            operationsReport[it.Figi].totalOrders++;
-                        }
-                        else if (it.OperationType == ExtendedOperationType.BrokerCommission)
-                        {
-                            operationsReport[it.Figi].commission += it.Payment;
-                        }
-                        else if (it.OperationType == ExtendedOperationType.Dividend)
-                        {
-                            operationsReport[it.Figi].dividents += it.Payment;
-                        }
+                        operationsReport[it.Figi].commission += it.Payment;
+                    }
+                    else if (it.OperationType == ExtendedOperationType.Dividend)
+                    {
+                        operationsReport[it.Figi].dividents += it.Payment;
                     }
                 }
+            }
 
-                // convert to list and sort
-                List<OperationStat> result = new List<OperationStat>();
-                foreach (var it in operationsReport)
+            // convert to list and sort
+            List<OperationStat> result = new List<OperationStat>();
+            foreach (var it in operationsReport)
+            {
+                if (it.Value.operations > 0)
                 {
                     var instrument = _context.MarketSearchByFigiAsync(it.Key).Result;
                     it.Value.ticker = instrument.Ticker;
@@ -179,14 +168,16 @@ namespace TradingBot
 
                     result.Add(it.Value);
                 }
-
-                // write header
-                writer.WriteLine("Ticker;TotalOrders;Profit;Dividents;Commission;Currency");
-
-                result.Sort();
-                foreach (var it in result)
-                    writer.WriteLine("{0};{1};{2};{3};{4}", it.ticker, it.totalOrders, it.profit, it.dividents, it.commission, JsonConvert.SerializeObject(it.currency, new Newtonsoft.Json.Converters.StringEnumConverter()));
             }
+
+            // write header
+            var writer = new StreamWriter("operation_report_" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".csv", false);
+            writer.AutoFlush = true;
+            writer.WriteLine("Ticker;TotalOrders;Profit;Dividents;Commission;Total;Currency");
+
+            result.Sort();
+            foreach (var it in result)
+                writer.WriteLine("{0};{1};{2};{3};{4};{5};{6}", it.ticker, it.operations, it.profit, it.dividents, it.commission, it.profit + it.dividents + it.commission, Utils.ToEnumString(it.currency));
 
             writer.Close();
         }

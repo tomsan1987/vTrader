@@ -6,6 +6,8 @@ using Tinkoff.Trading.OpenApi.Models;
 using Tinkoff.Trading.OpenApi.Network;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System.Runtime.Serialization;
+using System.Linq;
 
 namespace TradingBot
 {
@@ -555,6 +557,13 @@ namespace TradingBot
                 streamReader.Close();
                 fileStream.Close();
             }
+        }
+        public static string ToEnumString<T>(T type)
+        {
+            var enumType = typeof(T);
+            var name = Enum.GetName(enumType, type);
+            var enumMemberAttribute = ((EnumMemberAttribute[])enumType.GetField(name).GetCustomAttributes(typeof(EnumMemberAttribute), true)).Single();
+            return enumMemberAttribute.Value;
         }
     }
 }
