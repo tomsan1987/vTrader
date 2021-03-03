@@ -192,7 +192,7 @@ namespace TradingBot
                     {
                         if (strategy != null && strategy.Process(instrument, tradeData, _candles[figi]) == IStrategy.StrategyResultType.Buy)
                         {
-                            var order = new LimitOrder(instrument.Figi, 1, OperationType.Buy, tradeData.BuyPrice);
+                            var order = new LimitOrder(instrument.Figi, 1, OperationType.Buy, tradeData.BuyPrice, _accountId);
                             var placedOrder = await _context.PlaceLimitOrderAsync(order);
 
                             tradeData.Strategy = strategy;
@@ -249,7 +249,7 @@ namespace TradingBot
                     if (tradeData.Strategy.Process(instrument, tradeData, _candles[figi]) == IStrategy.StrategyResultType.Sell)
                     {
                         // sell 1 lot
-                        var order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, tradeData.SellPrice);
+                        var order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, tradeData.SellPrice, _accountId);
                         var placedOrder = await _context.PlaceLimitOrderAsync(order);
 
                         tradeData.Status = Status.SellPending;
@@ -326,7 +326,7 @@ namespace TradingBot
                                 if (await IsOrderExecuted(it.Key, tradeData.OrderId))
                                 {
                                     var price = candle.Close - 2 * instrument.MinPriceIncrement;
-                                    var order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, price);
+                                    var order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, price, _accountId);
                                     var placedOrder = await _context.PlaceLimitOrderAsync(order);
 
                                     Logger.Write("{0}: Closing dayly orders. Close price: {1}. {2}. Profit: {3}({4}%)",
@@ -348,7 +348,7 @@ namespace TradingBot
                             {
                                 var instrument = _figiToInstrument[it.Key];
                                 var price = candle.Close - 2 * instrument.MinPriceIncrement;
-                                var order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, price);
+                                var order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, price, _accountId);
                                 var placedOrder = await _context.PlaceLimitOrderAsync(order);
 
                                 Logger.Write("{0}: Closing dayly orders. Close price: {1}. {2}. Profit: {3}({4}%)", instrument.Ticker, price, Helpers.CandleDesc(_candles[it.Key].Raw.Count - 1, candle), price - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, price));
