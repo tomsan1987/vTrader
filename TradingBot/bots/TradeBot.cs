@@ -92,9 +92,31 @@ namespace TradingBot
         {
             await base.StartAsync();
 
-            foreach (var ticker in _watchList)
+            // make a list of Figis which we will not trade due to it exist in portfolio
+            if (!_settings.FakeConnection)
             {
-                _tradeData.Add(_tickerToFigi[ticker], new TradeData());
+                List<string> disabledFigis = new List<string>();
+                string disabledTickers = "";
+                var positions = _context.PortfolioAsync(_accountId).Result.Positions;
+                foreach (var it in positions)
+                {
+                    disabledFigis.Add(it.Figi);
+                    disabledTickers += it.Ticker;
+                    disabledTickers += ";";
+                }
+
+                foreach (var ticker in _watchList)
+                {
+                    var figi = _tickerToFigi[ticker];
+                    var tradeData = new TradeData();
+
+                    if (disabledFigis.Exists(x => x.Contains(figi)))
+                        tradeData.DisabledTrading = true;
+
+                    _tradeData.Add(figi, tradeData);
+                }
+
+                Logger.Write("List of disabled tickers: " + disabledTickers);
             }
 
             _tradeTask = Task.Run(async () =>
@@ -145,6 +167,9 @@ namespace TradingBot
                 var instrument = _figiToInstrument[figi];
                 var candles = _candles[figi].Candles;
                 var candle = candles[candles.Count - 1];
+
+                if (tradeData.DisabledTrading)
+                    return;
 
                 if (_candles[figi].IsSpike())
                 {

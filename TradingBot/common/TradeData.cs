@@ -16,6 +16,7 @@ namespace TradingBot
         public IStrategy Strategy { get; set; }
         public IStrategyData StrategyData { get; set; }
         public Trend Trend { get; set; }
+        public bool DisabledTrading { get; set; } = false;
 
         public TradeData()
         {
@@ -36,6 +37,7 @@ namespace TradingBot
             Strategy = null;
             StrategyData = null;
             Trend = null;
+            DisabledTrading = false;
 
             if (full)
                 Time = DateTime.Today.AddYears(-10).ToUniversalTime();
