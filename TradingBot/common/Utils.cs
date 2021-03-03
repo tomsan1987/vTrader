@@ -6,6 +6,8 @@ using Tinkoff.Trading.OpenApi.Models;
 using Tinkoff.Trading.OpenApi.Network;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System.Runtime.Serialization;
+using System.Linq;
 
 namespace TradingBot
 {
@@ -292,6 +294,87 @@ namespace TradingBot
             }
         }
 
+        // Select history data by some criteria
+        // Param: candlesPath - path to folder with candles in csv format. Iterating with sub folders
+        public static void SelectHistoryData(string candlesPath, string outputFolder)
+        {
+            var writer = new StreamWriter(outputFolder + "\\stat_" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".csv", false);
+            writer.AutoFlush = true;
+            writer.WriteLine("Ticker;FileName;CountQuotes;PrevDayClose;TodayOpen;TodayClose;TodayMin;TodayMax;ChangeMinToClose;ChangeMinToOpen;ChangeOpenClose");
+
+            DirectoryInfo folder = new DirectoryInfo(candlesPath);
+            foreach (FileInfo f in folder.GetFiles("*.csv", SearchOption.AllDirectories))
+            {
+                // convert json quotes to simple csv data
+                var list = TradeBot.ReadCandles(f.FullName);
+                if (list.Count == 0)
+                {
+                    Logger.Write("No data found for " + f.FullName);
+                    continue;
+                }
+
+                var figi = list[list.Count / 2].Figi;
+                var date = list[list.Count / 2].Time.ToString("_yyyy-MM-dd");
+                var fileName = Path.GetFileNameWithoutExtension(f.FullName) + "_" + figi + date;
+                var ticker = f.Name.Substring(0, f.Name.IndexOf("_"));
+
+                if (list.Count < 2)
+                    continue;
+
+                // check if we have previous day candle
+                int currDayStartPos = 0;
+                while (currDayStartPos < list.Count && list[currDayStartPos].Time.Hour > 20)
+                {
+                    ++currDayStartPos; // skip all candles from prev day
+                }
+
+                if (currDayStartPos >= list.Count)
+                    continue;
+
+                decimal prevDayClose = 0.0m;
+                if (currDayStartPos > 0)
+                    prevDayClose = list[currDayStartPos - 1].Close; // else we just do not know close of prev day
+
+                var firstCandle = list[currDayStartPos];
+                decimal todayMin = firstCandle.Close;
+                decimal todayMax = firstCandle.Close;
+
+                int i = currDayStartPos;
+                while (i < list.Count && list[i].Time == firstCandle.Time)
+                {
+                    todayMin = Math.Min(todayMin, list[i].Close);
+                    todayMax = Math.Max(todayMax, list[i].Close);
+                    ++i;
+                }
+
+                decimal volume = list[i - 1].Volume;
+                decimal todayClose = list[i - 1].Close;
+                int countQuotes = i - currDayStartPos;
+                var changeMinToClose = Helpers.GetChangeInPercent(todayMin, todayClose);
+                var changeMinToOpen = Helpers.GetChangeInPercent(todayMin, firstCandle.Close);
+                var changeOpenClose = Helpers.GetChangeInPercent(firstCandle.Close, todayClose);
+
+                if (volume > 100 && countQuotes > 10 && ((changeMinToClose > 1m && changeMinToOpen > 1m) || (changeOpenClose < -2m)))
+                {
+                    // so we have some metrics, lets output it to log file
+                    writer.WriteLine("{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10}", ticker, fileName, countQuotes, prevDayClose, firstCandle.Close, todayClose, todayMin, todayMax, changeMinToClose, changeMinToOpen, changeOpenClose);
+
+                    // copy file if output folder specified
+                    try
+                    {
+                        if (outputFolder.Length > 0)
+                            File.Copy(f.FullName, outputFolder + "\\" + f.Name);
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.Write("Exception happened while copiyng file. Error: " + e.Message);
+                    }
+                }
+            }
+
+            writer.Close();
+        }
+
         public async static Task CreateWatchList(BaseBot.Settings settings, ProgramOptions po)
         {
             var connection = ConnectionFactory.GetConnection(settings.Token);
@@ -387,6 +470,100 @@ namespace TradingBot
             var minVolume = po.Get<decimal>("MinVolume");
 
             store(currency, minPrice, maxPrice, minVolume);
+        }
+
+        // Correct history data:
+        //      - remove previous day close data if it repeated some times at the beginning
+        //      - renumerate candles 0...n
+        //      - remove wromg stored data from the next day
+        // Param: CandlesPath - path to folder with candles in csv format. Iterating with sub folders
+        //        OutputFolder[optional] - path to store result data
+        public static void CorrectHistoryData(string candlesPath, string outputFolder)
+        {
+            DirectoryInfo folder = new DirectoryInfo(candlesPath);
+            foreach (FileInfo f in folder.GetFiles("*.csv"))
+            {
+                if (outputFolder.Length > 0 && !Directory.Exists(outputFolder))
+                    Directory.CreateDirectory(outputFolder);
+
+                var fileStream = File.OpenRead(f.FullName);
+                var streamReader = new StreamReader(fileStream);
+
+                var line = streamReader.ReadLine(); // header
+                var values = line.Split(";");
+                if (values.Length < 7)
+                    throw new Exception("Wrong file format with candles");
+
+                DateTime prevTime = DateTime.Now;
+
+                var outputName = outputFolder + "\\" + f.Name;
+                var file = new StreamWriter(outputName, false);
+                file.AutoFlush = true;
+                file.WriteLine(line); // header
+
+                // read first 10 candles to define if there a candle of previous day close
+                List<string> buffer = new List<string>();
+                while (buffer.Count < 10 && (line = streamReader.ReadLine()) != null)
+                    buffer.Add(line);
+
+                int candleID = 0;
+
+                // check for prev day close candle
+                if (buffer.Count > 0)
+                {
+                    values = buffer[0].Split(";");
+                    DateTime firstLine = DateTime.Parse(values[1]);
+
+                    int startPos = 0;
+                    for (int i = 1; i < buffer.Count; ++i)
+                    {
+                        values = buffer[i].Split(";");
+                        DateTime current = DateTime.Parse(values[1]);
+                        if (firstLine > current)
+                        {
+                            startPos = i - 1;
+                            break;
+                        }
+                    }
+
+                    // write lines starting from prevvious day close if exists
+                    for (int i = startPos; i < buffer.Count; ++i)
+                    {
+                        line = candleID.ToString() + buffer[i].Substring(buffer[i].IndexOf(";"));
+                        file.WriteLine(line);
+                        ++candleID;
+                    }
+
+                    values = buffer[buffer.Count - 1].Split(";");
+                    prevTime = DateTime.Parse(values[1]);
+                }
+
+                while ((line = streamReader.ReadLine()) != null)
+                {
+                    values = line.Split(";");
+                    var currentTime = DateTime.Parse(values[1]);
+
+                    if (currentTime.AddMinutes(5) < prevTime)
+                        break; // finished
+
+                    prevTime = currentTime;
+
+                    line = candleID.ToString() + line.Substring(line.IndexOf(";"));
+                    file.WriteLine(line);
+                    ++candleID;
+                }
+
+                file.Close();
+                streamReader.Close();
+                fileStream.Close();
+            }
+        }
+        public static string ToEnumString<T>(T type)
+        {
+            var enumType = typeof(T);
+            var name = Enum.GetName(enumType, type);
+            var enumMemberAttribute = ((EnumMemberAttribute[])enumType.GetField(name).GetCustomAttributes(typeof(EnumMemberAttribute), true)).Single();
+            return enumMemberAttribute.Value;
         }
     }
 }

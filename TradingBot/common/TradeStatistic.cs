@@ -4,7 +4,7 @@ using Tinkoff.Trading.OpenApi.Models;
 
 namespace TradingBot
 {
-    public class TradeStatistic
+    public class TradeStatistic : ICloneable
     {
         public decimal volume = 0;
         public decimal maxVolume = 0;
@@ -16,6 +16,11 @@ namespace TradingBot
         public Dictionary<string, decimal> volumes = new Dictionary<string, decimal>();
         public Dictionary<string, bool[]> volumesPerTicker = new Dictionary<string, bool[]>();
         public List<string> logMessages = new List<string>();
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
 
         public void Update(string ticker, decimal buyPrice, decimal sellPrice)
         {
