@@ -120,6 +120,10 @@ namespace TradingBot
             string candlesPath = po.Get<string>("CandlesPath");
             string tickerFilter = po.Get<string>("TickerFilter");
             string outputFolder = po.Get<string>("OutputFolder");
+            settings.DumpQuotes = false;
+            settings.SubscribeQuotes = false;
+            settings.RequestCandlesHistory = false;
+            settings.FakeConnection = true;
 
             var bot = new TradeBot(settings);
             await bot.StartAsync();

@@ -10,6 +10,7 @@ namespace TradingBot
         public decimal StopLoss { get; set; }
         public decimal TakeProfit { get; set; }
         public decimal MaxPrice { get; set; }
+        public decimal PrevDayClosePrice { get; set; } // -1 - not calculated ; 0 - undefined; > 0 - close price of previous day
         public Status Status { get; set; }
         public DateTime Time { get; set; }
         public DateTime BuyTime { get; set; }
@@ -32,6 +33,7 @@ namespace TradingBot
             StopLoss = 0;
             TakeProfit = 0;
             MaxPrice = 0;
+            PrevDayClosePrice = -1;
             Status = Status.Watching;
             BuyTime = DateTime.Today.AddYears(-10).ToUniversalTime();
             Strategy = null;

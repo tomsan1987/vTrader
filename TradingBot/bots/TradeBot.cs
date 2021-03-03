@@ -93,16 +93,20 @@ namespace TradingBot
             await base.StartAsync();
 
             // make a list of Figis which we will not trade due to it exist in portfolio
-            if (!_settings.FakeConnection)
             {
-                List<string> disabledFigis = new List<string>();
+                List<string> disabledFigis = null;
                 string disabledTickers = "";
-                var positions = _context.PortfolioAsync(_accountId).Result.Positions;
-                foreach (var it in positions)
+
+                if (!_settings.FakeConnection)
                 {
-                    disabledFigis.Add(it.Figi);
-                    disabledTickers += it.Ticker;
-                    disabledTickers += ";";
+                    disabledFigis = new List<string>();
+                    var positions = _context.PortfolioAsync(_accountId).Result.Positions;
+                    foreach (var it in positions)
+                    {
+                        disabledFigis.Add(it.Figi);
+                        disabledTickers += it.Ticker;
+                        disabledTickers += ";";
+                    }
                 }
 
                 foreach (var ticker in _watchList)
@@ -110,7 +114,7 @@ namespace TradingBot
                     var figi = _tickerToFigi[ticker];
                     var tradeData = new TradeData();
 
-                    if (disabledFigis.Exists(x => x.Contains(figi)))
+                    if (disabledFigis != null && disabledFigis.Exists(x => x.Contains(figi)))
                         tradeData.DisabledTrading = true;
 
                     _tradeData.Add(figi, tradeData);
