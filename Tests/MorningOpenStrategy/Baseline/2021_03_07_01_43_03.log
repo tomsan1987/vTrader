@@ -1,0 +1,571 @@
+2021-03-07 01:43:04 00      mode=RunTests;Token=..\..\..\..\Configuration\token.txt;ConfigPath=..\..\..\..\Configuration\usd.json;CandlesPath=C:\tinkoff\Tests\MorningOpenStrategy;Strategies=MorningOpenStrategy;OutputFolder=C:\tinkoff\Tests\MorningOpenStrategy\Data;
+2021-03-07 01:43:04 02      Trade bot created
+2021-03-07 01:43:04 09      Fake connection created
+2021-03-07 01:43:04 99      List of disabled tickers: 
+2021-03-07 01:43:04 99      Test name: SPCE_BBG00HTN2CQ3_2021-01-28
+2021-03-07 01:43:05 21      SPCE: SPYKE!. Candle: ID:2, Time: 7:00, Close: 45
+2021-03-07 01:43:05 21      SPCE: SPYKE!. Candle: ID:3, Time: 7:00, Close: 42.5
+2021-03-07 01:43:05 21      SPCE: BuyPending. Strategy: MorningOpenStrategy. Price: 42.55. ChangeOpenToCurrent: -8.20. ChangePrevCloseToCurrent: -10.18. Candle: ID:9, Time: 7:00, Close: 42.55.
+2021-03-07 01:43:05 21      SPCE: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:05 21      SPCE: OrderId: test_order executed
+2021-03-07 01:43:05 21      SPCE: SPYKE!. Candle: ID:25, Time: 7:00, Close: 45
+2021-03-07 01:43:05 23      SPCE: Morning closing. Close price: 51.5. CandleChange: -0.39%. ChangeFromCandleHigh: -0.39%. Profit: 8.95(21.03%). Candle: ID:1208, Time: 7:05, Close: 51.5
+2021-03-07 01:43:05 23      SPCE: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:05 23      SPCE: OrderId: test_order executed
+2021-03-07 01:43:05 23      SPCE: SPYKE!. Candle: ID:1407, Time: 7:05, Close: 49
+2021-03-07 01:43:05 23      SPCE: SPYKE!. Candle: ID:1421, Time: 7:05, Close: 47.28
+2021-03-07 01:43:05 36      SPCE: SPYKE!. Candle: ID:13089, Time: 10:10, Close: 45.45
+2021-03-07 01:43:06 39      Test name: SPCE_BBG00HTN2CQ3_2020-12-14
+2021-03-07 01:43:06 49      SPCE: SPYKE!. Candle: ID:5, Time: 7:00, Close: 27.91
+2021-03-07 01:43:06 49      SPCE: BuyPending. Strategy: MorningOpenStrategy. Price: 29.2. ChangeOpenToCurrent: -6.26. ChangePrevCloseToCurrent: -9.54. Candle: ID:9, Time: 7:00, Close: 29.2.
+2021-03-07 01:43:06 49      SPCE: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:06 49      SPCE: OrderId: test_order executed
+2021-03-07 01:43:06 49      SPCE: SPYKE!. Candle: ID:206, Time: 7:00, Close: 28.0
+2021-03-07 01:43:06 51      SPCE: Morning closing. Close price: 30.11. CandleChange: 1.90%. ChangeFromCandleHigh: -1.54%. Profit: 0.91(3.12%). Candle: ID:2382, Time: 7:10, Close: 30.11
+2021-03-07 01:43:06 52      SPCE: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:06 52      SPCE: OrderId: test_order executed
+2021-03-07 01:43:07 07      Test name: SPCE_BBG00HTN2CQ3_2021-02-02
+2021-03-07 01:43:07 35      SPCE: BuyPending. Strategy: MorningOpenStrategy. Price: 56.12. ChangeOpenToCurrent: -3.24. ChangePrevCloseToCurrent: -3.24. Candle: ID:86, Time: 7:00, Close: 56.12.
+2021-03-07 01:43:07 35      SPCE: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:07 35      SPCE: OrderId: test_order executed
+2021-03-07 01:43:07 37      SPCE: Morning closing. Close price: 59.56. CandleChange: -0.40%. ChangeFromCandleHigh: -0.40%. Profit: 3.44(6.13%). Candle: ID:2154, Time: 7:05, Close: 59.56
+2021-03-07 01:43:07 38      SPCE: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:07 38      SPCE: OrderId: test_order executed
+2021-03-07 01:43:08 78      Test name: ZYXI_BBG000BJBXZ2_2021-01-28
+2021-03-07 01:43:08 82      ZYXI: BuyPending. Strategy: MorningOpenStrategy. Price: 19.5. ChangeOpenToCurrent: -2.45. ChangePrevCloseToCurrent: -4.88. Candle: ID:9, Time: 7:00, Close: 19.5.
+2021-03-07 01:43:08 82      ZYXI: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:08 82      ZYXI: OrderId: test_order executed
+2021-03-07 01:43:08 83      ZYXI: Morning closing. Close price: 20.22. CandleChange: -0.34%. ChangeFromCandleHigh: -0.54%. Profit: 0.72(3.69%). Candle: ID:147, Time: 7:05, Close: 20.22
+2021-03-07 01:43:08 83      ZYXI: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:08 83      ZYXI: OrderId: test_order executed
+2021-03-07 01:43:08 94      Test name: SWBI_BBG000BM0QL7_2020-12-04
+2021-03-07 01:43:08 95      SWBI: BuyPending. Strategy: MorningOpenStrategy. Price: 14.9. ChangeOpenToCurrent: -0.53. ChangePrevCloseToCurrent: -3.37. Candle: ID:9, Time: 7:00, Close: 14.9.
+2021-03-07 01:43:08 95      SWBI: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:08 95      SWBI: OrderId: test_order executed
+2021-03-07 01:43:08 96      SWBI: Morning closing. Close price: 15.3. CandleChange: -0.58%. ChangeFromCandleHigh: -0.58%. Profit: 0.4(2.68%). Candle: ID:76, Time: 7:05, Close: 15.3
+2021-03-07 01:43:08 96      SWBI: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:08 96      SWBI: OrderId: test_order executed
+2021-03-07 01:43:09 03      Test name: NTNX_BBG001NDW1Z7_2021-01-06
+2021-03-07 01:43:09 04      NTNX: BuyPending. Strategy: MorningOpenStrategy. Price: 30.36. ChangeOpenToCurrent: -0.75. ChangePrevCloseToCurrent: -3.62. Candle: ID:9, Time: 7:00, Close: 30.36.
+2021-03-07 01:43:09 04      NTNX: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:09 04      NTNX: OrderId: test_order executed
+2021-03-07 01:43:09 04      NTNX: Morning closing. Close price: 30.55. CandleChange: -0.49%. ChangeFromCandleHigh: -0.52%. Profit: 0.19(0.63%). Candle: ID:46, Time: 7:20, Close: 30.55
+2021-03-07 01:43:09 04      NTNX: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:09 04      NTNX: OrderId: test_order executed
+2021-03-07 01:43:09 09      Test name: MRNA_BBG003PHHZT1_2021-01-19
+2021-03-07 01:43:09 16      MRNA: BuyPending. Strategy: MorningOpenStrategy. Price: 127. ChangeOpenToCurrent: -2.31. ChangePrevCloseToCurrent: -2.01. Candle: ID:13, Time: 7:00, Close: 127.
+2021-03-07 01:43:09 17      MRNA: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:09 17      MRNA: OrderId: test_order executed
+2021-03-07 01:43:09 17      MRNA: Morning closing. Close price: 130.7. CandleChange: -0.01%. ChangeFromCandleHigh: -0.02%. Profit: 3.7(2.91%). Candle: ID:286, Time: 7:05, Close: 130.7
+2021-03-07 01:43:09 17      MRNA: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:09 17      MRNA: OrderId: test_order executed
+2021-03-07 01:43:09 53      Test name: SEDG_BBG0084BBZY6_2021-01-25
+2021-03-07 01:43:09 55      SEDG: BuyPending. Strategy: MorningOpenStrategy. Price: 311.4. ChangeOpenToCurrent: -3.17. ChangePrevCloseToCurrent: -2.95. Candle: ID:16, Time: 7:00, Close: 311.4.
+2021-03-07 01:43:09 55      SEDG: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:09 55      SEDG: OrderId: test_order executed
+2021-03-07 01:43:09 55      SEDG: Morning closing. Close price: 323.7. CandleChange: -0.08%. ChangeFromCandleHigh: -0.08%. Profit: 12.3(3.95%). Candle: ID:92, Time: 7:05, Close: 323.7
+2021-03-07 01:43:09 55      SEDG: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:09 55      SEDG: OrderId: test_order executed
+2021-03-07 01:43:09 70      Test name: BILI_BBG00K7T3037_2021-01-27
+2021-03-07 01:43:09 74      BILI: BuyPending. Strategy: MorningOpenStrategy. Price: 125. ChangeOpenToCurrent: -2.19. ChangePrevCloseToCurrent: -2.19. Candle: ID:9, Time: 7:00, Close: 125.
+2021-03-07 01:43:09 74      BILI: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:09 74      BILI: OrderId: test_order executed
+2021-03-07 01:43:09 74      BILI: Morning closing. Close price: 128.3. CandleChange: -0.54%. ChangeFromCandleHigh: -0.54%. Profit: 3.3(2.64%). Candle: ID:59, Time: 7:10, Close: 128.3
+2021-03-07 01:43:09 74      BILI: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:09 74      BILI: OrderId: test_order executed
+2021-03-07 01:43:09 99      Test name: NTLA_BBG007KC7PB0_2021-01-27
+2021-03-07 01:43:10 01      NTLA: BuyPending. Strategy: MorningOpenStrategy. Price: 64.4. ChangeOpenToCurrent: -3.01. ChangePrevCloseToCurrent: -1.62. Candle: ID:10, Time: 7:00, Close: 64.4.
+2021-03-07 01:43:10 01      NTLA: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:10 01      NTLA: OrderId: test_order executed
+2021-03-07 01:43:10 01      NTLA: Morning closing. Close price: 66.3. CandleChange: -0.09%. ChangeFromCandleHigh: -0.09%. Profit: 1.9(2.95%). Candle: ID:23, Time: 7:05, Close: 66.3
+2021-03-07 01:43:10 01      NTLA: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:10 01      NTLA: OrderId: test_order executed
+2021-03-07 01:43:10 13      Test name: MFGP_BBG00HFWVGN0_2020-12-04
+2021-03-07 01:43:10 15      MFGP: BuyPending. Strategy: MorningOpenStrategy. Price: 5.64. ChangeOpenToCurrent: -3.26. ChangePrevCloseToCurrent: -3.26. Candle: ID:9, Time: 7:00, Close: 5.64.
+2021-03-07 01:43:10 15      MFGP: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:10 15      MFGP: OrderId: test_order executed
+2021-03-07 01:43:10 15      MFGP: Morning closing. Close price: 5.83. CandleChange: -0.17%. ChangeFromCandleHigh: -0.17%. Profit: 0.19(3.37%). Candle: ID:53, Time: 7:05, Close: 5.83
+2021-03-07 01:43:10 15      MFGP: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:10 15      MFGP: OrderId: test_order executed
+2021-03-07 01:43:10 23      Test name: CCL_BBG000BF6LY3_2021-02-03
+2021-03-07 01:43:10 27      CCL: BuyPending. Strategy: MorningOpenStrategy. Price: 19.2. ChangeOpenToCurrent: -2.29. ChangePrevCloseToCurrent: -1.29. Candle: ID:13, Time: 7:00, Close: 19.2.
+2021-03-07 01:43:10 27      CCL: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:10 27      CCL: OrderId: test_order executed
+2021-03-07 01:43:10 27      CCL: Morning closing. Close price: 19.55. CandleChange: -0.10%. ChangeFromCandleHigh: -0.10%. Profit: 0.35(1.82%). Candle: ID:57, Time: 7:05, Close: 19.55
+2021-03-07 01:43:10 27      CCL: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:10 27      CCL: OrderId: test_order executed
+2021-03-07 01:43:10 48      Test name: OXY_BBG000BQQ2S6_2020-12-14
+2021-03-07 01:43:10 51      OXY: BuyPending. Strategy: MorningOpenStrategy. Price: 19.96. ChangeOpenToCurrent: -2.87. ChangePrevCloseToCurrent: -3.15. Candle: ID:10, Time: 7:00, Close: 19.96.
+2021-03-07 01:43:10 51      OXY: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:10 51      OXY: OrderId: test_order executed
+2021-03-07 01:43:10 51      OXY: Morning closing. Close price: 20.42. CandleChange: -0.10%. ChangeFromCandleHigh: -0.39%. Profit: 0.46(2.30%). Candle: ID:46, Time: 7:05, Close: 20.42
+2021-03-07 01:43:10 51      OXY: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:10 51      OXY: OrderId: test_order executed
+2021-03-07 01:43:10 69      Test name: AAL_BBG005P7Q881_2020-12-16
+2021-03-07 01:43:10 73      AAL: SPYKE!. Candle: ID:5, Time: 7:00, Close: 15.82
+2021-03-07 01:43:10 73      AAL: BuyPending. Strategy: MorningOpenStrategy. Price: 16.58. ChangeOpenToCurrent: -1.78. ChangePrevCloseToCurrent: -2.47. Candle: ID:12, Time: 7:00, Close: 16.58.
+2021-03-07 01:43:10 73      AAL: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:10 73      AAL: OrderId: test_order executed
+2021-03-07 01:43:10 74      AAL: Morning closing. Close price: 16.83. CandleChange: -0.06%. ChangeFromCandleHigh: -0.06%. Profit: 0.25(1.51%). Candle: ID:254, Time: 7:10, Close: 16.83
+2021-03-07 01:43:10 74      AAL: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:10 74      AAL: OrderId: test_order executed
+2021-03-07 01:43:10 92      Test name: EQT_BBG000BHZ5J9_2021-01-19
+2021-03-07 01:43:10 94      EQT: BuyPending. Strategy: MorningOpenStrategy. Price: 18.42. ChangeOpenToCurrent: -2.02. ChangePrevCloseToCurrent: -1.44. Candle: ID:14, Time: 7:00, Close: 18.42.
+2021-03-07 01:43:10 95      EQT: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:10 95      EQT: OrderId: test_order executed
+2021-03-07 01:43:10 95      EQT: Morning closing. Close price: 18.49. CandleChange: 0.16%. ChangeFromCandleHigh: -1.07%. Profit: 0.07(0.38%). Candle: ID:33, Time: 7:05, Close: 18.49
+2021-03-07 01:43:10 95      EQT: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:10 95      EQT: OrderId: test_order executed
+2021-03-07 01:43:11 07      Test name: PBF_BBG002832GV8_2021-01-25
+2021-03-07 01:43:11 09      PBF: BuyPending. Strategy: MorningOpenStrategy. Price: 8.15. ChangeOpenToCurrent: -2.98. ChangePrevCloseToCurrent: 0.37. Candle: ID:10, Time: 7:00, Close: 8.15.
+2021-03-07 01:43:11 09      PBF: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:11 09      PBF: OrderId: test_order executed
+2021-03-07 01:43:11 09      PBF: Morning closing. Close price: 8.34. CandleChange: -0.12%. ChangeFromCandleHigh: -0.12%. Profit: 0.19(2.33%). Candle: ID:23, Time: 7:05, Close: 8.34
+2021-03-07 01:43:11 09      PBF: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:11 09      PBF: OrderId: test_order executed
+2021-03-07 01:43:11 15      Test name: CCL_BBG000BF6LY3_2020-12-16
+2021-03-07 01:43:11 18      CCL: BuyPending. Strategy: MorningOpenStrategy. Price: 21.4. ChangeOpenToCurrent: -2.06. ChangePrevCloseToCurrent: -0.83. Candle: ID:15, Time: 7:00, Close: 21.4.
+2021-03-07 01:43:11 18      CCL: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:11 18      CCL: OrderId: test_order executed
+2021-03-07 01:43:11 19      CCL: Morning closing. Close price: 21.65. CandleChange: -0.23%. ChangeFromCandleHigh: -0.28%. Profit: 0.25(1.17%). Candle: ID:104, Time: 7:05, Close: 21.65
+2021-03-07 01:43:11 19      CCL: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:11 19      CCL: OrderId: test_order executed
+2021-03-07 01:43:11 39      Test name: CRM_BBG000BN2DC2_2020-12-21
+2021-03-07 01:43:11 41      CRM: BuyPending. Strategy: MorningOpenStrategy. Price: 223.0. ChangeOpenToCurrent: -2.01. ChangePrevCloseToCurrent: -1.76. Candle: ID:14, Time: 7:00, Close: 223.0.
+2021-03-07 01:43:11 41      CRM: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:11 41      CRM: OrderId: test_order executed
+2021-03-07 01:43:11 42      CRM: Morning closing. Close price: 225.0. CandleChange: -0.44%. ChangeFromCandleHigh: -0.44%. Profit: 2.0(0.90%). Candle: ID:94, Time: 7:05, Close: 225.0
+2021-03-07 01:43:11 42      CRM: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:11 42      CRM: OrderId: test_order executed
+2021-03-07 01:43:11 59      Test name: MFGP_BBG00HFWVGN0_2020-12-10
+2021-03-07 01:43:11 60      MFGP: BuyPending. Strategy: MorningOpenStrategy. Price: 6.32. ChangeOpenToCurrent: -2.77. ChangePrevCloseToCurrent: -1.86. Candle: ID:10, Time: 7:00, Close: 6.32.
+2021-03-07 01:43:11 60      MFGP: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:11 60      MFGP: OrderId: test_order executed
+2021-03-07 01:43:11 60      MFGP: Morning closing. Close price: 6.4. CandleChange: -0.62%. ChangeFromCandleHigh: -0.93%. Profit: 0.08(1.27%). Candle: ID:26, Time: 7:05, Close: 6.4
+2021-03-07 01:43:11 60      MFGP: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:11 60      MFGP: OrderId: test_order executed
+2021-03-07 01:43:11 64      Test name: BLUE_BBG000QGWY50_2021-01-19
+2021-03-07 01:43:11 64      BLUE: BuyPending. Strategy: MorningOpenStrategy. Price: 50.25. ChangeOpenToCurrent: -3.18. ChangePrevCloseToCurrent: -1.08. Candle: ID:9, Time: 7:00, Close: 50.25.
+2021-03-07 01:43:11 64      BLUE: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:11 64      BLUE: OrderId: test_order executed
+2021-03-07 01:43:11 64      BLUE: Morning closing. Close price: 50.52. CandleChange: -1.90%. ChangeFromCandleHigh: -1.90%. Profit: 0.27(0.54%). Candle: ID:34, Time: 7:05, Close: 50.52
+2021-03-07 01:43:11 64      BLUE: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:11 64      BLUE: OrderId: test_order executed
+2021-03-07 01:43:11 70      Test name: PFE_BBG000BR2B91_2020-12-04
+2021-03-07 01:43:11 74      PFE: BuyPending. Strategy: MorningOpenStrategy. Price: 39.1. ChangeOpenToCurrent: -1.59. ChangePrevCloseToCurrent: -2.13. Candle: ID:112, Time: 7:00, Close: 39.1.
+2021-03-07 01:43:11 74      PFE: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:11 74      PFE: OrderId: test_order executed
+2021-03-07 01:43:11 74      PFE: Morning closing. Close price: 39.35. CandleChange: -0.10%. ChangeFromCandleHigh: -0.13%. Profit: 0.25(0.64%). Candle: ID:763, Time: 7:05, Close: 39.35
+2021-03-07 01:43:11 74      PFE: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:11 74      PFE: OrderId: test_order executed
+2021-03-07 01:43:11 97      Test name: ATRA_BBG005Q3MQY4_2021-01-27
+2021-03-07 01:43:11 99      ATRA: BuyPending. Strategy: MorningOpenStrategy. Price: 19.73. ChangeOpenToCurrent: -2.23. ChangePrevCloseToCurrent: -0.15. Candle: ID:38, Time: 7:00, Close: 19.73.
+2021-03-07 01:43:11 99      ATRA: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:11 99      ATRA: OrderId: test_order executed
+2021-03-07 01:43:11 99      ATRA: Morning closing. Close price: 20. CandleChange: -0.89%. ChangeFromCandleHigh: -0.94%. Profit: 0.27(1.37%). Candle: ID:96, Time: 7:10, Close: 20
+2021-03-07 01:43:12 00      ATRA: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:12 00      ATRA: OrderId: test_order executed
+2021-03-07 01:43:12 04      ATRA: SPYKE!. Candle: ID:3646, Time: 12:30, Close: 20.06
+2021-03-07 01:43:12 04      ATRA: SPYKE!. Candle: ID:3656, Time: 12:30, Close: 20
+2021-03-07 01:43:12 14      Test name: SPCE_BBG00HTN2CQ3_2020-12-11
+2021-03-07 01:43:12 19      SPCE: BuyPending. Strategy: MorningOpenStrategy. Price: 31.1. ChangeOpenToCurrent: -2.84. ChangePrevCloseToCurrent: -2.84. Candle: ID:13, Time: 7:00, Close: 31.1.
+2021-03-07 01:43:12 19      SPCE: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:12 19      SPCE: OrderId: test_order executed
+2021-03-07 01:43:12 20      SPCE: Morning closing. Close price: 31.64. CandleChange: -0.19%. ChangeFromCandleHigh: -0.19%. Profit: 0.54(1.74%). Candle: ID:204, Time: 7:05, Close: 31.64
+2021-03-07 01:43:12 20      SPCE: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:12 20      SPCE: OrderId: test_order executed
+2021-03-07 01:43:12 47      Test name: EQT_BBG000BHZ5J9_2020-12-04
+2021-03-07 01:43:12 48      EQT: BuyPending. Strategy: MorningOpenStrategy. Price: 13.65. ChangeOpenToCurrent: -2.50. ChangePrevCloseToCurrent: -1.30. Candle: ID:22, Time: 7:00, Close: 13.65.
+2021-03-07 01:43:12 48      EQT: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:12 48      EQT: OrderId: test_order executed
+2021-03-07 01:43:12 48      EQT: Morning closing. Close price: 13.79. CandleChange: -0.22%. ChangeFromCandleHigh: -0.22%. Profit: 0.14(1.03%). Candle: ID:44, Time: 7:10, Close: 13.79
+2021-03-07 01:43:12 48      EQT: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:12 48      EQT: OrderId: test_order executed
+2021-03-07 01:43:12 53      Test name: AA_BBG00B3T3HD3_2021-01-28
+2021-03-07 01:43:12 57      AA: SPYKE!. Candle: ID:8, Time: 7:00, Close: 18.04
+2021-03-07 01:43:12 57      AA: BuyPending. Strategy: MorningOpenStrategy. Price: 18.04. ChangeOpenToCurrent: -2.33. ChangePrevCloseToCurrent: -2.01. Candle: ID:10, Time: 7:00, Close: 18.04.
+2021-03-07 01:43:12 57      AA: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:12 57      AA: OrderId: test_order executed
+2021-03-07 01:43:12 57      AA: Morning closing. Close price: 18.06. CandleChange: -0.06%. ChangeFromCandleHigh: -0.06%. Profit: 0.02(0.11%). Candle: ID:40, Time: 7:05, Close: 18.06
+2021-03-07 01:43:12 57      AA: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:12 57      AA: OrderId: test_order executed
+2021-03-07 01:43:12 57      AA: SPYKE!. Candle: ID:70, Time: 7:05, Close: 17.97
+2021-03-07 01:43:12 57      AA: SPYKE!. Candle: ID:91, Time: 7:05, Close: 17.32
+2021-03-07 01:43:12 69      Test name: MFGP_BBG00HFWVGN0_2020-12-09
+2021-03-07 01:43:12 70      MFGP: BuyPending. Strategy: MorningOpenStrategy. Price: 6.3. ChangeOpenToCurrent: -2.02. ChangePrevCloseToCurrent: 0. Candle: ID:9, Time: 7:00, Close: 6.3.
+2021-03-07 01:43:12 70      MFGP: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:12 70      MFGP: OrderId: test_order executed
+2021-03-07 01:43:12 70      MFGP: Morning closing. Close price: 6.36. CandleChange: -0.16%. ChangeFromCandleHigh: -0.16%. Profit: 0.06(0.95%). Candle: ID:91, Time: 7:05, Close: 6.36
+2021-03-07 01:43:12 70      MFGP: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:12 70      MFGP: OrderId: test_order executed
+2021-03-07 01:43:12 73      MFGP: SPYKE!. Candle: ID:2808, Time: 11:00, Close: 6.6
+2021-03-07 01:43:12 77      Test name: ETRN_BBG00K53L394_2021-02-02
+2021-03-07 01:43:12 78      ETRN: BuyPending. Strategy: MorningOpenStrategy. Price: 6.65. ChangeOpenToCurrent: -1.92. ChangePrevCloseToCurrent: -2.64. Candle: ID:9, Time: 7:00, Close: 6.65.
+2021-03-07 01:43:12 78      ETRN: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:12 78      ETRN: OrderId: test_order executed
+2021-03-07 01:43:12 78      ETRN: Morning closing. Close price: 6.66. CandleChange: -0.60%. ChangeFromCandleHigh: -0.60%. Profit: 0.01(0.15%). Candle: ID:77, Time: 7:05, Close: 6.66
+2021-03-07 01:43:12 78      ETRN: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:12 78      ETRN: OrderId: test_order executed
+2021-03-07 01:43:12 85      Test name: SPCE_BBG00HTN2CQ3_2021-01-22
+2021-03-07 01:43:12 90      SPCE: BuyPending. Strategy: MorningOpenStrategy. Price: 32.5. ChangeOpenToCurrent: -2.99. ChangePrevCloseToCurrent: -2.99. Candle: ID:9, Time: 7:00, Close: 32.5.
+2021-03-07 01:43:12 90      SPCE: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:12 90      SPCE: OrderId: test_order executed
+2021-03-07 01:43:12 90      SPCE: Morning closing. Close price: 33.05. CandleChange: -0.15%. ChangeFromCandleHigh: -0.15%. Profit: 0.55(1.69%). Candle: ID:308, Time: 7:05, Close: 33.05
+2021-03-07 01:43:12 90      SPCE: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:12 90      SPCE: OrderId: test_order executed
+2021-03-07 01:43:13 21      Test name: TSLA_BBG000N9MNX3_2021-01-28
+2021-03-07 01:43:13 49      TSLA: BuyPending. Strategy: MorningOpenStrategy. Price: 818.39. ChangeOpenToCurrent: -2.00. ChangePrevCloseToCurrent: -2.57. Candle: ID:9, Time: 7:00, Close: 818.39.
+2021-03-07 01:43:13 49      TSLA: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:13 49      TSLA: OrderId: test_order executed
+2021-03-07 01:43:13 49      TSLA: Morning closing. Close price: 824.1. CandleChange: -0.09%. ChangeFromCandleHigh: -0.10%. Profit: 5.71(0.70%). Candle: ID:630, Time: 7:05, Close: 824.1
+2021-03-07 01:43:13 49      TSLA: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:13 49      TSLA: OrderId: test_order executed
+2021-03-07 01:43:14 84      Test name: ZYXI_BBG000BJBXZ2_2021-01-22
+2021-03-07 01:43:14 86      ZYXI: BuyPending. Strategy: MorningOpenStrategy. Price: 16.45. ChangeOpenToCurrent: -2.08. ChangePrevCloseToCurrent: -1.38. Candle: ID:26, Time: 7:00, Close: 16.45.
+2021-03-07 01:43:14 86      ZYXI: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:14 86      ZYXI: OrderId: test_order executed
+2021-03-07 01:43:14 87      ZYXI: Morning closing. Close price: 16.5. CandleChange: -0.54%. ChangeFromCandleHigh: -0.60%. Profit: 0.05(0.30%). Candle: ID:68, Time: 7:05, Close: 16.5
+2021-03-07 01:43:14 87      ZYXI: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:14 87      ZYXI: OrderId: test_order executed
+2021-03-07 01:43:14 96      Test name: SPCE_BBG00HTN2CQ3_2021-01-26
+2021-03-07 01:43:15 14      SPCE: BuyPending. Strategy: MorningOpenStrategy. Price: 35.6. ChangeOpenToCurrent: -1.63. ChangePrevCloseToCurrent: -2.01. Candle: ID:9, Time: 7:00, Close: 35.6.
+2021-03-07 01:43:15 14      SPCE: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:15 14      SPCE: OrderId: test_order executed
+2021-03-07 01:43:15 14      SPCE: Morning closing. Close price: 35.74. CandleChange: -0.03%. ChangeFromCandleHigh: -0.08%. Profit: 0.14(0.39%). Candle: ID:265, Time: 7:05, Close: 35.74
+2021-03-07 01:43:15 14      SPCE: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:15 14      SPCE: OrderId: test_order executed
+2021-03-07 01:43:15 20      SPCE: SPYKE!. Candle: ID:5636, Time: 11:30, Close: 36.31
+2021-03-07 01:43:16 16      Test name: DKNG_BBG00TCBG714_2021-01-28
+2021-03-07 01:43:16 20      DKNG: BuyPending. Strategy: MorningOpenStrategy. Price: 52. ChangeOpenToCurrent: -2.27. ChangePrevCloseToCurrent: -3.49. Candle: ID:9, Time: 7:00, Close: 52.
+2021-03-07 01:43:16 20      DKNG: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:16 20      DKNG: OrderId: test_order executed
+2021-03-07 01:43:16 20      DKNG: Morning closing. Close price: 52.61. CandleChange: -0.53%. ChangeFromCandleHigh: -0.74%. Profit: 0.61(1.17%). Candle: ID:89, Time: 7:10, Close: 52.61
+2021-03-07 01:43:16 20      DKNG: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:16 20      DKNG: OrderId: test_order executed
+2021-03-07 01:43:16 45      Test name: PINS_BBG002583CV8_2021-01-27
+2021-03-07 01:43:16 51      PINS: BuyPending. Strategy: MorningOpenStrategy. Price: 67.84. ChangeOpenToCurrent: -4.87. ChangePrevCloseToCurrent: -2.60. Candle: ID:9, Time: 7:00, Close: 67.84.
+2021-03-07 01:43:16 51      PINS: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:16 51      PINS: OrderId: test_order executed
+2021-03-07 01:43:16 51      PINS: Morning closing. Close price: 70. CandleChange: -0.43%. ChangeFromCandleHigh: -0.48%. Profit: 2.16(3.18%). Candle: ID:82, Time: 7:05, Close: 70
+2021-03-07 01:43:16 51      PINS: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:16 51      PINS: OrderId: test_order executed
+2021-03-07 01:43:16 76      Test name: ETRN_BBG00K53L394_2021-01-27
+2021-03-07 01:43:16 78      ETRN: BuyPending. Strategy: MorningOpenStrategy. Price: 6.71. ChangeOpenToCurrent: -2.61. ChangePrevCloseToCurrent: -1.32. Candle: ID:12, Time: 7:00, Close: 6.71.
+2021-03-07 01:43:16 78      ETRN: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:16 78      ETRN: OrderId: test_order executed
+2021-03-07 01:43:16 78      ETRN: Morning closing. Close price: 6.81. CandleChange: -0.15%. ChangeFromCandleHigh: -0.29%. Profit: 0.10(1.49%). Candle: ID:105, Time: 7:10, Close: 6.81
+2021-03-07 01:43:16 78      ETRN: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:16 78      ETRN: OrderId: test_order executed
+2021-03-07 01:43:16 88      Test name: BBBY_BBG000CSY9H9_2021-02-04
+2021-03-07 01:43:16 90      BBBY: BuyPending. Strategy: MorningOpenStrategy. Price: 27.01. ChangeOpenToCurrent: -3.22. ChangePrevCloseToCurrent: -3.02. Candle: ID:43, Time: 7:00, Close: 27.01.
+2021-03-07 01:43:16 90      BBBY: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:16 90      BBBY: OrderId: test_order executed
+2021-03-07 01:43:16 91      BBBY: Morning closing. Close price: 27.46. CandleChange: -0.04%. ChangeFromCandleHigh: -0.04%. Profit: 0.45(1.67%). Candle: ID:79, Time: 7:05, Close: 27.46
+2021-03-07 01:43:16 91      BBBY: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:16 91      BBBY: OrderId: test_order executed
+2021-03-07 01:43:17 06      Test name: F_BBG000BQPC32_2021-01-28
+2021-03-07 01:43:17 09      F: BuyPending. Strategy: MorningOpenStrategy. Price: 10.5. ChangeOpenToCurrent: -2.23. ChangePrevCloseToCurrent: -1.22. Candle: ID:9, Time: 7:00, Close: 10.5.
+2021-03-07 01:43:17 09      F: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:17 09      F: OrderId: test_order executed
+2021-03-07 01:43:17 09      F: Morning closing. Close price: 10.51. CandleChange: -0.38%. ChangeFromCandleHigh: -0.57%. Profit: 0.01(0.10%). Candle: ID:95, Time: 7:05, Close: 10.51
+2021-03-07 01:43:17 10      F: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:17 10      F: OrderId: test_order executed
+2021-03-07 01:43:17 26      Test name: PINS_BBG002583CV8_2021-02-02
+2021-03-07 01:43:17 28      PINS: BuyPending. Strategy: MorningOpenStrategy. Price: 69. ChangeOpenToCurrent: -2.97. ChangePrevCloseToCurrent: -2.40. Candle: ID:9, Time: 7:00, Close: 69.
+2021-03-07 01:43:17 28      PINS: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:17 28      PINS: SPYKE!. Candle: ID:10, Time: 7:00, Close: 68
+2021-03-07 01:43:17 28      PINS: OrderId: test_order executed
+2021-03-07 01:43:17 28      PINS: Morning closing. Close price: 69.8. CandleChange: -0.27%. ChangeFromCandleHigh: -0.29%. Profit: 0.8(1.16%). Candle: ID:122, Time: 7:05, Close: 69.8
+2021-03-07 01:43:17 28      PINS: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:17 28      PINS: OrderId: test_order executed
+2021-03-07 01:43:17 40      Test name: SPCE_BBG00HTN2CQ3_2021-01-25
+2021-03-07 01:43:17 53      SPCE: BuyPending. Strategy: MorningOpenStrategy. Price: 34. ChangeOpenToCurrent: -2.16. ChangePrevCloseToCurrent: -1.39. Candle: ID:9, Time: 7:00, Close: 34.
+2021-03-07 01:43:17 53      SPCE: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:17 53      SPCE: OrderId: test_order executed
+2021-03-07 01:43:17 53      SPCE: Morning closing. Close price: 34.07. CandleChange: -0.15%. ChangeFromCandleHigh: -0.15%. Profit: 0.07(0.21%). Candle: ID:499, Time: 7:05, Close: 34.07
+2021-03-07 01:43:17 53      SPCE: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:17 53      SPCE: OrderId: test_order executed
+2021-03-07 01:43:17 96      SPCE: SPYKE!. Candle: ID:45711, Time: 16:15, Close: 34.99
+2021-03-07 01:43:17 96      SPCE: SPYKE!. Candle: ID:45714, Time: 16:15, Close: 36.8
+2021-03-07 01:43:18 20      Test name: GE_BBG000BK6MB5_2021-01-26
+2021-03-07 01:43:18 27      GE: BuyPending. Strategy: MorningOpenStrategy. Price: 10.78. ChangeOpenToCurrent: -2.27. ChangePrevCloseToCurrent: -2.36. Candle: ID:18, Time: 7:00, Close: 10.78.
+2021-03-07 01:43:18 27      GE: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:18 27      GE: OrderId: test_order executed
+2021-03-07 01:43:18 27      GE: Morning closing. Close price: 10.81. CandleChange: -0.18%. ChangeFromCandleHigh: -0.18%. Profit: 0.03(0.28%). Candle: ID:95, Time: 7:05, Close: 10.81
+2021-03-07 01:43:18 27      GE: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:18 27      GE: OrderId: test_order executed
+2021-03-07 01:43:18 59      Test name: CHEF_BBG001MFW6D6_2020-12-14
+2021-03-07 01:43:18 59      CHEF: BuyPending. Strategy: MorningOpenStrategy. Price: 23.08. ChangeOpenToCurrent: -3.15. ChangePrevCloseToCurrent: -3.07. Candle: ID:9, Time: 7:00, Close: 23.08.
+2021-03-07 01:43:18 59      CHEF: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:18 59      CHEF: OrderId: test_order executed
+2021-03-07 01:43:18 59      CHEF: Morning closing. Close price: 24.07. CandleChange: 2.03%. ChangeFromCandleHigh: -1.03%. Profit: 0.99(4.29%). Candle: ID:46, Time: 7:05, Close: 24.07
+2021-03-07 01:43:18 59      CHEF: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:18 59      CHEF: OrderId: test_order executed
+2021-03-07 01:43:18 61      Test name: COTY_BBG000F395V1_2021-01-26
+2021-03-07 01:43:18 62      COTY: BuyPending. Strategy: MorningOpenStrategy. Price: 6.84. ChangeOpenToCurrent: -2.01. ChangePrevCloseToCurrent: -0.29. Candle: ID:17, Time: 7:00, Close: 6.84.
+2021-03-07 01:43:18 62      COTY: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:18 62      COTY: OrderId: test_order executed
+2021-03-07 01:43:18 62      COTY: Morning closing. Close price: 6.9. CandleChange: -0.14%. ChangeFromCandleHigh: -0.14%. Profit: 0.06(0.88%). Candle: ID:170, Time: 7:20, Close: 6.9
+2021-03-07 01:43:18 62      COTY: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:18 62      COTY: OrderId: test_order executed
+2021-03-07 01:43:18 65      Test name: ZGNX_BBG000VDC3G9_2021-01-22
+2021-03-07 01:43:18 68      ZGNX: BuyPending. Strategy: MorningOpenStrategy. Price: 18.21. ChangeOpenToCurrent: -3.04. ChangePrevCloseToCurrent: -0.60. Candle: ID:9, Time: 7:00, Close: 18.21.
+2021-03-07 01:43:18 68      ZGNX: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:18 68      ZGNX: OrderId: test_order executed
+2021-03-07 01:43:18 68      ZGNX: Morning closing. Close price: 18.29. CandleChange: -0.05%. ChangeFromCandleHigh: -0.22%. Profit: 0.08(0.44%). Candle: ID:55, Time: 7:10, Close: 18.29
+2021-03-07 01:43:18 68      ZGNX: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:18 68      ZGNX: OrderId: test_order executed
+2021-03-07 01:43:18 75      Test name: SWBI_BBG000BM0QL7_2020-12-16
+2021-03-07 01:43:18 75      SWBI: BuyPending. Strategy: MorningOpenStrategy. Price: 16.65. ChangeOpenToCurrent: -2.92. ChangePrevCloseToCurrent: -2.92. Candle: ID:9, Time: 7:00, Close: 16.65.
+2021-03-07 01:43:18 75      SWBI: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:18 75      SWBI: OrderId: test_order executed
+2021-03-07 01:43:18 75      SWBI: Morning closing. Close price: 16.8. CandleChange: -0.41%. ChangeFromCandleHigh: -0.41%. Profit: 0.15(0.90%). Candle: ID:66, Time: 7:05, Close: 16.8
+2021-03-07 01:43:18 75      SWBI: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:18 75      SWBI: OrderId: test_order executed
+2021-03-07 01:43:18 79      Test name: ZYXI_BBG000BJBXZ2_2021-01-25
+2021-03-07 01:43:18 81      ZYXI: BuyPending. Strategy: MorningOpenStrategy. Price: 17.2. ChangeOpenToCurrent: -2.27. ChangePrevCloseToCurrent: -0.98. Candle: ID:47, Time: 7:00, Close: 17.2.
+2021-03-07 01:43:18 81      ZYXI: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:18 81      ZYXI: OrderId: test_order executed
+2021-03-07 01:43:18 81      ZYXI: Morning closing. Close price: 17.25. CandleChange: -0.86%. ChangeFromCandleHigh: -0.86%. Profit: 0.05(0.29%). Candle: ID:134, Time: 7:05, Close: 17.25
+2021-03-07 01:43:18 81      ZYXI: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:18 81      ZYXI: OrderId: test_order executed
+2021-03-07 01:43:18 91      Test name: SPCE_BBG00HTN2CQ3_2020-12-10
+2021-03-07 01:43:18 95      SPCE: BuyPending. Strategy: MorningOpenStrategy. Price: 32.18. ChangeOpenToCurrent: -0.98. ChangePrevCloseToCurrent: -2.04. Candle: ID:13, Time: 7:00, Close: 32.18.
+2021-03-07 01:43:18 95      SPCE: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:18 95      SPCE: OrderId: test_order executed
+2021-03-07 01:43:18 95      SPCE: Morning closing. Close price: 32.35. CandleChange: -0.09%. ChangeFromCandleHigh: -0.15%. Profit: 0.17(0.53%). Candle: ID:514, Time: 7:10, Close: 32.35
+2021-03-07 01:43:18 95      SPCE: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:18 95      SPCE: OrderId: test_order executed
+2021-03-07 01:43:18 95      SPCE: SPYKE!. Candle: ID:678, Time: 7:15, Close: 32.0
+2021-03-07 01:43:19 18      Test name: TSLA_BBG000N9MNX3_2020-12-09
+2021-03-07 01:43:19 46      TSLA: BuyPending. Strategy: MorningOpenStrategy. Price: 642.0. ChangeOpenToCurrent: -2.02. ChangePrevCloseToCurrent: -2.03. Candle: ID:320, Time: 7:00, Close: 642.0.
+2021-03-07 01:43:19 46      TSLA: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:19 46      TSLA: OrderId: test_order executed
+2021-03-07 01:43:19 47      TSLA: Morning closing. Close price: 645.0. CandleChange: -0.31%. ChangeFromCandleHigh: -0.31%. Profit: 3.0(0.47%). Candle: ID:715, Time: 7:05, Close: 645.0
+2021-03-07 01:43:19 47      TSLA: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:19 47      TSLA: OrderId: test_order executed
+2021-03-07 01:43:20 87      Test name: ARCT_BBG00NNW8JK1_2021-02-03
+2021-03-07 01:43:20 88      ARCT: BuyPending. Strategy: MorningOpenStrategy. Price: 79.5. ChangeOpenToCurrent: -3.99. ChangePrevCloseToCurrent: 0.15. Candle: ID:12, Time: 7:00, Close: 79.5.
+2021-03-07 01:43:20 88      ARCT: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:20 88      ARCT: OrderId: test_order executed
+2021-03-07 01:43:20 88      ARCT: Morning closing. Close price: 81.05. CandleChange: -0.48%. ChangeFromCandleHigh: -0.49%. Profit: 1.55(1.95%). Candle: ID:40, Time: 7:05, Close: 81.05
+2021-03-07 01:43:20 88      ARCT: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:20 88      ARCT: OrderId: test_order executed
+2021-03-07 01:43:20 92      Test name: TSLA_BBG000N9MNX3_2020-12-10
+2021-03-07 01:43:21 17      TSLA: BuyPending. Strategy: MorningOpenStrategy. Price: 577.0. ChangeOpenToCurrent: -3.83. ChangePrevCloseToCurrent: -3.13. Candle: ID:9, Time: 7:00, Close: 577.0.
+2021-03-07 01:43:21 17      TSLA: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:21 17      TSLA: OrderId: test_order executed
+2021-03-07 01:43:21 17      TSLA: Morning closing. Close price: 585.7. CandleChange: -0.17%. ChangeFromCandleHigh: -0.17%. Profit: 8.7(1.51%). Candle: ID:640, Time: 7:05, Close: 585.7
+2021-03-07 01:43:21 17      TSLA: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:21 17      TSLA: OrderId: test_order executed
+2021-03-07 01:43:22 44      Test name: PBF_BBG002832GV8_2020-12-21
+2021-03-07 01:43:22 45      PBF: SPYKE!. Candle: ID:3, Time: 7:00, Close: 6.51
+2021-03-07 01:43:22 45      PBF: BuyPending. Strategy: MorningOpenStrategy. Price: 6.5. ChangeOpenToCurrent: -4.41. ChangePrevCloseToCurrent: -4.83. Candle: ID:9, Time: 7:00, Close: 6.5.
+2021-03-07 01:43:22 45      PBF: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:22 45      PBF: OrderId: test_order executed
+2021-03-07 01:43:22 46      PBF: Morning closing. Close price: 6.62. CandleChange: -0.30%. ChangeFromCandleHigh: -0.45%. Profit: 0.12(1.85%). Candle: ID:104, Time: 7:05, Close: 6.62
+2021-03-07 01:43:22 46      PBF: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:22 46      PBF: OrderId: test_order executed
+2021-03-07 01:43:22 52      Test name: DKNG_BBG00TCBG714_2020-12-09
+2021-03-07 01:43:22 55      DKNG: BuyPending. Strategy: MorningOpenStrategy. Price: 49.9. ChangeOpenToCurrent: -2.60. ChangePrevCloseToCurrent: -1.11. Candle: ID:9, Time: 7:00, Close: 49.9.
+2021-03-07 01:43:22 55      DKNG: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:22 55      DKNG: OrderId: test_order executed
+2021-03-07 01:43:22 55      DKNG: Morning closing. Close price: 50.17. CandleChange: -0.06%. ChangeFromCandleHigh: -0.06%. Profit: 0.27(0.54%). Candle: ID:62, Time: 7:05, Close: 50.17
+2021-03-07 01:43:22 55      DKNG: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:22 55      DKNG: OrderId: test_order executed
+2021-03-07 01:43:22 76      Test name: ABNB_BBG001Y2XS07_2021-01-22
+2021-03-07 01:43:22 79      ABNB: BuyPending. Strategy: MorningOpenStrategy. Price: 176.6. ChangeOpenToCurrent: -3.15. ChangePrevCloseToCurrent: -2.11. Candle: ID:22, Time: 7:00, Close: 176.6.
+2021-03-07 01:43:22 79      ABNB: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:22 79      ABNB: OrderId: test_order executed
+2021-03-07 01:43:22 79      ABNB: Morning closing. Close price: 177.08. CandleChange: -1.57%. ChangeFromCandleHigh: -1.57%. Profit: 0.48(0.27%). Candle: ID:47, Time: 7:05, Close: 177.08
+2021-03-07 01:43:22 79      ABNB: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:22 79      ABNB: OrderId: test_order executed
+2021-03-07 01:43:22 91      Test name: DBX_BBG0018SLDN0_2020-12-14
+2021-03-07 01:43:22 94      DBX: SPYKE!. Candle: ID:11, Time: 7:00, Close: 23.31
+2021-03-07 01:43:22 94      DBX: BuyPending. Strategy: MorningOpenStrategy. Price: 23.31. ChangeOpenToCurrent: -2.51. ChangePrevCloseToCurrent: -5.13. Candle: ID:12, Time: 7:00, Close: 23.31.
+2021-03-07 01:43:22 94      DBX: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:22 94      DBX: OrderId: test_order executed
+2021-03-07 01:43:22 94      DBX: Morning closing. Close price: 23.55. CandleChange: -0.17%. ChangeFromCandleHigh: -0.21%. Profit: 0.24(1.03%). Candle: ID:67, Time: 7:05, Close: 23.55
+2021-03-07 01:43:22 94      DBX: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:22 94      DBX: OrderId: test_order executed
+2021-03-07 01:43:23 07      Test name: TSLA_BBG000N9MNX3_2020-12-21
+2021-03-07 01:43:23 29      TSLA: BuyPending. Strategy: MorningOpenStrategy. Price: 664.61. ChangeOpenToCurrent: -2.26. ChangePrevCloseToCurrent: -2.01. Candle: ID:13, Time: 7:00, Close: 664.61.
+2021-03-07 01:43:23 29      TSLA: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:23 29      TSLA: OrderId: test_order executed
+2021-03-07 01:43:23 31      TSLA: Morning closing. Close price: 665.25. CandleChange: -0.01%. ChangeFromCandleHigh: -0.03%. Profit: 0.64(0.10%). Candle: ID:1704, Time: 7:10, Close: 665.25
+2021-03-07 01:43:23 31      TSLA: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:23 43      TSLA: OrderId: test_order executed
+2021-03-07 01:43:24 64      Test name: MAC_BBG000BL9C59_2021-01-20
+2021-03-07 01:43:24 65      MAC: BuyPending. Strategy: MorningOpenStrategy. Price: 14.46. ChangeOpenToCurrent: -3.02. ChangePrevCloseToCurrent: -0.55. Candle: ID:9, Time: 7:00, Close: 14.46.
+2021-03-07 01:43:24 65      MAC: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:24 65      MAC: OrderId: test_order executed
+2021-03-07 01:43:24 65      MAC: Morning closing. Close price: 14.54. CandleChange: -0.41%. ChangeFromCandleHigh: -0.41%. Profit: 0.08(0.55%). Candle: ID:26, Time: 7:10, Close: 14.54
+2021-03-07 01:43:24 65      MAC: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:24 65      MAC: OrderId: test_order executed
+2021-03-07 01:43:24 69      Test name: MFGP_BBG00HFWVGN0_2021-01-28
+2021-03-07 01:43:24 69      MFGP: BuyPending. Strategy: MorningOpenStrategy. Price: 5.82. ChangeOpenToCurrent: -3.00. ChangePrevCloseToCurrent: -1.69. Candle: ID:26, Time: 7:00, Close: 5.82.
+2021-03-07 01:43:24 69      MFGP: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:24 69      MFGP: OrderId: test_order executed
+2021-03-07 01:43:24 70      MFGP: Morning closing. Close price: 5.86. CandleChange: -0.34%. ChangeFromCandleHigh: -1.01%. Profit: 0.04(0.69%). Candle: ID:119, Time: 7:15, Close: 5.86
+2021-03-07 01:43:24 70      MFGP: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:24 70      MFGP: OrderId: test_order executed
+2021-03-07 01:43:24 73      Test name: MAC_BBG000BL9C59_2021-02-04
+2021-03-07 01:43:24 75      MAC: BuyPending. Strategy: MorningOpenStrategy. Price: 12.56. ChangeOpenToCurrent: -3.09. ChangePrevCloseToCurrent: 0.32. Candle: ID:9, Time: 7:00, Close: 12.56.
+2021-03-07 01:43:24 75      MAC: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:24 75      MAC: OrderId: test_order executed
+2021-03-07 01:43:24 76      MAC: Morning closing. Close price: 12.64. CandleChange: -0.08%. ChangeFromCandleHigh: -0.08%. Profit: 0.08(0.64%). Candle: ID:209, Time: 7:10, Close: 12.64
+2021-03-07 01:43:24 76      MAC: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:24 76      MAC: OrderId: test_order executed
+2021-03-07 01:43:24 91      Test name: ZYXI_BBG000BJBXZ2_2020-12-21
+2021-03-07 01:43:24 92      ZYXI: BuyPending. Strategy: MorningOpenStrategy. Price: 13.62. ChangeOpenToCurrent: -3.40. ChangePrevCloseToCurrent: -2.23. Candle: ID:9, Time: 7:00, Close: 13.62.
+2021-03-07 01:43:24 92      ZYXI: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:24 92      ZYXI: OrderId: test_order executed
+2021-03-07 01:43:24 92      ZYXI: Morning closing. Close price: 13.7. CandleChange: -0.36%. ChangeFromCandleHigh: -0.36%. Profit: 0.08(0.59%). Candle: ID:32, Time: 7:05, Close: 13.7
+2021-03-07 01:43:24 92      ZYXI: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:24 92      ZYXI: OrderId: test_order executed
+2021-03-07 01:43:24 94      Test name: EQT_BBG000BHZ5J9_2020-12-07
+2021-03-07 01:43:24 96      EQT: BuyPending. Strategy: MorningOpenStrategy. Price: 14.25. ChangeOpenToCurrent: -3.72. ChangePrevCloseToCurrent: 0.0. Candle: ID:9, Time: 7:00, Close: 14.25.
+2021-03-07 01:43:24 96      EQT: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:24 96      EQT: OrderId: test_order executed
+2021-03-07 01:43:24 96      EQT: Morning closing. Close price: 14.29. CandleChange: -0.07%. ChangeFromCandleHigh: -0.07%. Profit: 0.04(0.28%). Candle: ID:36, Time: 7:10, Close: 14.29
+2021-03-07 01:43:24 96      EQT: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:24 96      EQT: OrderId: test_order executed
+2021-03-07 01:43:25 01      Test name: PBF_BBG002832GV8_2021-01-19
+2021-03-07 01:43:25 02      PBF: BuyPending. Strategy: MorningOpenStrategy. Price: 8.15. ChangeOpenToCurrent: -3.89. ChangePrevCloseToCurrent: 0.12. Candle: ID:9, Time: 7:00, Close: 8.15.
+2021-03-07 01:43:25 02      PBF: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:25 02      PBF: OrderId: test_order executed
+2021-03-07 01:43:25 02      PBF: Morning closing. Close price: 8.19. CandleChange: -0.12%. ChangeFromCandleHigh: -0.12%. Profit: 0.04(0.49%). Candle: ID:36, Time: 7:05, Close: 8.19
+2021-03-07 01:43:25 02      PBF: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:25 02      PBF: OrderId: test_order executed
+2021-03-07 01:43:25 07      Test name: PBF_BBG002832GV8_2020-12-14
+2021-03-07 01:43:25 08      PBF: BuyPending. Strategy: MorningOpenStrategy. Price: 8.26. ChangeOpenToCurrent: -4.18. ChangePrevCloseToCurrent: 0.36. Candle: ID:28, Time: 7:00, Close: 8.26.
+2021-03-07 01:43:25 08      PBF: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:25 08      PBF: OrderId: test_order executed
+2021-03-07 01:43:25 08      PBF: Morning closing. Close price: 8.35. CandleChange: -0.48%. ChangeFromCandleHigh: -0.48%. Profit: 0.09(1.09%). Candle: ID:130, Time: 7:10, Close: 8.35
+2021-03-07 01:43:25 08      PBF: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:25 08      PBF: OrderId: test_order executed
+2021-03-07 01:43:25 16      Test name: NET_BBG001WMKHH5_2021-01-27
+2021-03-07 01:43:25 17      NET: BuyPending. Strategy: MorningOpenStrategy. Price: 73.7. ChangeOpenToCurrent: -6.83. ChangePrevCloseToCurrent: -5.84. Candle: ID:9, Time: 7:00, Close: 73.7.
+2021-03-07 01:43:25 17      NET: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:25 17      NET: OrderId: test_order executed
+2021-03-07 01:43:25 17      NET: Morning closing. Close price: 77. CandleChange: 1.38%. ChangeFromCandleHigh: -1.60%. Profit: 3.3(4.48%). Candle: ID:36, Time: 7:05, Close: 77
+2021-03-07 01:43:25 17      NET: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:25 17      NET: OrderId: test_order executed
+2021-03-07 01:43:25 26      Test name: PBI_BBG000BQTMJ9_2021-01-28
+2021-03-07 01:43:25 29      PBI: SPYKE!. Candle: ID:2, Time: 7:00, Close: 10.7
+2021-03-07 01:43:25 29      PBI: BuyPending. Strategy: MorningOpenStrategy. Price: 10.46. ChangeOpenToCurrent: -0.38. ChangePrevCloseToCurrent: -6.52. Candle: ID:9, Time: 7:00, Close: 10.46.
+2021-03-07 01:43:25 29      PBI: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:25 29      PBI: OrderId: test_order executed
+2021-03-07 01:43:25 29      PBI: SPYKE!. Candle: ID:16, Time: 7:00, Close: 10.75
+2021-03-07 01:43:25 29      PBI: SPYKE!. Candle: ID:19, Time: 7:00, Close: 10.5
+2021-03-07 01:43:25 29      PBI: Morning closing. Close price: 10.53. CandleChange: -0.09%. ChangeFromCandleHigh: -0.19%. Profit: 0.07(0.67%). Candle: ID:224, Time: 7:05, Close: 10.53
+2021-03-07 01:43:25 29      PBI: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:25 29      PBI: OrderId: test_order executed
+2021-03-07 01:43:25 31      PBI: SPYKE!. Candle: ID:1770, Time: 9:00, Close: 10.86
+2021-03-07 01:43:25 48      Test name: SPCE_BBG00HTN2CQ3_2020-12-21
+2021-03-07 01:43:25 52      SPCE: SPYKE!. Candle: ID:9, Time: 7:00, Close: 24.0
+2021-03-07 01:43:25 52      SPCE: BuyPending. Strategy: MorningOpenStrategy. Price: 24.0. ChangeOpenToCurrent: -2.76. ChangePrevCloseToCurrent: -0.95. Candle: ID:15, Time: 7:00, Close: 24.0.
+2021-03-07 01:43:25 52      SPCE: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:25 52      SPCE: OrderId: test_order executed
+2021-03-07 01:43:25 54      SPCE: Morning closing. Close price: 24.06. CandleChange: -0.08%. ChangeFromCandleHigh: -0.08%. Profit: 0.06(0.25%). Candle: ID:1242, Time: 7:20, Close: 24.06
+2021-03-07 01:43:25 54      SPCE: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:25 54      SPCE: OrderId: test_order executed
+2021-03-07 01:43:25 76      Test name: ATRA_BBG005Q3MQY4_2020-12-07
+2021-03-07 01:43:25 78      ATRA: SPYKE!. Candle: ID:4, Time: 7:00, Close: 26.0
+2021-03-07 01:43:25 85      Test name: SIG_BBG000C4ZZ10_2020-12-09
+2021-03-07 01:43:25 86      Test name: NTLA_BBG007KC7PB0_2020-12-14
+2021-03-07 01:43:25 88      NTLA: BuyPending. Strategy: MorningOpenStrategy. Price: 53.4. ChangeOpenToCurrent: -2.05. ChangePrevCloseToCurrent: 0.24. Candle: ID:9, Time: 7:00, Close: 53.4.
+2021-03-07 01:43:25 88      NTLA: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:25 88      NTLA: Cancel order. Candle: ID:13, Time: 7:05, Close: 54.99. Details: price change 2.98
+2021-03-07 01:43:25 91      Test name: FDX_BBG000BJF1Z8_2020-12-14
+2021-03-07 01:43:26 00      Test name: QDEL_BBG000C6GN04_2021-01-19
+2021-03-07 01:43:26 04      Test name: OXY_BBG000BQQ2S6_2020-12-21
+2021-03-07 01:43:26 07      OXY: BuyPending. Strategy: MorningOpenStrategy. Price: 18.31. ChangeOpenToCurrent: -1.77. ChangePrevCloseToCurrent: -2.45. Candle: ID:9, Time: 7:00, Close: 18.31.
+2021-03-07 01:43:26 07      OXY: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:26 07      OXY: OrderId: test_order executed
+2021-03-07 01:43:26 07      OXY: SPYKE!. Candle: ID:27, Time: 7:00, Close: 17.56
+2021-03-07 01:43:26 07      OXY: Morning closing. Close price: 17.62. Profit: -0.69(-3.77%). Candle: ID:315, Time: 7:20, Close: 17.62
+2021-03-07 01:43:26 07      OXY: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:26 07      OXY: OrderId: test_order executed
+2021-03-07 01:43:26 25      Test name: FSLY_BBG004NLQHL0_2021-01-28
+2021-03-07 01:43:26 26      FSLY: BuyPending. Strategy: MorningOpenStrategy. Price: 106. ChangeOpenToCurrent: -2.02. ChangePrevCloseToCurrent: -2.53. Candle: ID:27, Time: 7:00, Close: 106.
+2021-03-07 01:43:26 26      FSLY: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:26 26      FSLY: OrderId: test_order executed
+2021-03-07 01:43:26 27      FSLY: Morning closing. Close price: 105.16. Profit: -0.84(-0.79%). Candle: ID:125, Time: 7:20, Close: 105.16
+2021-03-07 01:43:26 27      FSLY: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:26 27      FSLY: OrderId: test_order executed
+2021-03-07 01:43:26 32      Test name: DAL_BBG000R7Z112_2020-12-21
+2021-03-07 01:43:26 35      DAL: BuyPending. Strategy: MorningOpenStrategy. Price: 40.0. ChangeOpenToCurrent: -1.60. ChangePrevCloseToCurrent: -2.15. Candle: ID:93, Time: 7:00, Close: 40.0.
+2021-03-07 01:43:26 35      DAL: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:26 35      DAL: OrderId: test_order executed
+2021-03-07 01:43:26 36      DAL: Morning closing. Close price: 39.4. Profit: -0.6(-1.50%). Candle: ID:581, Time: 7:20, Close: 39.4
+2021-03-07 01:43:26 36      DAL: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:26 36      DAL: OrderId: test_order executed
+2021-03-07 01:43:26 51      Test name: OIS_BBG000BDDN94_2021-01-06
+2021-03-07 01:43:26 52      OIS: BuyPending. Strategy: MorningOpenStrategy. Price: 5.77. ChangeOpenToCurrent: -2.04. ChangePrevCloseToCurrent: 0.17. Candle: ID:9, Time: 7:00, Close: 5.77.
+2021-03-07 01:43:26 52      OIS: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:26 52      OIS: OrderId: test_order executed
+2021-03-07 01:43:26 52      OIS: Morning closing. Close price: 5.71. Profit: -0.06(-1.04%). Candle: ID:49, Time: 7:20, Close: 5.71
+2021-03-07 01:43:26 52      OIS: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:26 52      OIS: OrderId: test_order executed
+2021-03-07 01:43:26 55      Test name: DIS_BBG000BH4R78_2021-01-28
+2021-03-07 01:43:26 60      DIS: BuyPending. Strategy: MorningOpenStrategy. Price: 162.63. ChangeOpenToCurrent: -2.02. ChangePrevCloseToCurrent: -0.23. Candle: ID:21, Time: 7:00, Close: 162.63.
+2021-03-07 01:43:26 60      DIS: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:26 60      DIS: OrderId: test_order executed
+2021-03-07 01:43:26 60      DIS: Morning closing. Close price: 161.43. Profit: -1.20(-0.74%). Candle: ID:73, Time: 7:20, Close: 161.43
+2021-03-07 01:43:26 60      DIS: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:26 60      DIS: OrderId: test_order executed
+2021-03-07 01:43:26 84      Test name: SPLK_BBG001C7TST4_2020-12-04
+2021-03-07 01:43:26 87      SPLK: BuyPending. Strategy: MorningOpenStrategy. Price: 161.0. ChangeOpenToCurrent: -4.37. ChangePrevCloseToCurrent: 0.37. Candle: ID:56, Time: 7:00, Close: 161.0.
+2021-03-07 01:43:26 87      SPLK: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:26 87      SPLK: OrderId: test_order executed
+2021-03-07 01:43:26 88      SPLK: Morning closing. Close price: 160.21. Profit: -0.79(-0.49%). Candle: ID:260, Time: 7:20, Close: 160.21
+2021-03-07 01:43:26 88      SPLK: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:26 88      SPLK: OrderId: test_order executed
+2021-03-07 01:43:27 02      Test name: MFGP_BBG00HFWVGN0_2020-12-21
+2021-03-07 01:43:27 04      MFGP: BuyPending. Strategy: MorningOpenStrategy. Price: 5.76. ChangeOpenToCurrent: -2.04. ChangePrevCloseToCurrent: -2.04. Candle: ID:13, Time: 7:00, Close: 5.76.
+2021-03-07 01:43:27 04      MFGP: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:27 04      MFGP: OrderId: test_order executed
+2021-03-07 01:43:27 04      MFGP: SPYKE!. Candle: ID:48, Time: 7:00, Close: 5.5
+2021-03-07 01:43:27 04      MFGP: SPYKE!. Candle: ID:49, Time: 7:00, Close: 5.4
+2021-03-07 01:43:27 04      MFGP: SPYKE!. Candle: ID:274, Time: 7:10, Close: 5.5
+2021-03-07 01:43:27 04      MFGP: SPYKE!. Candle: ID:278, Time: 7:10, Close: 5.68
+2021-03-07 01:43:27 04      MFGP: Morning closing. Close price: 5.68. Profit: -0.08(-1.39%). Candle: ID:351, Time: 7:20, Close: 5.68
+2021-03-07 01:43:27 04      MFGP: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:27 04      MFGP: OrderId: test_order executed
+2021-03-07 01:43:27 08      Test name: SPCE_BBG00HTN2CQ3_2021-01-20
+2021-03-07 01:43:27 12      SPCE: BuyPending. Strategy: MorningOpenStrategy. Price: 31.51. ChangeOpenToCurrent: -2.29. ChangePrevCloseToCurrent: -0.03. Candle: ID:10, Time: 7:00, Close: 31.51.
+2021-03-07 01:43:27 12      SPCE: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:27 12      SPCE: OrderId: test_order executed
+2021-03-07 01:43:27 14      SPCE: Morning closing. Close price: 31.3. Profit: -0.21(-0.67%). Candle: ID:935, Time: 7:20, Close: 31.3
+2021-03-07 01:43:27 14      SPCE: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:27 14      SPCE: OrderId: test_order executed
+2021-03-07 01:43:27 39      Test name: ET_BBG000BM2FL9_2020-12-15
+2021-03-07 01:43:27 40      ET: BuyPending. Strategy: MorningOpenStrategy. Price: 6.95. ChangeOpenToCurrent: -2.66. ChangePrevCloseToCurrent: -0.29. Candle: ID:9, Time: 7:00, Close: 6.95.
+2021-03-07 01:43:27 40      ET: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:27 40      ET: OrderId: test_order executed
+2021-03-07 01:43:27 40      ET: Morning closing. Close price: 6.92. Profit: -0.03(-0.43%). Candle: ID:82, Time: 7:20, Close: 6.92
+2021-03-07 01:43:27 40      ET: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:27 40      ET: OrderId: test_order executed
+2021-03-07 01:43:27 46      Test name: TER_BBG000BV4DR6_2021-01-28
+2021-03-07 01:43:27 49      TER: BuyPending. Strategy: MorningOpenStrategy. Price: 121.21. ChangeOpenToCurrent: -2.62. ChangePrevCloseToCurrent: -2.24. Candle: ID:12, Time: 7:00, Close: 121.21.
+2021-03-07 01:43:27 49      TER: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:27 49      TER: OrderId: test_order executed
+2021-03-07 01:43:27 49      TER: Morning closing. Close price: 120.87. Profit: -0.34(-0.28%). Candle: ID:79, Time: 7:20, Close: 120.87
+2021-03-07 01:43:27 49      TER: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:27 49      TER: OrderId: test_order executed
+2021-03-07 01:43:27 62      Test name: XOM_BBG000GZQ728_2020-12-21
+2021-03-07 01:43:27 65      XOM: BuyPending. Strategy: MorningOpenStrategy. Price: 41.98. ChangeOpenToCurrent: -1.48. ChangePrevCloseToCurrent: -2.05. Candle: ID:9, Time: 7:00, Close: 41.98.
+2021-03-07 01:43:27 65      XOM: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:27 65      XOM: OrderId: test_order executed
+2021-03-07 01:43:27 66      XOM: Morning closing. Close price: 41.06. Profit: -0.92(-2.19%). Candle: ID:396, Time: 7:20, Close: 41.06
+2021-03-07 01:43:27 66      XOM: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:27 66      XOM: OrderId: test_order executed
+2021-03-07 01:43:27 84      Test name: C_BBG000FY4S11_2020-12-21
+2021-03-07 01:43:27 87      C: BuyPending. Strategy: MorningOpenStrategy. Price: 61.11. ChangeOpenToCurrent: -1.07. ChangePrevCloseToCurrent: -2.19. Candle: ID:9, Time: 7:00, Close: 61.11.
+2021-03-07 01:43:27 87      C: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:27 87      C: OrderId: test_order executed
+2021-03-07 01:43:27 87      C: Morning closing. Close price: 60.79. Profit: -0.32(-0.52%). Candle: ID:148, Time: 7:20, Close: 60.79
+2021-03-07 01:43:27 87      C: OrderId: test_order. Details: Status - New, RejectReason -  
+2021-03-07 01:43:27 87      C: OrderId: test_order executed
+2021-03-07 01:43:28 11      Trade statistic. Total/Pos/Neg: 1/0/1; Profit: -0.32; Volume: 61.11; MaxVolume: 61.11; Commission: 0.060950;

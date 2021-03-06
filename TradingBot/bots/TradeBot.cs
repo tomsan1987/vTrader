@@ -275,14 +275,26 @@ namespace TradingBot
                     }
                     else
                     {
-                        // check if price changed is not significantly
-                        var change = Helpers.GetChangeInPercent(tradeData.SellPrice, candle.Close);
-                        if (change <= -0.2m)
+                        bool cancel = true;
+                        if (tradeData.Strategy is MorningOpenStrategy)
                         {
-                            Logger.Write("{0}: Cancel order. {1}. Details: price change {2}", instrument.Ticker, Helpers.CandleDesc(_candles[figi].Raw.Count - 1, candle), change);
+                            if (tradeData.Strategy.Process(instrument, tradeData, _candles[figi]) != IStrategy.StrategyResultType.CancelOrder)
+                            {
+                                cancel = false;
+                            }
+                        }
 
-                            await _context.CancelOrderAsync(tradeData.OrderId);
-                            tradeData.Status = Status.BuyDone;
+                        if (cancel)
+                        {
+                            // check if price changed is not significantly
+                            var change = Helpers.GetChangeInPercent(tradeData.SellPrice, candle.Close);
+                            if (change <= -0.2m)
+                            {
+                                Logger.Write("{0}: Cancel order. {1}. Details: price change {2}", instrument.Ticker, Helpers.CandleDesc(_candles[figi].Raw.Count - 1, candle), change);
+
+                                await _context.CancelOrderAsync(tradeData.OrderId);
+                                tradeData.Status = Status.BuyDone;
+                            }
                         }
                     }
                 }

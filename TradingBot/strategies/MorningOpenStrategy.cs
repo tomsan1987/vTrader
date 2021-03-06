@@ -115,15 +115,38 @@ namespace TradingBot
 
         private IStrategy.StrategyResultType OnStatusBuyDone(MarketInstrument instrument, TradeData tradeData, Quotes quotes)
         {
+            // TODO: this is need to be improved to follow trend
+
             var candles = quotes.Candles;
             var candle = candles[candles.Count - 1];
 
-            if (candle.Time.Hour >= 7 && candle.Time.Minute >= 5)
+            var profit = Helpers.GetChangeInPercent(tradeData.BuyPrice, candle.Close);
+
+            // if price is growing - waiting
+            var candleChange = Helpers.GetChangeInPercent(candle);
+            var changeFromMax = Helpers.GetChangeInPercent(candle.High, candle.Close);
+
+            const decimal changeThreshold = 0.0m;
+            // const decimal changeThreshold = -0.2m; // suspicuous change, try when more test cases
+            if (candleChange >= changeThreshold && changeFromMax > -1.0m)
+                return IStrategy.StrategyResultType.NoOp;
+
+            if (candle.Time.Hour >= 7 && candle.Time.Minute >= 5 && profit >= 0.1m)
             {
                 // just sell per current price
                 tradeData.SellPrice = candle.Close;
+                Logger.Write("{0}: Morning closing. Close price: {1}. CandleChange: {2}%. ChangeFromCandleHigh: {3}%. Profit: {4}({5}%). {6}",
+                    instrument.Ticker, tradeData.SellPrice, candleChange, changeFromMax, tradeData.SellPrice - tradeData.BuyPrice, profit, Helpers.CandleDesc(quotes.Raw.Count - 1, candle));
+
+                return IStrategy.StrategyResultType.Sell;
+            }
+
+            if (candle.Time.Hour >= 7 && candle.Time.Minute > 15)
+            {
+                // we have waited 20 minutes in hope to profit, just sell per current price
+                tradeData.SellPrice = candle.Close;
                 Logger.Write("{0}: Morning closing. Close price: {1}. Profit: {2}({3}%). {4}",
-                    instrument.Ticker, tradeData.SellPrice, tradeData.SellPrice - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, tradeData.SellPrice), Helpers.CandleDesc(quotes.Raw.Count - 1, candle));
+                    instrument.Ticker, tradeData.SellPrice, tradeData.SellPrice - tradeData.BuyPrice, profit, Helpers.CandleDesc(quotes.Raw.Count - 1, candle));
 
                 return IStrategy.StrategyResultType.Sell;
             }
