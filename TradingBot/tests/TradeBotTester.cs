@@ -38,7 +38,7 @@ namespace TradingBot
             TearDown();
         }
 
-        private void RunPositiveTests()
+        private void RunPositiveTestsImpulseStrategy()
         {
             _writer.WriteLine("_______________POSITIVE TESTS_______________");
 
@@ -156,7 +156,7 @@ namespace TradingBot
             _basePath = basePath;
         }
 
-        private void RunNegativeTests()
+        private void RunNegativeTestsImpulseStrategy()
         {
             _writer.WriteLine("_______________NEGATIVE TESTS_______________");
 
@@ -193,6 +193,100 @@ namespace TradingBot
             Test("PBF_BBG002832GV8_2020-12-08", 1, -0.2m); // just minimize losses
 
 
+            _basePath = basePath;
+        }
+
+        private void RunPositiveTestsMorningOpenStrategy()
+        {
+            _writer.WriteLine("_______________POSITIVE TESTS_______________");
+
+            var basePath = _basePath;
+            _basePath += "Positive\\";
+
+            Test("SPCE_BBG00HTN2CQ3_2021-01-28", 1, 3.0m); // just lucky now
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+
+            _basePath = basePath;
+        }
+
+        private void RunNegativeTestsMorningOpenStrategy()
+        {
+            _writer.WriteLine("_______________NEGATIVE TESTS_______________");
+
+            var basePath = _basePath;
+            _basePath += "NEGATIVE\\";
+
+            Test("ATRA_BBG005Q3MQY4_2020-12-07", 0, 0.0m); // should not buy this: big grow from open
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
             _basePath = basePath;
         }
 
@@ -233,6 +327,9 @@ namespace TradingBot
 
         private void Test(string testName, int orders, decimal profit)
         {
+            if (testName.Length == 0)
+                return;
+
             Logger.Write("Test name: " + testName);
             _writer.WriteLine(testName);
 
@@ -277,27 +374,36 @@ namespace TradingBot
 
         private void TestMorningOpenStrategy()
         {
-            var stat = _bot.TradeByHistory(_options.Get<string>("CandlesPath"), _options.Get<string>("OutputFolder"));
+            //RunPositiveTestsMorningOpenStrategy();
+            //RunNegativeTestsMorningOpenStrategy();
 
-            // log results
-            foreach (var it in stat)
-            {
-                _writer.WriteLine(it.Key); // test name
-                _writer.WriteLine(it.Value.totalProfit >= 0 ? "PASSED" : "FAILED");
-                _writer.WriteLine("TotalOrders: " + it.Value.totalOrders);
-                _writer.WriteLine("TotalProfit: " + it.Value.totalProfit);
 
-                _totalOrders += it.Value.totalOrders;
-                _totalProfit += it.Value.totalProfit;
+            Test("SPCE_BBG00HTN2CQ3_2020-12-14", 1, 0.0m);
+            Test("", 1, 0.0m);
+            Test("", 1, 0.0m);
 
-                _writer.WriteLine("");
-            }
+            // all data test
+            //var stat = _bot.TradeByHistory(_options.Get<string>("CandlesPath"), _options.Get<string>("OutputFolder"));
+
+            //// log results
+            //foreach (var it in stat)
+            //{
+            //    _writer.WriteLine(it.Key); // test name
+            //    _writer.WriteLine(it.Value.totalProfit >= 0 ? "PASSED" : "FAILED");
+            //    _writer.WriteLine("TotalOrders: " + it.Value.totalOrders);
+            //    _writer.WriteLine("TotalProfit: " + it.Value.totalProfit);
+
+            //    _totalOrders += it.Value.totalOrders;
+            //    _totalProfit += it.Value.totalProfit;
+
+            //    _writer.WriteLine("");
+            //}
         }
 
         private void TestImpulseStrategy()
         {
-            RunPositiveTests();
-            RunNegativeTests();
+            RunPositiveTestsImpulseStrategy();
+            RunNegativeTestsImpulseStrategy();
 
             // bad
             //Test("UPWK_BBG00FBJ6390_2021-01-27", 1, 0m);
