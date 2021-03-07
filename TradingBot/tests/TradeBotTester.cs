@@ -385,8 +385,8 @@ namespace TradingBot
 
         private void TestMorningOpenStrategy()
         {
-            RunPositiveTestsMorningOpenStrategy();
-            RunNegativeTestsMorningOpenStrategy();
+            //RunPositiveTestsMorningOpenStrategy();
+            //RunNegativeTestsMorningOpenStrategy();
 
             //Test("AMCX_BBG000H01H92_2021-01-28", 1, 0.0m); // improve me: open gap down and go down more
             //Test("SNAP_BBG00441QMJ7_2021-01-28", 1, 0.0m); // improve me: do not makes sense when big gap down but price is close to open price
@@ -413,21 +413,21 @@ namespace TradingBot
             Test("", 1, 0.0m);
 
             // all data test
-            //var stat = _bot.TradeByHistory(_options.Get<string>("CandlesPath"), _options.Get<string>("OutputFolder"));
+            var stat = _bot.TradeByHistory(_options.Get<string>("CandlesPath"), _options.Get<string>("OutputFolder"));
 
-            //// log results
-            //foreach (var it in stat)
-            //{
-            //    _writer.WriteLine(it.Key); // test name
-            //    _writer.WriteLine(it.Value.totalProfit >= 0 ? "PASSED" : "FAILED");
-            //    _writer.WriteLine("TotalOrders: " + it.Value.totalOrders);
-            //    _writer.WriteLine("TotalProfit: " + it.Value.totalProfit);
+            // log results
+            foreach (var it in stat)
+            {
+                _writer.WriteLine(it.Key); // test name
+                _writer.WriteLine(it.Value.totalProfit >= 0 ? "PASSED" : "FAILED");
+                _writer.WriteLine("TotalOrders: " + it.Value.totalOrders);
+                _writer.WriteLine("TotalProfit: " + it.Value.totalProfit);
 
-            //    _totalOrders += it.Value.totalOrders;
-            //    _totalProfit += it.Value.totalProfit;
+                _totalOrders += it.Value.totalOrders;
+                _totalProfit += it.Value.totalProfit;
 
-            //    _writer.WriteLine("");
-            //}
+                _writer.WriteLine("");
+            }
         }
 
         private void TestImpulseStrategy()

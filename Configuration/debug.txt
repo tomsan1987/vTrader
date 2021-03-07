@@ -1,1 +1,6 @@
-mode="TestRocketBot" DumpQuotes=false SubscribeQuotes=false Token="..\..\..\..\Configuration\token.txt" ConfigPath="..\..\..\..\Configuration\config.json" CandlesPath="..\..\..\..\TestData\RawQuotes\5m\uncompressed\quotes_2020-12-03"
+mode="TestTradeBot" Strategies="MorningOpenStrategy" DumpQuotes=false SubscribeQuotes=false Token="..\..\..\..\Configuration\token.txt" ConfigPath="..\..\..\..\Configuration\usd.json" CandlesPath="..\..\..\..\TestData\RawQuotes\5m\uncompressed\quotes_2021-02-04"
+mode="TestMode" CandlesPath="..\..\..\..\TestData\RawQuotes\5m\uncompressed" OutputFolder=""..\..\..\..\Tests\MorningOpenStrategy"
+mode="RunTests" Token="..\..\..\..\Configuration\token.txt" ConfigPath="..\..\..\..\Configuration\usd.json" CandlesPath="C:\tinkoff\Tests"
+
+
+mode="RunTests" Token="..\..\..\..\Configuration\token.txt" ConfigPath="..\..\..\..\Configuration\usd.json" CandlesPath="C:\tinkoff\Tests\MorningOpenStrategy\Data" Strategies="MorningOpenStrategy"
