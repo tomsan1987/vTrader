@@ -212,7 +212,7 @@ namespace TradingBot
                 else if (tradeData.Status == Status.BuyPending)
                 {
                     // check if limited order executed
-                    if (await IsOrderExecuted(figi, tradeData.OrderId))
+                    if (await IsOrderExecuted(instrument.Ticker, figi, tradeData.OrderId))
                     {
                         // order executed
                         tradeData.Status = Status.BuyDone;
@@ -266,7 +266,7 @@ namespace TradingBot
                 else if (tradeData.Status == Status.SellPending)
                 {
                     // check if limited order executed
-                    if (await IsOrderExecuted(figi, tradeData.OrderId))
+                    if (await IsOrderExecuted(instrument.Ticker, figi, tradeData.OrderId))
                     {
                         // order executed
                         Logger.Write("{0}: OrderId: {1} executed", instrument.Ticker, tradeData.OrderId);
@@ -341,7 +341,7 @@ namespace TradingBot
                         case Status.BuyPending:
                             {
                                 var instrument = _figiToInstrument[it.Key];
-                                if (await IsOrderExecuted(it.Key, tradeData.OrderId))
+                                if (await IsOrderExecuted(instrument.Ticker, it.Key, tradeData.OrderId))
                                 {
                                     var price = candle.Close - 2 * instrument.MinPriceIncrement;
                                     var order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, price, _accountId);
@@ -380,7 +380,7 @@ namespace TradingBot
             }
         }
 
-        private async Task<bool> IsOrderExecuted(string figi, string orderId)
+        private async Task<bool> IsOrderExecuted(string ticker, string figi, string orderId)
         {
             var tradeData = _tradeData[figi];
             var rawData = _candles[figi].Raw;
@@ -403,6 +403,8 @@ namespace TradingBot
                 if (_settings.FakeConnection)
                     return true;
 
+                Logger.Write("{0}: OrderID: {1} may be executed", ticker, orderId);
+
                 //if (_candles[figi].Raw.Count < tradeData.CandleID + 5)
                 //    return false;
 
@@ -422,6 +424,8 @@ namespace TradingBot
                 bool foundInPortfolio = false;
                 if (!foundInOrderList)
                 {
+                    Logger.Write("{0}: OrderID: {1} not found in order list", ticker, orderId);
+
                     var positions = _context.PortfolioAsync(_accountId).Result.Positions;
                     foreach (var it in positions)
                     {
