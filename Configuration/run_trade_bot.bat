@@ -1,1 +1,1 @@
-..\TradingBot\bin\Release\netcoreapp3.1\TradingBot.exe mode="TradeBot" FakeConnection=false DumpQuotes=false SubscribeQuotes=true Strategies="GoodGrowStrategy" RequestCandlesHistory=true Token="token.txt" ConfigPath="usd.json"
+..\TradingBot\bin\Release\netcoreapp3.1\TradingBot.exe mode="TradeBot" FakeConnection=false DumpQuotes=true SubscribeQuotes=true Strategies="MorningOpenStrategy" RequestCandlesHistory=false Token="token.txt" ConfigPath="usd.json"

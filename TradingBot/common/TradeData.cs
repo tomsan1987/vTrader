@@ -18,6 +18,7 @@ namespace TradingBot
         public IStrategyData StrategyData { get; set; }
         public Trend Trend { get; set; }
         public bool DisabledTrading { get; set; } = false;
+        public int CandleID{ get; set; } // ID of candle where last operation was done
 
         public TradeData()
         {
@@ -40,6 +41,7 @@ namespace TradingBot
             StrategyData = null;
             Trend = null;
             DisabledTrading = false;
+            CandleID = 0;
 
             if (full)
                 Time = DateTime.Today.AddYears(-10).ToUniversalTime();

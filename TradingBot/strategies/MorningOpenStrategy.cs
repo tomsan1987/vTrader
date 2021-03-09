@@ -42,6 +42,10 @@ namespace TradingBot
             if ((candle.Time.Hour != 7 && candle.Time.Hour != 4) || candle.Time.Minute != 0)
                 return IStrategy.StrategyResultType.NoOp;
 
+            // make sure that it will not market open at 4h: on market open we onl can have previous day close candle and current candle
+            if (candle.Time.Hour == 7 && candles.Count > 2)
+                return IStrategy.StrategyResultType.NoOp;
+
             if (quotes.Raw.Count < 10)
                 return IStrategy.StrategyResultType.NoOp;
 

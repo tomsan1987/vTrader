@@ -204,6 +204,7 @@ namespace TradingBot
                             tradeData.Status = Status.BuyPending;
                             tradeData.Time = candle.Time;
                             tradeData.BuyTime = candle.Time;
+                            tradeData.CandleID = _candles[figi].Raw.Count;
                             Logger.Write("{0}: OrderId: {1}. Details: Status - {2}, RejectReason -  {3}", instrument.Ticker, tradeData.OrderId, placedOrder.Status.ToString(), placedOrder.RejectReason);
                         }
                     }
@@ -243,6 +244,7 @@ namespace TradingBot
                                 tradeData.OrderId = null;
                                 tradeData.BuyPrice = 0;
                                 tradeData.Status = Status.Watching;
+                                tradeData.CandleID = 0;
                                 tradeData.Time = candle.Time.AddMinutes(-15); // this is for try to buy it again
                             }
                         }
@@ -380,28 +382,64 @@ namespace TradingBot
 
         private async Task<bool> IsOrderExecuted(string figi, string orderId)
         {
-            if (_settings.FakeConnection)
+            var tradeData = _tradeData[figi];
+            var rawData = _candles[figi].Raw;
+
+            if (tradeData.Status != Status.BuyPending && tradeData.Status != Status.SellPending)
+                throw new Exception("Wrong trade data status on checking order execution!");
+
+            bool maybeExecuted = false;
+            for (int i = tradeData.CandleID; i < rawData.Count; ++i)
             {
-                var tradeData = _tradeData[figi];
-                var candle = _candles[figi].Candles[_candles[figi].Candles.Count - 1];
-                if (tradeData.Status == Status.BuyPending)
-                    return candle.Close <= tradeData.BuyPrice;
-                else if (tradeData.Status == Status.SellPending)
-                    return candle.Close >= tradeData.SellPrice;
-                else
-                    throw new Exception("Wrong trade data status on checking order execution!");
+                if (tradeData.Status == Status.BuyPending && rawData[i].Price <= tradeData.BuyPrice)
+                    maybeExecuted = true;
+                else if (tradeData.Status == Status.SellPending && rawData[i].Price >= tradeData.SellPrice)
+                    maybeExecuted = true;
             }
-            else
+
+            if (maybeExecuted)
             {
+                // when test mode and price reached - will think that order was executed
+                if (_settings.FakeConnection)
+                    return true;
+
+                //if (_candles[figi].Raw.Count < tradeData.CandleID + 5)
+                //    return false;
+
+                // price was reached, we need to make sure that instrument added to portfolio and order was executed
+                bool foundInOrderList = false;
                 var orders = await _context.OrdersAsync();
                 foreach (var order in orders)
                 {
                     if (order.OrderId == orderId)
-                        return false;
+                    {
+                        foundInOrderList = true;
+                        break;
+                    }
                 }
+
+                // check the portfolio
+                bool foundInPortfolio = false;
+                if (!foundInOrderList)
+                {
+                    var positions = _context.PortfolioAsync(_accountId).Result.Positions;
+                    foreach (var it in positions)
+                    {
+                        if (it.Figi == figi)
+                        {
+                            foundInPortfolio = true;
+                            break;
+                        }
+                    }
+                }
+
+                var fullyExecuted = !foundInOrderList;
+                fullyExecuted |= (tradeData.Status == Status.BuyPending && foundInPortfolio) || (tradeData.Status == Status.SellPending && !foundInPortfolio);
+
+                return fullyExecuted;
             }
 
-            return true;
+            return false;
         }
 
         protected override void OnStreamingEventReceived(object s, StreamingEventReceivedEventArgs e)

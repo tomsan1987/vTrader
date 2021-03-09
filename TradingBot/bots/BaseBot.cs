@@ -242,42 +242,9 @@ namespace TradingBot
                 _lastCandleReceived = DateTime.Now;
 
                 var cr = (CandleResponse)e.Response;
-                var candles = _candles[cr.Payload.Figi];
+                AddNewCandle(cr.Payload);
 
-                if (candles.Candles.Count > 0 && candles.Candles[candles.Candles.Count - 1].Time == cr.Payload.Time)
-                {
-                    // update
-                    var volume = cr.Payload.Volume - candles.Candles[candles.Candles.Count - 1].Volume;
-                    candles.Candles[candles.Candles.Count - 1] = cr.Payload;
-                    candles.Raw.Add(new Quotes.Quote(cr.Payload.Close, volume, cr.Payload.Time));
-                }
-                else
-                {
-                    decimal avg = 0;
-                    int candlesCount = 0;
-                    for (int i = Math.Max(1, candles.Candles.Count - 12); i < candles.Candles.Count; ++i)
-                    {
-                        var candle = candles.Candles[i];
-                        if (candle.Volume > 50)
-                        {
-                            avg += Math.Abs(Helpers.GetChangeInPercent(candle));
-                            ++candlesCount;
-                        }
-                    }
-
-                    if (candlesCount > 0)
-                        candles.AvgCandleChange = Math.Round(avg / candlesCount, 2);
-
-                    // add new one
-                    candles.Candles.Add(cr.Payload);
-                    candles.Raw.Add(new Quotes.Quote(cr.Payload.Close, cr.Payload.Volume, cr.Payload.Time));
-                    candles.RawPosStart.Add(candles.Raw.Count);
-                }
-
-                candles.DayMax = Math.Max(candles.DayMax, cr.Payload.Close);
-                candles.DayMin = Math.Min(candles.DayMin, cr.Payload.Close);
-
-                candles.QuoteLogger.onQuoteReceived(cr.Payload);
+                _candles[cr.Payload.Figi].QuoteLogger.onQuoteReceived(cr.Payload);
             }
             else
             {
@@ -357,7 +324,9 @@ namespace TradingBot
                             if (DateTime.Now.Hour < 3) // in case app run after midnight
                                 sessionBegin = sessionBegin.AddDays(-1);
                             var candleList = await _context.MarketCandlesAsync(figi, sessionBegin, DateTime.Now, CandleInterval.FiveMinutes);
-                            _candles[figi].Candles = candleList.Candles;
+
+                            foreach (var it in candleList.Candles)
+                                AddNewCandle(it);
 
                             ok = true;
                         }
@@ -394,6 +363,44 @@ namespace TradingBot
                 var figi = _tickerToFigi[ticker];
                 _candles.Add(figi, new Quotes(figi, ticker, _settings.DumpQuotes));
             }
+        }
+
+        private void AddNewCandle(CandlePayload candle)
+        {
+            var candles = _candles[candle.Figi];
+
+            if (candles.Candles.Count > 0 && candles.Candles[candles.Candles.Count - 1].Time == candle.Time)
+            {
+                // update
+                var volume = candle.Volume - candles.Candles[candles.Candles.Count - 1].Volume;
+                candles.Candles[candles.Candles.Count - 1] = candle;
+                candles.Raw.Add(new Quotes.Quote(candle.Close, volume, candle.Time));
+            }
+            else
+            {
+                decimal avg = 0;
+                int candlesCount = 0;
+                for (int i = Math.Max(1, candles.Candles.Count - 12); i < candles.Candles.Count; ++i)
+                {
+                    var c = candles.Candles[i];
+                    if (c.Volume > 50)
+                    {
+                        avg += Math.Abs(Helpers.GetChangeInPercent(c));
+                        ++candlesCount;
+                    }
+                }
+
+                if (candlesCount > 0)
+                    candles.AvgCandleChange = Math.Round(avg / candlesCount, 2);
+
+                // add new one
+                candles.Candles.Add(candle);
+                candles.Raw.Add(new Quotes.Quote(candle.Close, candle.Volume, candle.Time));
+                candles.RawPosStart.Add(candles.Raw.Count);
+            }
+
+            candles.DayMax = Math.Max(candles.DayMax, candle.Close);
+            candles.DayMin = Math.Min(candles.DayMin, candle.Close);
         }
     }
 }
