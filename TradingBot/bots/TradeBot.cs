@@ -223,24 +223,21 @@ namespace TradingBot
                     }
                     else
                     {
-                        bool cancel = true;
-                        if (tradeData.Strategy is MorningOpenStrategy)
+                        if (tradeData.Strategy.Process(instrument, tradeData, _candles[figi]) == IStrategy.StrategyResultType.CancelOrder)
                         {
-                            if (tradeData.Strategy.Process(instrument, tradeData, _candles[figi]) != IStrategy.StrategyResultType.CancelOrder)
+                            bool successed = false;
+                            try
                             {
-                                cancel = false;
-                            }
-                        }
-
-                        if (cancel)
-                        {
-                            // check if price changed is not significantly
-                            var change = Helpers.GetChangeInPercent(tradeData.BuyPrice, candle.Close);
-                            if (change >= 0.5m)
-                            {
-                                Logger.Write("{0}: Cancel order. {1}. Details: price change {2}", instrument.Ticker, Helpers.CandleDesc(_candles[figi].Raw.Count - 1, candle), change);
-
                                 await _context.CancelOrderAsync(tradeData.OrderId);
+                                successed = true;
+                            }
+                            catch (OpenApiException e)
+                            {
+                                Logger.Write("OpenApiException while canchel order: " + e.Message);
+                            }
+
+                            if (successed)
+                            {
                                 tradeData.OrderId = null;
                                 tradeData.BuyPrice = 0;
                                 tradeData.Status = Status.Watching;
@@ -313,7 +310,7 @@ namespace TradingBot
             }
             catch (OpenApiException e)
             {
-                Logger.Write(e.Message);
+                Logger.Write("OpenApiException: " + e.Message);
 
                 // seems timeout, disable operations for 15 seconds
                 if (e.HttpStatusCode == System.Net.HttpStatusCode.TooManyRequests)

@@ -16,6 +16,10 @@ namespace TradingBot
             {
                 return OnStatusWatching(instrument, tradeData, quotes);
             }
+            else if (tradeData.Status == Status.BuyPending)
+            {
+                return OnStatusBuyPending(instrument, tradeData, quotes);
+            }
             else if (tradeData.Status == Status.BuyDone)
             {
                 return OnStatusBuyDone(instrument, tradeData, quotes);
@@ -187,6 +191,22 @@ namespace TradingBot
             }
 
             return TrendFallback(instrument, tradeData, quotes);
+        }
+
+        private IStrategy.StrategyResultType OnStatusBuyPending(MarketInstrument instrument, TradeData tradeData, Quotes quotes)
+        {
+            var candles = quotes.Candles;
+            var candle = candles[candles.Count - 1];
+
+            // check if price changed is not significantly
+            var change = Helpers.GetChangeInPercent(tradeData.BuyPrice, candle.Close);
+            if (change >= 0.5m)
+            {
+                Logger.Write("{0}: Cancel order. {1}. Details: price change {2}", instrument.Ticker, Helpers.CandleDesc(quotes.Raw.Count - 1, candle), change);
+                return IStrategy.StrategyResultType.CancelOrder;
+            }
+
+            return IStrategy.StrategyResultType.NoOp;
         }
 
         private IStrategy.StrategyResultType OnStatusBuyDone(MarketInstrument instrument, TradeData tradeData, Quotes quotes)

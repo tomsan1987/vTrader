@@ -112,7 +112,10 @@ namespace TradingBot
             var candle = candles[candles.Count - 1];
 
             if (tradeData.BuyTime.AddMinutes(5) <= candle.Time)
+            {
+                Logger.Write("{0}: Cancel order. Did not bought at market open. {1}", instrument.Ticker, Helpers.CandleDesc(quotes.Raw.Count - 1, candle));
                 return IStrategy.StrategyResultType.CancelOrder;
+            }
 
             return IStrategy.StrategyResultType.NoOp;
         }
