@@ -111,7 +111,7 @@ namespace TradingBot
             var candles = quotes.Candles;
             var candle = candles[candles.Count - 1];
 
-            if (candle.Time.Hour >= 7 && candle.Time.Minute >= 5)
+            if (tradeData.BuyTime.AddMinutes(5) <= candle.Time)
                 return IStrategy.StrategyResultType.CancelOrder;
 
             return IStrategy.StrategyResultType.NoOp;
@@ -135,7 +135,7 @@ namespace TradingBot
             if (candleChange >= changeThreshold && changeFromMax > -1.0m)
                 return IStrategy.StrategyResultType.NoOp;
 
-            if (candle.Time.Hour >= 7 && candle.Time.Minute >= 5 && profit >= 0.1m)
+            if (candle.Time >= tradeData.BuyTime.AddMinutes(5) && profit >= 0.1m)
             {
                 // just sell per current price
                 tradeData.SellPrice = candle.Close;
@@ -145,11 +145,11 @@ namespace TradingBot
                 return IStrategy.StrategyResultType.Sell;
             }
 
-            if (candle.Time.Hour >= 7 && candle.Time.Minute > 15)
+            if (candle.Time > tradeData.BuyTime.AddMinutes(15))
             {
                 // we have waited 20 minutes in hope to profit, just sell per current price
                 tradeData.SellPrice = candle.Close;
-                Logger.Write("{0}: Morning closing. Close price: {1}. Profit: {2}({3}%). {4}",
+                Logger.Write("{0}: Morning closing by timeout. Close price: {1}. Profit: {2}({3}%). {4}",
                     instrument.Ticker, tradeData.SellPrice, tradeData.SellPrice - tradeData.BuyPrice, profit, Helpers.CandleDesc(quotes.Raw.Count - 1, candle));
 
                 return IStrategy.StrategyResultType.Sell;

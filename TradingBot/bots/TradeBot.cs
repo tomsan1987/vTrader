@@ -503,7 +503,7 @@ namespace TradingBot
                     Logger.Write(fileName);
 
                     // read history candles
-                    var candleList = ReadCandles(file.FullName);
+                    var candleList = ReadCandles(file.FullName, figi);
                     totalCandles += candleList.Count;
                     foreach (var candle in candleList)
                     {
@@ -569,8 +569,9 @@ namespace TradingBot
             return _stats;
         }
 
-
-        static public List<CandlePayload> ReadCandles(string filePath)
+        // actualFigi - it is possible that figi has been changed for ticker. 
+        // In this case we will read history data and initialize it with incorrect figi. Pass actual figi for instument if need to have correct figi for history data.
+        static public List<CandlePayload> ReadCandles(string filePath, string actualFigi = "")
         {
             List<CandlePayload> result = new List<CandlePayload>();
 
@@ -593,6 +594,13 @@ namespace TradingBot
                     if (fileParts.Length < 3)
                         throw new Exception("Wrong file name format with candles");
 
+                    var figi = fileParts[1];
+                    if (actualFigi.Length > 0 && figi != actualFigi)
+                    {
+                        Logger.Write("Warning: figi `{0}` for history data does not match actual figi `{1}`. Ticker: {2}. Will be used actual!", figi, actualFigi, fileParts[0]);
+                        figi = actualFigi;
+                    }
+
                     var fileStream = File.OpenRead(filePath);
                     var streamReader = new StreamReader(fileStream);
 
@@ -611,7 +619,7 @@ namespace TradingBot
                         if (candle == null)
                         {
                             candle = new CandlePayload();
-                            candle.Figi = fileParts[1];
+                            candle.Figi = figi;
                             candle.Interval = CandleInterval.FiveMinutes;
                         }
 
