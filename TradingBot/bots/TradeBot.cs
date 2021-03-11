@@ -228,7 +228,7 @@ namespace TradingBot
                             bool successed = false;
                             try
                             {
-                                await _context.CancelOrderAsync(tradeData.OrderId);
+                                await _context.CancelOrderAsync(tradeData.OrderId, _accountId);
                                 successed = true;
                             }
                             catch (OpenApiException e)
@@ -291,7 +291,7 @@ namespace TradingBot
                             {
                                 Logger.Write("{0}: Cancel order. {1}. Details: price change {2}", instrument.Ticker, Helpers.CandleDesc(_candles[figi].Raw.Count - 1, candle), change);
 
-                                await _context.CancelOrderAsync(tradeData.OrderId);
+                                await _context.CancelOrderAsync(tradeData.OrderId, _accountId);
                                 tradeData.Status = Status.BuyDone;
                             }
                         }
@@ -354,7 +354,7 @@ namespace TradingBot
                                 {
                                     // just cancel order
                                     Logger.Write("{0}: Cancel order. {0}. Details: end of day", instrument.Ticker, Helpers.CandleDesc(_candles[it.Key].Raw.Count - 1, candle));
-                                    await _context.CancelOrderAsync(tradeData.OrderId);
+                                    await _context.CancelOrderAsync(tradeData.OrderId, _accountId);
                                 }
                             }
                             break;
@@ -407,7 +407,7 @@ namespace TradingBot
 
                 // price was reached, we need to make sure that instrument added to portfolio and order was executed
                 bool foundInOrderList = false;
-                var orders = await _context.OrdersAsync();
+                var orders = await _context.OrdersAsync(_accountId);
                 foreach (var order in orders)
                 {
                     if (order.OrderId == orderId)
