@@ -10,19 +10,28 @@ namespace TradingBot
     {
         static public decimal step = 1m / 1000;
         static public int s_min_quotes_per_candle = 40;
-        public IStrategy.StrategyResultType Process(MarketInstrument instrument, TradeData tradeData, Quotes quotes)
+        private string _accountID = "";
+
+        public MorningOpenStrategy(string accountID)
         {
+            _accountID = accountID;
+        }
+
+        public IStrategy.StrategyResultType Process(MarketInstrument instrument, TradeData tradeData, Quotes quotes, out LimitOrder order)
+        {
+            order = null;
+
             if (tradeData.Status == Status.Watching)
             {
-                return OnStatusWatching(instrument, tradeData, quotes);
+                return OnStatusWatching(instrument, tradeData, quotes, out order);
             }
             else if (tradeData.Status == Status.BuyPending)
             {
-                return OnStatusBuyPending(instrument, tradeData, quotes);
+                return OnStatusBuyPending(instrument, tradeData, quotes, out order);
             }
             else if (tradeData.Status == Status.BuyDone)
             {
-                return OnStatusBuyDone(instrument, tradeData, quotes);
+                return OnStatusBuyDone(instrument, tradeData, quotes, out order);
             }
 
             return IStrategy.StrategyResultType.NoOp;
@@ -33,8 +42,9 @@ namespace TradingBot
             return "MorningOpenStrategy";
         }
 
-        private IStrategy.StrategyResultType OnStatusWatching(MarketInstrument instrument, TradeData tradeData, Quotes quotes)
+        private IStrategy.StrategyResultType OnStatusWatching(MarketInstrument instrument, TradeData tradeData, Quotes quotes, out LimitOrder order)
         {
+            order = null;
             var candles = quotes.Candles;
             var candle = candles[candles.Count - 1];
 
@@ -95,10 +105,10 @@ namespace TradingBot
             if (buy)
             {
                 // place limited order
-                tradeData.BuyPrice = candle.Close;
+                order = new LimitOrder(instrument.Figi, 1, OperationType.Buy, candle.Close, _accountID);
 
                 Logger.Write("{0}: BuyPending. Strategy: {1}. Price: {2}. ChangeOpenToCurrent: {3}. ChangePrevCloseToCurrent: {4}. {5}.",
-                    instrument.Ticker, Description(), tradeData.BuyPrice, currCandleChange, changeFromPrevClose, Helpers.CandleDesc(quotes.Raw.Count - 1, candle));
+                    instrument.Ticker, Description(), order.Price, currCandleChange, changeFromPrevClose, Helpers.CandleDesc(quotes.Raw.Count - 1, candle));
 
                 return IStrategy.StrategyResultType.Buy;
             }
@@ -106,8 +116,9 @@ namespace TradingBot
             return IStrategy.StrategyResultType.NoOp;
         }
 
-        private IStrategy.StrategyResultType OnStatusBuyPending(MarketInstrument instrument, TradeData tradeData, Quotes quotes)
+        private IStrategy.StrategyResultType OnStatusBuyPending(MarketInstrument instrument, TradeData tradeData, Quotes quotes, out LimitOrder order)
         {
+            order = null;
             var candles = quotes.Candles;
             var candle = candles[candles.Count - 1];
 
@@ -120,14 +131,14 @@ namespace TradingBot
             return IStrategy.StrategyResultType.NoOp;
         }
 
-        private IStrategy.StrategyResultType OnStatusBuyDone(MarketInstrument instrument, TradeData tradeData, Quotes quotes)
+        private IStrategy.StrategyResultType OnStatusBuyDone(MarketInstrument instrument, TradeData tradeData, Quotes quotes, out LimitOrder order)
         {
             // TODO: this is need to be improved to follow trend
-
+            order = null;
             var candles = quotes.Candles;
             var candle = candles[candles.Count - 1];
 
-            var profit = Helpers.GetChangeInPercent(tradeData.BuyPrice, candle.Close);
+            var profit = Helpers.GetChangeInPercent(tradeData.AvgPrice, candle.Close);
 
             // if price is growing - waiting
             var candleChange = Helpers.GetChangeInPercent(candle);
@@ -143,7 +154,7 @@ namespace TradingBot
                 // just sell per current price
                 tradeData.SellPrice = candle.Close;
                 Logger.Write("{0}: Morning closing. Close price: {1}. CandleChange: {2}%. ChangeFromCandleHigh: {3}%. Profit: {4}({5}%). {6}",
-                    instrument.Ticker, tradeData.SellPrice, candleChange, changeFromMax, tradeData.SellPrice - tradeData.BuyPrice, profit, Helpers.CandleDesc(quotes.Raw.Count - 1, candle));
+                    instrument.Ticker, tradeData.SellPrice, candleChange, changeFromMax, tradeData.SellPrice - tradeData.AvgPrice, profit, Helpers.CandleDesc(quotes.Raw.Count - 1, candle));
 
                 return IStrategy.StrategyResultType.Sell;
             }
@@ -153,7 +164,7 @@ namespace TradingBot
                 // we have waited 20 minutes in hope to profit, just sell per current price
                 tradeData.SellPrice = candle.Close;
                 Logger.Write("{0}: Morning closing by timeout. Close price: {1}. Profit: {2}({3}%). {4}",
-                    instrument.Ticker, tradeData.SellPrice, tradeData.SellPrice - tradeData.BuyPrice, profit, Helpers.CandleDesc(quotes.Raw.Count - 1, candle));
+                    instrument.Ticker, tradeData.SellPrice, tradeData.SellPrice - tradeData.AvgPrice, profit, Helpers.CandleDesc(quotes.Raw.Count - 1, candle));
 
                 return IStrategy.StrategyResultType.Sell;
             }

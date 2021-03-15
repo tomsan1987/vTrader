@@ -14,7 +14,7 @@ namespace TradingBot
             CancelOrder,
             NoOp
         }
-        public StrategyResultType Process(MarketInstrument instrument, TradeData tradeData, Quotes quotes);
+        public StrategyResultType Process(MarketInstrument instrument, TradeData tradeData, Quotes quotes, out LimitOrder order);
         public string Description();
     }
 }

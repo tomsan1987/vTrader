@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TradingBot
 {
     public class TradeData
     {
-        public string OrderId { get; set; }
-        public decimal BuyPrice { get; set; }
+        public decimal AvgPrice { get; set; }
+        public int Lots { get; set; }
         public decimal SellPrice { get; set; }
         public decimal StopLoss { get; set; }
         public decimal TakeProfit { get; set; }
@@ -19,17 +20,19 @@ namespace TradingBot
         public Trend Trend { get; set; }
         public bool DisabledTrading { get; set; } = false;
         public int CandleID { get; set; } // ID of candle where last operation was done
+        public List<Position> Positions { get; set; }
 
         public TradeData()
         {
             Status = Status.Watching;
             Time = DateTime.Today.AddYears(-10).ToUniversalTime();
+            Positions = new List<Position>();
         }
 
         public void Reset(bool full)
         {
-            OrderId = "";
-            BuyPrice = 0;
+            AvgPrice = 0;
+            Lots = 0;
             SellPrice = 0;
             StopLoss = 0;
             TakeProfit = 0;
@@ -42,12 +45,82 @@ namespace TradingBot
             Trend = null;
             DisabledTrading = false;
             CandleID = 0;
+            Positions.Clear();
 
             if (full)
                 Time = DateTime.Today.AddYears(-10).ToUniversalTime();
         }
+
+        public void OnBuy(int lots, decimal price)
+        {
+            Positions.Add(new Position(lots, price));
+
+            CalculateAverage();
+
+            Status = Status.BuyDone;
+        }
+
+        public void OnSell(int lots, decimal price)
+        {
+            if (Lots < lots)
+            {
+                Logger.Write("ERROR! Something wrong. Sold more lots than expected. Trading disabled! Current lots: {0}. Sell lots: {1}", Lots, lots);
+                DisabledTrading = true;
+                return;
+            }
+
+            while (lots > 0)
+            {
+                var first = Positions[0];
+                if (first.Lots < lots)
+                {
+                    // just update
+                    first.Lots -= lots;
+                    lots = 0;
+                }
+                else
+                {
+                    // remove first element and continue
+                    Positions.Remove(first);
+                    lots -= first.Lots;
+                }
+            }
+
+            CalculateAverage();
+
+            Status = Status.SellDone;
+        }
+
+        private void CalculateAverage()
+        {
+            // calculate average price
+            int totalLots = 0;
+            decimal totalPrice = 0;
+            foreach (var it in Positions)
+            {
+                totalLots += it.Lots;
+                totalPrice += it.Lots * it.Price;
+            }
+
+            AvgPrice = 0;
+            Lots = totalLots;
+            if (totalLots > 0)
+                AvgPrice = totalPrice / totalLots;
+        }
     }
 
+    public class Position
+    {
+        public Position(int l, decimal p)
+        {
+            Lots = l;
+            Price = p;
+        }
+
+        public int Lots { get; set; }
+        public decimal Price { get; set; }
+
+    }
     public interface IStrategyData
     {
     }

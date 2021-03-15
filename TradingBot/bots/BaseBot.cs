@@ -156,6 +156,17 @@ namespace TradingBot
                 }
             }
 
+            // add info from portfolio
+            //foreach (var acc in accounts)
+            //{
+            //    var portfolio = await _context.PortfolioAsync(acc.BrokerAccountId);
+            //    foreach (var pos in portfolio.Positions)
+            //    {
+            //        operationsReport[pos.Figi].profit += (pos.Balance * pos.AveragePositionPrice.Value);
+            //        operationsReport[pos.Figi].operations++;
+            //    }
+            //}
+
             // convert to list and sort
             List<OperationStat> result = new List<OperationStat>();
             foreach (var it in operationsReport)
