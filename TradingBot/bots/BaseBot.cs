@@ -106,8 +106,10 @@ namespace TradingBot
                 if (this.currency != right.currency)
                     return (this.currency < right.currency) ? 1 : -1;
 
-                if (this.profit!= right.profit)
-                    return (this.profit < right.profit) ? 1 : -1;
+                var sumL = this.profit + this.commission + this.dividents;
+                var sumR = right.profit + right.commission + right.dividents;
+                if (sumL != sumR)
+                    return (sumL < sumR) ? 1 : -1;
 
                 return this.ticker.CompareTo(right.ticker);
             }

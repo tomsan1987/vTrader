@@ -199,13 +199,20 @@ namespace TradingBot
                             var order = new LimitOrder(instrument.Figi, 1, OperationType.Buy, tradeData.BuyPrice, _accountId);
                             var placedOrder = await _context.PlaceLimitOrderAsync(order);
 
-                            tradeData.Strategy = strategy;
-                            tradeData.OrderId = placedOrder.OrderId;
-                            tradeData.Status = Status.BuyPending;
-                            tradeData.Time = candle.Time;
-                            tradeData.BuyTime = candle.Time;
-                            tradeData.CandleID = _candles[figi].Raw.Count;
-                            Logger.Write("{0}: OrderId: {1}. Details: Status - {2}, RejectReason -  {3}", instrument.Ticker, tradeData.OrderId, placedOrder.Status.ToString(), placedOrder.RejectReason);
+                            if (placedOrder.Status == OrderStatus.Cancelled || placedOrder.Status == OrderStatus.PendingCancel || placedOrder.Status == OrderStatus.Rejected || placedOrder.RejectReason.Length > 0)
+                            {
+                                Logger.Write("{0}: OrderId: {1}. Unsuccessful! Status: {2}. RejectReason: {3}", instrument.Ticker, tradeData.OrderId, placedOrder.Status.ToString(), placedOrder.RejectReason);
+                            }
+                            else
+                            {
+                                tradeData.Strategy = strategy;
+                                tradeData.OrderId = placedOrder.OrderId;
+                                tradeData.Status = Status.BuyPending;
+                                tradeData.Time = candle.Time;
+                                tradeData.BuyTime = candle.Time;
+                                tradeData.CandleID = _candles[figi].Raw.Count;
+                                Logger.Write("{0}: OrderId: {1}. Status: {2}. RejectReason: {3}", instrument.Ticker, tradeData.OrderId, placedOrder.Status.ToString(), placedOrder.RejectReason);
+                            }
                         }
                     }
                 }
@@ -233,7 +240,9 @@ namespace TradingBot
                             }
                             catch (OpenApiException e)
                             {
-                                Logger.Write("OpenApiException while canchel order: " + e.Message);
+                                Logger.Write("OpenApiException while cancel order: " + e.Message);
+                                Logger.Write("{0}: Trading for ticker disabled!", instrument.Ticker);
+                                tradeData.DisabledTrading = true;
                             }
 
                             if (successed)
@@ -435,7 +444,7 @@ namespace TradingBot
                 }
 
                 var fullyExecuted = !foundInOrderList;
-                fullyExecuted |= (tradeData.Status == Status.BuyPending && foundInPortfolio) || (tradeData.Status == Status.SellPending && !foundInPortfolio);
+                fullyExecuted &= (tradeData.Status == Status.BuyPending && foundInPortfolio) || (tradeData.Status == Status.SellPending && !foundInPortfolio);
 
                 return fullyExecuted;
             }
