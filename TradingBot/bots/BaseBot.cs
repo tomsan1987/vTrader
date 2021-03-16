@@ -89,6 +89,8 @@ namespace TradingBot
 
             foreach (var it in _candles)
                 it.Value.Dispose();
+
+            Logger.Write("BaseBot::DisposeAsync done!");
         }
 
         protected class OperationStat : IComparable<OperationStat>
@@ -269,18 +271,25 @@ namespace TradingBot
 
         private async Task SubscribeCandles()
         {
-            if (_settings.SubscribeQuotes)
+            try
             {
-                _context.StreamingEventReceived += OnStreamingEventReceived;
-                _context.WebSocketException += OnWebSocketExceptionReceived;
-                _context.StreamingClosed += OnStreamingClosedReceived;
+                if (_settings.SubscribeQuotes)
+                {
+                    _context.StreamingEventReceived += OnStreamingEventReceived;
+                    _context.WebSocketException += OnWebSocketExceptionReceived;
+                    _context.StreamingClosed += OnStreamingClosedReceived;
 
-                Logger.Write("Start subscribing candles...");
+                    Logger.Write("Start subscribing candles...");
 
-                for (int i = 0; i < _watchList.Count; ++i)
-                    await _context.SendStreamingRequestAsync(StreamingRequest.SubscribeCandle(_tickerToFigi[_watchList[i]], CandleInterval.FiveMinutes));
+                    for (int i = 0; i < _watchList.Count; ++i)
+                        await _context.SendStreamingRequestAsync(StreamingRequest.SubscribeCandle(_tickerToFigi[_watchList[i]], CandleInterval.FiveMinutes));
 
-                Logger.Write("End of subscribing candles...");
+                    Logger.Write("End of subscribing candles...");
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Write("Error while subscribing candles: " + e.Message);
             }
         }
 
