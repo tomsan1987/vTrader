@@ -12,6 +12,7 @@ namespace Tinkoff.Trading.OpenApi.Models
         public int ExecutedLots { get; set; }
         public MoneyAmount Commission { get; }
         public string Figi { get; set; }
+        public decimal Price { get; set; }
 
         [JsonConstructor]
         public PlacedLimitOrder(string orderId, OperationType operation, OrderStatus status, string rejectReason, int requestedLots, int executedLots, MoneyAmount commission)

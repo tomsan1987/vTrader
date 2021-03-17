@@ -24,7 +24,7 @@ namespace Tinkoff.Trading.OpenApi.Network
         public override async Task<PlacedLimitOrder> PlaceLimitOrderAsync(LimitOrder limitOrder)
         {
             await Task.Yield();
-            return new PlacedLimitOrder("test_order", limitOrder.Operation, OrderStatus.New, "", 1, 0, new MoneyAmount(Currency.Usd, 1));
+            return new PlacedLimitOrder(Guid.NewGuid().ToString().Substring(0, 8), limitOrder.Operation, OrderStatus.New, "", 1, 0, new MoneyAmount(Currency.Usd, 1));
         }
 
         public override async Task CancelOrderAsync(string id, string brokerAccountId = null)

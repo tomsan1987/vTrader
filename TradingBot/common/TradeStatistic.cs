@@ -22,28 +22,22 @@ namespace TradingBot
             return this.MemberwiseClone();
         }
 
-        public void Update(string ticker, decimal buyPrice, decimal sellPrice)
+        public void Update(string ticker, decimal buyPrice, decimal sellPrice, int orders, int lots)
         {
-            totalProfit += sellPrice - buyPrice;
-            totalOrders++;
+            totalProfit += (sellPrice - buyPrice) * lots;
+            totalOrders += orders;
             if (sellPrice >= buyPrice)
                 posOrders++;
             else
                 negOrders++;
 
-            volume += buyPrice;
-
             decimal k = volume * 2 > 2740 ? 0.00025m : 0.0005m; // when volume > 200k RUB, commission is reduced to 0.025%
 
             // commission
-            comission += buyPrice * k;
-            comission += sellPrice * k;
+            comission += buyPrice * lots * k;
+            comission += sellPrice * lots *k;
 
-            logMessages.Add(String.Format("{0};{1};{2}", ticker, sellPrice - buyPrice, Helpers.GetChangeInPercent(buyPrice, sellPrice)));
-        }
-
-        public void Buy(decimal price)
-        {
+            logMessages.Add(String.Format("{0};{1};{2};{3};{4}", ticker, orders, lots, (sellPrice - buyPrice) * lots, Helpers.GetChangeInPercent(buyPrice, sellPrice)));
         }
 
         public void Sell(DateTime buyTime, DateTime sellTime, decimal price, string ticker)

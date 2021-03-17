@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Tinkoff.Trading.OpenApi.Models;
 
 namespace TradingBot
 {
@@ -7,7 +8,7 @@ namespace TradingBot
     {
         public decimal AvgPrice { get; set; }
         public int Lots { get; set; }
-        public decimal SellPrice { get; set; }
+        //public decimal SellPrice { get; set; }
         public decimal StopLoss { get; set; }
         public decimal TakeProfit { get; set; }
         public decimal MaxPrice { get; set; }
@@ -33,7 +34,7 @@ namespace TradingBot
         {
             AvgPrice = 0;
             Lots = 0;
-            SellPrice = 0;
+            //SellPrice = 0;
             StopLoss = 0;
             TakeProfit = 0;
             MaxPrice = 0;
@@ -49,6 +50,14 @@ namespace TradingBot
 
             if (full)
                 Time = DateTime.Today.AddYears(-10).ToUniversalTime();
+        }
+
+        public void Update(OperationType type, int lots, decimal price)
+        {
+            if (type == OperationType.Buy)
+                OnBuy(lots, price);
+            else
+                OnSell(lots, price);
         }
 
         public void OnBuy(int lots, decimal price)

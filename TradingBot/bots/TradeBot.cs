@@ -178,7 +178,7 @@ namespace TradingBot
                 if (tradeData.DisabledTrading)
                     return;
 
-                await UpdateOrdersStatus();
+                await UpdateOrdersStatus(figi);
 
                 if (_candles[figi].IsSpike())
                 {
@@ -223,19 +223,64 @@ namespace TradingBot
                 {
                     var placedOrder = await _context.PlaceLimitOrderAsync(order);
                     placedOrder.Figi = instrument.Figi;
+                    placedOrder.Price = order.Price;
 
-                    _orders.Add(placedOrder);
+                    if (placedOrder.Status == OrderStatus.Cancelled || placedOrder.Status == OrderStatus.PendingCancel || placedOrder.Status == OrderStatus.Rejected || placedOrder.RejectReason.Length > 0)
+                    {
+                        Logger.Write("{0}: OrderId: {1}. Lost: {2}. Unsucessfull! Status: {3}. RejectReason: {4}",
+                            instrument.Ticker, placedOrder.OrderId, placedOrder.RequestedLots, placedOrder.Status.ToString(), placedOrder.RejectReason);
+                    }
+                    else
+                    {
+                        _orders.Add(placedOrder);
 
-                    tradeData.Status = (operation == IStrategy.StrategyResultType.Buy) ? Status.BuyPending : Status.SellPending;
-                    tradeData.Time = candle.Time;
-                    tradeData.BuyTime = candle.Time;
-                    tradeData.CandleID = _candles[figi].Raw.Count;
-                    Logger.Write("{0}: OrderId: {1}.  Lost: {2}. PlacedOrder.Status: {3}, PlacedOrder.RejectReason: {4}",
-                        instrument.Ticker, placedOrder.OrderId, placedOrder.RequestedLots, placedOrder.Status.ToString(), placedOrder.RejectReason);
+                        tradeData.Status = (operation == IStrategy.StrategyResultType.Buy) ? Status.BuyPending : Status.SellPending;
+                        tradeData.Time = candle.Time;
+                        tradeData.BuyTime = candle.Time;
+                        tradeData.CandleID = _candles[figi].Raw.Count;
+                        Logger.Write("{0}: OrderId: {1}. Lost: {2}. PlacedOrder. Status: {3}. RejectReason: {4}",
+                            instrument.Ticker, placedOrder.OrderId, placedOrder.RequestedLots, placedOrder.Status.ToString(), placedOrder.RejectReason);
+                    }
                 }
                 else if (operation == IStrategy.StrategyResultType.CancelOrder)
                 {
-                    // TODO
+                    if (_settings.FakeConnection)
+                    {
+                        // just remove order
+                        _orders.RemoveAll(x => x.Figi == instrument.Figi);
+                        if (tradeData.Status == Status.BuyPending)
+                        {
+                            tradeData.Status = Status.Watching;
+                            tradeData.CandleID = 0;
+                        }
+                    }
+                    else
+                    {
+                        // try to cancel order
+                        foreach (var it in _orders)
+                        {
+                            if (it.Figi == instrument.Figi)
+                            {
+                                bool successed = false;
+                                try
+                                {
+                                    await _context.CancelOrderAsync(it.OrderId, _accountId);
+                                    successed = true;
+                                }
+                                catch (OpenApiException e)
+                                {
+                                    Logger.Write("OpenApiException while cancel order: " + e.Message);
+                                    // may be executed.... TODO
+                                }
+
+                                if (successed)
+                                {
+                                    tradeData.Status = Status.Watching;
+                                    tradeData.CandleID = 0;
+                                }
+                            }
+                        }
+                    }
                 }
 
                 //else if (tradeData.Status == Status.BuyPending)
@@ -341,12 +386,47 @@ namespace TradingBot
             }
         }
 
-        private async Task UpdateOrdersStatus(bool force = false)
+        private async Task UpdateOrdersStatus(string figi, bool force = false)
         {
             if (_settings.FakeConnection)
-                return;
+            {
+                foreach (var it in _orders)
+                {
+                    if (it.Figi == figi)
+                    {
+                        var instrument = _figiToInstrument[figi];
+                        var tradeData = _tradeData[figi];
+                        var rawData = _candles[figi].Raw;
+                        var requestedLots = it.RequestedLots - it.ExecutedLots;
 
-            if (force || (DateTime.UtcNow - _lastStatusQuery).TotalSeconds > 20)
+                        int executedLots = 0;
+                        for (int i = tradeData.CandleID; i < rawData.Count; ++i)
+                        {
+                            if (it.Operation == OperationType.Buy && rawData[i].Price <= it.Price)
+                                executedLots += (int)(rawData[i].Volume - rawData[i - 1].Volume);
+                            else if (it.Operation == OperationType.Sell && rawData[i].Price >= it.Price)
+                                executedLots += (int)(rawData[i].Volume - rawData[i - 1].Volume);
+                        }
+
+                        executedLots = Math.Min(executedLots, requestedLots);
+                        if (executedLots > 0)
+                        {
+                            it.ExecutedLots = it.ExecutedLots + executedLots;
+                            _tradeData[it.Figi].Update(it.Operation, executedLots, it.Price);
+
+                            if (it.RequestedLots == it.ExecutedLots)
+                                it.OrderId = "";
+                        }
+
+                        if (it.Operation == OperationType.Sell && it.RequestedLots == it.ExecutedLots)
+                        {
+                            // trade finished
+                            _stats.Update(instrument.Ticker, 0, 0, 0, 0);
+                        }
+                    }
+                }
+            }
+            else if (force || (DateTime.UtcNow - _lastStatusQuery).TotalSeconds > 20)
             {
                 Logger.Write("Updating portfolio status... ");
 
@@ -392,7 +472,11 @@ namespace TradingBot
                                 Logger.Write("{0}: OrderID: {1} partially executed. Executed lots: {2}. OrderStatus: {3}/{4} lots",
                                     _figiToTicker[it.Figi], it.OrderId, executedLots, _portfolioOrders[idx].ExecutedLots, _portfolioOrders[idx].RequestedLots);
 
-                                _tradeData[it.Figi].AvgPrice = 0; // TODO
+                                if (it.Operation == OperationType.Buy)
+                                    _tradeData[it.Figi].OnBuy(executedLots, it.Price);
+                                else
+                                    _tradeData[it.Figi].OnSell(executedLots, it.Price);
+
                                 _tradeData[it.Figi].Lots += executedLots;
                                 _tradeData[it.Figi].Status = (it.Operation == OperationType.Buy) ? Status.BuyDone : Status.SellDone;
 
@@ -429,6 +513,9 @@ namespace TradingBot
                     }
                 }
             }
+
+            // erase orders with empty orderID
+            _orders.RemoveAll(x => x.OrderId.Length == 0);
         }
 
         private int GetLotsInPortfolio(string figi)
@@ -444,7 +531,7 @@ namespace TradingBot
         private async Task CloseAll()
         {
             _isShutingDown = true;
-            await UpdateOrdersStatus(true);
+            await UpdateOrdersStatus("", true);
 
             foreach (var it in _tradeData)
             {
@@ -457,24 +544,25 @@ namespace TradingBot
                         case Status.BuyPending:
                             {
                                 var instrument = _figiToInstrument[it.Key];
-                                if (await IsOrderExecuted(instrument.Ticker, it.Key, tradeData.OrderId))
-                                {
-                                    var price = candle.Close - 2 * instrument.MinPriceIncrement;
-                                    var order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, price, _accountId);
-                                    var placedOrder = await _context.PlaceLimitOrderAsync(order);
+                                //if (await IsOrderExecuted(instrument.Ticker, it.Key, tradeData.OrderId))
+                                //{
+                                //    var price = candle.Close - 2 * instrument.MinPriceIncrement;
+                                //    var order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, price, _accountId);
+                                //    var placedOrder = await _context.PlaceLimitOrderAsync(order);
 
-                                    Logger.Write("{0}: Closing dayly orders. Close price: {1}. {2}. Profit: {3}({4}%)",
-                                        instrument.Ticker, price, Helpers.CandleDesc(_candles[it.Key].Raw.Count - 1, candle), price - tradeData.AvgPrice, Helpers.GetChangeInPercent(tradeData.AvgPrice, price));
+                                //    Logger.Write("{0}: Closing dayly orders. Close price: {1}. {2}. Profit: {3}({4}%)",
+                                //        instrument.Ticker, price, Helpers.CandleDesc(_candles[it.Key].Raw.Count - 1, candle), price - tradeData.AvgPrice, Helpers.GetChangeInPercent(tradeData.AvgPrice, price));
 
-                                    _stats.Sell(tradeData.BuyTime, candle.Time, tradeData.AvgPrice, instrument.Ticker);
-                                    _stats.Update(instrument.Ticker, tradeData.AvgPrice, price);
-                                }
-                                else
-                                {
-                                    // just cancel order
-                                    Logger.Write("{0}: Cancel order. {0}. Details: end of day", instrument.Ticker, Helpers.CandleDesc(_candles[it.Key].Raw.Count - 1, candle));
-                                    await _context.CancelOrderAsync(tradeData.OrderId, _accountId);
-                                }
+                                //    _stats.Sell(tradeData.BuyTime, candle.Time, tradeData.AvgPrice, instrument.Ticker);
+                                //    _stats.Update(instrument.Ticker, tradeData.AvgPrice, price);
+                                //}
+                                //else
+                                //{
+                                //    // just cancel order
+                                //    Logger.Write("{0}: Cancel order. {0}. Details: end of day", instrument.Ticker, Helpers.CandleDesc(_candles[it.Key].Raw.Count - 1, candle));
+                                //    await _context.CancelOrderAsync(tradeData.OrderId, _accountId);
+                                //}
+                                // TODO
                             }
                             break;
 
@@ -510,8 +598,8 @@ namespace TradingBot
             {
                 if (tradeData.Status == Status.BuyPending && rawData[i].Price <= tradeData.AvgPrice)
                     maybeExecuted = true;
-                else if (tradeData.Status == Status.SellPending && rawData[i].Price >= tradeData.SellPrice)
-                    maybeExecuted = true;
+                //else if (tradeData.Status == Status.SellPending && rawData[i].Price >= tradeData.SellPrice)
+                //    maybeExecuted = true;
             }
 
             if (maybeExecuted)

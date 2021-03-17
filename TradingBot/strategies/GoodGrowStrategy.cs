@@ -120,17 +120,17 @@ namespace TradingBot
                 //check if we reach stop conditions
                 if (candle.Close < tradeData.StopLoss)
                 {
-                    tradeData.SellPrice = candle.Close;
+                    order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, candle.Close, _accountID);
                     Logger.Write("{0}: SL reached. Pending. Close price: {1}. Candle: ID:{2}, Time: {3}, Close: {4}. Profit: {5}({6}%)",
-                        instrument.Ticker, tradeData.SellPrice, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close, tradeData.SellPrice - tradeData.AvgPrice, Helpers.GetChangeInPercent(tradeData.AvgPrice, tradeData.SellPrice));
+                        instrument.Ticker, order.Price, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close, order.Price - tradeData.AvgPrice, Helpers.GetChangeInPercent(tradeData.AvgPrice, order.Price));
 
                     return IStrategy.StrategyResultType.Sell;
                 }
                 else if (tradeData.TakeProfit > 0m && candle.Close >= tradeData.TakeProfit)
                 {
-                    tradeData.SellPrice = candle.Close;
+                    order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, candle.Close, _accountID);
                     Logger.Write("{0}: TP reached. Pending. Close price: {1}. Candle: ID:{2}, Time: {3}, Close: {4}. Profit: {5}({6}%)",
-                        instrument.Ticker, tradeData.SellPrice, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close, tradeData.SellPrice - tradeData.AvgPrice, Helpers.GetChangeInPercent(tradeData.AvgPrice, tradeData.SellPrice));
+                        instrument.Ticker, order.Price, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close, order.Price - tradeData.AvgPrice, Helpers.GetChangeInPercent(tradeData.AvgPrice, order.Price));
 
                     return IStrategy.StrategyResultType.Sell;
                 }
