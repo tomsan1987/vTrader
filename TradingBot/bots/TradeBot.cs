@@ -196,7 +196,7 @@ namespace TradingBot
                             var order = new LimitOrder(instrument.Figi, 1, OperationType.Buy, tradeData.BuyPrice, _accountId);
                             var placedOrder = await _context.PlaceLimitOrderAsync(order);
 
-                            if (placedOrder.Status == OrderStatus.Cancelled || placedOrder.Status == OrderStatus.PendingCancel || placedOrder.Status == OrderStatus.Rejected || placedOrder.RejectReason.Length > 0)
+                            if (placedOrder.Status == OrderStatus.Cancelled || placedOrder.Status == OrderStatus.PendingCancel || placedOrder.Status == OrderStatus.Rejected || placedOrder.RejectReason?.Length > 0)
                             {
                                 Logger.Write("{0}: OrderId: {1}. Unsuccessful! Status: {2}. RejectReason: {3}", instrument.Ticker, tradeData.OrderId, placedOrder.Status.ToString(), placedOrder.RejectReason);
                             }
