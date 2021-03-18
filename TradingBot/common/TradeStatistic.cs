@@ -59,8 +59,8 @@ namespace TradingBot
 
                 // update duration
                 if (!volumesPerTicker.ContainsKey(ticker))
-                    volumesPerTicker.Add(ticker, new bool[12 * 17]);
-                volumesPerTicker[ticker][(buyTime.Hour - 7) * 12 + buyTime.Minute / 5] = true;
+                    volumesPerTicker.Add(ticker, new bool[12 * 20]);
+                volumesPerTicker[ticker][(buyTime.Hour - 4) * 12 + buyTime.Minute / 5] = true;
 
                 buyTime = buyTime.AddMinutes(5);
             }
@@ -71,7 +71,7 @@ namespace TradingBot
         {
             string result = "Ticker;";
             DateTime start = DateTime.Today.AddHours(10).ToUniversalTime();
-            for (int i = 0; i < 12 * 17; ++i)
+            for (int i = 0; i < 12 * 20; ++i)
             {
                 result += start.ToString("HH:mm");
                 result += ";";
