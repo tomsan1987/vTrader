@@ -42,7 +42,7 @@ namespace TradingBot
             if ((candle.Time.Hour != 7 && candle.Time.Hour != 4) || candle.Time.Minute != 0)
                 return IStrategy.StrategyResultType.NoOp;
 
-            // make sure that it will not market open at 4h: on market open we onl can have previous day close candle and current candle
+            // make sure that it will not market open at 4h: on market open we only can have previous day close candle and current candle
             if (candle.Time.Hour == 7 && candles.Count > 2)
                 return IStrategy.StrategyResultType.NoOp;
 
@@ -54,8 +54,8 @@ namespace TradingBot
 
             if (tradeData.PrevDayClosePrice == -1)
             {
-                // calculate previos day close price
-                // teoretically there next situation: current candle is market open candle and previous candle should be previous day close candle(it could be 1 or more repeated candles)
+                // calculate previous day close price
+                // theoretically there next situation: current candle is market open candle and previous candle should be previous day close candle(it could be 1 or more repeated candles)
                 if (candles.Count == 1)
                 {
                     // we have no previous day close candle
@@ -72,15 +72,15 @@ namespace TradingBot
             decimal changeFromPrevClose = 0.0m;
             if (tradeData.PrevDayClosePrice > 0)
             {
-                // we have previous day close price, lets estimate how we open relatevitely this price
+                // we have previous day close price, lets estimate how we open relatively this price
                 changeFromPrevClose = Helpers.GetChangeInPercent(tradeData.PrevDayClosePrice, candle.Close);
 
                 // TODO
                 //if (changeFromPrevClose > 5m /*&& shortable*/)
                 //    return IStrategy.StrategyResultType.Sell;
 
-                if (changeFromPrevClose > 0.5m)
-                    return IStrategy.StrategyResultType.NoOp; // opened with gap up and price does not intresting now
+                if (changeFromPrevClose > 0.5m) // TODO currCandleChange < 4.0m then ignore
+                    return IStrategy.StrategyResultType.NoOp; // opened with gap up and price does not interesting now
 
                 if (currCandleChange < -2.0m || changeFromPrevClose < -2.0m)
                     buy = true;
@@ -134,7 +134,7 @@ namespace TradingBot
             var changeFromMax = Helpers.GetChangeInPercent(candle.High, candle.Close);
 
             const decimal changeThreshold = 0.0m;
-            // const decimal changeThreshold = -0.2m; // suspicuous change, try when more test cases
+            // const decimal changeThreshold = -0.2m; // suspicious change, try when more test cases
             if (candleChange >= changeThreshold && changeFromMax > -1.0m)
                 return IStrategy.StrategyResultType.NoOp;
 
