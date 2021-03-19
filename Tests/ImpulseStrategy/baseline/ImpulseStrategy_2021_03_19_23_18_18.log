@@ -2,7 +2,7 @@ _______________POSITIVE TESTS_______________
 CF_BBG000BWJFZ4_2020-12-28
 PASSED
 TotalOrders: 1
-TotalProfit: 0.49
+TotalProfit: 0.63
 
 FATE_BBG000QP35H2_2021-01-07
 PASSED
@@ -27,12 +27,12 @@ TotalProfit: 0.36
 BBBY_BBG000CSY9H9_2021-01-14
 PASSED
 TotalOrders: 1
-TotalProfit: 1.69
+TotalProfit: 1.75
 
 SFIX_BBG0046L1KL9_2021-01-14
 PASSED
 TotalOrders: 1
-TotalProfit: 3.56
+TotalProfit: 3.63
 
 CNK_BBG000QDVR53_2021-01-14
 PASSED
@@ -90,9 +90,9 @@ TotalOrders: 1
 TotalProfit: 2.00
 
 EDIT_BBG005MX5GZ2_2021-01-15
-PASSED
-TotalOrders: 1
-TotalProfit: 4.29
+FAILED
+TotalOrders: 1[1]
+TotalProfit: 0.37[4]
 
 NTLA_BBG007KC7PB0_2021-01-15
 PASSED
@@ -127,7 +127,7 @@ TotalProfit: 0.27
 BYND_BBG003CVJP50_2021-01-13
 PASSED
 TotalOrders: 3
-TotalProfit: -0.05
+TotalProfit: 0.22
 
 FTI_BBG00DL8NMV2_2021-01-12
 PASSED
@@ -137,7 +137,7 @@ TotalProfit: 0.50
 EXAS_BBG000CWL0F5_2021-01-11
 PASSED
 TotalOrders: 1
-TotalProfit: 10.64
+TotalProfit: 11.2
 
 CREE_BBG000BG14P4_2021-01-11
 PASSED
@@ -197,7 +197,7 @@ TotalProfit: 10.25
 BILI_BBG00K7T3037_2021-01-07
 PASSED
 TotalOrders: 1
-TotalProfit: 3.88
+TotalProfit: 4.04
 
 AMD_BBG000BBQCY0_2021-01-07
 PASSED
@@ -222,7 +222,7 @@ TotalProfit: 1.08
 TDOC_BBG0019T5SG0_2021-01-07
 PASSED
 TotalOrders: 2
-TotalProfit: 3.00
+TotalProfit: 3.20
 
 EDIT_BBG005MX5GZ2_2021-01-06
 PASSED
@@ -272,7 +272,7 @@ TotalProfit: 3.05
 TOT_BBG000CHZ857_2021-01-06
 PASSED
 TotalOrders: 1
-TotalProfit: 1.42
+TotalProfit: 1.46
 
 JWN_BBG000G8N9C6_2021-01-06
 PASSED
@@ -337,7 +337,7 @@ TotalProfit: 8.44
 BYND_BBG003CVJP50_2021-01-26
 PASSED
 TotalOrders: 1
-TotalProfit: 48.87
+TotalProfit: 49.33
 
 PBI_BBG000BQTMJ9_2021-01-26
 PASSED
@@ -382,7 +382,7 @@ TotalProfit: 3.15
 CCL_BBG000BF6LY3_2021-01-28
 PASSED
 TotalOrders: 2
-TotalProfit: 2.13
+TotalProfit: 2.17
 
 ENDP_BBG000C0HQ54_2021-02-02
 PASSED
@@ -407,7 +407,7 @@ TotalProfit: 1.77
 FANG_BBG002PHSYX9_2021-01-22
 PASSED
 TotalOrders: 1
-TotalProfit: 1.77
+TotalProfit: 1.90
 
 MAC_BBG000BL9C59_2021-01-22
 PASSED
@@ -447,7 +447,7 @@ TotalProfit: 5.51
 ZM_BBG0042V6JM8_2021-01-13
 PASSED
 TotalOrders: 3
-TotalProfit: 2.15
+TotalProfit: 2.83
 
 SNAP_BBG00441QMJ7_2021-01-11
 PASSED
@@ -558,7 +558,7 @@ TotalProfit: 0
 EDIT_BBG005MX5GZ2_2021-01-19
 PASSED
 TotalOrders: 1
-TotalProfit: -1.58
+TotalProfit: -1.39
 
 JWN_BBG000G8N9C6_2021-01-20
 PASSED
@@ -568,7 +568,7 @@ TotalProfit: -0.11
 RRC_BBG000FVXD63_2021-01-21
 PASSED
 TotalOrders: 1
-TotalProfit: -0.14
+TotalProfit: -0.12
 
 EQT_BBG000BHZ5J9_2021-01-21
 PASSED
@@ -578,7 +578,7 @@ TotalProfit: -0.27
 CHX_BBG00JH9TZ56_2021-02-04
 PASSED
 TotalOrders: 1
-TotalProfit: -0.41
+TotalProfit: -0.25
 
 CRUS_BBG000C1DHF5_2021-02-02
 PASSED
@@ -593,7 +593,7 @@ TotalProfit: -0.58
 TRIP_BBG001M8HHB7_2021-01-19
 PASSED
 TotalOrders: 1
-TotalProfit: -0.37
+TotalProfit: -0.27
 
 HFC_BBG000BL9JQ1_2021-01-26
 PASSED
@@ -603,19 +603,24 @@ TotalProfit: -0.65
 ENDP_BBG000C0HQ54_2021-02-03
 PASSED
 TotalOrders: 1
-TotalProfit: -0.24
+TotalProfit: -0.22
 
 GPS_BBG000BKLH74_2021-01-28
 PASSED
 TotalOrders: 1
-TotalProfit: -0.83
+TotalProfit: -0.13
 
 EDIT_BBG005MX5GZ2_2020-12-30
 PASSED
 TotalOrders: 1
-TotalProfit: -2.16
+TotalProfit: -1.59
+
+PBF_BBG002832GV8_2020-12-08
+PASSED
+TotalOrders: 1
+TotalProfit: -0.05
 
 
 _____Total_____:
-Total orders: 140
-Total profit: 409.18
+Total orders: 141
+Total profit: 409.78
