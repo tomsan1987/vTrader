@@ -7,6 +7,7 @@ using Tinkoff.Trading.OpenApi.Models;
 using Tinkoff.Trading.OpenApi.Network;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System.Timers;
 
 namespace TradingBot
 {
@@ -27,7 +28,7 @@ namespace TradingBot
         protected Dictionary<string, string> _tickerToFigi = new Dictionary<string, string>();
         protected Dictionary<string, Quotes> _candles;
         protected DateTime _lastCandleReceived;
-
+        protected Timer _subscriptionTimer = new System.Timers.Timer();
         public class Settings
         {
             public bool SubscribeQuotes { get; set; } = false;
@@ -74,7 +75,7 @@ namespace TradingBot
             await InitInstruments();
             InitCandles();
             await RequestCandleHistory();
-            await SubscribeCandles();
+            SubscribeCandles();
         }
 
         public virtual void ShowStatus()
@@ -250,6 +251,11 @@ namespace TradingBot
 
                 _candles[cr.Payload.Figi].QuoteLogger.onQuoteReceived(cr.Payload);
             }
+            else if (e.Response.Event == "error")
+            {
+                var res = (StreamingErrorResponse)e.Response;
+                Logger.Write("Error event received: {0}", res.Payload.Error);
+            }
             else
             {
                 Logger.Write("Unknown event received: {0}", e.Response);
@@ -259,10 +265,12 @@ namespace TradingBot
         protected void OnWebSocketExceptionReceived(object s, WebSocketException e)
         {
             Logger.Write("OnWebSocketExceptionReceived: {0}", e.Message);
-           _ =  UnSubscribeCandles();
+            //_ =  UnSubscribeCandles();
 
-            Connect();
-            _ = SubscribeCandles();
+            // Connect();
+            // _ = SubscribeCandles();
+            _subscriptionTimer.Stop();
+            _subscriptionTimer.Start();
         }
 
         protected void OnStreamingClosedReceived(object s, EventArgs args)
@@ -271,27 +279,56 @@ namespace TradingBot
             throw new Exception("Stream closed for unknown reasons...");
         }
 
-        private async Task SubscribeCandles()
+        private void SubscribeCandles()
+        {
+            if (_settings.SubscribeQuotes)
+            {
+                _context.StreamingEventReceived += OnStreamingEventReceived;
+                _context.WebSocketException += OnWebSocketExceptionReceived;
+                _context.StreamingClosed += OnStreamingClosedReceived;
+
+                _subscriptionTimer.AutoReset = false;
+                _subscriptionTimer.Elapsed += new ElapsedEventHandler(SubscribeCandlesImpl);
+                _subscriptionTimer.Interval = 5000;
+                _subscriptionTimer.Start();
+
+                //_candleSubscriptionTask = Task.Run(async () =>
+                //{
+                //    while (!_disposing)
+                //    {
+                //        Dictionary<string, int> newQuotes = null;
+                //        lock (_quotesLock)
+                //        {
+                //            newQuotes = _newQuotes;
+                //            _newQuotes = new Dictionary<string, int>();
+                //        }
+
+                //        foreach (var it in newQuotes)
+                //        {
+                //            if (it.Value > 5)
+                //                Logger.Write("{0}: Quotes queue size: {1}", _figiToTicker[it.Key], it.Value);
+
+                //            await OnCandleUpdate(it.Key);
+                //        }
+                //    }
+                //});
+            }
+        }
+
+        private void SubscribeCandlesImpl(object source, ElapsedEventArgs e)
         {
             try
             {
-                if (_settings.SubscribeQuotes)
-                {
-                    _context.StreamingEventReceived += OnStreamingEventReceived;
-                    _context.WebSocketException += OnWebSocketExceptionReceived;
-                    _context.StreamingClosed += OnStreamingClosedReceived;
+                Logger.Write("Start subscribing candles...");
 
-                    Logger.Write("Start subscribing candles...");
+                for (int i = 0; i < _watchList.Count; ++i)
+                    _context.SendStreamingRequestAsync(StreamingRequest.SubscribeCandle(_tickerToFigi[_watchList[i]], CandleInterval.FiveMinutes)).Wait();
 
-                    for (int i = 0; i < _watchList.Count; ++i)
-                        await _context.SendStreamingRequestAsync(StreamingRequest.SubscribeCandle(_tickerToFigi[_watchList[i]], CandleInterval.FiveMinutes));
-
-                    Logger.Write("End of subscribing candles...");
-                }
+                Logger.Write("End of subscribing candles...");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Logger.Write("Error while subscribing candles: " + e.Message);
+                Logger.Write("Error while subscribing candles: " + ex.Message);
             }
         }
 
