@@ -2,7 +2,7 @@
   "profiles": {
     "TradingBot": {
       "commandName": "Project",
-      "commandLineArgs": "mode=\"OperationReport\" Token=\"..\\..\\..\\..\\Configuration\\token.txt\" ConfigPath=\"..\\..\\..\\..\\Configuration\\test.json\" CandlesPath=\"C:\\tinkoff\\Tests\\MorningOpenStrategy\" Strategies=\"MorningOpenStrategy\" FakeConnection=false DumpQuotes=true SubscribeQuotes=true RequestCandlesHistory=false"
+      "commandLineArgs": "mode=\"RunTests\" Token=\"..\\..\\..\\..\\Configuration\\token.txt\" ConfigPath=\"..\\..\\..\\..\\Configuration\\usd.json\" CandlesPath=\"C:\\tinkoff\\Tests\\ImpulseStrategy\" Strategies=\"ImpulseStrategy\""
     }
   }
 }

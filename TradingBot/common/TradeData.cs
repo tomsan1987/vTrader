@@ -7,8 +7,8 @@ namespace TradingBot
     public class TradeData
     {
         public decimal AvgPrice { get; set; }
+        public decimal AvgSellPrice { get; set; }
         public int Lots { get; set; }
-        //public decimal SellPrice { get; set; }
         public decimal StopLoss { get; set; }
         public decimal TakeProfit { get; set; }
         public decimal MaxPrice { get; set; }
@@ -33,8 +33,8 @@ namespace TradingBot
         public void Reset(bool full)
         {
             AvgPrice = 0;
+            AvgSellPrice = 0;
             Lots = 0;
-            //SellPrice = 0;
             StopLoss = 0;
             TakeProfit = 0;
             MaxPrice = 0;
@@ -52,24 +52,56 @@ namespace TradingBot
                 Time = DateTime.Today.AddYears(-10).ToUniversalTime();
         }
 
-        public void Update(OperationType type, int lots, decimal price)
+        public void Update(OperationType type, int lots, decimal price, string orderID)
         {
             if (type == OperationType.Buy)
-                OnBuy(lots, price);
+                OnBuy(lots, price, orderID);
             else
-                OnSell(lots, price);
+                OnSell(lots, price, orderID);
         }
 
-        public void OnBuy(int lots, decimal price)
+        public int GetOrdersInLastTrade()
         {
-            Positions.Add(new Position(lots, price));
+            int totalOrders = 0;
+            string prevOrderID = "";
+            for (int i = GetLastTradeBeginPositions(); i < Positions.Count; ++i)
+            {
+                if (Positions[i].Lots > 0)
+                {
+                    if (prevOrderID != Positions[i].OrderID)
+                    {
+                        ++totalOrders;
+                        prevOrderID = Positions[i].OrderID;
+                    }
+                }
+            }
+
+            return totalOrders;
+        }
+        public int GetLotsInLastTrade()
+        {
+            int totalLots = 0;
+            for (int i = GetLastTradeBeginPositions(); i < Positions.Count; ++i)
+            {
+                if (Positions[i].Lots > 0)
+                {
+                    totalLots += Positions[i].Lots;
+                }
+            }
+
+            return totalLots;
+        }
+
+        private void OnBuy(int lots, decimal price, string orderID)
+        {
+            Positions.Add(new Position(lots, price, orderID));
 
             CalculateAverage();
 
             Status = Status.BuyDone;
         }
 
-        public void OnSell(int lots, decimal price)
+        private void OnSell(int lots, decimal price, string orderID)
         {
             if (Lots < lots)
             {
@@ -78,22 +110,7 @@ namespace TradingBot
                 return;
             }
 
-            while (lots > 0)
-            {
-                var first = Positions[0];
-                if (first.Lots < lots)
-                {
-                    // just update
-                    first.Lots -= lots;
-                    lots = 0;
-                }
-                else
-                {
-                    // remove first element and continue
-                    Positions.Remove(first);
-                    lots -= first.Lots;
-                }
-            }
+            Positions.Add(new Position(-lots, price, orderID));
 
             CalculateAverage();
 
@@ -103,32 +120,68 @@ namespace TradingBot
         private void CalculateAverage()
         {
             // calculate average price
-            int totalLots = 0;
-            decimal totalPrice = 0;
-            foreach (var it in Positions)
+            int totalBuyLots = 0;
+            decimal totalBuyPrice = 0;
+            int totalSellLots = 0;
+            decimal totalSellPrice = 0;
+
+            for (int i = GetLastTradeBeginPositions(); i < Positions.Count; ++i)
             {
-                totalLots += it.Lots;
-                totalPrice += it.Lots * it.Price;
+                if (Positions[i].Lots > 0)
+                {
+                    totalBuyLots += Positions[i].Lots;
+                    totalBuyPrice += Positions[i].Lots * Positions[i].Price;
+                }
+                else
+                {
+                    totalSellLots += -Positions[i].Lots;
+                    totalSellPrice += -Positions[i].Lots * Positions[i].Price;
+                }
             }
 
             AvgPrice = 0;
-            Lots = totalLots;
-            if (totalLots > 0)
-                AvgPrice = totalPrice / totalLots;
+            AvgSellPrice = 0;
+            Lots = totalBuyLots - totalSellLots;
+
+            if (totalBuyLots > 0)
+                AvgPrice = totalBuyPrice / totalBuyLots;
+
+            if (totalSellLots > 0)
+                AvgSellPrice = totalSellPrice / totalSellLots;
+        }
+
+        private int GetLastTradeBeginPositions()
+        {
+            // get last index where lots count == 0
+            int totalLots = 0;
+            int posBegin = 0;
+            for (int i = 0; i < Positions.Count; ++i)
+            {
+                totalLots += Positions[i].Lots;
+                if (totalLots == 0)
+                    posBegin = i + 1;
+            }
+
+            if (posBegin == Positions.Count)
+                posBegin = 0;
+
+            return posBegin;
         }
     }
 
+
     public class Position
     {
-        public Position(int l, decimal p)
+        public Position(int l, decimal p, string ID)
         {
             Lots = l;
             Price = p;
+            OrderID = ID;
         }
 
         public int Lots { get; set; }
         public decimal Price { get; set; }
-
+        public string OrderID { get; set; }
     }
     public interface IStrategyData
     {

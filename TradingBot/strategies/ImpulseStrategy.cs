@@ -192,6 +192,7 @@ namespace TradingBot
             if (reason.Length > 0)
             {
                 order = new LimitOrder(instrument.Figi, 1, OperationType.Buy, candle.Close, _accountID);
+                tradeData.AvgPrice = candle.Close;
                 tradeData.Trend = trend;
                 tradeData.StopLoss = Math.Max(candle.Low, Helpers.RoundPrice(candle.Close * 0.98m, instrument.MinPriceIncrement)); // max 2% losses
                 Logger.Write("{0}: BuyPending. Strategy: {1}. Price: {2}. StopLoss: {3}. {4}. Details: {5}",
@@ -561,6 +562,7 @@ namespace TradingBot
 
 
                         order = new LimitOrder(instrument.Figi, 1, OperationType.Buy, candle.Close, _accountID);
+                        tradeData.AvgPrice = candle.Close;
                         tradeData.Trend = trend;
                         tradeData.StopLoss = Helpers.RoundPrice(candle.Close - candle.Close * (2m * Math.Max(0.5m, maxFall) / 100), instrument.MinPriceIncrement);
                         Logger.Write("{0}: BuyPending. Strategy: {1}. Price: {2}. StopLoss: {3}. {4}. Details: {5}",

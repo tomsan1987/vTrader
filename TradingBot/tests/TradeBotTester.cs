@@ -396,7 +396,7 @@ namespace TradingBot
 
 
 
-            Test("", 1, 0.0m);
+            //Test("SWBI_BBG000BM0QL7_2020-12-04", 1, 0.0m);
             Test("", 1, 0.0m);
             Test("", 1, 0.0m);
             Test("", 1, 0.0m);
