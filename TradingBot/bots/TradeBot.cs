@@ -403,25 +403,26 @@ namespace TradingBot
                         for (int i = tradeData.CandleID; i < rawData.Count; ++i)
                         {
                             if (it.Operation == OperationType.Buy && rawData[i].Price <= it.Price)
-                                executedLots += (int)(rawData[i].Volume - rawData[i - 1].Volume);
+                                executedLots += (int)rawData[i].Volume;
                             else if (it.Operation == OperationType.Sell && rawData[i].Price >= it.Price)
-                                executedLots += (int)(rawData[i].Volume - rawData[i - 1].Volume);
+                                executedLots += (int)rawData[i].Volume;
                         }
 
                         executedLots = Math.Min(executedLots, requestedLots);
                         if (executedLots > 0)
                         {
                             it.ExecutedLots = it.ExecutedLots + executedLots;
-                            _tradeData[it.Figi].Update(it.Operation, executedLots, it.Price);
+                            tradeData.Update(it.Operation, executedLots, it.Price, it.OrderId);
+                            tradeData.CandleID = rawData.Count;
 
                             if (it.RequestedLots == it.ExecutedLots)
                                 it.OrderId = "";
-                        }
 
-                        if (it.Operation == OperationType.Sell && it.RequestedLots == it.ExecutedLots)
-                        {
-                            // trade finished
-                            _stats.Update(instrument.Ticker, 0, 0, 0, 0);
+                            if (tradeData.Lots == 0)
+                            {
+                                // trade finished
+                                _stats.Update(instrument.Ticker, tradeData.AvgPrice, tradeData.AvgSellPrice, tradeData.GetOrdersInLastTrade(), tradeData.GetLotsInLastTrade());
+                            }
                         }
                     }
                 }
@@ -472,10 +473,10 @@ namespace TradingBot
                                 Logger.Write("{0}: OrderID: {1} partially executed. Executed lots: {2}. OrderStatus: {3}/{4} lots",
                                     _figiToTicker[it.Figi], it.OrderId, executedLots, _portfolioOrders[idx].ExecutedLots, _portfolioOrders[idx].RequestedLots);
 
-                                if (it.Operation == OperationType.Buy)
-                                    _tradeData[it.Figi].OnBuy(executedLots, it.Price);
-                                else
-                                    _tradeData[it.Figi].OnSell(executedLots, it.Price);
+                                //if (it.Operation == OperationType.Buy)
+                                //    _tradeData[it.Figi].OnBuy(executedLots, it.Price);
+                                //else
+                                //    _tradeData[it.Figi].OnSell(executedLots, it.Price);
 
                                 _tradeData[it.Figi].Lots += executedLots;
                                 _tradeData[it.Figi].Status = (it.Operation == OperationType.Buy) ? Status.BuyDone : Status.SellDone;
@@ -577,7 +578,7 @@ namespace TradingBot
                                     instrument.Ticker, price, Helpers.CandleDesc(_candles[it.Key].Raw.Count - 1, candle), price - tradeData.AvgPrice, Helpers.GetChangeInPercent(tradeData.AvgPrice, price));
 
                                 _stats.Sell(tradeData.BuyTime, candle.Time, tradeData.AvgPrice, instrument.Ticker);
-                                _stats.Update(instrument.Ticker, tradeData.AvgPrice, price);
+                                _stats.Update(instrument.Ticker, tradeData.AvgPrice, tradeData.AvgSellPrice, tradeData.GetOrdersInLastTrade(), tradeData.GetLotsInLastTrade());
                             }
                             break;
                     }
