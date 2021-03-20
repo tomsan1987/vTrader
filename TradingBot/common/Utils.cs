@@ -156,7 +156,13 @@ namespace TradingBot
                 var lastStr = String.Empty;
                 var lines = File.ReadLines(f.FullName).GetEnumerator();
                 while (lines.MoveNext())
-                    lastStr = lines.Current;
+                {
+                    if (lines.Current.IndexOf("Trade statistic") >= 0)
+                    {
+                        lastStr = lines.Current;
+                        break;
+                    }
+                }
 
                 if (lastStr.Length > 0)
                 {

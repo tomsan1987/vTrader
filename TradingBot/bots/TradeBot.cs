@@ -21,7 +21,6 @@ namespace TradingBot
         private Dictionary<string, int> _newQuotes = new Dictionary<string, int>();
         private object _quotesLock = new object();
         private AutoResetEvent _quoteReceivedEvent = new AutoResetEvent(false);
-        private AutoResetEvent _quoteProcessedEvent = new AutoResetEvent(false);
         private IStrategy[] _strategies;
         private DateTime _lastTimeOut = DateTime.UtcNow.AddMinutes(-1);
 
@@ -144,8 +143,6 @@ namespace TradingBot
 
                         await OnCandleUpdate(it.Key);
                     }
-
-                    _quoteProcessedEvent.Set();
                 }
             });
         }
@@ -645,7 +642,7 @@ namespace TradingBot
                 }
 
                 var fullyExecuted = !foundInOrderList;
-                fullyExecuted |= (tradeData.Status == Status.BuyPending && foundInPortfolio) || (tradeData.Status == Status.SellPending && !foundInPortfolio);
+                fullyExecuted &= (tradeData.Status == Status.BuyPending && foundInPortfolio) || (tradeData.Status == Status.SellPending && !foundInPortfolio);
 
                 return fullyExecuted;
             }
@@ -714,8 +711,8 @@ namespace TradingBot
                     totalCandles += candleList.Count;
                     foreach (var candle in candleList)
                     {
-                        OnStreamingEventReceived(this, new StreamingEventReceivedEventArgs(new CandleResponse(candle, DateTime.Now)));
-                        _quoteProcessedEvent.WaitOne();
+                        base.OnStreamingEventReceived(this, new StreamingEventReceivedEventArgs(new CandleResponse(candle, DateTime.Now)));
+                        OnCandleUpdate(candle.Figi).Wait();
                     }
 
                     // final clean up
@@ -767,8 +764,8 @@ namespace TradingBot
 
             foreach (var candle in candleList)
             {
-                OnStreamingEventReceived(this, new StreamingEventReceivedEventArgs(new CandleResponse(candle, DateTime.Now)));
-                _quoteProcessedEvent.WaitOne();
+                base.OnStreamingEventReceived(this, new StreamingEventReceivedEventArgs(new CandleResponse(candle, DateTime.Now)));
+                OnCandleUpdate(candle.Figi).Wait();
             }
 
             CloseAll().Wait();

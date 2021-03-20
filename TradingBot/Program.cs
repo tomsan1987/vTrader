@@ -28,7 +28,9 @@ namespace TradingBot
                                 if (bot == null || (startTime.Day < DateTime.UtcNow.Day && DateTime.UtcNow.Hour >= 1))
                                 {
                                     startTime = DateTime.UtcNow;
-                                    bot?.DisposeAsync();
+                                    if (bot != null)
+                                        await bot.DisposeAsync();
+
                                     bot = new Screener(settings);
                                     await bot.StartAsync();
                                 }
@@ -48,7 +50,9 @@ namespace TradingBot
                                 if (bot == null || (startTime.Day < DateTime.UtcNow.Day && DateTime.UtcNow.Hour >= 1))
                                 {
                                     startTime = DateTime.UtcNow;
-                                    bot?.DisposeAsync();
+                                    if (bot != null)
+                                        await bot.DisposeAsync();
+
                                     bot = new TradeBot(settings);
                                     await bot.StartAsync();
                                 }

@@ -7,6 +7,7 @@ using Tinkoff.Trading.OpenApi.Models;
 using Tinkoff.Trading.OpenApi.Network;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System.Timers;
 
 namespace TradingBot
 {
@@ -27,7 +28,7 @@ namespace TradingBot
         protected Dictionary<string, string> _tickerToFigi = new Dictionary<string, string>();
         protected Dictionary<string, Quotes> _candles;
         protected DateTime _lastCandleReceived;
-
+        protected Timer _subscriptionTimer = new System.Timers.Timer();
         public class Settings
         {
             public bool SubscribeQuotes { get; set; } = false;
@@ -74,7 +75,7 @@ namespace TradingBot
             await InitInstruments();
             InitCandles();
             await RequestCandleHistory();
-            await SubscribeCandles();
+            SubscribeCandles();
         }
 
         public virtual void ShowStatus()
@@ -89,6 +90,8 @@ namespace TradingBot
 
             foreach (var it in _candles)
                 it.Value.Dispose();
+
+            Logger.Write("BaseBot::DisposeAsync done!");
         }
 
         protected class OperationStat : IComparable<OperationStat>
@@ -104,8 +107,10 @@ namespace TradingBot
                 if (this.currency != right.currency)
                     return (this.currency < right.currency) ? 1 : -1;
 
-                if (this.profit!= right.profit)
-                    return (this.profit < right.profit) ? 1 : -1;
+                var sumL = this.profit + this.commission + this.dividents;
+                var sumR = right.profit + right.commission + right.dividents;
+                if (sumL != sumR)
+                    return (sumL < sumR) ? 1 : -1;
 
                 return this.ticker.CompareTo(right.ticker);
             }
@@ -257,6 +262,11 @@ namespace TradingBot
 
                 _candles[cr.Payload.Figi].QuoteLogger.onQuoteReceived(cr.Payload);
             }
+            else if (e.Response.Event == "error")
+            {
+                var res = (StreamingErrorResponse)e.Response;
+                Logger.Write("Error event received: {0}", res.Payload.Error);
+            }
             else
             {
                 Logger.Write("Unknown event received: {0}", e.Response);
@@ -266,10 +276,12 @@ namespace TradingBot
         protected void OnWebSocketExceptionReceived(object s, WebSocketException e)
         {
             Logger.Write("OnWebSocketExceptionReceived: {0}", e.Message);
-           _ =  UnSubscribeCandles();
+            //_ =  UnSubscribeCandles();
 
-            Connect();
-            _ = SubscribeCandles();
+            // Connect();
+            // _ = SubscribeCandles();
+            _subscriptionTimer.Stop();
+            _subscriptionTimer.Start();
         }
 
         protected void OnStreamingClosedReceived(object s, EventArgs args)
@@ -278,7 +290,7 @@ namespace TradingBot
             throw new Exception("Stream closed for unknown reasons...");
         }
 
-        private async Task SubscribeCandles()
+        private void SubscribeCandles()
         {
             if (_settings.SubscribeQuotes)
             {
@@ -286,12 +298,48 @@ namespace TradingBot
                 _context.WebSocketException += OnWebSocketExceptionReceived;
                 _context.StreamingClosed += OnStreamingClosedReceived;
 
+                _subscriptionTimer.AutoReset = false;
+                _subscriptionTimer.Elapsed += new ElapsedEventHandler(SubscribeCandlesImpl);
+                _subscriptionTimer.Interval = 5000;
+                _subscriptionTimer.Start();
+
+                //_candleSubscriptionTask = Task.Run(async () =>
+                //{
+                //    while (!_disposing)
+                //    {
+                //        Dictionary<string, int> newQuotes = null;
+                //        lock (_quotesLock)
+                //        {
+                //            newQuotes = _newQuotes;
+                //            _newQuotes = new Dictionary<string, int>();
+                //        }
+
+                //        foreach (var it in newQuotes)
+                //        {
+                //            if (it.Value > 5)
+                //                Logger.Write("{0}: Quotes queue size: {1}", _figiToTicker[it.Key], it.Value);
+
+                //            await OnCandleUpdate(it.Key);
+                //        }
+                //    }
+                //});
+            }
+        }
+
+        private void SubscribeCandlesImpl(object source, ElapsedEventArgs e)
+        {
+            try
+            {
                 Logger.Write("Start subscribing candles...");
 
                 for (int i = 0; i < _watchList.Count; ++i)
-                    await _context.SendStreamingRequestAsync(StreamingRequest.SubscribeCandle(_tickerToFigi[_watchList[i]], CandleInterval.FiveMinutes));
+                    _context.SendStreamingRequestAsync(StreamingRequest.SubscribeCandle(_tickerToFigi[_watchList[i]], CandleInterval.FiveMinutes)).Wait();
 
                 Logger.Write("End of subscribing candles...");
+            }
+            catch (Exception ex)
+            {
+                Logger.Write("Error while subscribing candles: " + ex.Message);
             }
         }
 
