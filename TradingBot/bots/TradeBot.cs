@@ -413,6 +413,7 @@ namespace TradingBot
                             it.ExecutedLots = it.ExecutedLots + executedLots;
                             tradeData.Update(it.Operation, executedLots, it.Price, it.OrderId);
                             tradeData.CandleID = rawData.Count;
+                            tradeData.Time = _candles[figi].Candles[_candles[figi].Candles.Count - 1].Time;
 
                             if (it.RequestedLots == it.ExecutedLots)
                                 it.OrderId = "";

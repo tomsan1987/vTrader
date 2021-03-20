@@ -436,7 +436,7 @@ namespace TradingBot
 
         private void TestImpulseStrategy()
         {
-            _testNameFilter = "RDFN_BBG001Q7HP63_2021-01-07";
+            //_testNameFilter = "RDFN_BBG001Q7HP63_2021-01-07";
 
             RunPositiveTestsImpulseStrategy();
             RunNegativeTestsImpulseStrategy();
