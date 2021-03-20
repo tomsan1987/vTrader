@@ -250,8 +250,7 @@ namespace TradingBot
                         _orders.RemoveAll(x => x.Figi == instrument.Figi);
                         if (tradeData.Status == Status.BuyPending)
                         {
-                            tradeData.Status = Status.Watching;
-                            tradeData.CandleID = 0;
+                            tradeData.Reset(true);
                         }
                     }
                     else
@@ -422,6 +421,7 @@ namespace TradingBot
                             {
                                 // trade finished
                                 _stats.Update(instrument.Ticker, tradeData.AvgPrice, tradeData.AvgSellPrice, tradeData.GetOrdersInLastTrade(), tradeData.GetLotsInLastTrade());
+                                tradeData.Reset(false);
                             }
                         }
                     }

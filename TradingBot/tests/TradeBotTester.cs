@@ -12,6 +12,7 @@ namespace TradingBot
         private string _basePath;
         private TradeBot _bot;
         private string _strategy;
+        private string _testNameFilter = ""; // will run only test with specified name(for debug purpose only)
 
         // stat
         private int _totalOrders = 0;
@@ -341,6 +342,9 @@ namespace TradingBot
             if (testName.Length == 0)
                 return;
 
+            if (_testNameFilter.Length > 0 && _testNameFilter != testName)
+                return;
+
             Logger.Write("Test name: " + testName);
             _writer.WriteLine(testName);
 
@@ -432,6 +436,8 @@ namespace TradingBot
 
         private void TestImpulseStrategy()
         {
+            _testNameFilter = "RDFN_BBG001Q7HP63_2021-01-07";
+
             RunPositiveTestsImpulseStrategy();
             RunNegativeTestsImpulseStrategy();
 
