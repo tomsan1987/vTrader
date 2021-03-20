@@ -413,7 +413,14 @@ namespace TradingBot
                             tradeData.Time = _candles[figi].Candles[_candles[figi].Candles.Count - 1].Time;
 
                             if (it.RequestedLots == it.ExecutedLots)
+                            {
+                                Logger.Write("{0}: OrderID: {1} fully executed", instrument.Ticker, it.OrderId);
                                 it.OrderId = "";
+                            }
+                            else
+                            {
+                                Logger.Write("{0}: OrderID: {1} partially executed: {2} lots", instrument.Ticker, it.OrderId, executedLots);
+                            }
 
                             if (tradeData.Lots == 0)
                             {
@@ -444,7 +451,7 @@ namespace TradingBot
                 }
 
                 // Log portfolio
-                Logger.Write("Active orders: {0}", _portfolio.Count);
+                Logger.Write("Portfolio: {0}", _portfolio.Count);
                 foreach (var it in _portfolio)
                 {
                     if (!_tradeData.ContainsKey(it.Figi) || _tradeData[it.Figi].DisabledTrading)
@@ -456,6 +463,9 @@ namespace TradingBot
                 // lets look what orders was executed
                 foreach (var it in _orders)
                 {
+                    var instrument = _figiToInstrument[it.Figi];
+                    int executedLots = 0;
+
                     var idx = _portfolioOrders.FindIndex(x => x.OrderId == it.OrderId);
                     if (idx > 0)
                     {
@@ -463,27 +473,22 @@ namespace TradingBot
                         if (_portfolioOrders[idx].RequestedLots > _portfolioOrders[idx].ExecutedLots && it.ExecutedLots < _portfolioOrders[idx].ExecutedLots)
                         {
                             // partially executed, check how lots added to portfolio
-                            var executedLots = _portfolioOrders[idx].ExecutedLots - it.ExecutedLots;
+                            executedLots = _portfolioOrders[idx].ExecutedLots - it.ExecutedLots;
                             var prevLots = _tradeData[it.Figi].Lots;
                             var portfolioLots = GetLotsInPortfolio(it.Figi);
                             if (Math.Abs(portfolioLots - prevLots) == executedLots)
                             {
+                                it.ExecutedLots = it.ExecutedLots + executedLots;
+                                _tradeData[it.Figi].Update(it.Operation, executedLots, it.Price, it.OrderId);
+                                _tradeData[it.Figi].CandleID = _candles[it.Figi].Raw.Count;
+                                _tradeData[it.Figi].Time = _candles[figi].Candles[_candles[figi].Candles.Count - 1].Time;
+
                                 Logger.Write("{0}: OrderID: {1} partially executed. Executed lots: {2}. OrderStatus: {3}/{4} lots",
                                     _figiToTicker[it.Figi], it.OrderId, executedLots, _portfolioOrders[idx].ExecutedLots, _portfolioOrders[idx].RequestedLots);
-
-                                //if (it.Operation == OperationType.Buy)
-                                //    _tradeData[it.Figi].OnBuy(executedLots, it.Price);
-                                //else
-                                //    _tradeData[it.Figi].OnSell(executedLots, it.Price);
-
-                                _tradeData[it.Figi].Lots += executedLots;
-                                _tradeData[it.Figi].Status = (it.Operation == OperationType.Buy) ? Status.BuyDone : Status.SellDone;
-
-                                it.ExecutedLots = _portfolioOrders[idx].ExecutedLots;
                             }
                             else
                             {
-                                Logger.Write("{0}: OrderID: {1}. Partial execution. We should not been here... PlacedOrder: {2}/{3}. PortfolioOrder: {4}/{5}",
+                                Logger.Write("{0}: OrderID: {1}. Partially executed, but not added to Portfolio. PlacedOrder: {2}/{3}. PortfolioOrder: {4}/{5}",
                                     _figiToTicker[it.Figi], it.OrderId, it.ExecutedLots, it.RequestedLots, _portfolioOrders[idx].ExecutedLots, _portfolioOrders[idx].RequestedLots);
                             }
                         }
@@ -491,23 +496,35 @@ namespace TradingBot
                     else
                     {
                         // seems executed if added to portfolio
-                        var executedLots = it.RequestedLots - it.ExecutedLots;
+                        executedLots = it.RequestedLots - it.ExecutedLots;
                         var prevLots = _tradeData[it.Figi].Lots;
                         var portfolioLots = GetLotsInPortfolio(it.Figi);
                         if (Math.Abs(portfolioLots - prevLots) == executedLots)
                         {
-                            Logger.Write("{0}: OrderID: {1} executed. Lots: {2}", _figiToTicker[it.Figi], it.OrderId, executedLots);
-
                             // order executed, added to portfolio! remove from orders
                             it.OrderId = "";
-                            _tradeData[it.Figi].AvgPrice = 0; // TODO
-                            _tradeData[it.Figi].Lots += executedLots;
-                            _tradeData[it.Figi].Status = (it.Operation == OperationType.Buy) ? Status.BuyDone : Status.SellDone;
+                            it.ExecutedLots = it.ExecutedLots + executedLots;
+                            _tradeData[it.Figi].Update(it.Operation, executedLots, it.Price, it.OrderId);
+                            _tradeData[it.Figi].CandleID = _candles[it.Figi].Raw.Count;
+                            _tradeData[it.Figi].Time = _candles[figi].Candles[_candles[figi].Candles.Count - 1].Time;
+
+                            if (it.RequestedLots == it.ExecutedLots)
+                            {
+                                Logger.Write("{0}: OrderID: {1} fully executed", instrument.Ticker, it.OrderId);
+                                it.OrderId = "";
+                            }
+
+                            if (_tradeData[it.Figi].Lots == 0)
+                            {
+                                // trade finished
+                                _stats.Update(instrument.Ticker, _tradeData[it.Figi].AvgPrice, _tradeData[it.Figi].AvgSellPrice, _tradeData[it.Figi].GetOrdersInLastTrade(), _tradeData[it.Figi].GetLotsInLastTrade());
+                                _tradeData[it.Figi].Reset(false);
+                            }
                         }
                         else
                         {
-                            Logger.Write("{0}: OrderID: {1}. Full execution. We should not been here... PlacedOrder: {2}/{3}. PortfolioOrder: {4}/{5}",
-                                _figiToTicker[it.Figi], it.OrderId, it.ExecutedLots, it.RequestedLots, _portfolioOrders[idx].ExecutedLots, _portfolioOrders[idx].RequestedLots);
+                            Logger.Write("{0}: OrderID: {1}. Waiting execution... Not found in portfolio orders, but not added to Portfolio. PlacedOrder: {2}/{3}.",
+                                _figiToTicker[it.Figi], it.OrderId, it.ExecutedLots, it.RequestedLots);
                         }
                     }
                 }
