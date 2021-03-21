@@ -23,7 +23,7 @@ namespace Tinkoff.Trading.OpenApi.Models
             public decimal Balance { get; }
             public decimal Blocked { get; }
             public MoneyAmount ExpectedYield { get; }
-            public int Lots { get; }
+            public int Lots { get; set; }
             public MoneyAmount AveragePositionPrice { get; }
             public MoneyAmount AveragePositionPriceNoNkd { get; }
 

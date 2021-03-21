@@ -9,7 +9,7 @@ namespace Tinkoff.Trading.OpenApi.Models
         public OperationType Operation { get; }
         public OrderStatus Status { get; }
         public int RequestedLots { get; }
-        public int ExecutedLots { get; }
+        public int ExecutedLots { get; set; }
         public OrderType Type { get; }
         public decimal Price { get; }
 
