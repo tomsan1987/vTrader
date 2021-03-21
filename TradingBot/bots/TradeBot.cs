@@ -193,7 +193,7 @@ namespace TradingBot
                 }
 
                 LimitOrder order = null;
-                IStrategy.StrategyResultType operation = IStrategy.StrategyResultType.NoOp;
+                var operation = IStrategy.StrategyResultType.NoOp;
 
                 if (tradeData.Strategy == null)
                 {
@@ -222,9 +222,9 @@ namespace TradingBot
                     placedOrder.Figi = instrument.Figi;
                     placedOrder.Price = order.Price;
 
-                    if (placedOrder.Status == OrderStatus.Cancelled || placedOrder.Status == OrderStatus.PendingCancel || placedOrder.Status == OrderStatus.Rejected || placedOrder.RejectReason.Length > 0)
+                    if (placedOrder.Status == OrderStatus.Cancelled || placedOrder.Status == OrderStatus.PendingCancel || placedOrder.Status == OrderStatus.Rejected || placedOrder.RejectReason?.Length > 0)
                     {
-                        Logger.Write("{0}: OrderId: {1}. Lost: {2}. Unsucessfull! Status: {3}. RejectReason: {4}",
+                        Logger.Write("{0}: OrderId: {1}. Lost: {2}. Unsuccessful! Status: {3}. RejectReason: {4}",
                             instrument.Ticker, placedOrder.OrderId, placedOrder.RequestedLots, placedOrder.Status.ToString(), placedOrder.RejectReason);
                     }
                     else
@@ -253,6 +253,7 @@ namespace TradingBot
                     else
                     {
                         // try to cancel order
+                        // TODO: situation: we canceling order, but it may be partially executed
                         foreach (var it in _orders)
                         {
                             if (it.Figi == instrument.Figi)
@@ -270,101 +271,13 @@ namespace TradingBot
                                 }
 
                                 if (successed)
-                                {
-                                    tradeData.Status = Status.Watching;
-                                    tradeData.CandleID = 0;
-                                }
+                                    it.OrderId = "";
                             }
                         }
+
+                        _orders.RemoveAll(x => x.OrderId == "");
                     }
                 }
-
-                //else if (tradeData.Status == Status.BuyPending)
-                //{
-                //    // check if limited order executed
-                //    if (await IsOrderExecuted(instrument.Ticker, figi, tradeData.OrderId))
-                //    {
-                //        // order executed
-                //        tradeData.Status = Status.BuyDone;
-                //        tradeData.Time = candle.Time;
-                //        _stats.Buy(tradeData.AvgPrice);
-
-                //        Logger.Write("{0}: OrderId: {1} executed", instrument.Ticker, tradeData.OrderId);
-                //    }
-                //    else
-                //    {
-                //        if (tradeData.Strategy.Process(instrument, tradeData, _candles[figi], out order) == IStrategy.StrategyResultType.CancelOrder)
-                //        {
-                //            bool successed = false;
-                //            try
-                //            {
-                //                await _context.CancelOrderAsync(tradeData.OrderId, _accountId);
-                //                successed = true;
-                //            }
-                //            catch (OpenApiException e)
-                //            {
-                //                Logger.Write("OpenApiException while canchel order: " + e.Message);
-                //            }
-
-                //            if (successed)
-                //            {
-                //                tradeData.Status = Status.Watching;
-                //                tradeData.CandleID = 0;
-                //                tradeData.Time = candle.Time.AddMinutes(-15); // this is for try to buy it again
-                //            }
-                //        }
-                //    }
-                //}
-                //else if (tradeData.Status == Status.BuyDone)
-                //{
-                //    if (tradeData.Strategy.Process(instrument, tradeData, _candles[figi], out order) == IStrategy.StrategyResultType.Sell)
-                //    {
-                //        // sell 1 lot
-                //        //var order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, tradeData.SellPrice, _accountId);
-                //        var placedOrder = await _context.PlaceLimitOrderAsync(order);
-
-                //        tradeData.Status = Status.SellPending;
-                //        tradeData.Time = candle.Time;
-                //        Logger.Write("{0}: OrderId: {1}. Details: Status - {2}, RejectReason -  {3}", instrument.Ticker, tradeData.OrderId, placedOrder.Status.ToString(), placedOrder.RejectReason);
-                //    }
-                //}
-                //else if (tradeData.Status == Status.SellPending)
-                //{
-                //    // check if limited order executed
-                //    if (await IsOrderExecuted(instrument.Ticker, figi, tradeData.OrderId))
-                //    {
-                //        // order executed
-                //        Logger.Write("{0}: OrderId: {1} executed", instrument.Ticker, tradeData.OrderId);
-
-                //        _stats.Sell(tradeData.BuyTime, candle.Time, tradeData.AvgPrice, instrument.Ticker);
-                //        _stats.Update(instrument.Ticker, tradeData.AvgPrice, tradeData.SellPrice);
-                //        tradeData.Reset(false);
-                //    }
-                //    else
-                //    {
-                //        bool cancel = true;
-                //        if (tradeData.Strategy is MorningOpenStrategy)
-                //        {
-                //            if (tradeData.Strategy.Process(instrument, tradeData, _candles[figi], out order) != IStrategy.StrategyResultType.CancelOrder)
-                //            {
-                //                cancel = false;
-                //            }
-                //        }
-
-                //        if (cancel)
-                //        {
-                //            // check if price changed is not significantly
-                //            var change = Helpers.GetChangeInPercent(tradeData.SellPrice, candle.Close);
-                //            if (change <= -0.2m)
-                //            {
-                //                Logger.Write("{0}: Cancel order. {1}. Details: price change {2}", instrument.Ticker, Helpers.CandleDesc(_candles[figi].Raw.Count - 1, candle), change);
-
-                //                await _context.CancelOrderAsync(tradeData.OrderId, _accountId);
-                //                tradeData.Status = Status.BuyDone;
-                //            }
-                //        }
-                //    }
-                //}
             }
             catch (OpenApiException e)
             {

@@ -12,6 +12,9 @@ namespace TradingBot
         static public int s_min_quotes_per_candle = 40;
         private string _accountID = "";
 
+        // Trade settings
+        public const decimal sMinVolume = 100; // USD
+
         public MorningOpenStrategy(string accountID)
         {
             _accountID = accountID;
@@ -105,7 +108,8 @@ namespace TradingBot
             if (buy)
             {
                 // place limited order
-                order = new LimitOrder(instrument.Figi, 1, OperationType.Buy, candle.Close, _accountID);
+                int lots = Math.Max((int)(sMinVolume / candle.Close), 1);
+                order = new LimitOrder(instrument.Figi, lots, OperationType.Buy, candle.Close, _accountID);
 
                 Logger.Write("{0}: BuyPending. Strategy: {1}. Price: {2}. ChangeOpenToCurrent: {3}. ChangePrevCloseToCurrent: {4}. {5}.",
                     instrument.Ticker, Description(), order.Price, currCandleChange, changeFromPrevClose, Helpers.CandleDesc(quotes.Raw.Count - 1, candle));
@@ -152,7 +156,7 @@ namespace TradingBot
             if (candle.Time >= tradeData.BuyTime.AddMinutes(5) && profit >= 0.1m)
             {
                 // just sell per current price
-                order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, candle.Close, _accountID);
+                order = new LimitOrder(instrument.Figi, tradeData.Lots, OperationType.Sell, candle.Close, _accountID);
                 Logger.Write("{0}: Morning closing. Close price: {1}. CandleChange: {2}%. ChangeFromCandleHigh: {3}%. Profit: {4}({5}%). {6}",
                     instrument.Ticker, order.Price, candleChange, changeFromMax, order.Price - tradeData.AvgPrice, profit, Helpers.CandleDesc(quotes.Raw.Count - 1, candle));
 
@@ -162,7 +166,7 @@ namespace TradingBot
             if (candle.Time > tradeData.BuyTime.AddMinutes(15))
             {
                 // we have waited 20 minutes in hope to profit, just sell per current price
-                order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, candle.Close, _accountID);
+                order = new LimitOrder(instrument.Figi, tradeData.Lots, OperationType.Sell, candle.Close, _accountID);
                 Logger.Write("{0}: Morning closing by timeout. Close price: {1}. Profit: {2}({3}%). {4}",
                     instrument.Ticker, order.Price, order.Price - tradeData.AvgPrice, profit, Helpers.CandleDesc(quotes.Raw.Count - 1, candle));
 
