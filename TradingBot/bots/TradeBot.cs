@@ -304,14 +304,22 @@ namespace TradingBot
             }
             else if (force || (DateTime.UtcNow - _lastPortfolioStatusQuery).TotalSeconds > 20)
             {
-                Logger.Write("Updating portfolio status... ");
-
                 // we need to query active orders and portfolio from API once per 20 second
-                _portfolioOrders = await _context.OrdersAsync(_accountId);
-                _portfolio = _context.PortfolioAsync(_accountId).Result.Positions;
-                _lastPortfolioStatusQuery = DateTime.UtcNow;
 
-                LogPortfolioAndOrders();
+                if (_orders.Count > 0 || _portfolioOrders.Count > 0 || _portfolio.Count > 0)
+                {
+                    Logger.Write("Updating portfolio status... ");
+
+                    _portfolioOrders = await _context.OrdersAsync(_accountId);
+                    _portfolio = _context.PortfolioAsync(_accountId).Result.Positions;
+                    _lastPortfolioStatusQuery = DateTime.UtcNow;
+
+                    // erase elements for disabled instruments
+                    _portfolioOrders.RemoveAll(x => !_tradeData.ContainsKey(x.Figi) || _tradeData[x.Figi].DisabledTrading);
+                    _portfolio.RemoveAll(x => !_tradeData.ContainsKey(x.Figi) || _tradeData[x.Figi].DisabledTrading);
+
+                    LogPortfolioAndOrders();
+                }
             }
 
             // lets look what orders was executed
@@ -389,23 +397,29 @@ namespace TradingBot
         private void LogPortfolioAndOrders()
         {
             // Log active orders
-            Logger.Write("Active orders: {0}", _portfolioOrders.Count);
-            foreach (var it in _portfolioOrders)
+            if (_portfolioOrders.Count > 0)
             {
-                if (!_tradeData.ContainsKey(it.Figi) || _tradeData[it.Figi].DisabledTrading)
-                    continue;
+                Logger.Write("Active orders: {0}", _portfolioOrders.Count);
+                foreach (var it in _portfolioOrders)
+                {
+                    if (!_tradeData.ContainsKey(it.Figi) || _tradeData[it.Figi].DisabledTrading)
+                        continue;
 
-                Logger.Write("{0}: {1}. {2}/{3}", _figiToInstrument[it.Figi], it.Operation, it.RequestedLots, it.ExecutedLots);
+                    Logger.Write("   {0}: {1}. {2}/{3}", _figiToInstrument[it.Figi].Ticker, it.Operation, it.RequestedLots, it.ExecutedLots);
+                }
             }
 
             // Log portfolio
-            Logger.Write("Portfolio: {0}", _portfolio.Count);
-            foreach (var it in _portfolio)
+            if (_portfolio.Count > 0)
             {
-                if (!_tradeData.ContainsKey(it.Figi) || _tradeData[it.Figi].DisabledTrading)
-                    continue;
+                Logger.Write("Portfolio: {0}", _portfolio.Count);
+                foreach (var it in _portfolio)
+                {
+                    if (!_tradeData.ContainsKey(it.Figi) || _tradeData[it.Figi].DisabledTrading)
+                        continue;
 
-                Logger.Write("{0}: {1}", _figiToInstrument[it.Figi], it.Lots);
+                    Logger.Write("   {0}: {1}", _figiToInstrument[it.Figi].Ticker, it.Lots);
+                }
             }
         }
 
