@@ -42,9 +42,9 @@ namespace TradingBot
                 {
                     switch (strategyNames[i])
                     {
-                        case "GoodGrowStrategy":        _strategies[i] = new GoodGrowStrategy(_accountId); break;
-                        case "ImpulseStrategy":         _strategies[i] = new ImpulseStrategy(_accountId); break;
-                        case "MorningOpenStrategy":     _strategies[i] = new MorningOpenStrategy(_accountId); break;
+                        case "GoodGrowStrategy":        _strategies[i] = new GoodGrowStrategy(); break;
+                        case "ImpulseStrategy":         _strategies[i] = new ImpulseStrategy(); break;
+                        case "MorningOpenStrategy":     _strategies[i] = new MorningOpenStrategy(); break;
                         default: Logger.Write("Unknown strategy name '{0}'", strategyNames[i]); break;
                     }
                 }
@@ -218,6 +218,7 @@ namespace TradingBot
                 // process Strategy's result
                 if (operation == IStrategy.StrategyResultType.Buy || operation == IStrategy.StrategyResultType.Sell)
                 {
+                    order.BrokerAccountId = _accountId;
                     var placedOrder = await _context.PlaceLimitOrderAsync(order);
                     placedOrder.Figi = instrument.Figi;
                     placedOrder.Price = order.Price;
@@ -306,8 +307,8 @@ namespace TradingBot
                 Logger.Write("Updating portfolio status... ");
 
                 // we need to query active orders and portfolio from API once per 20 second
-                _portfolioOrders = await _context.OrdersAsync();
-                _portfolio = _context.PortfolioAsync().Result.Positions;
+                _portfolioOrders = await _context.OrdersAsync(_accountId);
+                _portfolio = _context.PortfolioAsync(_accountId).Result.Positions;
                 _lastPortfolioStatusQuery = DateTime.UtcNow;
 
                 LogPortfolioAndOrders();

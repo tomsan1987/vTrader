@@ -8,12 +8,6 @@ namespace TradingBot
 {
     public class GoodGrowStrategy : IStrategy
     {
-        private string _accountID = "";
-        public GoodGrowStrategy(string accountID)
-        {
-            _accountID = accountID;
-        }
-
         public IStrategy.StrategyResultType Process(MarketInstrument instrument, TradeData tradeData, Quotes quotes, out LimitOrder order)
         {
             order = null;
@@ -108,7 +102,7 @@ namespace TradingBot
                 }
 
                 var idx = candles.Count > 3 ? candles.Count - 3 : 1;
-                order = new LimitOrder(instrument.Figi, 1, OperationType.Buy, candle.Close, _accountID);
+                order = new LimitOrder(instrument.Figi, 1, OperationType.Buy, candle.Close);
                 tradeData.StopLoss =  candles[idx].Open;
                 tradeData.MaxPrice = candle.Close;
                 Logger.Write("{0}: BuyPending. Strategy: {1}. Price: {2}. StopLoss: {3}. Candle: ID:{4}, Time: {5}, Close: {6}. Details: Reason: {7}",
@@ -120,7 +114,7 @@ namespace TradingBot
                 //check if we reach stop conditions
                 if (candle.Close < tradeData.StopLoss)
                 {
-                    order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, candle.Close, _accountID);
+                    order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, candle.Close);
                     Logger.Write("{0}: SL reached. Pending. Close price: {1}. Candle: ID:{2}, Time: {3}, Close: {4}. Profit: {5}({6}%)",
                         instrument.Ticker, order.Price, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close, order.Price - tradeData.AvgPrice, Helpers.GetChangeInPercent(tradeData.AvgPrice, order.Price));
 
@@ -128,7 +122,7 @@ namespace TradingBot
                 }
                 else if (tradeData.TakeProfit > 0m && candle.Close >= tradeData.TakeProfit)
                 {
-                    order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, candle.Close, _accountID);
+                    order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, candle.Close);
                     Logger.Write("{0}: TP reached. Pending. Close price: {1}. Candle: ID:{2}, Time: {3}, Close: {4}. Profit: {5}({6}%)",
                         instrument.Ticker, order.Price, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close, order.Price - tradeData.AvgPrice, Helpers.GetChangeInPercent(tradeData.AvgPrice, order.Price));
 
