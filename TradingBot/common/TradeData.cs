@@ -21,13 +21,11 @@ namespace TradingBot
         public Trend Trend { get; set; }
         public bool DisabledTrading { get; set; } = false;
         public int CandleID { get; set; } // ID of candle where last operation was done
-        public List<Position> Positions { get; set; }
+        public List<Position> Positions { get; set; } = new List<Position>();
 
         public TradeData()
         {
-            Status = Status.Watching;
-            Time = DateTime.Today.AddYears(-10).ToUniversalTime();
-            Positions = new List<Position>();
+            Reset(true);
         }
 
         public void Reset(bool full)

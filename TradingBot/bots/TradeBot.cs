@@ -405,7 +405,7 @@ namespace TradingBot
                     if (!_tradeData.ContainsKey(it.Figi) || _tradeData[it.Figi].DisabledTrading)
                         continue;
 
-                    Logger.Write("   {0}: {1}. {2}/{3}", _figiToInstrument[it.Figi].Ticker, it.Operation, it.RequestedLots, it.ExecutedLots);
+                    Logger.Write("   {0}: {1}. {2}/{3}", _figiToInstrument[it.Figi].Ticker, it.Operation, it.ExecutedLots, it.RequestedLots);
                 }
             }
 
