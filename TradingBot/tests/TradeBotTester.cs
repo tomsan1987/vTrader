@@ -267,7 +267,39 @@ namespace TradingBot
             Test("NET_BBG001WMKHH5_2021-01-27", 1, 3.0m); //++
             Test("PBI_BBG000BQTMJ9_2021-01-28", 1, 0.05m);
             Test("SPCE_BBG00HTN2CQ3_2020-12-21", 1, 0.01m);
-
+            Test("ICPT_BBG001J1QN87_2021-03-15", 1, 1.0m);
+            Test("MFGP_BBG00HFWVGN0_2021-03-04", 1, 0.2m);
+            Test("GILD_BBG000CKGBP2_2021-03-15", 1, 1.5m);
+            Test("BILI_BBG00K7T3037_2021-03-05", 1, 3.0m);
+            Test("AA_BBG00B3T3HD3_2021-03-04", 1, 0.80m);
+            Test("SNAP_BBG00441QMJ7_2021-02-24", 1, 1.5m);
+            Test("FTI_BBG00DL8NMV2_2021-02-25", 1, 0.18m);
+            Test("T_BBG000BSJK37_2021-03-08", 1, 0.7m);
+            Test("APA_BBG00YTS96G2_2021-03-11", 1, 0.5m);
+            Test("ACH_BBG000CMRVH1_2021-02-24", 1, 0.3m);
+            Test("BLUE_BBG000QGWY50_2021-03-12", 1, 0.7m); // real order
+            Test("SQ_BBG0018SLC07_2021-03-03", 1, 5.0m);
+            Test("ARCT_BBG00NNW8JK1_2021-02-24", 1, 1.0m);
+            Test("MRNA_BBG003PHHZT1_2021-02-26", 1, 3.0m);
+            Test("ET_BBG000BM2FL9_2021-02-18", 1, 0.10m);
+            Test("COG_BBG000C3GN47_2021-03-12", 1, 0.3m);
+            Test("TPR_BBG000BY29C7_2021-02-18", 1, 0.7m);
+            Test("COTY_BBG000F395V1_2021-02-25", 1, 0.14m);
+            Test("FSLY_BBG004NLQHL0_2021-03-05", 1, 1.0m);
+            Test("SDGR_BBG000T88BN2_2021-03-12", 1, 1.0m);
+            Test("BABA_BBG006G2JVL2_2021-03-12", 1, 4.0m);
+            Test("PINS_BBG002583CV8_2021-02-24", 1, 1.0m);
+            Test("NVDA_BBG000BBJQV0_2021-02-26", 1, 8.0m);
+            Test("CRTX_BBG00BTK1DT8_2021-03-11", 1, 0.5m);
+            Test("ENPH_BBG001R3MNY9_2021-03-04", 1, 1.5m);
+            Test("JD_BBG005YHY0Q7_2021-03-12", 1, 0.8m);
+            Test("AMD_BBG000BBQCY0_2021-02-26", 1, 0.7m);
+            Test("MOMO_BBG007HTCQT0_2021-02-26", 1, 0.1m);
+            Test("ENDP_BBG000C0HQ54_2021-02-26", 1, 0.05m);
+            Test("GT_BBG000BKNX95_2021-03-01", 1, 0.05m);
+            Test("CCL_BBG000BF6LY3_2021-02-26", 1, 0.07m);
+            Test("UAL_BBG000M65M61_2021-02-26", 1, 0.08m); // TODO: buy more!
+            Test("BYND_BBG003CVJP50_2021-02-24", 1, 0.2m); // big gap up
 
             _basePath = basePath;
         }
@@ -297,6 +329,21 @@ namespace TradingBot
             Test("TER_BBG000BV4DR6_2021-01-28", 1, -0.40m); // happy to close with small losse
             Test("XOM_BBG000GZQ728_2020-12-21", 1, -1.0m); // buy more!
             Test("C_BBG000FY4S11_2020-12-21", 1, -0.35m); // buy more!
+
+            Test("COTY_BBG000F395V1_2021-02-26", 1, -0.80m); // just no lack
+            Test("SPCE_BBG00HTN2CQ3_2021-03-04", 1, -1.0m); // TODO: buy more!
+            Test("PYPL_BBG0077VNXV6_2021-02-26", 1, -7.0m); // no lack, may be buy more
+            Test("BIDU_BBG000QXWHD1_2021-02-26", 1, -6.0m); // no lack, may be buy more or minimize loss
+            Test("VIPS_BBG002NLDLV8_2021-02-26", 1, -0.7m); // ChangeOpenToCurrent = 0
+            Test("GSKY_BBG00KT2SCV8_2021-03-08", 1, -0.1m); // good candidate to buy more
+            Test("DKNG_BBG00TCBG714_2021-03-05", 1, -0.80m); // no luck
+            Test("AAL_BBG005P7Q881_2021-02-26", 1, -0.30m); // FIXME: why not closed with profit?!
+            Test("DBX_BBG0018SLDN0_2021-02-19", 1, -0.50m); // buy more
+            Test("SEDG_BBG0084BBZY6_2021-02-24", 1, -4.0m); // buy more or minimize loss
+            Test("RCL_BBG000BB5792_2021-02-26", 1, -1.0m); // that a good example of why minimal loss is good against waiting profit
+            Test("BLUE_BBG000QGWY50_2021-03-04", 1, -0.30m); // buy more
+            Test("FSLY_BBG004NLQHL0_2021-02-24", 1, -0.5m); // loss OK
+            Test("ICPT_BBG001J1QN87_2021-03-12", 1, -0.3m); // loss OK
 
             Test("", 1, 0.0m);
             _basePath = basePath;
@@ -394,24 +441,15 @@ namespace TradingBot
 
             //Test("AMCX_BBG000H01H92_2021-01-28", 1, 0.0m); // improve me: open gap down and go down more
             //Test("SNAP_BBG00441QMJ7_2021-01-28", 1, 0.0m); // improve me: do not makes sense when big gap down but price is close to open price
-            //Test("M_BBG000C46HM9_2021-01-28", 1, 0.0m); // improve me: per stat - it is more quotes until by. gap down
+            //Test("M_BBG000C46HM9_2021-01-28", 1, 0.0m); // improve me: per stat - it is more quotes until buy gap down
             //Test("INTC_BBG000C0G1D1_2021-01-22", 1, 0.0m); // TODO: FIXME! stat calculated wrong!
             //Test("PBF_BBG002832GV8_2021-01-28", 1, 0.0m); // improve me: do not by when price close to open and gap down
-
-
-
             //Test("SWBI_BBG000BM0QL7_2020-12-04", 1, 0.0m);
-            Test("", 1, 0.0m);
-            Test("", 1, 0.0m);
-            Test("", 1, 0.0m);
-            Test("", 1, 0.0m);
-            Test("", 1, 0.0m);
-            Test("", 1, 0.0m);
-            Test("", 1, 0.0m);
-            Test("", 1, 0.0m);
-            Test("", 1, 0.0m);
-            Test("", 1, 0.0m);
-            Test("", 1, 0.0m);
+
+
+
+
+
             Test("", 1, 0.0m);
             Test("", 1, 0.0m);
             Test("", 1, 0.0m);
