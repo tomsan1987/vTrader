@@ -25,8 +25,8 @@ namespace TradingBot
         public decimal AvgCandleChange { get; set; } // average candle change for last 2 hours
         public decimal DayMax { get; set; } // day maximum
         public decimal DayMin { get; set; } = decimal.MaxValue; // day minimum
-        public List<int> RawPosStart { get; set; } // n-th element is a start pos in Raw of correspondent candle
-        public List<int> SpikePositions { get; set; } // indexes from raw data of spyke quotes
+        public List<int> RawPosStart { get; set; } // n-th element is a start position in Raw of correspondent candle
+        public List<int> SpikePositions { get; set; } // indexes from raw data of spike quotes
         public List<Quote> Raw { get; set; }
         public QuoteLogger QuoteLogger { get; set; }
 

@@ -93,8 +93,8 @@ namespace TradingBot
                             //Utils.CorrectCandleID(po.Get<string>("CandlesPath"));
                             //Utils.ConvertQuotes(po.Get<string>("CandlesPath"));
                             //Utils.SelectHistoryData(po.Get<string>("CandlesPath"), po.Get<string>("OutputFolder"));
-                            //Utils.CorrectHistoryData(po.Get<string>("CandlesPath"), po.Get<string>("OutputFolder"));
-                            MorningOpenStatistic.CreateStatisticByHistoryData(po.Get<string>("CandlesPath"), po.Get<string>("OutputFolder"));
+                            Utils.CorrectHistoryData(po.Get<string>("CandlesPath"), po.Get<string>("OutputFolder"));
+                            //MorningOpenStatistic.CreateStatisticByHistoryData(po.Get<string>("CandlesPath"), po.Get<string>("OutputFolder"));
                             //TestMode(settings, po);
                         }
                         break;
@@ -194,7 +194,7 @@ namespace TradingBot
                         }
                     }
 
-                    // write lines starting from prevvious day close if exists
+                    // write lines starting from previous day close if exists
                     for (int i = startPos; i < buffer.Count; ++i)
                     {
                         line = candleID.ToString() + buffer[i].Substring(buffer[i].IndexOf(";"));

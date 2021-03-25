@@ -13,7 +13,7 @@ namespace TradingBot
 {
     public static class Utils
     {
-        // Read candles for each instrument and create dayly statistic: price change for Open to Close and Low to High
+        // Read candles for each instrument and create daily statistic: price change for Open to Close and Low to High
         // Param: candlesPath - path to folder with raw candles data in csv format
         // Results will save to a file "_stat.txt"
         public static void CreateCandlesStatistic(string candlesPath)
@@ -107,7 +107,7 @@ namespace TradingBot
             file.Close();
         }
 
-        // When Screener was restarted at the midle of the day - CandleID started from zero
+        // When Screener was restarted at the middle of the day - CandleID started from zero
         // Method re-enumerates CandleIDs for whole file
         // Param: candlesPath - path to folder with raw candles data in csv format
         // NOTE: Results will save to the same files!
@@ -331,7 +331,7 @@ namespace TradingBot
                 int currDayStartPos = 0;
                 while (currDayStartPos < list.Count && list[currDayStartPos].Time.Hour > 20)
                 {
-                    ++currDayStartPos; // skip all candles from prev day
+                    ++currDayStartPos; // skip all candles from previous day
                 }
 
                 if (currDayStartPos >= list.Count)
@@ -339,7 +339,7 @@ namespace TradingBot
 
                 decimal prevDayClose = 0.0m;
                 if (currDayStartPos > 0)
-                    prevDayClose = list[currDayStartPos - 1].Close; // else we just do not know close of prev day
+                    prevDayClose = list[currDayStartPos - 1].Close; // else we just do not know close of previous day
 
                 var firstCandle = list[currDayStartPos];
                 decimal todayMin = firstCandle.Close;
@@ -373,7 +373,7 @@ namespace TradingBot
                     }
                     catch (Exception e)
                     {
-                        Logger.Write("Exception happened while copiyng file. Error: " + e.Message);
+                        Logger.Write("Exception happened while copying file. Error: " + e.Message);
                     }
                 }
             }
@@ -480,8 +480,8 @@ namespace TradingBot
 
         // Correct history data:
         //      - remove previous day close data if it repeated some times at the beginning
-        //      - renumerate candles 0...n
-        //      - remove wromg stored data from the next day
+        //      - re-numerate candles 0...n
+        //      - remove wrong stored data from the next day
         // Param: CandlesPath - path to folder with candles in csv format. Iterating with sub folders
         //        OutputFolder[optional] - path to store result data
         public static void CorrectHistoryData(string candlesPath, string outputFolder)
@@ -514,7 +514,7 @@ namespace TradingBot
 
                 int candleID = 0;
 
-                // check for prev day close candle
+                // check for previous day close candle
                 if (buffer.Count > 0)
                 {
                     values = buffer[0].Split(";");
@@ -532,7 +532,7 @@ namespace TradingBot
                         }
                     }
 
-                    // write lines starting from prevvious day close if exists
+                    // write lines starting from previous day close if exists
                     for (int i = startPos; i < buffer.Count; ++i)
                     {
                         line = candleID.ToString() + buffer[i].Substring(buffer[i].IndexOf(";"));

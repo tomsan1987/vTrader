@@ -189,7 +189,7 @@ namespace TradingBot
             // write header
             var writer = new StreamWriter("operation_report_" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".csv", false);
             writer.AutoFlush = true;
-            writer.WriteLine("Ticker;TotalOrders;Profit;Dividents;Commission;Total;Currency");
+            writer.WriteLine("Ticker;TotalOrders;Profit;Dividends;Commission;Total;Currency");
 
             result.Sort();
             foreach (var it in result)
@@ -380,7 +380,7 @@ namespace TradingBot
                             // query history candles
                             ++idx;
                             var sessionBegin = DateTime.Today.AddHours(10).ToUniversalTime();
-                            if (DateTime.Now.Hour < 3) // in case app run after midnight
+                            if (DateTime.Now.Hour < 3) // in case App run after midnight
                                 sessionBegin = sessionBegin.AddDays(-1);
                             var candleList = await _context.MarketCandlesAsync(figi, sessionBegin, DateTime.Now, CandleInterval.FiveMinutes);
 
@@ -398,7 +398,7 @@ namespace TradingBot
                         }
                         catch (Exception e)
                         {
-                            Logger.Write("Excetion: " + e.Message);
+                            Logger.Write("Exception: " + e.Message);
                         }
                     }
                 }

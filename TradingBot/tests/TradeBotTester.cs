@@ -139,10 +139,10 @@ namespace TradingBot
             Test("ABNB_BBG001Y2XS07_2021-01-13", 1, 2.8m);
             Test("ZM_BBG0042V6JM8_2021-01-13", 3, 2.15m); // improve SL --> 2 orders
             Test("SNAP_BBG00441QMJ7_2021-01-11", 2, 1.2m); // good deals, but improve closing
-            Test("SFIX_BBG0046L1KL9_2021-01-12", 1, 2.33m); // impove SL when good profit
+            Test("SFIX_BBG0046L1KL9_2021-01-12", 1, 2.33m); // improve SL when good profit
             Test("MRNA_BBG003PHHZT1_2021-01-28", 4, 2.9m); // reduce orders count
             Test("ABNB_BBG001Y2XS07_2021-01-21", 1, 8m); // reduce orders count
-            Test("CNK_BBG000QDVR53_2021-01-25", 1, 0m); // improve EXIT: lossed 7% of profit! improve buy?
+            Test("CNK_BBG000QDVR53_2021-01-25", 1, 0m); // improve EXIT: losses 7% of profit! improve buy?
             Test("BZUN_BBG008HNS333_2021-01-26", 2, 1.9m); // TODO: do not measure fall from far maximum -> much better profit
             Test("W_BBG001B17MV2_2021-01-12", 1, 0.7m); // entry point could be improved =? profit > 7$
             Test("SPCE_BBG00HTN2CQ3_2021-02-04", 2, 0.4m); // profit could be much bigger...
@@ -168,7 +168,7 @@ namespace TradingBot
             Test("BABA_BBG006G2JVL2_2021-01-19", 0, 0m); // market open
             Test("LITE_BBG0073F9RT7_2021-01-19", 0, 0m); // do not buy after fall
             Test("FDX_BBG000BJF1Z8_2021-01-19", 0, 0m);
-            Test("BKR_BBG00GBVBK51_2021-01-21", 0, 0m); // bigg fall
+            Test("BKR_BBG00GBVBK51_2021-01-21", 0, 0m); // big fall
             Test("TFC_BBG000BYYLS8_2021-01-21", 0, 0m);
             Test("SIG_BBG000C4ZZ10_2021-01-25", 0, 0m);
             Test("NVTA_BBG005DJFD43_2021-01-25", 0, 0m);
@@ -181,7 +181,7 @@ namespace TradingBot
 
             Test("EDIT_BBG005MX5GZ2_2021-01-19", 1, -1.6m); // should be minimal losses... improve?!
             Test("JWN_BBG000G8N9C6_2021-01-20", 1, -0.39m); // should be minimal losses
-            Test("RRC_BBG000FVXD63_2021-01-21", 1, -0.15m); // minimal losses. improve cosing with minimal losss
+            Test("RRC_BBG000FVXD63_2021-01-21", 1, -0.15m); // minimal losses. improve cosing with minimal loss
             Test("EQT_BBG000BHZ5J9_2021-01-21", 1, -0.3m); // minimize losses
             Test("CHX_BBG00JH9TZ56_2021-02-04", 1, -0.42m); // very bad... to small quotes, do not buy at US open...
             Test("CRUS_BBG000C1DHF5_2021-02-02", 1, -2.6m); // too bad trend...
@@ -209,7 +209,7 @@ namespace TradingBot
             Test("SPCE_BBG00HTN2CQ3_2021-02-02", 1, 2.5m);
             Test("ZYXI_BBG000BJBXZ2_2021-01-28", 1, 0.5m);
             Test("SWBI_BBG000BM0QL7_2020-12-04", 1, 0.2m);
-            Test("NTNX_BBG001NDW1Z7_2021-01-06", 1, 0.0m); // ok if not buy
+            Test("NTNX_BBG001NDW1Z7_2021-01-06", 1, 0.0m); // OK if not buy
             Test("MRNA_BBG003PHHZT1_2021-01-19", 1, 0.0m); // TODO: stat calculated not correct
             Test("SEDG_BBG0084BBZY6_2021-01-25", 1, 7.0m); // mega positive
             Test("BILI_BBG00K7T3037_2021-01-27", 1, 2.0m);
@@ -234,8 +234,8 @@ namespace TradingBot
             Test("SPCE_BBG00HTN2CQ3_2021-01-22", 1, 0.5m);
             Test("TSLA_BBG000N9MNX3_2021-01-28", 1, 5.0m);
             Test("ZYXI_BBG000BJBXZ2_2021-01-22", 1, 0.0m); // it is good that we have small profit here and sold at time
-            Test("SPCE_BBG00HTN2CQ3_2021-01-26", 1, 0.0m); // improve me: if the next camdle ha not significand change - do not close
-            Test("DKNG_BBG00TCBG714_2021-01-28", 1, 0.5m); // cand be improved to buy by statistic
+            Test("SPCE_BBG00HTN2CQ3_2021-01-26", 1, 0.0m); // improve me: if the next candle ha not significant change - do not close
+            Test("DKNG_BBG00TCBG714_2021-01-28", 1, 0.5m); // can be improved to buy by statistic
             Test("PINS_BBG002583CV8_2021-01-27", 1, 2.0m); // +
             Test("ETRN_BBG00K53L394_2021-01-27", 1, 0.08m);
             Test("BBBY_BBG000CSY9H9_2021-02-04", 1, 0.4m);
@@ -267,7 +267,39 @@ namespace TradingBot
             Test("NET_BBG001WMKHH5_2021-01-27", 1, 3.0m); //++
             Test("PBI_BBG000BQTMJ9_2021-01-28", 1, 0.05m);
             Test("SPCE_BBG00HTN2CQ3_2020-12-21", 1, 0.01m);
-
+            Test("ICPT_BBG001J1QN87_2021-03-15", 1, 1.0m);
+            Test("MFGP_BBG00HFWVGN0_2021-03-04", 1, 0.2m);
+            Test("GILD_BBG000CKGBP2_2021-03-15", 1, 1.5m);
+            Test("BILI_BBG00K7T3037_2021-03-05", 1, 3.0m);
+            Test("AA_BBG00B3T3HD3_2021-03-04", 1, 0.80m);
+            Test("SNAP_BBG00441QMJ7_2021-02-24", 1, 1.5m);
+            Test("FTI_BBG00DL8NMV2_2021-02-25", 1, 0.18m);
+            Test("T_BBG000BSJK37_2021-03-08", 1, 0.7m);
+            Test("APA_BBG00YTS96G2_2021-03-11", 1, 0.5m);
+            Test("ACH_BBG000CMRVH1_2021-02-24", 1, 0.3m);
+            Test("BLUE_BBG000QGWY50_2021-03-12", 1, 0.7m); // real order
+            Test("SQ_BBG0018SLC07_2021-03-03", 1, 5.0m);
+            Test("ARCT_BBG00NNW8JK1_2021-02-24", 1, 1.0m);
+            Test("MRNA_BBG003PHHZT1_2021-02-26", 1, 3.0m);
+            Test("ET_BBG000BM2FL9_2021-02-18", 1, 0.10m);
+            Test("COG_BBG000C3GN47_2021-03-12", 1, 0.3m);
+            Test("TPR_BBG000BY29C7_2021-02-18", 1, 0.7m);
+            Test("COTY_BBG000F395V1_2021-02-25", 1, 0.14m);
+            Test("FSLY_BBG004NLQHL0_2021-03-05", 1, 1.0m);
+            Test("SDGR_BBG000T88BN2_2021-03-12", 1, 1.0m);
+            Test("BABA_BBG006G2JVL2_2021-03-12", 1, 4.0m);
+            Test("PINS_BBG002583CV8_2021-02-24", 1, 1.0m);
+            Test("NVDA_BBG000BBJQV0_2021-02-26", 1, 8.0m);
+            Test("CRTX_BBG00BTK1DT8_2021-03-11", 1, 0.5m);
+            Test("ENPH_BBG001R3MNY9_2021-03-04", 1, 1.5m);
+            Test("JD_BBG005YHY0Q7_2021-03-12", 1, 0.8m);
+            Test("AMD_BBG000BBQCY0_2021-02-26", 1, 0.7m);
+            Test("MOMO_BBG007HTCQT0_2021-02-26", 1, 0.1m);
+            Test("ENDP_BBG000C0HQ54_2021-02-26", 1, 0.05m);
+            Test("GT_BBG000BKNX95_2021-03-01", 1, 0.05m);
+            Test("CCL_BBG000BF6LY3_2021-02-26", 1, 0.07m);
+            Test("UAL_BBG000M65M61_2021-02-26", 1, 0.08m); // TODO: buy more!
+            Test("BYND_BBG003CVJP50_2021-02-24", 1, 0.2m); // big gap up
 
             _basePath = basePath;
         }
@@ -282,21 +314,36 @@ namespace TradingBot
             Test("ATRA_BBG005Q3MQY4_2020-12-07", 0, 0.0m); // should not buy this: big grow from open
             Test("SIG_BBG000C4ZZ10_2020-12-09", 0, 0.0m); // not enough quotes
             Test("NTLA_BBG007KC7PB0_2020-12-14", 0, 0.0m); // no reasons to buy
-            Test("FDX_BBG000BJF1Z8_2020-12-14", 0, 0.0m); // gap up, no reason to buy untill prev day close price
+            Test("FDX_BBG000BJF1Z8_2020-12-14", 0, 0.0m); // gap up, no reason to buy until prev day close price
             Test("QDEL_BBG000C6GN04_2021-01-19", 0, 0.0m); // gap up, do not buy
 
             Test("OXY_BBG000BQQ2S6_2020-12-21", 1, -0.7m); // big loss
             Test("FSLY_BBG004NLQHL0_2021-01-28", 1, -1.0m); // do not buy when falling
             Test("DAL_BBG000R7Z112_2020-12-21", 1, -0.7m); // improve me
-            Test("OIS_BBG000BDDN94_2021-01-06", 1, -0.1m); // big loss, price allways low, do not buy!
+            Test("OIS_BBG000BDDN94_2021-01-06", 1, -0.1m); // big loss, price always low, do not buy!
             Test("DIS_BBG000BH4R78_2021-01-28", 1, -1.2m); // gap up
             Test("SPLK_BBG001C7TST4_2020-12-04", 1, -0.80m); // improve me: ignore first quote - it is too high(gap up)
             Test("MFGP_BBG00HFWVGN0_2020-12-21", 1, -0.10m); // improve: buy more!
-            Test("SPCE_BBG00HTN2CQ3_2021-01-20", 1, -0.25m); // try to ignore first quote, but ok with lose
+            Test("SPCE_BBG00HTN2CQ3_2021-01-20", 1, -0.25m); // try to ignore first quote, but OK with lose
             Test("ET_BBG000BM2FL9_2020-12-15", 1, -0.04m); // do nothing. just lose
-            Test("TER_BBG000BV4DR6_2021-01-28", 1, -0.40m); // happy to close with small losse
+            Test("TER_BBG000BV4DR6_2021-01-28", 1, -0.40m); // happy to close with small loss
             Test("XOM_BBG000GZQ728_2020-12-21", 1, -1.0m); // buy more!
             Test("C_BBG000FY4S11_2020-12-21", 1, -0.35m); // buy more!
+
+            Test("COTY_BBG000F395V1_2021-02-26", 1, -0.80m); // just no lack
+            Test("SPCE_BBG00HTN2CQ3_2021-03-04", 1, -1.0m); // TODO: buy more!
+            Test("PYPL_BBG0077VNXV6_2021-02-26", 1, -7.0m); // no lack, may be buy more
+            Test("BIDU_BBG000QXWHD1_2021-02-26", 1, -6.0m); // no lack, may be buy more or minimize loss
+            Test("VIPS_BBG002NLDLV8_2021-02-26", 1, -0.7m); // ChangeOpenToCurrent = 0
+            Test("GSKY_BBG00KT2SCV8_2021-03-08", 1, -0.1m); // good candidate to buy more
+            Test("DKNG_BBG00TCBG714_2021-03-05", 1, -0.80m); // no luck
+            Test("AAL_BBG005P7Q881_2021-02-26", 1, -0.30m); // FIXME: why not closed with profit?!
+            Test("DBX_BBG0018SLDN0_2021-02-19", 1, -0.50m); // buy more
+            Test("SEDG_BBG0084BBZY6_2021-02-24", 1, -4.0m); // buy more or minimize loss
+            Test("RCL_BBG000BB5792_2021-02-26", 1, -1.0m); // that a good example of why minimal loss is good against waiting profit
+            Test("BLUE_BBG000QGWY50_2021-03-04", 1, -0.30m); // buy more
+            Test("FSLY_BBG004NLQHL0_2021-02-24", 1, -0.5m); // loss OK
+            Test("ICPT_BBG001J1QN87_2021-03-12", 1, -0.3m); // loss OK
 
             Test("", 1, 0.0m);
             _basePath = basePath;
@@ -394,24 +441,15 @@ namespace TradingBot
 
             //Test("AMCX_BBG000H01H92_2021-01-28", 1, 0.0m); // improve me: open gap down and go down more
             //Test("SNAP_BBG00441QMJ7_2021-01-28", 1, 0.0m); // improve me: do not makes sense when big gap down but price is close to open price
-            //Test("M_BBG000C46HM9_2021-01-28", 1, 0.0m); // improve me: per stat - it is more quotes until by. gap down
+            //Test("M_BBG000C46HM9_2021-01-28", 1, 0.0m); // improve me: per stat - it is more quotes until buy gap down
             //Test("INTC_BBG000C0G1D1_2021-01-22", 1, 0.0m); // TODO: FIXME! stat calculated wrong!
             //Test("PBF_BBG002832GV8_2021-01-28", 1, 0.0m); // improve me: do not by when price close to open and gap down
-
-
-
             //Test("SWBI_BBG000BM0QL7_2020-12-04", 1, 0.0m);
-            Test("", 1, 0.0m);
-            Test("", 1, 0.0m);
-            Test("", 1, 0.0m);
-            Test("", 1, 0.0m);
-            Test("", 1, 0.0m);
-            Test("", 1, 0.0m);
-            Test("", 1, 0.0m);
-            Test("", 1, 0.0m);
-            Test("", 1, 0.0m);
-            Test("", 1, 0.0m);
-            Test("", 1, 0.0m);
+
+
+
+
+
             Test("", 1, 0.0m);
             Test("", 1, 0.0m);
             Test("", 1, 0.0m);
@@ -456,11 +494,11 @@ namespace TradingBot
             //Test("MYGN_BBG000D9H9F1_2021-02-03", 1, -0.7m); // too late buy
             //Test("BBBY_BBG000CSY9H9_2021-01-13", 1, 0m); // improve me: swing SL -> 1 order
             //Test("ZYXI_BBG000BJBXZ2_2021-01-14", 1, 0m); // big grow with falls
-            //Test("MAC_BBG000BL9C59_2021-01-26", 1, 0m); // short squize
+            //Test("MAC_BBG000BL9C59_2021-01-26", 1, 0m); // short squeeze
             //Test("PBF_BBG002832GV8_2021-01-28", 1, 0m); // big losses. do not take into account max as day open
             //Test("AAPL_BBG000B9XRY4_2021-01-20", 1, 2.18m); //good grow.  small fall, but candles is not so big
             //Test("FSLY_BBG004NLQHL0_2021-01-22", 1, 0m); // do not by me...
-            //Test("CPRI_BBG0029SNR63_2021-02-04", 1, 0m); // exit on TP when proce is grow
+            //Test("CPRI_BBG0029SNR63_2021-02-04", 1, 0m); // exit on TP when price is grow
             //Test("NKTR_BBG000BHCYJ1_2021-02-04", 1, 0m); // do not buy or improve moving SL
             //Test("PCAR_BBG000BQVTF5_2021-02-04", 1, 0m); // do not buy if possible: grow 2%, fall 1%
 

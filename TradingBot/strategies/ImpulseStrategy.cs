@@ -56,7 +56,7 @@ namespace TradingBot
                 return IStrategy.StrategyResultType.NoOp;
 
             //// check for zero candles and high volatile on premarket
-            //// doesnt work: in premarket it could be high volatile and it does not mean mothing
+            //// doesn't work: in premarket it could be high volatile and it does not mean nothing
             //bool badPremarket = false;
             //if (candle.Time.Hour == 14 && candle.Time.Minute == 30)
             //{
@@ -124,7 +124,7 @@ namespace TradingBot
             if (change < 0.5m || change < 2 * quotes.AvgCandleChange)
                 return TrendFallback(instrument, tradeData, quotes, out order);
 
-            // currend candle open should be at least at average of previous candle
+            // current candle open should be at least at average of previous candle
             if (candles.Count > 1)
             {
                 var prevCandleChange = Helpers.GetChangeInPercent(candles[candles.Count - 2]);
@@ -531,7 +531,7 @@ namespace TradingBot
                 trend.SD = sd;
 
                 if (maxFall > 1.25m)
-                    continue; // too riskly
+                    continue; // too risky
 
                 // check how good this trend
                 if (change < maxFall * 2)
