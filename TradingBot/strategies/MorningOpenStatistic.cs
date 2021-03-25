@@ -9,7 +9,7 @@ namespace TradingBot
 {
     public class MorningOpenStatistic
     {
-        // Analize history data by some criteria and create output file with statistic
+        // Analyze history data by some criteria and create output file with statistic
         // Param: candlesPath - path to folder with candles in csv format. Iterating with sub folders
         // Param: outputFolder - path to folder for store results
         public static void CreateStatisticByHistoryData(string candlesPath, string outputFolder)
@@ -40,7 +40,7 @@ namespace TradingBot
                 int currDayStartPos = 0;
                 while (currDayStartPos < list.Count && list[currDayStartPos].Time.Hour > 20)
                 {
-                    ++currDayStartPos; // skip all candles from prev day
+                    ++currDayStartPos; // skip all candles from previous day
                 }
 
                 if (currDayStartPos >= list.Count)
@@ -48,7 +48,7 @@ namespace TradingBot
 
                 decimal prevDayClose = 0.0m;
                 if (currDayStartPos > 0)
-                    prevDayClose = list[currDayStartPos - 1].Close; // else we just do not know close of prev day
+                    prevDayClose = list[currDayStartPos - 1].Close; // else we just do not know close of previous day
 
                 var firstCandle = list[currDayStartPos];
                 decimal todayMin = firstCandle.Close;
@@ -82,7 +82,7 @@ namespace TradingBot
                     }
                     catch (Exception e)
                     {
-                        Logger.Write("Exception happened while copiyng file. Error: " + e.Message);
+                        Logger.Write("Exception happened while copying file. Error: " + e.Message);
                     }
                 }
             }

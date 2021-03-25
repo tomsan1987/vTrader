@@ -350,7 +350,7 @@ namespace TradingBot
                                     var order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, price, _accountId);
                                     var placedOrder = await _context.PlaceLimitOrderAsync(order);
 
-                                    Logger.Write("{0}: Closing dayly orders. Close price: {1}. {2}. Profit: {3}({4}%)",
+                                    Logger.Write("{0}: Closing daily orders. Close price: {1}. {2}. Profit: {3}({4}%)",
                                         instrument.Ticker, price, Helpers.CandleDesc(_candles[it.Key].Raw.Count - 1, candle), price - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, price));
 
                                     _stats.Sell(tradeData.BuyTime, candle.Time, tradeData.BuyPrice, instrument.Ticker);
@@ -372,7 +372,7 @@ namespace TradingBot
                                 var order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, price, _accountId);
                                 var placedOrder = await _context.PlaceLimitOrderAsync(order);
 
-                                Logger.Write("{0}: Closing dayly orders. Close price: {1}. {2}. Profit: {3}({4}%)", instrument.Ticker, price, Helpers.CandleDesc(_candles[it.Key].Raw.Count - 1, candle), price - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, price));
+                                Logger.Write("{0}: Closing daily orders. Close price: {1}. {2}. Profit: {3}({4}%)", instrument.Ticker, price, Helpers.CandleDesc(_candles[it.Key].Raw.Count - 1, candle), price - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, price));
 
                                 _stats.Sell(tradeData.BuyTime, candle.Time, tradeData.BuyPrice, instrument.Ticker);
                                 _stats.Update(instrument.Ticker, tradeData.BuyPrice, price);
@@ -538,7 +538,7 @@ namespace TradingBot
                             }
                             catch (Exception e)
                             {
-                                Logger.Write("Exception happened while copiyng file. Error: " + e.Message);
+                                Logger.Write("Exception happened while copying file. Error: " + e.Message);
                             }
                         }
 
@@ -573,7 +573,7 @@ namespace TradingBot
         }
 
         // actualFigi - it is possible that figi has been changed for ticker. 
-        // In this case we will read history data and initialize it with incorrect figi. Pass actual figi for instument if need to have correct figi for history data.
+        // In this case we will read history data and initialize it with incorrect figi. Pass actual figi for instrument if need to have correct figi for history data.
         static public List<CandlePayload> ReadCandles(string filePath, string actualFigi = "")
         {
             List<CandlePayload> result = new List<CandlePayload>();

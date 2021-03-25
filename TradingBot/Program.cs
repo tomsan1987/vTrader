@@ -194,7 +194,7 @@ namespace TradingBot
                         }
                     }
 
-                    // write lines starting from prevvious day close if exists
+                    // write lines starting from previous day close if exists
                     for (int i = startPos; i < buffer.Count; ++i)
                     {
                         line = candleID.ToString() + buffer[i].Substring(buffer[i].IndexOf(";"));

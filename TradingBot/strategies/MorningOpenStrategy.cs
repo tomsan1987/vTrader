@@ -76,7 +76,7 @@ namespace TradingBot
                 changeFromPrevClose = Helpers.GetChangeInPercent(tradeData.PrevDayClosePrice, candle.Close);
 
                 // TODO
-                //if (changeFromPrevClose > 5m /*&& shortable*/)
+                //if (changeFromPrevClose > 5m /*&& short-able*/)
                 //    return IStrategy.StrategyResultType.Sell;
 
                 if (changeFromPrevClose > 0.5m) // TODO currCandleChange < 4.0m then ignore
