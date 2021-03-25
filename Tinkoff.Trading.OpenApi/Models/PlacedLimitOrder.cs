@@ -6,7 +6,7 @@ namespace Tinkoff.Trading.OpenApi.Models
     {
         public string OrderId { get; set; }
         public OperationType Operation { get; }
-        public OrderStatus Status { get; }
+        public OrderStatus Status { get; set; }
         public string RejectReason { get; }
         public int RequestedLots { get; set; }
         public int ExecutedLots { get; set; }

@@ -356,6 +356,7 @@ namespace TradingBot
             settings.DumpQuotes = false;
             settings.FakeConnection = true;
             settings.RequestCandlesHistory = false;
+            settings.SubscribeQuotes = false;
 
             if (settings.Strategies.Length == 0)
                 settings.Strategies = "ImpulseStrategy";
@@ -408,12 +409,14 @@ namespace TradingBot
                     {
                         _writer.WriteLine("PASSED");
                         _writer.WriteLine("TotalOrders: " + res.totalOrders);
+                        _writer.WriteLine("TotalLots: " + res.lots);
                         _writer.WriteLine("TotalProfit: " + res.totalProfit);
                     }
                     else
                     {
                         _writer.WriteLine("FAILED");
                         _writer.WriteLine("TotalOrders: {0}[{1}]", res.totalOrders, orders);
+                        _writer.WriteLine("TotalLots: " + res.lots);
                         _writer.WriteLine("TotalProfit: {0}[{1}]", res.totalProfit, profit);
                     }
 
@@ -436,6 +439,8 @@ namespace TradingBot
 
         private void TestMorningOpenStrategy()
         {
+            _testNameFilter = "";
+
             RunPositiveTestsMorningOpenStrategy();
             RunNegativeTestsMorningOpenStrategy();
 

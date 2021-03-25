@@ -13,6 +13,7 @@ namespace TradingBot
         public int totalOrders = 0;
         public int posOrders = 0;
         public int negOrders = 0;
+        public int lots = 0;
         public Dictionary<string, decimal> volumes = new Dictionary<string, decimal>();
         public Dictionary<string, bool[]> volumesPerTicker = new Dictionary<string, bool[]>();
         public List<string> logMessages = new List<string>();
@@ -22,22 +23,24 @@ namespace TradingBot
             return this.MemberwiseClone();
         }
 
-        public void Update(string ticker, decimal buyPrice, decimal sellPrice, int orders, int lots)
+        public void Update(string ticker, decimal buyPrice, decimal sellPrice, int orders, int l)
         {
-            totalProfit += (sellPrice - buyPrice) * lots;
+            totalProfit += (sellPrice - buyPrice) * l;
             totalOrders += orders;
             if (sellPrice >= buyPrice)
                 posOrders++;
             else
                 negOrders++;
 
+            lots += l;
+
             decimal k = volume * 2 > 2740 ? 0.00025m : 0.0005m; // when volume > 200k RUB, commission is reduced to 0.025%
 
             // commission
-            comission += buyPrice * lots * k;
-            comission += sellPrice * lots *k;
+            comission += buyPrice * l * k;
+            comission += sellPrice * l *k;
 
-            logMessages.Add(String.Format("{0};{1};{2};{3};{4}", ticker, orders, lots, (sellPrice - buyPrice) * lots, Helpers.GetChangeInPercent(buyPrice, sellPrice)));
+            logMessages.Add(String.Format("{0};{1};{2};{3};{4}", ticker, orders, l, (sellPrice - buyPrice) * l, Helpers.GetChangeInPercent(buyPrice, sellPrice)));
         }
 
         public void Sell(DateTime buyTime, DateTime sellTime, decimal price, string ticker)

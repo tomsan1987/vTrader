@@ -380,6 +380,13 @@ namespace TradingBot
                             // trade finished
                             _stats.Update(instrument.Ticker, _tradeData[it.Figi].AvgPrice, _tradeData[it.Figi].AvgSellPrice, _tradeData[it.Figi].GetOrdersInLastTrade(), _tradeData[it.Figi].GetLotsInLastTrade());
                             _tradeData[it.Figi].Reset(false);
+
+                            // cancel all remaining orders by this instrument
+                            foreach (var o in _orders)
+                            {
+                                if (o.Figi == instrument.Figi && o.OrderId != it.OrderId)
+                                    o.Status = OrderStatus.PendingCancel;
+                            }
                         }
                     }
                     else
@@ -387,6 +394,17 @@ namespace TradingBot
                         Logger.Write("{0}: OrderID: {1}. Waiting execution... Not found in portfolio orders, but not added to Portfolio. PlacedOrder: {2}/{3}.",
                             _figiToTicker[it.Figi], it.OrderId, it.ExecutedLots, it.RequestedLots);
                     }
+                }
+            }
+
+            // look for canceled orders
+            foreach (var it in _orders)
+            {
+                if (it.Status == OrderStatus.PendingCancel)
+                {
+                    // cancel order
+                    if (CancelOrder(it.OrderId))
+                        it.OrderId = "";
                 }
             }
 
@@ -421,6 +439,36 @@ namespace TradingBot
                     Logger.Write("   {0}: {1}", _figiToInstrument[it.Figi].Ticker, it.Lots);
                 }
             }
+        }
+
+        private bool CancelOrder(string orderID)
+        {
+            bool result = false;
+            string message = "";
+            if (_settings.FakeConnection)
+            {
+                // just return true
+                result = true;
+            }
+            else
+            {
+                try
+                {
+                    _context.CancelOrderAsync(orderID, _accountId).Wait();
+                    result = true;
+                }
+                catch (OpenApiException e)
+                {
+                    message = "OpenApiException while cancel order: " + e.Message;
+                }
+            }
+
+            if (result)
+                Logger.Write("OrderID: {0} successfully canceled", orderID);
+            else
+                Logger.Write("OrderID: {0} unable to cancel: {1}", orderID, message);
+
+            return result;
         }
 
         private void UpdatePortfolioFakeConnection(string figi)
