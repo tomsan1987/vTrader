@@ -12,7 +12,7 @@ namespace TradingBot
         static public int s_min_quotes_per_candle = 40;
 
         // Trade settings
-        public const decimal sMinVolume = 100; // USD
+        public const decimal sMinVolume = 250; // USD
 
         public IStrategy.StrategyResultType Process(MarketInstrument instrument, TradeData tradeData, Quotes quotes, out LimitOrder order)
         {
@@ -70,7 +70,7 @@ namespace TradingBot
                 }
                 else
                 {
-                    tradeData.PrevDayClosePrice = candles[candles.Count - 2].Close;
+                    tradeData.PrevDayClosePrice = candles[candles.Count - 2].Low;
                 }
             }
 
