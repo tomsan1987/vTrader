@@ -235,7 +235,7 @@ namespace TradingBot
             Test("TSLA_BBG000N9MNX3_2021-01-28", 1, 5.0m);
             Test("ZYXI_BBG000BJBXZ2_2021-01-22", 1, 0.0m); // it is good that we have small profit here and sold at time
             Test("SPCE_BBG00HTN2CQ3_2021-01-26", 1, 0.0m); // improve me: if the next candle ha not significant change - do not close
-            Test("DKNG_BBG00TCBG714_2021-01-28", 1, 0.5m); // can be improved to buy by statistic
+            Test("DKNG_BBG00TCBG714_2021-01-28", 1, 0.5m); // can be improved to buy by statistic. // there was not enough liquidity when buy > 1 lots
             Test("PINS_BBG002583CV8_2021-01-27", 1, 2.0m); // +
             Test("ETRN_BBG00K53L394_2021-01-27", 1, 0.08m);
             Test("BBBY_BBG000CSY9H9_2021-02-04", 1, 0.4m);
@@ -250,7 +250,7 @@ namespace TradingBot
             Test("ZYXI_BBG000BJBXZ2_2021-01-25", 1, 0.01m); // could be improved?
             Test("SPCE_BBG00HTN2CQ3_2020-12-10", 1, 0.10m);
             Test("TSLA_BBG000N9MNX3_2020-12-09", 1, 2.0m);
-            Test("ARCT_BBG00NNW8JK1_2021-02-03", 1, 1.0m);
+            Test("ARCT_BBG00NNW8JK1_2021-02-03", 1, 1.0m); // big gap up, price is close to prev day close
             Test("TSLA_BBG000N9MNX3_2020-12-10", 1, 8.0m);
             Test("PBF_BBG002832GV8_2020-12-21", 1, 0.10m);
             Test("DKNG_BBG00TCBG714_2020-12-09", 1, 0.20m);
@@ -266,7 +266,7 @@ namespace TradingBot
             Test("PBF_BBG002832GV8_2020-12-14", 1, 0.05m);
             Test("NET_BBG001WMKHH5_2021-01-27", 1, 3.0m); //++
             Test("PBI_BBG000BQTMJ9_2021-01-28", 1, 0.05m);
-            Test("SPCE_BBG00HTN2CQ3_2020-12-21", 1, 0.01m);
+            Test("SPCE_BBG00HTN2CQ3_2020-12-21", 1, 0.01m); // buy more!
             Test("ICPT_BBG001J1QN87_2021-03-15", 1, 1.0m);
             Test("MFGP_BBG00HFWVGN0_2021-03-04", 1, 0.2m);
             Test("GILD_BBG000CKGBP2_2021-03-15", 1, 1.5m);
@@ -385,7 +385,7 @@ namespace TradingBot
             _bot.DisposeAsync().AsTask().Wait();
         }
 
-        private void Test(string testName, int orders, decimal profit)
+        private void Test(string testName, int orders, decimal expectedProfit)
         {
             if (testName.Length == 0)
                 return;
@@ -404,20 +404,26 @@ namespace TradingBot
                     var candleList = TradeBot.ReadCandles(fileName);
                     var res = _bot.TradeByHistory(candleList);
 
-                    bool passed = (res.totalOrders == orders && res.totalProfit >= profit);
+                    decimal profit = 0.0m;
+                    if (res.lots > 0)
+                        profit = res.totalProfit / res.lots;
+
+                    bool passed = (res.totalOrders == orders && profit >= expectedProfit);
                     if (passed)
                     {
                         _writer.WriteLine("PASSED");
-                        _writer.WriteLine("TotalOrders: " + res.totalOrders);
-                        _writer.WriteLine("TotalLots: " + res.lots);
+                        _writer.WriteLine("Orders: " + res.totalOrders);
+                        _writer.WriteLine("Lots: " + res.lots);
+                        _writer.WriteLine("Profit: " + profit);
                         _writer.WriteLine("TotalProfit: " + res.totalProfit);
                     }
                     else
                     {
                         _writer.WriteLine("FAILED");
-                        _writer.WriteLine("TotalOrders: {0}[{1}]", res.totalOrders, orders);
-                        _writer.WriteLine("TotalLots: " + res.lots);
-                        _writer.WriteLine("TotalProfit: {0}[{1}]", res.totalProfit, profit);
+                        _writer.WriteLine("Orders: {0}[{1}]", res.totalOrders, orders);
+                        _writer.WriteLine("Lots: " + res.lots);
+                        _writer.WriteLine("Profit: " + profit);
+                        _writer.WriteLine("TotalProfit: {0}[{1}]", res.totalProfit, expectedProfit);
                     }
 
                     _totalOrders += res.totalOrders;
@@ -450,9 +456,6 @@ namespace TradingBot
             //Test("INTC_BBG000C0G1D1_2021-01-22", 1, 0.0m); // TODO: FIXME! stat calculated wrong!
             //Test("PBF_BBG002832GV8_2021-01-28", 1, 0.0m); // improve me: do not by when price close to open and gap down
             //Test("SWBI_BBG000BM0QL7_2020-12-04", 1, 0.0m);
-
-
-
 
 
             Test("", 1, 0.0m);

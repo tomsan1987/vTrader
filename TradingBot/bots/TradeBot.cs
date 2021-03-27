@@ -238,45 +238,26 @@ namespace TradingBot
                         tradeData.CandleID = _candles[figi].Raw.Count;
                         Logger.Write("{0}: OrderId: {1}. Lost: {2}. PlacedOrder. Status: {3}. RejectReason: {4}",
                             instrument.Ticker, placedOrder.OrderId, placedOrder.RequestedLots, placedOrder.Status.ToString(), placedOrder.RejectReason);
+
+                        // automatically cancel all opposite orders
+                        foreach (var it in _orders)
+                        {
+                            if (it.Figi == instrument.Figi && it.OrderId != placedOrder.OrderId && it.Operation != placedOrder.Operation)
+                            {
+                                Logger.Write("{0}: OrderId: {1} automatically canceling...",
+                                    instrument.Ticker, it.OrderId);
+
+                                it.Status = OrderStatus.PendingCancel;
+                            }
+                        }
                     }
                 }
                 else if (operation == IStrategy.StrategyResultType.CancelOrder)
                 {
-                    if (_settings.FakeConnection)
+                    foreach (var it in _orders)
                     {
-                        // just remove order
-                        _orders.RemoveAll(x => x.Figi == instrument.Figi);
-                        if (tradeData.Status == Status.BuyPending)
-                        {
-                            tradeData.Reset(true);
-                        }
-                    }
-                    else
-                    {
-                        // try to cancel order
-                        // TODO: situation: we canceling order, but it may be partially executed
-                        foreach (var it in _orders)
-                        {
-                            if (it.Figi == instrument.Figi)
-                            {
-                                bool successed = false;
-                                try
-                                {
-                                    await _context.CancelOrderAsync(it.OrderId, _accountId);
-                                    successed = true;
-                                }
-                                catch (OpenApiException e)
-                                {
-                                    Logger.Write("OpenApiException while cancel order: " + e.Message);
-                                    // may be executed.... TODO
-                                }
-
-                                if (successed)
-                                    it.OrderId = "";
-                            }
-                        }
-
-                        _orders.RemoveAll(x => x.OrderId == "");
+                        if (it.Figi == candle.Figi)
+                            it.Status = OrderStatus.PendingCancel;
                     }
                 }
             }
@@ -404,7 +385,12 @@ namespace TradingBot
                 {
                     // cancel order
                     if (CancelOrder(it.OrderId))
+                    {
                         it.OrderId = "";
+
+                        if (_tradeData[it.Figi].Lots == 0)
+                            _tradeData[it.Figi].Reset(false);
+                    }
                 }
             }
 

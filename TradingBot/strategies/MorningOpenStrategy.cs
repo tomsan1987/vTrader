@@ -30,6 +30,10 @@ namespace TradingBot
             {
                 return OnStatusBuyDone(instrument, tradeData, quotes, out order);
             }
+            else if (tradeData.Status == Status.SellPending)
+            {
+                return OnStatusSellPending(instrument, tradeData, quotes, out order);
+            }
 
             return IStrategy.StrategyResultType.NoOp;
         }
@@ -70,7 +74,16 @@ namespace TradingBot
                 }
                 else
                 {
-                    tradeData.PrevDayClosePrice = candles[candles.Count - 2].Low;
+                    var prevChange = Helpers.GetChangeInPercent(candles[candles.Count - 2]);
+                    if (Math.Abs(prevChange) > 1.5m && candles[candles.Count - 2].Volume < 10)
+                    {
+                        // we cant rely on this data due to price significantly changed with low volume
+                        tradeData.PrevDayClosePrice = 0;
+                    }
+                    else
+                    {
+                        tradeData.PrevDayClosePrice = candles[candles.Count - 2].Close;
+                    }
                 }
             }
 
@@ -166,6 +179,14 @@ namespace TradingBot
 
                 return IStrategy.StrategyResultType.Sell;
             }
+
+            return IStrategy.StrategyResultType.NoOp;
+        }
+
+        private IStrategy.StrategyResultType OnStatusSellPending(MarketInstrument instrument, TradeData tradeData, Quotes quotes, out LimitOrder order)
+        {
+            order = null;
+            // TODO
 
             return IStrategy.StrategyResultType.NoOp;
         }
