@@ -225,7 +225,7 @@ namespace TradingBot
 
                     if (placedOrder.Status == OrderStatus.Cancelled || placedOrder.Status == OrderStatus.PendingCancel || placedOrder.Status == OrderStatus.Rejected || placedOrder.RejectReason?.Length > 0)
                     {
-                        Logger.Write("{0}: OrderId: {1}. Lost: {2}. Unsuccessful! Status: {3}. RejectReason: {4}",
+                        Logger.Write("{0}: OrderID: {1}. Lost: {2}. Unsuccessful! Status: {3}. RejectReason: {4}",
                             instrument.Ticker, placedOrder.OrderId, placedOrder.RequestedLots, placedOrder.Status.ToString(), placedOrder.RejectReason);
                     }
                     else
@@ -236,7 +236,7 @@ namespace TradingBot
                         tradeData.Time = candle.Time;
                         tradeData.BuyTime = candle.Time;
                         tradeData.CandleID = _candles[figi].Raw.Count;
-                        Logger.Write("{0}: OrderId: {1}. Lost: {2}. PlacedOrder. Status: {3}. RejectReason: {4}",
+                        Logger.Write("{0}: OrderID: {1}. Lost: {2}. PlacedOrder. Status: {3}. RejectReason: {4}",
                             instrument.Ticker, placedOrder.OrderId, placedOrder.RequestedLots, placedOrder.Status.ToString(), placedOrder.RejectReason);
 
                         // automatically cancel all opposite orders
@@ -244,7 +244,7 @@ namespace TradingBot
                         {
                             if (it.Figi == instrument.Figi && it.OrderId != placedOrder.OrderId && it.Operation != placedOrder.Operation)
                             {
-                                Logger.Write("{0}: OrderId: {1} automatically canceling...",
+                                Logger.Write("{0}: OrderID: {1} automatically canceling...",
                                     instrument.Ticker, it.OrderId);
 
                                 it.Status = OrderStatus.PendingCancel;
@@ -545,7 +545,7 @@ namespace TradingBot
                         case Status.BuyPending:
                             {
                                 var instrument = _figiToInstrument[it.Key];
-                                //if (await IsOrderExecuted(instrument.Ticker, it.Key, tradeData.OrderId))
+                                //if (await IsOrderExecuted(instrument.Ticker, it.Key, tradeData.OrderID))
                                 //{
                                 //    var price = candle.Close - 2 * instrument.MinPriceIncrement;
                                 //    var order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, price, _accountId);
@@ -561,7 +561,7 @@ namespace TradingBot
                                 //{
                                 //    // just cancel order
                                 //    Logger.Write("{0}: Cancel order. {0}. Details: end of day", instrument.Ticker, Helpers.CandleDesc(_candles[it.Key].Raw.Count - 1, candle));
-                                //    await _context.CancelOrderAsync(tradeData.OrderId, _accountId);
+                                //    await _context.CancelOrderAsync(tradeData.OrderID, _accountId);
                                 //}
                                 // TODO
                             }
