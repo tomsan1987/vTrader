@@ -25,7 +25,7 @@ namespace TradingBot
 
         public void Update(string ticker, decimal buyPrice, decimal sellPrice, int orders, int l)
         {
-            totalProfit += (sellPrice - buyPrice) * l;
+            totalProfit += Math.Round((sellPrice - buyPrice) * l, 2);
             totalOrders += orders;
             if (sellPrice >= buyPrice)
                 posOrders++;

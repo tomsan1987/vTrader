@@ -22,6 +22,8 @@ namespace TradingBot
         public bool DisabledTrading { get; set; } = false;
         public int CandleID { get; set; } // ID of candle where last operation was done
         public List<Position> Positions { get; set; } = new List<Position>();
+        public List<PlacedLimitOrder> Orders { get; set; } = new List<PlacedLimitOrder>();
+
 
         public TradeData()
         {
@@ -45,6 +47,7 @@ namespace TradingBot
             DisabledTrading = false;
             CandleID = 0;
             Positions.Clear();
+            Orders.Clear();
 
             if (full)
                 Time = DateTime.Today.AddYears(-10).ToUniversalTime();

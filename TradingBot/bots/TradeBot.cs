@@ -225,19 +225,24 @@ namespace TradingBot
 
                     if (placedOrder.Status == OrderStatus.Cancelled || placedOrder.Status == OrderStatus.PendingCancel || placedOrder.Status == OrderStatus.Rejected || placedOrder.RejectReason?.Length > 0)
                     {
-                        Logger.Write("{0}: OrderID: {1}. Lost: {2}. Unsuccessful! Status: {3}. RejectReason: {4}",
-                            instrument.Ticker, placedOrder.OrderId, placedOrder.RequestedLots, placedOrder.Status.ToString(), placedOrder.RejectReason);
+                        Logger.Write("{0}: OrderID: {1}. Unsuccessful! Status: {2}. RejectReason: {3}",
+                            instrument.Ticker, placedOrder.OrderId, placedOrder.Status.ToString(), placedOrder.RejectReason);
                     }
                     else
                     {
                         _orders.Add(placedOrder);
 
-                        tradeData.Status = (operation == IStrategy.StrategyResultType.Buy) ? Status.BuyPending : Status.SellPending;
+                        if (operation == IStrategy.StrategyResultType.Buy)
+                            tradeData.Status = tradeData.Lots > 0 ? Status.BuyDone : Status.BuyPending;
+                        else
+                            tradeData.Status = tradeData.Lots > 0 ? Status.SellPending : Status.SellDone;
+
                         tradeData.Time = candle.Time;
                         tradeData.BuyTime = candle.Time;
                         tradeData.CandleID = _candles[figi].Raw.Count;
-                        Logger.Write("{0}: OrderID: {1}. Lost: {2}. PlacedOrder. Status: {3}. RejectReason: {4}",
-                            instrument.Ticker, placedOrder.OrderId, placedOrder.RequestedLots, placedOrder.Status.ToString(), placedOrder.RejectReason);
+                        tradeData.Orders.Add(placedOrder);
+                        Logger.Write("{0}: OrderID: {1}. PlacedOrder. Status: {2}. RejectReason: {3}",
+                            instrument.Ticker, placedOrder.OrderId, placedOrder.Status.ToString(), placedOrder.RejectReason);
 
                         // automatically cancel all opposite orders
                         foreach (var it in _orders)
@@ -322,6 +327,8 @@ namespace TradingBot
                         if (Math.Abs(portfolioLots - prevLots) == executedLots)
                         {
                             it.ExecutedLots = it.ExecutedLots + executedLots;
+                            it.Status = OrderStatus.PartiallyFill;
+
                             _tradeData[it.Figi].Update(it.Operation, executedLots, it.Price, it.OrderId);
                             _tradeData[it.Figi].CandleID = _candles[it.Figi].Raw.Count;
                             _tradeData[it.Figi].Time = _candles[figi].Candles[_candles[figi].Candles.Count - 1].Time;
@@ -329,11 +336,11 @@ namespace TradingBot
                             Logger.Write("{0}: OrderID: {1} partially executed. Executed lots: {2}. OrderStatus: {3}/{4} lots",
                                 _figiToTicker[it.Figi], it.OrderId, executedLots, _portfolioOrders[idx].ExecutedLots, _portfolioOrders[idx].RequestedLots);
                         }
-                        else
-                        {
-                            Logger.Write("{0}: OrderID: {1}. Partially executed, but not added to Portfolio. PlacedOrder: {2}/{3}. PortfolioOrder: {4}/{5}",
-                                _figiToTicker[it.Figi], it.OrderId, it.ExecutedLots, it.RequestedLots, _portfolioOrders[idx].ExecutedLots, _portfolioOrders[idx].RequestedLots);
-                        }
+                        //else
+                        //{
+                        //    Logger.Write("{0}: OrderID: {1}. Partially executed, but not added to Portfolio. PlacedOrder: {2}/{3}. PortfolioOrder: {4}/{5}",
+                        //        _figiToTicker[it.Figi], it.OrderId, it.ExecutedLots, it.RequestedLots, _portfolioOrders[idx].ExecutedLots, _portfolioOrders[idx].RequestedLots);
+                        //}
                     }
                 }
                 else
@@ -346,15 +353,15 @@ namespace TradingBot
                     {
                         // order executed, added to portfolio! remove from orders
                         it.ExecutedLots = it.ExecutedLots + executedLots;
-                        _tradeData[it.Figi].Update(it.Operation, executedLots, it.Price, it.OrderId);
-                        _tradeData[it.Figi].CandleID = _candles[it.Figi].Raw.Count;
-                        _tradeData[it.Figi].Time = _candles[figi].Candles[_candles[figi].Candles.Count - 1].Time;
-
                         if (it.RequestedLots == it.ExecutedLots)
                         {
                             Logger.Write("{0}: OrderID: {1} fully executed", instrument.Ticker, it.OrderId);
-                            it.OrderId = "";
+                            it.Status = OrderStatus.Fill;
                         }
+
+                        _tradeData[it.Figi].Update(it.Operation, executedLots, it.Price, it.OrderId);
+                        _tradeData[it.Figi].CandleID = _candles[it.Figi].Raw.Count;
+                        _tradeData[it.Figi].Time = _candles[figi].Candles[_candles[figi].Candles.Count - 1].Time;
 
                         if (_tradeData[it.Figi].Lots == 0)
                         {
@@ -370,11 +377,11 @@ namespace TradingBot
                             }
                         }
                     }
-                    else
-                    {
-                        Logger.Write("{0}: OrderID: {1}. Waiting execution... Not found in portfolio orders, but not added to Portfolio. PlacedOrder: {2}/{3}.",
-                            _figiToTicker[it.Figi], it.OrderId, it.ExecutedLots, it.RequestedLots);
-                    }
+                    //else
+                    //{
+                    //    Logger.Write("{0}: OrderID: {1}. Waiting execution... Not found in portfolio orders, but not added to Portfolio. PlacedOrder: {2}/{3}.",
+                    //        _figiToTicker[it.Figi], it.OrderId, it.ExecutedLots, it.RequestedLots);
+                    //}
                 }
             }
 
@@ -386,7 +393,7 @@ namespace TradingBot
                     // cancel order
                     if (CancelOrder(it.OrderId))
                     {
-                        it.OrderId = "";
+                        it.Status = OrderStatus.Cancelled;
 
                         if (_tradeData[it.Figi].Lots == 0)
                             _tradeData[it.Figi].Reset(false);
@@ -394,8 +401,8 @@ namespace TradingBot
                 }
             }
 
-            // erase orders with empty orderID
-            _orders.RemoveAll(x => x.OrderId.Length == 0);
+            // erase canceled and executed orders
+            _orders.RemoveAll(x => x.Status == OrderStatus.Cancelled || x.Status == OrderStatus.Fill);
         }
 
         private void LogPortfolioAndOrders()
@@ -585,73 +592,6 @@ namespace TradingBot
                 }
             }
         }
-
-        private async Task<bool> IsOrderExecuted(string ticker, string figi, string orderId)
-        {
-            var tradeData = _tradeData[figi];
-            var rawData = _candles[figi].Raw;
-
-            if (tradeData.Status != Status.BuyPending && tradeData.Status != Status.SellPending)
-                throw new Exception("Wrong trade data status on checking order execution!");
-
-            bool maybeExecuted = false;
-            for (int i = tradeData.CandleID; i < rawData.Count; ++i)
-            {
-                if (tradeData.Status == Status.BuyPending && rawData[i].Price <= tradeData.AvgPrice)
-                    maybeExecuted = true;
-                //else if (tradeData.Status == Status.SellPending && rawData[i].Price >= tradeData.SellPrice)
-                //    maybeExecuted = true;
-            }
-
-            if (maybeExecuted)
-            {
-                // when test mode and price reached - will think that order was executed
-                if (_settings.FakeConnection)
-                    return true;
-
-                Logger.Write("{0}: OrderID: {1} may be executed", ticker, orderId);
-
-                //if (_candles[figi].Raw.Count < tradeData.CandleID + 5)
-                //    return false;
-
-                // price was reached, we need to make sure that instrument added to portfolio and order was executed
-                bool foundInOrderList = false;
-                var orders = await _context.OrdersAsync(_accountId);
-                foreach (var order in orders)
-                {
-                    if (order.OrderId == orderId)
-                    {
-                        foundInOrderList = true;
-                        break;
-                    }
-                }
-
-                // check the portfolio
-                bool foundInPortfolio = false;
-                if (!foundInOrderList)
-                {
-                    Logger.Write("{0}: OrderID: {1} not found in order list", ticker, orderId);
-
-                    var positions = _context.PortfolioAsync(_accountId).Result.Positions;
-                    foreach (var it in positions)
-                    {
-                        if (it.Figi == figi)
-                        {
-                            foundInPortfolio = true;
-                            break;
-                        }
-                    }
-                }
-
-                var fullyExecuted = !foundInOrderList;
-                fullyExecuted &= (tradeData.Status == Status.BuyPending && foundInPortfolio) || (tradeData.Status == Status.SellPending && !foundInPortfolio);
-
-                return fullyExecuted;
-            }
-
-            return false;
-        }
-
         protected override void OnStreamingEventReceived(object s, StreamingEventReceivedEventArgs e)
         {
             if (e.Response.Event == "candle")
@@ -776,7 +716,7 @@ namespace TradingBot
         }
 
         // actualFigi - it is possible that figi has been changed for ticker. 
-        // In this case we will read history data and initialize it with incorrect figi. Pass actual figi for instument if need to have correct figi for history data.
+        // In this case we will read history data and initialize it with incorrect figi. Pass actual figi for instrument if need to have correct figi for history data.
         static public List<CandlePayload> ReadCandles(string filePath, string actualFigi = "")
         {
             List<CandlePayload> result = new List<CandlePayload>();
