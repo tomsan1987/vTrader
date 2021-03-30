@@ -118,7 +118,7 @@ namespace TradingBot
             if (Lots == 0)
                 Status = Status.SellDone;
             else
-                Status = Status.BuyDone;
+                Status = Status.SellPending;
         }
 
         private void CalculateAverage()
