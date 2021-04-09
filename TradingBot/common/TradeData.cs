@@ -53,12 +53,12 @@ namespace TradingBot
                 Time = DateTime.Today.AddYears(-10).ToUniversalTime();
         }
 
-        public void Update(OperationType type, int lots, decimal price, string orderID)
+        public void Update(OperationType type, int lots, decimal price, string orderID, decimal minPriceIncrement)
         {
             if (type == OperationType.Buy)
-                OnBuy(lots, price, orderID);
+                OnBuy(lots, price, orderID, minPriceIncrement);
             else
-                OnSell(lots, price, orderID);
+                OnSell(lots, price, orderID, minPriceIncrement);
         }
 
         public int GetOrdersInLastTrade()
@@ -93,16 +93,16 @@ namespace TradingBot
             return totalLots;
         }
 
-        private void OnBuy(int lots, decimal price, string orderID)
+        private void OnBuy(int lots, decimal price, string orderID, decimal minPriceIncrement)
         {
             Positions.Add(new Position(lots, price, orderID));
 
-            CalculateAverage();
+            CalculateAverage(minPriceIncrement);
 
             Status = Status.BuyDone;
         }
 
-        private void OnSell(int lots, decimal price, string orderID)
+        private void OnSell(int lots, decimal price, string orderID, decimal minPriceIncrement)
         {
             if (Lots < lots)
             {
@@ -113,7 +113,7 @@ namespace TradingBot
 
             Positions.Add(new Position(-lots, price, orderID));
 
-            CalculateAverage();
+            CalculateAverage(minPriceIncrement);
 
             if (Lots == 0)
                 Status = Status.SellDone;
@@ -121,7 +121,7 @@ namespace TradingBot
                 Status = Status.SellPending;
         }
 
-        private void CalculateAverage()
+        private void CalculateAverage(decimal minPriceIncrement)
         {
             // calculate average price
             int totalBuyLots = 0;
@@ -148,10 +148,10 @@ namespace TradingBot
             Lots = totalBuyLots - totalSellLots;
 
             if (totalBuyLots > 0)
-                AvgPrice = totalBuyPrice / totalBuyLots;
+                AvgPrice = Helpers.RoundPrice(totalBuyPrice / totalBuyLots, minPriceIncrement);
 
             if (totalSellLots > 0)
-                AvgSellPrice = totalSellPrice / totalSellLots;
+                AvgSellPrice = Helpers.RoundPrice(totalSellPrice / totalSellLots, minPriceIncrement);
         }
 
         private int GetLastTradeBeginPositions()

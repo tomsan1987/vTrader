@@ -329,7 +329,7 @@ namespace TradingBot
                             it.ExecutedLots = it.ExecutedLots + executedLots;
                             it.Status = OrderStatus.PartiallyFill;
 
-                            _tradeData[it.Figi].Update(it.Operation, executedLots, it.Price, it.OrderId);
+                            _tradeData[it.Figi].Update(it.Operation, executedLots, it.Price, it.OrderId, instrument.MinPriceIncrement);
                             _tradeData[it.Figi].CandleID = _candles[it.Figi].Raw.Count;
                             _tradeData[it.Figi].Time = _candles[figi].Candles[_candles[figi].Candles.Count - 1].Time;
 
@@ -359,7 +359,7 @@ namespace TradingBot
                             it.Status = OrderStatus.Fill;
                         }
 
-                        _tradeData[it.Figi].Update(it.Operation, executedLots, it.Price, it.OrderId);
+                        _tradeData[it.Figi].Update(it.Operation, executedLots, it.Price, it.OrderId, instrument.MinPriceIncrement);
                         _tradeData[it.Figi].CandleID = _candles[it.Figi].Raw.Count;
                         _tradeData[it.Figi].Time = _candles[figi].Candles[_candles[figi].Candles.Count - 1].Time;
 

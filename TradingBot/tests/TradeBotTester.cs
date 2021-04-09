@@ -300,6 +300,8 @@ namespace TradingBot
             Test("CCL_BBG000BF6LY3_2021-02-26", 1, 0.07m);
             Test("UAL_BBG000M65M61_2021-02-26", 2, 0.3m); // TODO: buy more!
             Test("BYND_BBG003CVJP50_2021-02-24", 1, 0.2m); // big gap up
+            Test("ACH_BBG000CMRVH1_2021-04-09", 2, 0.2m);
+
 
             _basePath = basePath;
         }
@@ -326,7 +328,7 @@ namespace TradingBot
             Test("FDX_BBG000BJF1Z8_2020-12-14", 0, 0.0m); // gap up, no reason to buy until prev day close price
             Test("QDEL_BBG000C6GN04_2021-01-19", 0, 0.0m); // gap up, do not buy
 
-            Test("OXY_BBG000BQQ2S6_2020-12-21", 1, -0.7m); // big loss
+            Test("OXY_BBG000BQQ2S6_2020-12-21", 2, -0.7m); // big loss
             Test("FSLY_BBG004NLQHL0_2021-01-28", 1, -1.0m); // do not buy when falling
             Test("OIS_BBG000BDDN94_2021-01-06", 1, -0.1m); // big loss, price always low, do not buy!
             Test("DIS_BBG000BH4R78_2021-01-28", 1, -1.2m); // gap up
@@ -338,7 +340,7 @@ namespace TradingBot
 
 
             Test("COTY_BBG000F395V1_2021-02-26", 1, -0.80m); // just no lack
-            Test("SPCE_BBG00HTN2CQ3_2021-03-04", 1, -1.0m); // TODO: buy more!
+            Test("SPCE_BBG00HTN2CQ3_2021-03-04", 2, -0.70m); // TODO: buy more!
             Test("PYPL_BBG0077VNXV6_2021-02-26", 1, -7.0m); // no lack, may be buy more
             Test("BIDU_BBG000QXWHD1_2021-02-26", 1, -6.0m); // no lack, may be buy more or minimize loss
             Test("VIPS_BBG002NLDLV8_2021-02-26", 1, -0.7m); // ChangeOpenToCurrent = 0
@@ -464,7 +466,6 @@ namespace TradingBot
             //Test("SWBI_BBG000BM0QL7_2020-12-04", 1, 0.0m);
 
 
-            Test("", 1, 0.0m);
             Test("", 1, 0.0m);
             Test("", 1, 0.0m);
 
