@@ -234,7 +234,7 @@ namespace TradingBot
             Test("SPCE_BBG00HTN2CQ3_2021-01-22", 1, 0.5m);
             Test("TSLA_BBG000N9MNX3_2021-01-28", 1, 5.0m);
             Test("ZYXI_BBG000BJBXZ2_2021-01-22", 1, 0.0m); // it is good that we have small profit here and sold at time
-            Test("SPCE_BBG00HTN2CQ3_2021-01-26", 1, 0.0m); // improve me: if the next candle ha not significant change - do not close
+            Test("SPCE_BBG00HTN2CQ3_2021-01-26", 1, 0.0m); // improve me: if the next candle has not significant change - do not close
             Test("DKNG_BBG00TCBG714_2021-01-28", 2, 0.2m); // can be improved to buy by statistic. // there was not enough liquidity when buy > 1 lots
             Test("PINS_BBG002583CV8_2021-01-27", 1, 2.0m); // +
             Test("ETRN_BBG00K53L394_2021-01-27", 1, 0.08m);
@@ -327,14 +327,16 @@ namespace TradingBot
             Test("NTLA_BBG007KC7PB0_2020-12-14", 0, 0.0m); // no reasons to buy
             Test("FDX_BBG000BJF1Z8_2020-12-14", 0, 0.0m); // gap up, no reason to buy until prev day close price
             Test("QDEL_BBG000C6GN04_2021-01-19", 0, 0.0m); // gap up, do not buy
+            Test("OI_BBG00R2JZG39_2021-04-09", 0, 0.0m); // bad prev day close: single quote with high price
+
 
             Test("OXY_BBG000BQQ2S6_2020-12-21", 2, -0.7m); // big loss
             Test("FSLY_BBG004NLQHL0_2021-01-28", 1, -1.0m); // do not buy when falling
             Test("OIS_BBG000BDDN94_2021-01-06", 1, -0.1m); // big loss, price always low, do not buy!
-            Test("DIS_BBG000BH4R78_2021-01-28", 1, -1.2m); // gap up
+            Test("DIS_BBG000BH4R78_2021-01-28", 1, -1.2m); // gap up, nothing to do, just loss
             Test("SPLK_BBG001C7TST4_2020-12-04", 1, -0.80m); // improve me: ignore first quote - it is too high(gap up)
 
-            Test("SPCE_BBG00HTN2CQ3_2021-01-20", 1, -0.25m); // try to ignore first quote, but OK with lose
+            Test("SPCE_BBG00HTN2CQ3_2021-01-20", 1, -0.25m); // try to ignore first quote: 1 lot per high price, but OK with lose
             Test("ET_BBG000BM2FL9_2020-12-15", 1, -0.04m); // do nothing. just lose
             Test("TER_BBG000BV4DR6_2021-01-28", 1, -0.40m); // happy to close with small loss
 
@@ -466,7 +468,6 @@ namespace TradingBot
             //Test("SWBI_BBG000BM0QL7_2020-12-04", 1, 0.0m);
 
 
-            Test("", 1, 0.0m);
             Test("", 1, 0.0m);
 
             //// all data test

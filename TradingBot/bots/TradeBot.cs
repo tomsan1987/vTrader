@@ -181,7 +181,7 @@ namespace TradingBot
                 {
                     _candles[figi].SpikePositions.Add(_candles[figi].Raw.Count - 1);
                     Logger.Write("{0}: SPYKE!. {1}", instrument.Ticker, Helpers.CandleDesc(_candles[figi].Raw.Count - 1, candle));
-                    return;
+                    //return;
                 }
 
                 if (_settings.SubscribeQuotes)
@@ -558,7 +558,7 @@ namespace TradingBot
                                 //    var order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, price, _accountId);
                                 //    var placedOrder = await _context.PlaceLimitOrderAsync(order);
 
-                                //    Logger.Write("{0}: Closing dayly orders. Close price: {1}. {2}. Profit: {3}({4}%)",
+                                //    Logger.Write("{0}: Closing daily orders. Close price: {1}. {2}. Profit: {3}({4}%)",
                                 //        instrument.Ticker, price, Helpers.CandleDesc(_candles[it.Key].Raw.Count - 1, candle), price - tradeData.AvgPrice, Helpers.GetChangeInPercent(tradeData.AvgPrice, price));
 
                                 //    _stats.Sell(tradeData.BuyTime, candle.Time, tradeData.AvgPrice, instrument.Ticker);
@@ -581,11 +581,16 @@ namespace TradingBot
                                 var order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, price, _accountId);
                                 var placedOrder = await _context.PlaceLimitOrderAsync(order);
 
-                                Logger.Write("{0}: Closing dayly orders. Close price: {1}. {2}. Profit: {3}({4}%)",
-                                    instrument.Ticker, price, Helpers.CandleDesc(_candles[it.Key].Raw.Count - 1, candle), price - tradeData.AvgPrice, Helpers.GetChangeInPercent(tradeData.AvgPrice, price));
+                                Logger.Write("{0}: Closing daily orders. Close price: {1}. Lots: {2}. Profit: {3}({4}%). {5}",
+                                    instrument.Ticker, price, tradeData.Lots, price - tradeData.AvgPrice, Helpers.GetChangeInPercent(tradeData.AvgPrice, price), Helpers.CandleDesc(_candles[it.Key].Raw.Count - 1, candle));
 
+                                tradeData.Update(OperationType.Sell, tradeData.Lots, price, placedOrder.OrderId, instrument.MinPriceIncrement);
+                                tradeData.Time = _candles[it.Key].Candles[_candles[it.Key].Candles.Count - 1].Time;
+
+                                // trade finished
                                 _stats.Sell(tradeData.BuyTime, candle.Time, tradeData.AvgPrice, instrument.Ticker);
                                 _stats.Update(instrument.Ticker, tradeData.AvgPrice, tradeData.AvgSellPrice, tradeData.GetOrdersInLastTrade(), tradeData.GetLotsInLastTrade());
+                                tradeData.Reset(false);
                             }
                             break;
                     }
