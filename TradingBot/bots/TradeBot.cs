@@ -311,6 +311,7 @@ namespace TradingBot
             // lets look what orders was executed
             foreach (var it in _orders)
             {
+                var tradeData = _tradeData[it.Figi];
                 var instrument = _figiToInstrument[it.Figi];
                 int executedLots = 0;
 
@@ -322,16 +323,16 @@ namespace TradingBot
                     {
                         // partially executed, check how lots added to portfolio
                         executedLots = _portfolioOrders[idx].ExecutedLots - it.ExecutedLots;
-                        var prevLots = _tradeData[it.Figi].Lots;
+                        var prevLots = tradeData.Lots;
                         var portfolioLots = GetLotsInPortfolio(it.Figi);
                         if (Math.Abs(portfolioLots - prevLots) == executedLots)
                         {
                             it.ExecutedLots = it.ExecutedLots + executedLots;
                             it.Status = OrderStatus.PartiallyFill;
 
-                            _tradeData[it.Figi].Update(it.Operation, executedLots, it.Price, it.OrderId, instrument.MinPriceIncrement);
-                            _tradeData[it.Figi].CandleID = _candles[it.Figi].Raw.Count;
-                            _tradeData[it.Figi].Time = _candles[figi].Candles[_candles[figi].Candles.Count - 1].Time;
+                            tradeData.Update(it.Operation, executedLots, it.Price, it.OrderId, instrument.MinPriceIncrement);
+                            tradeData.CandleID = _candles[it.Figi].Raw.Count;
+                            tradeData.Time = _candles[figi].Candles[_candles[figi].Candles.Count - 1].Time;
 
                             Logger.Write("{0}: OrderID: {1} partially executed. Executed lots: {2}. OrderStatus: {3}/{4} lots",
                                 _figiToTicker[it.Figi], it.OrderId, executedLots, _portfolioOrders[idx].ExecutedLots, _portfolioOrders[idx].RequestedLots);
@@ -347,7 +348,7 @@ namespace TradingBot
                 {
                     // seems executed if added to portfolio
                     executedLots = it.RequestedLots - it.ExecutedLots;
-                    var prevLots = _tradeData[it.Figi].Lots;
+                    var prevLots = tradeData.Lots;
                     var portfolioLots = GetLotsInPortfolio(it.Figi);
                     if (Math.Abs(portfolioLots - prevLots) == executedLots)
                     {
@@ -359,15 +360,16 @@ namespace TradingBot
                             it.Status = OrderStatus.Fill;
                         }
 
-                        _tradeData[it.Figi].Update(it.Operation, executedLots, it.Price, it.OrderId, instrument.MinPriceIncrement);
-                        _tradeData[it.Figi].CandleID = _candles[it.Figi].Raw.Count;
-                        _tradeData[it.Figi].Time = _candles[figi].Candles[_candles[figi].Candles.Count - 1].Time;
+                        tradeData.Update(it.Operation, executedLots, it.Price, it.OrderId, instrument.MinPriceIncrement);
+                        tradeData.CandleID = _candles[it.Figi].Raw.Count;
+                        tradeData.Time = _candles[figi].Candles[_candles[figi].Candles.Count - 1].Time;
 
-                        if (_tradeData[it.Figi].Lots == 0)
+                        if (tradeData.Lots == 0)
                         {
                             // trade finished
-                            _stats.Update(instrument.Ticker, _tradeData[it.Figi].AvgPrice, _tradeData[it.Figi].AvgSellPrice, _tradeData[it.Figi].GetOrdersInLastTrade(), _tradeData[it.Figi].GetLotsInLastTrade());
-                            _tradeData[it.Figi].Reset(false);
+                            _stats.Sell(tradeData.BuyTime, _candles[it.Figi].Candles[_candles[it.Figi].Candles.Count - 1].Time, tradeData.AvgPrice * tradeData.GetLotsInLastTrade(), instrument.Ticker);
+                            _stats.Update(instrument.Ticker, tradeData.AvgPrice, tradeData.AvgSellPrice, tradeData.GetOrdersInLastTrade(), tradeData.GetLotsInLastTrade());
+                            tradeData.Reset(false);
 
                             // cancel all remaining orders by this instrument
                             foreach (var o in _orders)
@@ -396,7 +398,7 @@ namespace TradingBot
                         it.Status = OrderStatus.Cancelled;
 
                         if (_tradeData[it.Figi].Lots == 0)
-                            _tradeData[it.Figi].Reset(false);
+                            _tradeData[it.Figi].Reset(true);
                     }
                 }
             }
@@ -541,39 +543,21 @@ namespace TradingBot
             _isShutingDown = true;
             await UpdateOrdersStatus("", true);
 
+            foreach (var it in _orders)
+            {
+                it.Status = OrderStatus.PendingCancel;
+            }
+
+            await UpdateOrdersStatus("", true);
+
             foreach (var it in _tradeData)
             {
                 var tradeData = it.Value;
-                if (tradeData != null && tradeData.AvgPrice != 0)
+                if (tradeData != null && _candles[it.Key].Candles.Count > 0)
                 {
                     var candle = _candles[it.Key].Candles[_candles[it.Key].Candles.Count - 1];
                     switch (tradeData.Status)
                     {
-                        case Status.BuyPending:
-                            {
-                                var instrument = _figiToInstrument[it.Key];
-                                //if (await IsOrderExecuted(instrument.Ticker, it.Key, tradeData.OrderID))
-                                //{
-                                //    var price = candle.Close - 2 * instrument.MinPriceIncrement;
-                                //    var order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, price, _accountId);
-                                //    var placedOrder = await _context.PlaceLimitOrderAsync(order);
-
-                                //    Logger.Write("{0}: Closing daily orders. Close price: {1}. {2}. Profit: {3}({4}%)",
-                                //        instrument.Ticker, price, Helpers.CandleDesc(_candles[it.Key].Raw.Count - 1, candle), price - tradeData.AvgPrice, Helpers.GetChangeInPercent(tradeData.AvgPrice, price));
-
-                                //    _stats.Sell(tradeData.BuyTime, candle.Time, tradeData.AvgPrice, instrument.Ticker);
-                                //    _stats.Update(instrument.Ticker, tradeData.AvgPrice, price);
-                                //}
-                                //else
-                                //{
-                                //    // just cancel order
-                                //    Logger.Write("{0}: Cancel order. {0}. Details: end of day", instrument.Ticker, Helpers.CandleDesc(_candles[it.Key].Raw.Count - 1, candle));
-                                //    await _context.CancelOrderAsync(tradeData.OrderID, _accountId);
-                                //}
-                                // TODO
-                            }
-                            break;
-
                         case Status.BuyDone:
                             {
                                 var instrument = _figiToInstrument[it.Key];
@@ -588,7 +572,7 @@ namespace TradingBot
                                 tradeData.Time = _candles[it.Key].Candles[_candles[it.Key].Candles.Count - 1].Time;
 
                                 // trade finished
-                                _stats.Sell(tradeData.BuyTime, candle.Time, tradeData.AvgPrice, instrument.Ticker);
+                                _stats.Sell(tradeData.BuyTime, candle.Time, tradeData.AvgPrice * tradeData.GetLotsInLastTrade(), instrument.Ticker);
                                 _stats.Update(instrument.Ticker, tradeData.AvgPrice, tradeData.AvgSellPrice, tradeData.GetOrdersInLastTrade(), tradeData.GetLotsInLastTrade());
                                 tradeData.Reset(false);
                             }

@@ -112,14 +112,23 @@ namespace TradingBot
 
             if (buy)
             {
-                // place limited order
-                int lots = Math.Max((int)(sMinVolume / candle.Close), 1);
-                order = new LimitOrder(instrument.Figi, lots, OperationType.Buy, candle.Close);
+                // look for minimal price
+                decimal low = candle.Close;
+                for (int i = quotes.RawPosStart[candles.Count - 1]; i < quotes.Raw.Count; ++i)
+                    low = Math.Min(quotes.Raw[i].Price, low);
 
-                Logger.Write("{0}: BuyPending. Strategy: {1}. Price: {2}. Lots: {3}. ChangeOpenToCurrent: {4}. ChangePrevCloseToCurrent: {5}. {6}.",
-                    instrument.Ticker, Description(), order.Price, order.Lots, currCandleChange, changeFromPrevClose, Helpers.CandleDesc(quotes.Raw.Count - 1, candle));
+                var changeFromLow = Helpers.GetChangeInPercent(low, candle.Close);
+                if (changeFromLow < Math.Abs(Math.Min(changeFromPrevClose, currCandleChange)))
+                {
+                    // place limited order
+                    int lots = Math.Max((int)(sMinVolume / candle.Close), 1);
+                    order = new LimitOrder(instrument.Figi, lots, OperationType.Buy, candle.Close);
 
-                return IStrategy.StrategyResultType.Buy;
+                    Logger.Write("{0}: BuyPending. Strategy: {1}. Price: {2}. Lots: {3}. ChangeOpenToCurrent: {4}. ChangePrevCloseToCurrent: {5}. {6}.",
+                        instrument.Ticker, Description(), order.Price, order.Lots, currCandleChange, changeFromPrevClose, Helpers.CandleDesc(quotes.Raw.Count - 1, candle));
+
+                    return IStrategy.StrategyResultType.Buy;
+                }
             }
 
             return IStrategy.StrategyResultType.NoOp;

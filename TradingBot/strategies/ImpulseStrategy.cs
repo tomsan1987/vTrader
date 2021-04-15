@@ -10,6 +10,7 @@ namespace TradingBot
     {
         static public decimal step = 1m / 1000;
         static public int s_min_quotes_per_candle = 40;
+        public const decimal sMinVolume = 250; // USD
 
 
         public IStrategy.StrategyResultType Process(MarketInstrument instrument, TradeData tradeData, Quotes quotes, out LimitOrder order)
@@ -186,7 +187,8 @@ namespace TradingBot
 
             if (reason.Length > 0)
             {
-                order = new LimitOrder(instrument.Figi, 1, OperationType.Buy, candle.Close);
+                int lots = Math.Max((int)(sMinVolume / candle.Close), 1);
+                order = new LimitOrder(instrument.Figi, lots, OperationType.Buy, candle.Close);
                 tradeData.AvgPrice = candle.Close;
                 tradeData.Trend = trend;
                 tradeData.StopLoss = Math.Max(candle.Low, Helpers.RoundPrice(candle.Close * 0.98m, instrument.MinPriceIncrement)); // max 2% losses
@@ -222,10 +224,13 @@ namespace TradingBot
             var candles = quotes.Candles;
             var candle = candles[candles.Count - 1];
 
+            if (quotes.SpikePositions.Count > 0 && quotes.SpikePositions[quotes.SpikePositions.Count - 1] == quotes.Raw.Count - 1)
+                return IStrategy.StrategyResultType.NoOp;
+
             // close on market closing
             if (candle.Time.Hour >= 20 && candle.Time.Minute >= 55 || candle.Time.Hour >= 21)
             {
-                order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, candle.Close);
+                order = new LimitOrder(instrument.Figi, tradeData.Lots, OperationType.Sell, candle.Close);
                 Logger.Write("{0}: Market closing. Close price: {1}. {2}. Profit: {3}({4}%)",
                     instrument.Ticker, order.Price, Helpers.CandleDesc(quotes.Raw.Count - 1, candle), order.Price - tradeData.AvgPrice, Helpers.GetChangeInPercent(tradeData.AvgPrice, order.Price));
 
@@ -235,7 +240,7 @@ namespace TradingBot
             //check if we reach stop conditions
             if (candle.Close < tradeData.StopLoss)
             {
-                order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, candle.Close);
+                order = new LimitOrder(instrument.Figi, tradeData.Lots, OperationType.Sell, candle.Close);
                 Logger.Write("{0}: SL reached. Pending. Close price: {1}. {2}. Profit: {3}({4}%)",
                     instrument.Ticker, order.Price, Helpers.CandleDesc(quotes.Raw.Count - 1, candle), order.Price - tradeData.AvgPrice, Helpers.GetChangeInPercent(tradeData.AvgPrice, order.Price));
 
@@ -243,7 +248,7 @@ namespace TradingBot
             }
             else if (tradeData.TakeProfit > 0m && candle.Close >= tradeData.TakeProfit)
             {
-                order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, candle.Close);
+                order = new LimitOrder(instrument.Figi, tradeData.Lots, OperationType.Sell, candle.Close);
                 Logger.Write("{0}: TP reached. Pending. Close price: {1}. {2}. Profit: {3}({4}%)",
                     instrument.Ticker, order.Price, Helpers.CandleDesc(quotes.Raw.Count - 1, candle), order.Price - tradeData.AvgPrice, Helpers.GetChangeInPercent(tradeData.AvgPrice, order.Price));
 
@@ -286,7 +291,7 @@ namespace TradingBot
                     // check that the price does not less than max fall of the trend
                     if (changeFromBuy < 0 && Math.Abs(changeFromBuy) > 2 * maxFallLocal)
                     {
-                        order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, candle.Close);
+                        order = new LimitOrder(instrument.Figi, tradeData.Lots, OperationType.Sell, candle.Close);
                         Logger.Write("{0}: Price much differ between Buy and Max trend fall. MaxFall: {1}%. BuyPrice: {2}. MaxPrice: {3}. ChangeFromBuy: {4}%. Pending. Close price: {5}. {6}. Profit: {7}({8}%)",
                             instrument.Ticker, tradeData.Trend.MaxFall, tradeData.AvgPrice, tradeData.Trend.Max, changeFromBuy, order.Price, Helpers.CandleDesc(quotes.Raw.Count - 1, candle), order.Price - tradeData.AvgPrice, Helpers.GetChangeInPercent(tradeData.AvgPrice, order.Price));
                         return IStrategy.StrategyResultType.Sell;
@@ -298,7 +303,7 @@ namespace TradingBot
                         var profitLocal = Helpers.GetChangeInPercent(tradeData.AvgPrice, candle.Close);
                         if (profitLocal > 0.7m || profitLocal <= 0.2m)
                         {
-                            order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, candle.Close);
+                            order = new LimitOrder(instrument.Figi, tradeData.Lots, OperationType.Sell, candle.Close);
                             Logger.Write("{0}: Price is falling. Closing. MaxFall: {1}%, Max: {2}, ChangeFromMax: {3}%. Pending. Close price: {4}. {5}. Profit: {6}({7}%)",
                                 instrument.Ticker, tradeData.Trend.MaxFall, tradeData.Trend.Max, changeFromMax, order.Price, Helpers.CandleDesc(quotes.Raw.Count - 1, candle), order.Price - tradeData.AvgPrice, profitLocal);
                             return IStrategy.StrategyResultType.Sell;
@@ -432,7 +437,7 @@ namespace TradingBot
                 change = Helpers.GetChangeInPercent(max, candle.Close);
                 if (change < -2.0m && profit > 2.0m && tradeData.StopLoss < candle.Close)
                 {
-                    order = new LimitOrder(instrument.Figi, 1, OperationType.Sell, candle.Close);
+                    order = new LimitOrder(instrument.Figi, tradeData.Lots, OperationType.Sell, candle.Close);
                     Logger.Write("{0}: Price too fall from max. Max: {1}. Threshold: {2}. Price change: {3}; Closing. {4}. Profit: {5}({6}%)",
                         instrument.Ticker, max, 2.0m, change, Helpers.CandleDesc(quotes.Raw.Count - 1, candle), order.Price - tradeData.AvgPrice, Helpers.GetChangeInPercent(tradeData.AvgPrice, order.Price));
                     return IStrategy.StrategyResultType.Sell;
@@ -555,8 +560,8 @@ namespace TradingBot
                         string reason = String.Format("Trend: {0}({1})-{2}({3}). PrevMinMax: {4}/{5}. Trend AB: {6}/{7}. Trend Max/Fall/SD: {8}/{9}/{10}; TrendGrow: +{11}%. DayAvgChange: {12}%",
                             timeFrom, trend.StartPos, timeTo, trend.EndPos, min, max, A, B, maxPrice, maxFall, sd, change, quotes.AvgCandleChange);
 
-
-                        order = new LimitOrder(instrument.Figi, 1, OperationType.Buy, candle.Close);
+                        int lots = Math.Max((int)(sMinVolume / candle.Close), 1);
+                        order = new LimitOrder(instrument.Figi, lots, OperationType.Buy, candle.Close);
                         tradeData.AvgPrice = candle.Close;
                         tradeData.Trend = trend;
                         tradeData.StopLoss = Helpers.RoundPrice(candle.Close - candle.Close * (2m * Math.Max(0.5m, maxFall) / 100), instrument.MinPriceIncrement);
