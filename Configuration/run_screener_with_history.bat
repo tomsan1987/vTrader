@@ -1,1 +1,1 @@
-..\TradingBot\bin\Release\netcoreapp3.1\TradingBot.exe mode="Screener" DumpQuotes=true SubscribeQuotes=true RequestCandlesHistory=true Token="token.txt" ConfigPath="screener.json"
+..\TradingBot\bin\ReleaseScreener\netcoreapp3.1\TradingBot.exe mode="Screener" DumpQuotes=true SubscribeQuotes=true RequestCandlesHistory=true Token="token.txt" ConfigPath="screener.json"
