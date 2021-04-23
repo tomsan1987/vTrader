@@ -153,6 +153,11 @@ namespace TradingBot
             Screener.ShowStatusStatic(_figiToTicker, _lastCandleReceived, _candles);
         }
 
+        public bool HasOrders()
+        {
+            return _portfolio.Count > 0 || _portfolioOrders.Count > 0 || _orders.Count > 0;
+        }
+
         private async Task OnCandleUpdate(string figi)
         {
             try
@@ -311,6 +316,9 @@ namespace TradingBot
             // lets look what orders was executed
             foreach (var it in _orders)
             {
+                if (it.Status == OrderStatus.PendingCancel)
+                    continue;
+
                 var tradeData = _tradeData[it.Figi];
                 var instrument = _figiToInstrument[it.Figi];
                 int executedLots = 0;
@@ -399,6 +407,13 @@ namespace TradingBot
 
                         if (_tradeData[it.Figi].Lots == 0)
                             _tradeData[it.Figi].Reset(true);
+                        else if (_tradeData[it.Figi].Lots > 0)
+                        {
+                            if (_orders.FindIndex(x => x.Figi == it.Figi && x.Operation == OperationType.Sell && x.Status != OrderStatus.Cancelled) >= 0)
+                                _tradeData[it.Figi].Status = Status.SellPending;
+                            else
+                                _tradeData[it.Figi].Status = Status.BuyDone;
+                        }
                     }
                 }
             }
@@ -478,6 +493,12 @@ namespace TradingBot
                         var tradeData = _tradeData[figi];
                         var rawData = _candles[figi].Raw;
                         var requestedLots = it.RequestedLots - it.ExecutedLots;
+
+                        if (it.Status == OrderStatus.PendingCancel)
+                        {
+                            _portfolioOrders.RemoveAll(x => x.OrderId == it.OrderId);
+                            continue;
+                        }
 
                         // we need to add order to portfolio orders if did not do before
                         var idxPortfolioOrder = _portfolioOrders.FindIndex(x => x.OrderId == it.OrderId);
@@ -575,6 +596,10 @@ namespace TradingBot
                                 _stats.Sell(tradeData.BuyTime, candle.Time, tradeData.AvgPrice * tradeData.GetLotsInLastTrade(), instrument.Ticker);
                                 _stats.Update(instrument.Ticker, tradeData.AvgPrice, tradeData.AvgSellPrice, tradeData.GetOrdersInLastTrade(), tradeData.GetLotsInLastTrade());
                                 tradeData.Reset(false);
+
+                                _portfolioOrders.RemoveAll(x => x.Figi == candle.Figi);
+                                _portfolio.RemoveAll(x => x.Figi == candle.Figi);
+                                _orders.RemoveAll(x => x.Figi == candle.Figi);
                             }
                             break;
                     }

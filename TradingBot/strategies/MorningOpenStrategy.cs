@@ -184,12 +184,24 @@ namespace TradingBot
 
             if (candle.Time >= tradeData.BuyTime.AddMinutes(5) && profit >= 0.1m)
             {
-                // just sell per current price
-                order = new LimitOrder(instrument.Figi, tradeData.Lots, OperationType.Sell, candle.Close);
-                Logger.Write("{0}: Morning closing. Close price: {1}. Lots: {2}. CandleChange: {3}%. ChangeFromCandleHigh: {4}%. Profit: {5}({6}%). {7}",
-                    instrument.Ticker, order.Price, order.Lots, candleChange, changeFromMax, order.Price - tradeData.AvgPrice, profit, Helpers.CandleDesc(quotes.Raw.Count - 1, candle));
+                // if we had deep dropdown - just sell per current price, otherwise, hold on
+                int idx = candles.Count - 1;
+                decimal low = candle.Low;
+                while (idx >= 0 && candles[idx].Time >= tradeData.BuyTime)
+                {
+                    low = Math.Min(candles[idx].Low, low);
+                    --idx;
+                }
 
-                return IStrategy.StrategyResultType.Sell;
+                var dropdown = Helpers.GetChangeInPercent(tradeData.AvgPrice, low);
+                if (dropdown < -1m || profit > 1m)
+                {
+                    order = new LimitOrder(instrument.Figi, tradeData.Lots, OperationType.Sell, candle.Close);
+                    Logger.Write("{0}: Morning closing. Close price: {1}. Lots: {2}. CandleChange: {3}%. ChangeFromCandleHigh: {4}%. Profit: {5}({6}%). {7}",
+                        instrument.Ticker, order.Price, order.Lots, candleChange, changeFromMax, order.Price - tradeData.AvgPrice, profit, Helpers.CandleDesc(quotes.Raw.Count - 1, candle));
+
+                    return IStrategy.StrategyResultType.Sell;
+                }
             }
 
             if (candle.Time > tradeData.BuyTime.AddMinutes(15))

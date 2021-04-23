@@ -217,6 +217,7 @@ namespace TradingBot
             var stocks = await _context.MarketStocksAsync();
             _instruments = stocks.Instruments;
 
+            List<string> badTickers = new List<string>();
             foreach (var ticker in _watchList)
             {
                 var idx = _instruments.FindIndex(x => x.Ticker == ticker);
@@ -228,9 +229,13 @@ namespace TradingBot
                 }
                 else
                 {
-                    throw new Exception("Unknown ticker: " + ticker);
+                    Logger.Write(" Error! Unknown ticker: " + ticker);
+                    badTickers.Add(ticker);
                 }
             }
+
+            foreach (var ticker in badTickers)
+                _watchList.Remove(ticker);
         }
 
         protected void Connect()
@@ -302,27 +307,6 @@ namespace TradingBot
                 _subscriptionTimer.Elapsed += new ElapsedEventHandler(SubscribeCandlesImpl);
                 _subscriptionTimer.Interval = 5000;
                 _subscriptionTimer.Start();
-
-                //_candleSubscriptionTask = Task.Run(async () =>
-                //{
-                //    while (!_disposing)
-                //    {
-                //        Dictionary<string, int> newQuotes = null;
-                //        lock (_quotesLock)
-                //        {
-                //            newQuotes = _newQuotes;
-                //            _newQuotes = new Dictionary<string, int>();
-                //        }
-
-                //        foreach (var it in newQuotes)
-                //        {
-                //            if (it.Value > 5)
-                //                Logger.Write("{0}: Quotes queue size: {1}", _figiToTicker[it.Key], it.Value);
-
-                //            await OnCandleUpdate(it.Key);
-                //        }
-                //    }
-                //});
             }
         }
 
@@ -340,6 +324,7 @@ namespace TradingBot
             catch (Exception ex)
             {
                 Logger.Write("Error while subscribing candles: " + ex.Message);
+                SubscribeCandles();
             }
         }
 
