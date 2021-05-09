@@ -283,10 +283,7 @@ namespace TradingBot
         protected void OnWebSocketExceptionReceived(object s, WebSocketException e)
         {
             Logger.Write("OnWebSocketExceptionReceived: {0}", e.Message);
-            //_ =  UnSubscribeCandles();
 
-            // Connect();
-            // _ = SubscribeCandles();
             _subscriptionTimer.Stop();
             _subscriptionTimer.Start();
         }
@@ -333,7 +330,9 @@ namespace TradingBot
             catch (Exception ex)
             {
                 Logger.Write("Error while subscribing candles: {0}. Subscription progress {1}/{2}", ex.Message, i, _watchList.Count);
-                SubscribeCandles();
+
+                _subscriptionTimer.Stop();
+                _subscriptionTimer.Start();
             }
         }
 
@@ -341,6 +340,8 @@ namespace TradingBot
         {
             if (_settings.SubscribeQuotes && _context != null)
             {
+                _subscriptionTimer.Stop();
+
                 _context.StreamingEventReceived -= OnStreamingEventReceived;
                 _context.WebSocketException -= OnWebSocketExceptionReceived;
                 _context.StreamingClosed -= OnStreamingClosedReceived;
