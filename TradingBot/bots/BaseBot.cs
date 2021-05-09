@@ -84,6 +84,8 @@ namespace TradingBot
 
         public virtual async ValueTask DisposeAsync()
         {
+            Logger.Write("BaseBot::DisposeAsync...");
+
             await UnSubscribeCandles();
             _fakeConnection?.Dispose();
             _connection?.Dispose();
@@ -312,18 +314,25 @@ namespace TradingBot
 
         private void SubscribeCandlesImpl(object source, ElapsedEventArgs e)
         {
+            int i = 0;
             try
             {
                 Logger.Write("Start subscribing candles...");
 
-                for (int i = 0; i < _watchList.Count; ++i)
+                for (; i < _watchList.Count && _context != null; ++i)
                     _context.SendStreamingRequestAsync(StreamingRequest.SubscribeCandle(_tickerToFigi[_watchList[i]], CandleInterval.FiveMinutes)).Wait();
+
+                if (_context == null)
+                    Logger.Write("ERROR: context is null while subscribing candles...");
+
+                if (i < _watchList.Count)
+                    Logger.Write("ERROR: subscribed less instruments than expected: {0}/{1}", i, _watchList.Count);
 
                 Logger.Write("End of subscribing candles...");
             }
             catch (Exception ex)
             {
-                Logger.Write("Error while subscribing candles: " + ex.Message);
+                Logger.Write("Error while subscribing candles: {0}. Subscription progress {1}/{2}", ex.Message, i, _watchList.Count);
                 SubscribeCandles();
             }
         }

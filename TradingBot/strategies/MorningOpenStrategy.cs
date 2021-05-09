@@ -47,7 +47,7 @@ namespace TradingBot
             var candles = quotes.Candles;
             var candle = candles[candles.Count - 1];
 
-            // Working only on open market
+            // working only on market opening
             if ((candle.Time.Hour != 7 && candle.Time.Hour != 4) || candle.Time.Minute != 0)
                 return IStrategy.StrategyResultType.NoOp;
 
@@ -55,38 +55,17 @@ namespace TradingBot
             if (candle.Time.Hour == 7 && candles.Count > 2)
                 return IStrategy.StrategyResultType.NoOp;
 
+            CalculatePrevDayClosePrice(candles, tradeData);
+
+            var currCandleChange = Helpers.GetChangeInPercent(candle);
+
             if (quotes.Raw.Count < 10)
                 return IStrategy.StrategyResultType.NoOp;
 
             if (candle.Volume < 100)
                 return IStrategy.StrategyResultType.NoOp;
 
-            if (tradeData.PrevDayClosePrice == -1)
-            {
-                // calculate previous day close price
-                // theoretically there next situation: current candle is market open candle and previous candle should be previous day close candle(it could be 1 or more repeated candles)
-                if (candles.Count == 1)
-                {
-                    // we have no previous day close candle
-                    tradeData.PrevDayClosePrice = 0;
-                }
-                else
-                {
-                    var prevChange = Helpers.GetChangeInPercent(candles[candles.Count - 2]);
-                    if (/*prevChange == 0 || */(Math.Abs(prevChange) > 1.5m && candles[candles.Count - 2].Volume < 10)) // first condition significantly reduced orders count with little less profit
-                    {
-                        // we cant rely on this data due to price significantly changed with low volume
-                        tradeData.PrevDayClosePrice = 0;
-                    }
-                    else
-                    {
-                        tradeData.PrevDayClosePrice = candles[candles.Count - 2].Close;
-                    }
-                }
-            }
-
             bool buy = false;
-            var currCandleChange = Helpers.GetChangeInPercent(candle);
             decimal changeFromPrevClose = 0.0m;
             if (tradeData.PrevDayClosePrice > 0)
             {
@@ -223,6 +202,33 @@ namespace TradingBot
             // TODO
 
             return IStrategy.StrategyResultType.NoOp;
+        }
+
+        private void CalculatePrevDayClosePrice(List<CandlePayload> candles, TradeData tradeData)
+        {
+            if (tradeData.PrevDayClosePrice == -1)
+            {
+                // calculate previous day close price
+                // theoretically there next situation: current candle is market open candle and previous candle should be previous day close candle(it could be 1 or more repeated candles)
+                if (candles.Count == 1)
+                {
+                    // we have no previous day close candle
+                    tradeData.PrevDayClosePrice = 0;
+                }
+                else
+                {
+                    var prevChange = Helpers.GetChangeInPercent(candles[candles.Count - 2]);
+                    if (/*prevChange == 0 || */(Math.Abs(prevChange) > 1.5m && candles[candles.Count - 2].Volume < 10)) // first condition significantly reduced orders count with little less profit
+                    {
+                        // we cant rely on this data due to price significantly changed with low volume
+                        tradeData.PrevDayClosePrice = 0;
+                    }
+                    else
+                    {
+                        tradeData.PrevDayClosePrice = candles[candles.Count - 2].Close;
+                    }
+                }
+            }
         }
     }
 

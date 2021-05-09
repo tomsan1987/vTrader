@@ -49,9 +49,13 @@ namespace TradingBot
                             {
                                 if (bot == null || (startTime.Day < DateTime.UtcNow.Day && DateTime.UtcNow.Hour >= 1))
                                 {
+                                    Logger.Write("Start recreating bot...");
                                     startTime = DateTime.UtcNow;
                                     if (bot != null)
+                                    {
                                         await bot.DisposeAsync();
+                                        Logger.Write("Dispose done...");
+                                    }
 
                                     bot = new TradeBot(settings);
                                     await bot.StartAsync();
