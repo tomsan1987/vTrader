@@ -25,17 +25,26 @@ namespace TradingBot
                             DateTime startTime = DateTime.UtcNow;
                             while (true)
                             {
-                                if (bot == null || (startTime.Day < DateTime.UtcNow.Day && DateTime.UtcNow.Hour >= 1))
+                                try
                                 {
-                                    startTime = DateTime.UtcNow;
-                                    if (bot != null)
-                                        await bot.DisposeAsync();
+                                    if (bot == null || (startTime.Day < DateTime.UtcNow.Day && DateTime.UtcNow.Hour >= 1))
+                                    {
+                                        startTime = DateTime.UtcNow;
+                                        if (bot != null)
+                                            await bot.DisposeAsync();
 
-                                    bot = new Screener(settings);
-                                    await bot.StartAsync();
+                                        bot = new Screener(settings);
+                                        await bot.StartAsync();
+                                    }
+
+                                    bot.ShowStatus();
+                                }
+                                catch (Exception ex)
+                                {
+                                    Logger.Write("Exception: " + ex.Message);
+                                    bot = null;
                                 }
 
-                                bot.ShowStatus();
                                 System.Threading.Thread.Sleep(20000);
                             }
                         }
@@ -47,22 +56,27 @@ namespace TradingBot
                             DateTime startTime = DateTime.UtcNow;
                             while (true)
                             {
-                                if (bot == null || (startTime.Day < DateTime.UtcNow.Day && DateTime.UtcNow.Hour >= 1))
+                                try
                                 {
-                                    Logger.Write("Start recreating bot...");
-                                    startTime = DateTime.UtcNow;
-                                    if (bot != null)
+                                    if (bot == null || (startTime.Day < DateTime.UtcNow.Day && DateTime.UtcNow.Hour >= 1))
                                     {
-                                        await bot.DisposeAsync();
-                                        Logger.Write("Dispose done...");
+                                        startTime = DateTime.UtcNow;
+                                        if (bot != null)
+                                            await bot.DisposeAsync();
+
+                                        bot = new TradeBot(settings);
+                                        await bot.StartAsync();
                                     }
 
-                                    bot = new TradeBot(settings);
-                                    await bot.StartAsync();
+                                    bot.ShowStatus();
+                                }
+                                catch (Exception ex)
+                                {
+                                    Logger.Write("Exception: " + ex.Message);
+                                    bot = null;
                                 }
 
-                                bot.ShowStatus();
-                                System.Threading.Thread.Sleep(20000);
+            System.Threading.Thread.Sleep(20000);
                             }
                         }
                     //break;

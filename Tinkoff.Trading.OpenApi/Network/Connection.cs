@@ -116,6 +116,9 @@ namespace Tinkoff.Trading.OpenApi.Network
 
         private async Task EnsureWebSocketConnectionAsync()
         {
+            if (_webSocket?.State == WebSocketState.Closed)
+                _webSocket = null;
+
             if (_webSocket != null) return;
 
             if (Interlocked.CompareExchange(ref _webSocket, new ClientWebSocket(), null) != null) return;

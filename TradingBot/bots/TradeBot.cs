@@ -57,6 +57,8 @@ namespace TradingBot
 
         public override async ValueTask DisposeAsync()
         {
+            Logger.Write("Start DisposeAsync...");
+
             if (_settings.FakeConnection)
             {
                 await CloseAll();
@@ -88,6 +90,8 @@ namespace TradingBot
             }
 
             await base.DisposeAsync();
+
+            Logger.Write("End DisposeAsync...");
         }
 
         public override async Task StartAsync()
