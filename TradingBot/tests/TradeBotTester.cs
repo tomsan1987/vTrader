@@ -35,6 +35,10 @@ namespace TradingBot
             {
                 TestImpulseStrategy();
             }
+            else if (_strategy == "BuyTheDipPremarket")
+            {
+                TestBuyTheDipPremarket();
+            }
 
             TearDown();
         }
@@ -498,6 +502,51 @@ namespace TradingBot
             _writer.WriteLine("");
         }
 
+        private void Test2(string testName, string fileName)
+        {
+            if (testName.Length == 0)
+                return;
+
+            if (_testNameFilter.Length > 0 && _testNameFilter != testName)
+                return;
+
+            try
+            {
+                if (File.Exists(fileName))
+                {
+                    var candleList = TradeBot.ReadCandles(fileName);
+                    var res = _bot.TradeByHistory(candleList);
+
+                    if (res.lots > 0)
+                    {
+                        var profit = Math.Round(res.totalProfit / res.lots, 2);
+                        _writer.WriteLine(testName);
+                        _writer.WriteLine("Orders: " + res.totalOrders);
+                        _writer.WriteLine("Lots: " + res.lots);
+                        _writer.WriteLine("Profit: " + profit);
+                        _writer.WriteLine("TotalProfit: " + res.totalProfit);
+                        _writer.WriteLine("");
+                    }
+
+                    _totalOrders += res.totalOrders;
+                    _totalProfit += res.totalProfit;
+
+                    // some assertions for Bot's state
+                    if (_bot.HasOrders())
+                        Logger.Write("Error! Trade finished, but some orders or shares still in portfolio....");
+                }
+                else
+                {
+                    _writer.WriteLine("FAILED");
+                    _writer.WriteLine("File name {0} not found", fileName);
+                }
+            }
+            catch (Exception e)
+            {
+                _writer.WriteLine("Exception: " + e.Message);
+            }
+        }
+
         private void TestMorningOpenStrategy()
         {
             _testNameFilter = "";
@@ -596,6 +645,24 @@ namespace TradingBot
             //Test("", 1, 0m);
             //Test("", 1, 0m);
             //Test("", 1, 0m);
+
+        }
+
+        private void TestBuyTheDipPremarket()
+        {
+            RunSpecialTestsBuyTheDip();
+            //RunRawTestsBuyTheDip();
+        }
+
+        private void RunSpecialTestsBuyTheDip()
+        {
+            //_testNameFilter = "";
+            var basePath = _basePath;
+            _basePath += "SpecialTests\\";
+
+            //Test("AAL_BBG005P7Q881_2021-01-28", 1, 0m); // should not buy after pump
+            //Test("DKS_BBG000F6ZWH2_2021-03-09", 1, 0m);
+            Test("BILI_BBG00K7T3037_2021-02-22", 1, 0m);
             //Test("", 1, 0m);
             //Test("", 1, 0m);
             //Test("", 1, 0m);
@@ -612,7 +679,32 @@ namespace TradingBot
             //Test("", 1, 0m);
             //Test("", 1, 0m);
             //Test("", 1, 0m);
-            //Test("", 1, 0m);
+
+            _basePath = basePath;
+        }
+
+        private void RunRawTestsBuyTheDip()
+        {
+            var basePath = _basePath;
+            _basePath += "RawTests\\";
+
+            var stat = _bot.TradeByHistory(_options.Get<string>("CandlesPath"), _options.Get<string>("OutputFolder"));
+
+            // log results
+            foreach (var it in stat)
+            {
+                _writer.WriteLine(it.Key); // test name
+                _writer.WriteLine(it.Value.totalProfit >= 0 ? "PASSED" : "FAILED");
+                _writer.WriteLine("TotalOrders: " + it.Value.totalOrders);
+                _writer.WriteLine("TotalProfit: " + it.Value.totalProfit);
+
+                _totalOrders += it.Value.totalOrders;
+                _totalProfit += it.Value.totalProfit;
+
+                _writer.WriteLine("");
+            }
+
+            _basePath = basePath;
         }
     }
 }

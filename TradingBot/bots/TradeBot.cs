@@ -45,6 +45,7 @@ namespace TradingBot
                         case "GoodGrowStrategy":        _strategies[i] = new GoodGrowStrategy(); break;
                         case "ImpulseStrategy":         _strategies[i] = new ImpulseStrategy(); break;
                         case "MorningOpenStrategy":     _strategies[i] = new MorningOpenStrategy(); break;
+                        case "BuyTheDipPremarket":      _strategies[i] = new BuyTheDipPremarket(); break;
                         default: Logger.Write("Unknown strategy name '{0}'", strategyNames[i]); break;
                     }
                 }
@@ -687,8 +688,9 @@ namespace TradingBot
                         currentStat.volume = _stats.volume - statPrev.volume;
                         currentStat.comission = _stats.comission - statPrev.comission;
                         currentStat.totalProfit = _stats.totalProfit - statPrev.totalProfit;
-                        globalStat.Add(fileName, currentStat);
 
+                        if (!globalStat.ContainsKey(fileName))
+                            globalStat.Add(fileName, currentStat);
 
                         if (outputFolder?.Length > 0)
                         {
@@ -716,8 +718,11 @@ namespace TradingBot
         public TradeStatistic TradeByHistory(List<CandlePayload> candleList)
         {
             _isShutingDown = false;
-            InitCandles();
             _stats = new TradeStatistic();
+            InitCandles();
+
+            if (candleList.Count > 0 && !_candles.ContainsKey(candleList[0].Figi))
+                return _stats;
 
             foreach (var it in _tradeData)
                 it.Value.Reset(true);

@@ -306,7 +306,7 @@ namespace TradingBot
         {
             var writer = new StreamWriter(outputFolder + "\\stat_" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".csv", false);
             writer.AutoFlush = true;
-            writer.WriteLine("Ticker;FileName;CountQuotes;ChangeOpenToLow;ChangeLowToClose");
+            writer.WriteLine("Ticker;FileName;Time;CountQuotes;changeOpenToLow;changeLowToClose");
 
             DirectoryInfo folder = new DirectoryInfo(candlesPath);
             foreach (FileInfo f in folder.GetFiles("*.csv", SearchOption.AllDirectories))
@@ -361,7 +361,7 @@ namespace TradingBot
 
                         if (changeOpenToLow <= -2m)
                         {
-                            //Ticker; FileName; CountQuotes; ChangeOpenToClose; ChangeLowToClose
+                            // Ticker; FileName; Time; CountQuotes; changeOpenToLow; changeLowToClose
                             writer.WriteLine("{0};{1};{2};{3};{4};{5}", ticker, fileName, prevCandle.Time.ToShortTimeString(), i - startPos, changeOpenToLow, changeLowToClose);
                         }
                     }
