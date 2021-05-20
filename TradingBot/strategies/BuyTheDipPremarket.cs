@@ -66,7 +66,7 @@ namespace TradingBot
                 return IStrategy.StrategyResultType.NoOp;
 
             bool buy = false;
-            if (currCandleChange < -3.0m)
+            if (currCandleChange < -4.0m)
                 buy = true;
             //if (tradeData.PrevDayClosePrice > 0)
             //{

@@ -651,7 +651,7 @@ namespace TradingBot
         private void TestBuyTheDipPremarket()
         {
             RunSpecialTestsBuyTheDip();
-            //RunRawTestsBuyTheDip();
+            RunRawTestsBuyTheDip();
         }
 
         private void RunSpecialTestsBuyTheDip()
@@ -660,8 +660,8 @@ namespace TradingBot
             var basePath = _basePath;
             _basePath += "SpecialTests\\";
 
-            //Test("AAL_BBG005P7Q881_2021-01-28", 1, 0m); // should not buy after pump
-            //Test("DKS_BBG000F6ZWH2_2021-03-09", 1, 0m);
+            Test("AAL_BBG005P7Q881_2021-01-28", 1, 0m); // should not buy after pump
+            Test("DKS_BBG000F6ZWH2_2021-03-09", 1, 0m);
             Test("BILI_BBG00K7T3037_2021-02-22", 1, 0m);
             //Test("", 1, 0m);
             //Test("", 1, 0m);
