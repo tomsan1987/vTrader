@@ -122,7 +122,7 @@ namespace TradingBot
                     var tradeData = new TradeData();
 
                     if (disabledFigis != null && disabledFigis.Exists(x => x.Contains(figi)))
-                        tradeData.DisabledTrading = true;
+                        tradeData.DisabledTrading.Permanently = true;
 
                     _tradeData.Add(figi, tradeData);
                 }
@@ -182,7 +182,7 @@ namespace TradingBot
                 var candles = _candles[figi].Candles;
                 var candle = candles[candles.Count - 1];
 
-                if (tradeData.DisabledTrading)
+                if (tradeData.DisabledTrading.IsDisabled(candle.Time, _candles[figi].Raw.Count))
                     return;
 
                 await UpdateOrdersStatus(figi);
@@ -289,6 +289,16 @@ namespace TradingBot
             catch (Exception e)
             {
                 Logger.Write(e.Message);
+
+                if (e.Message.Contains("TooManyRequests"))
+                {
+                    _lastTimeOut = DateTime.UtcNow;
+                    Logger.Write("Operations disabled for some time...");
+                }
+                else if (e.Message.Contains("TooManyRequests"))
+                {
+                    // TODO
+                }
             }
         }
 
@@ -311,8 +321,8 @@ namespace TradingBot
                     _lastPortfolioStatusQuery = DateTime.UtcNow;
 
                     // erase elements for disabled instruments
-                    _portfolioOrders.RemoveAll(x => !_tradeData.ContainsKey(x.Figi) || _tradeData[x.Figi].DisabledTrading);
-                    _portfolio.RemoveAll(x => !_tradeData.ContainsKey(x.Figi) || _tradeData[x.Figi].DisabledTrading);
+                    _portfolioOrders.RemoveAll(x => !_tradeData.ContainsKey(x.Figi) || _tradeData[x.Figi].DisabledTrading.Permanently);
+                    _portfolio.RemoveAll(x => !_tradeData.ContainsKey(x.Figi) || _tradeData[x.Figi].DisabledTrading.Permanently);
 
                     LogPortfolioAndOrders();
                 }
@@ -420,6 +430,21 @@ namespace TradingBot
                                 _tradeData[it.Figi].Status = Status.BuyDone;
                         }
                     }
+                    else
+                    {
+                        // seems we got error on canceling order, need to restore trade data status and hold on for a while
+                        if (it.ExecutedLots == it.RequestedLots)
+                            it.Status = OrderStatus.Fill;
+                        else if (it.ExecutedLots == 0)
+                            it.Status = OrderStatus.New;
+                        else
+                            it.Status = OrderStatus.PartiallyFill;
+
+                        // disable trading for some time
+                        var disabledUntil = _candles[figi].Candles[_candles[figi].Candles.Count - 1].Time.AddMinutes(5);
+                        Logger.Write("{0}: Trading disabled until {1}", _figiToInstrument[it.Figi], disabledUntil.ToUniversalTime().ToShortTimeString());
+                        _tradeData[it.Figi].DisabledTrading.Time = _candles[figi].Candles[_candles[figi].Candles.Count - 1].Time.AddMinutes(5);
+                    }
                 }
             }
 
@@ -435,7 +460,7 @@ namespace TradingBot
                 Logger.Write("Active orders: {0}", _portfolioOrders.Count);
                 foreach (var it in _portfolioOrders)
                 {
-                    if (!_tradeData.ContainsKey(it.Figi) || _tradeData[it.Figi].DisabledTrading)
+                    if (!_tradeData.ContainsKey(it.Figi) || _tradeData[it.Figi].DisabledTrading.Permanently)
                         continue;
 
                     Logger.Write("   {0}: {1}. {2}/{3}", _figiToInstrument[it.Figi].Ticker, it.Operation, it.ExecutedLots, it.RequestedLots);
@@ -448,7 +473,7 @@ namespace TradingBot
                 Logger.Write("Portfolio: {0}", _portfolio.Count);
                 foreach (var it in _portfolio)
                 {
-                    if (!_tradeData.ContainsKey(it.Figi) || _tradeData[it.Figi].DisabledTrading)
+                    if (!_tradeData.ContainsKey(it.Figi) || _tradeData[it.Figi].DisabledTrading.Permanently)
                         continue;
 
                     Logger.Write("   {0}: {1}", _figiToInstrument[it.Figi].Ticker, it.Lots);
@@ -475,6 +500,16 @@ namespace TradingBot
                 catch (OpenApiException e)
                 {
                     message = "OpenApiException while cancel order: " + e.Message;
+                }
+                catch (Exception e)
+                {
+                    message = e.Message;
+
+                    if (e.Message.Contains("Cannot find order by id") || e.Message.Contains("OrderCancelError"))
+                    {
+                        _lastTimeOut = DateTime.UtcNow;
+                        Logger.Write("Operations disabled for some time...");
+                    }
                 }
             }
 

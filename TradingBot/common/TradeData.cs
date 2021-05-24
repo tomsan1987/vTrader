@@ -19,7 +19,7 @@ namespace TradingBot
         public IStrategy Strategy { get; set; }
         public IStrategyData StrategyData { get; set; }
         public Trend Trend { get; set; }
-        public bool DisabledTrading { get; set; } = false;
+        public DisbledTrading DisabledTrading { get; set; } = new DisbledTrading();
         public int CandleID { get; set; } // ID of candle where last operation was done
         public List<Position> Positions { get; set; } = new List<Position>();
         public List<PlacedLimitOrder> Orders { get; set; } = new List<PlacedLimitOrder>();
@@ -44,7 +44,7 @@ namespace TradingBot
             Strategy = null;
             StrategyData = null;
             Trend = null;
-            DisabledTrading = false;
+            DisabledTrading.Reset();
             CandleID = 0;
             Positions.Clear();
             Orders.Clear();
@@ -107,7 +107,7 @@ namespace TradingBot
             if (Lots < lots)
             {
                 Logger.Write("ERROR! Something wrong. Sold more lots than expected. Trading disabled! Current lots: {0}. Sell lots: {1}", Lots, lots);
-                DisabledTrading = true;
+                DisabledTrading.Permanently = true;
                 return;
             }
 
@@ -173,6 +173,22 @@ namespace TradingBot
         }
     }
 
+    public class DisbledTrading
+    {
+        public bool IsDisabled(DateTime candleTime, int quoteID)
+        {
+            return Permanently || candleTime < Time || quoteID < QuoteID;
+        }
+        public void Reset()
+        {
+            Time = DateTime.Today.AddYears(-10).ToUniversalTime();
+            QuoteID = 0;
+        }
+
+        public DateTime Time { get; set; } = DateTime.Today.AddYears(-10).ToUniversalTime();
+        public int QuoteID { get; set; } = 0;
+        public bool Permanently { get; set; } = false;
+    }
 
     public class Position
     {
