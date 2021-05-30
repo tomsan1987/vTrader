@@ -1,6 +1,6 @@
 mode="TestTradeBot" Strategies="MorningOpenStrategy" DumpQuotes=false SubscribeQuotes=false Token="..\..\..\..\Configuration\token.txt" ConfigPath="..\..\..\..\Configuration\usd.json" CandlesPath="..\..\..\..\TestData\RawQuotes\5m\uncompressed\quotes_2021-02-04"
 mode="TestMode" CandlesPath="..\..\..\..\TestData\RawQuotes\5m\uncompressed" OutputFolder=""..\..\..\..\Tests\MorningOpenStrategy"
-mode="RunTests" Token="..\..\..\..\Configuration\token.txt" ConfigPath="..\..\..\..\Configuration\usd.json" CandlesPath="C:\tinkoff\Tests"
+mode="Screener" DumpQuotes=true SubscribeQuotes=true RequestCandlesHistory=false Token="..\..\..\..\Configuration\token.txt" ConfigPath="..\..\..\..\Configuration\usd.json"
 
 
-mode="RunTests" Token="..\..\..\..\Configuration\token.txt" ConfigPath="..\..\..\..\Configuration\usd.json" CandlesPath="C:\tinkoff\Tests\MorningOpenStrategy\Data" Strategies="MorningOpenStrategy"
+mode="RunTests" Token="..\..\..\..\Configuration\token.txt" ConfigPath="..\..\..\..\Configuration\usd.json" FakeConnection=false DumpQuotes=true SubscribeQuotes=true Strategies="MorningOpenStrategy" RequestCandlesHistory=false CandlesPath="C:\tinkoff\Tests\MorningOpenStrategy"

@@ -81,10 +81,10 @@ namespace TradingBot
                 }
 
                 // volume distribution
-                var volumeDistributionFile = new StreamWriter(loggerFileName + "_VD.csv", false);
-                volumeDistributionFile.Write(_stats.GetVolumeDistribution());
-                volumeDistributionFile.Flush();
-                volumeDistributionFile.Close();
+                //var volumeDistributionFile = new StreamWriter(loggerFileName + "_VD.csv", false);
+                //volumeDistributionFile.Write(_stats.GetVolumeDistribution());
+                //volumeDistributionFile.Flush();
+                //volumeDistributionFile.Close();
 
                 // common stat
                 Logger.Write(_stats.GetStringStat());
@@ -688,7 +688,7 @@ namespace TradingBot
                     continue;
 
                 DirectoryInfo folder = new DirectoryInfo(candlesPath);
-                var files = folder.GetFiles(ticker + "_*.csv", SearchOption.AllDirectories);
+                var files = folder.GetFiles(ticker + "_*.csv", SearchOption.TopDirectoryOnly);
                 foreach (var file in files)
                 {
                     {

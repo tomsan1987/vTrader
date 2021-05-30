@@ -1,0 +1,2321 @@
+2021-05-30 21:38:18 38      mode=TestTradeBot;DumpQuotes=false;SubscribeQuotes=false;Strategies=GoodGrowStrategy;Token=token.txt;ConfigPath=usd.json;CandlesPath=C:\tinkoff\TestData\RawQuotes\5m\uncompressed\new\quotes_2021-03-12;
+2021-05-30 21:38:18 38      Trade bot created
+2021-05-30 21:38:18 41      Fake connection created
+2021-05-30 21:38:19 05      List of disabled tickers: 
+2021-05-30 21:38:19 07      A_BBG000C2V3D6_2021-03-12
+2021-05-30 21:38:19 14      AA_BBG00B3T3HD3_2021-03-12
+2021-05-30 21:38:19 19      AAL_BBG005P7Q881_2021-03-12
+2021-05-30 21:38:19 28      AAL: BuyPending. Strategy: GoodGrowStrategy. Price: 23.14. StopLoss: 22.61. Candle: ID:8511, Time: 15:05, Close: 23.14. Details: Reason: DayMax: 22.68. Current change: +2.03%
+2021-05-30 21:38:19 29      AAL: OrderID: cd93532c. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:19 29      AAL: OrderID: cd93532c fully executed
+2021-05-30 21:38:19 29      AAL: Pulling stop loss to current price. Price: 22.94. MaxPrice: 23.15. Candle: ID:8992, Time: 15:10, Close: 23.16.
+2021-05-30 21:38:19 29      AAL: SL reached. Pending. Close price: 22.93. Candle: ID:9606, Time: 15:15, Close: 22.93. Profit: -0.21(-0.91%)
+2021-05-30 21:38:19 29      AAL: OrderID: 7dce9900. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:19 29      AAL: OrderID: 7dce9900 fully executed
+2021-05-30 21:38:19 35      AAN_BBG00WCNDCZ6_2021-03-12
+2021-05-30 21:38:19 36      AAN: BuyPending. Strategy: GoodGrowStrategy. Price: 25.25. StopLoss: 25. Candle: ID:314, Time: 14:50, Close: 25.25. Details: Reason: DayMax: 24.5. Current change: +3.06%
+2021-05-30 21:38:19 36      AAN: OrderID: 19d839d1. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:19 36      AAN: OrderID: 19d839d1 fully executed
+2021-05-30 21:38:19 36      AAN: Pulling stop loss to current price. Price: 25.2. MaxPrice: 25.31. Candle: ID:328, Time: 14:55, Close: 25.39.
+2021-05-30 21:38:19 36      AAN: Pulling stop loss to current price. Price: 25.32. MaxPrice: 25.64. Candle: ID:393, Time: 15:05, Close: 25.7.
+2021-05-30 21:38:19 36      AAN: SL reached. Pending. Close price: 25.25. Candle: ID:423, Time: 15:10, Close: 25.25. Profit: 0.00(0%)
+2021-05-30 21:38:19 36      AAN: OrderID: d6ec58eb. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:19 36      AAN: OrderID: d6ec58eb fully executed
+2021-05-30 21:38:19 36      AAON_BBG000C2LZP3_2021-03-12
+2021-05-30 21:38:19 37      AAP_BBG000F7RCJ1_2021-03-12
+2021-05-30 21:38:19 39      AAPL_BBG000B9XRY4_2021-03-12
+2021-05-30 21:38:19 88      ABBV_BBG0025Y4RY4_2021-03-12
+2021-05-30 21:38:19 92      ABC_BBG000MDCQC2_2021-03-12
+2021-05-30 21:38:19 93      ABG_BBG000BKDWB5_2021-03-12
+2021-05-30 21:38:19 94      ABMD_BBG000C101X4_2021-03-12
+2021-05-30 21:38:19 95      ABNB_BBG001Y2XS07_2021-03-12
+2021-05-30 21:38:19 98      ABNB: BuyPending. Strategy: GoodGrowStrategy. Price: 200.5. StopLoss: 195.25. Candle: ID:1712, Time: 15:00, Close: 200.5. Details: Reason: DayMax: 196.53. Current change: +2.02%
+2021-05-30 21:38:19 98      ABNB: OrderID: e1f3394f. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:19 98      ABNB: OrderID: e1f3394f fully executed
+2021-05-30 21:38:19 98      ABNB: Pulling stop loss to current price. Price: 198.3. MaxPrice: 200.53. Candle: ID:1813, Time: 15:05, Close: 200.79.
+2021-05-30 21:38:19 98      ABNB: Pulling stop loss to current price. Price: 200.41. MaxPrice: 202.79. Candle: ID:2091, Time: 15:10, Close: 202.95.
+2021-05-30 21:38:19 98      ABNB: SL reached. Pending. Close price: 200.39. Candle: ID:2157, Time: 15:10, Close: 200.39. Profit: -0.11(-0.05%)
+2021-05-30 21:38:19 98      ABNB: OrderID: 37260537. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:19 98      ABNB: OrderID: 37260537 fully executed
+2021-05-30 21:38:20 02      ABT_BBG000B9ZXB4_2021-03-12
+2021-05-30 21:38:20 04      ACAD_BBG000BHG9K0_2021-03-12
+2021-05-30 21:38:20 08      ACAD: BuyPending. Strategy: GoodGrowStrategy. Price: 27.01. StopLoss: 26.65. Candle: ID:5203, Time: 17:05, Close: 27.01. Details: Reason: Grow:0.41%;0.30%;0.56%;0.33%;
+2021-05-30 21:38:20 08      ACAD: OrderID: 906de478. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:20 08      ACAD: OrderID: 906de478 fully executed
+2021-05-30 21:38:20 08      ACAD: Seems price is decreases. Closing by current price. Price: 26.8. Candle: ID:5487, Time: 17:20, Close: 26.8.
+2021-05-30 21:38:20 08      ACAD: SL reached. Pending. Close price: 26.78. Candle: ID:5491, Time: 17:20, Close: 26.78. Profit: -0.23(-0.85%)
+2021-05-30 21:38:20 08      ACAD: OrderID: bd965dfb. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:20 08      ACAD: OrderID: bd965dfb fully executed
+2021-05-30 21:38:20 10      ACH_BBG000CMRVH1_2021-03-12
+2021-05-30 21:38:20 11      ACH: SPYKE!. Candle: ID:113, Time: 7:15, Close: 12.83
+2021-05-30 21:38:20 12      ACM_BBG000F61RJ8_2021-03-12
+2021-05-30 21:38:20 13      ACMR_BBG00HPSG933_2021-03-12
+2021-05-30 21:38:20 15      ACN_BBG000D9D830_2021-03-12
+2021-05-30 21:38:20 17      ADBE_BBG000BB5006_2021-03-12
+2021-05-30 21:38:20 23      ADM_BBG000BB6WG8_2021-03-12
+2021-05-30 21:38:20 26      ADP_BBG000JG0547_2021-03-12
+2021-05-30 21:38:20 29      ADPT_BBG001J2PFF5_2021-03-12
+2021-05-30 21:38:20 31      ADS_BBG000BFNR17_2021-03-12
+2021-05-30 21:38:20 33      ADSK_BBG000BM7HL0_2021-03-12
+2021-05-30 21:38:20 37      ADUS_BBG000NJGX84_2021-03-12
+2021-05-30 21:38:20 38      AEE_BBG000B9X8C0_2021-03-12
+2021-05-30 21:38:20 39      AEIS_BBG000FKMP26_2021-03-12
+2021-05-30 21:38:20 40      AEO_BBG000BGXZB5_2021-03-12
+2021-05-30 21:38:20 43      AERI_BBG001KJ7WJ5_2021-03-12
+2021-05-30 21:38:20 45      AES_BBG000C23KJ3_2021-03-12
+2021-05-30 21:38:20 47      AFG_BBG000DPKKK0_2021-03-12
+2021-05-30 21:38:20 48      AFL_BBG000BBBNC6_2021-03-12
+2021-05-30 21:38:20 50      AGCO_BBG000DCCZW2_2021-03-12
+2021-05-30 21:38:20 52      AGIO_BBG000QY4ZD0_2021-03-12
+2021-05-30 21:38:20 53      AIG_BBG000BBDZG3_2021-03-12
+2021-05-30 21:38:20 55      AIR_BBG000BBGQF1_2021-03-12
+2021-05-30 21:38:20 55      AIRC_BBG00XK3WVD0_2021-03-12
+2021-05-30 21:38:20 56      AIT_BBG000BBHHP9_2021-03-12
+2021-05-30 21:38:20 57      AIV_BBG000DD3510_2021-03-12
+2021-05-30 21:38:20 59      AIZ_BBG000BZX1N5_2021-03-12
+2021-05-30 21:38:20 61      AJG_BBG000BBHXQ3_2021-03-12
+2021-05-30 21:38:20 62      AJRD_BBG000BKRHQ7_2021-03-12
+2021-05-30 21:38:20 63      AKAM_BBG000BJQWD2_2021-03-12
+2021-05-30 21:38:20 65      ALB_BBG000BJ26K7_2021-03-12
+2021-05-30 21:38:20 67      ALGN_BBG000BRNLL2_2021-03-12
+2021-05-30 21:38:20 69      ALGT_BBG000LJS6B8_2021-03-12
+2021-05-30 21:38:20 70      ALK_BBG000BBL0Y1_2021-03-12
+2021-05-30 21:38:20 72      ALL_BBG000BVMGF2_2021-03-12
+2021-05-30 21:38:20 74      ALLE_BBG003PS7JV1_2021-03-12
+2021-05-30 21:38:20 75      ALLK_BBG003QBJKN0_2021-03-12
+2021-05-30 21:38:20 75      ALLO_BBG00KHRRDX3_2021-03-12
+2021-05-30 21:38:20 76      ALLO: BuyPending. Strategy: GoodGrowStrategy. Price: 38.06. StopLoss: 37. Candle: ID:385, Time: 13:00, Close: 38.06. Details: Reason: DayMax: 37.1. Current change: +2.59%
+2021-05-30 21:38:20 76      ALLO: OrderID: e8cad79d. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:20 76      ALLO: OrderID: e8cad79d fully executed
+2021-05-30 21:38:20 76      ALLO: Seems price is decreases. Closing by current price. Price: 37.72. Candle: ID:424, Time: 13:15, Close: 37.72.
+2021-05-30 21:38:20 76      ALLO: SL reached. Pending. Close price: 37.71. Candle: ID:426, Time: 13:15, Close: 37.71. Profit: -0.35(-0.92%)
+2021-05-30 21:38:20 76      ALLO: OrderID: 80025328. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:20 76      ALLO: OrderID: 80025328 fully executed
+2021-05-30 21:38:20 77      ALLY_BBG000BC2R71_2021-03-12
+2021-05-30 21:38:20 80      ALNY_BBG000BFGNJ5_2021-03-12
+2021-05-30 21:38:20 81      ALRM_BBG007GNPYY7_2021-03-12
+2021-05-30 21:38:20 82      ALSN_BBG001KY3845_2021-03-12
+2021-05-30 21:38:20 83      ALTR_BBG000PN9NB9_2021-03-12
+2021-05-30 21:38:20 84      ALTR: SPYKE!. Candle: ID:64, Time: 14:25, Close: 58.97
+2021-05-30 21:38:20 84      ALTR: SPYKE!. Candle: ID:65, Time: 14:30, Close: 59.45
+2021-05-30 21:38:20 85      ALXN_BBG000G30YX4_2021-03-12
+2021-05-30 21:38:20 88      AMAT_BBG000BBPFB9_2021-03-12
+2021-05-30 21:38:20 95      AMCX_BBG000H01H92_2021-03-12
+2021-05-30 21:38:20 96      AMCX: BuyPending. Strategy: GoodGrowStrategy. Price: 76.27. StopLoss: 74.1. Candle: ID:209, Time: 14:55, Close: 76.27. Details: Reason: DayMax: 74.64. Current change: +2.18%
+2021-05-30 21:38:20 96      AMCX: OrderID: a4db287f. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:20 96      AMCX: OrderID: a4db287f fully executed
+2021-05-30 21:38:20 96      AMCX: Price does not grow. Try to set TakeProfit. Price: 75.23. Candle: ID:323, Time: 15:15, Close: 74.9.
+2021-05-30 21:38:20 96      AMCX: TP reached. Pending. Close price: 75.24. Candle: ID:371, Time: 15:15, Close: 75.24. Profit: -1.03(-1.35%)
+2021-05-30 21:38:20 96      AMCX: OrderID: 6e3b6a22. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:20 96      AMCX: OrderID: 6e3b6a22 fully executed
+2021-05-30 21:38:20 96      AMCX: BuyPending. Strategy: GoodGrowStrategy. Price: 77. StopLoss: 75.15. Candle: ID:455, Time: 15:30, Close: 77. Details: Reason: Grow:0.33%;1.01%;0.80%;0.30%;
+2021-05-30 21:38:20 96      AMCX: OrderID: 14877305. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:20 96      AMCX: OrderID: 14877305 fully executed
+2021-05-30 21:38:20 96      AMCX: Price does not grow. Try to set TakeProfit. Price: 77.21. Candle: ID:576, Time: 15:50, Close: 76.62.
+2021-05-30 21:38:20 96      AMCX: Price does not grow. Try to set TakeProfit. Price: 76.84. Candle: ID:623, Time: 15:55, Close: 75.91.
+2021-05-30 21:38:20 96      AMCX: Price does not grow. Try to set TakeProfit. Price: 76.38. Candle: ID:641, Time: 16:00, Close: 75.56.
+2021-05-30 21:38:20 96      AMCX: Price does not grow. Try to set TakeProfit. Price: 75.99. Candle: ID:652, Time: 16:05, Close: 75.73.
+2021-05-30 21:38:20 96      AMCX: TP reached. Pending. Close price: 76.14. Candle: ID:657, Time: 16:05, Close: 76.14. Profit: -0.86(-1.12%)
+2021-05-30 21:38:20 96      AMCX: OrderID: ecaa9c97. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:20 96      AMCX: OrderID: ecaa9c97 fully executed
+2021-05-30 21:38:20 97      AMD_BBG000BBQCY0_2021-03-12
+2021-05-30 21:38:21 16      AME_BBG000B9XG87_2021-03-12
+2021-05-30 21:38:21 19      AMED_BBG000B9ZV28_2021-03-12
+2021-05-30 21:38:21 20      AMG_BBG000C060M4_2021-03-12
+2021-05-30 21:38:21 21      AMGN_BBG000BBS2Y0_2021-03-12
+2021-05-30 21:38:21 25      AMN_BBG000BCT197_2021-03-12
+2021-05-30 21:38:21 25      AMP_BBG000G3QLY3_2021-03-12
+2021-05-30 21:38:21 27      AMT_BBG000B9XYV2_2021-03-12
+2021-05-30 21:38:21 27      AMT: BuyPending. Strategy: GoodGrowStrategy. Price: 217.11. StopLoss: 213.99. Candle: ID:529, Time: 14:50, Close: 217.11. Details: Reason: Grow:0.49%;0.44%;0.65%;0.34%;
+2021-05-30 21:38:21 28      AMT: OrderID: d600801c. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:21 28      AMT: OrderID: d600801c fully executed
+2021-05-30 21:38:21 28      AMT: Seems price is decreases. Closing by current price. Price: 214.53. Candle: ID:722, Time: 15:05, Close: 214.53.
+2021-05-30 21:38:21 28      AMT: SL reached. Pending. Close price: 214.45. Candle: ID:728, Time: 15:05, Close: 214.45. Profit: -2.66(-1.23%)
+2021-05-30 21:38:21 28      AMT: OrderID: 173a028f. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:21 28      AMT: OrderID: 173a028f fully executed
+2021-05-30 21:38:21 30      AMWD_BBG000BBX657_2021-03-12
+2021-05-30 21:38:21 31      AMZN_BBG000BVPV84_2021-03-12
+2021-05-30 21:38:21 37      AN_BBG000BBXLW4_2021-03-12
+2021-05-30 21:38:21 38      ANAB_BBG0026ZDHR0_2021-03-12
+2021-05-30 21:38:21 40      ANAB: BuyPending. Strategy: GoodGrowStrategy. Price: 22.51. StopLoss: 22.01. Candle: ID:501, Time: 7:55, Close: 22.51. Details: Reason: DayMax: 22.06. Current change: +2.04%
+2021-05-30 21:38:21 40      ANAB: OrderID: 3ce7836a. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:21 40      ANAB: OrderID: 3ce7836a fully executed
+2021-05-30 21:38:21 40      ANAB: Pulling stop loss to current price. Price: 22.06. MaxPrice: 22.51. Candle: ID:624, Time: 8:00, Close: 22.49.
+2021-05-30 21:38:21 40      ANAB: SL reached. Pending. Close price: 22.05. Candle: ID:972, Time: 8:25, Close: 22.05. Profit: -0.46(-2.04%)
+2021-05-30 21:38:21 40      ANAB: OrderID: 91ef3a3c. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:21 40      ANAB: OrderID: 91ef3a3c fully executed
+2021-05-30 21:38:21 43      ANDE_BBG000BF8CN3_2021-03-12
+2021-05-30 21:38:21 43      ANET_BBG000N2HDY5_2021-03-12
+2021-05-30 21:38:21 45      ANF_BBG000H9G7X2_2021-03-12
+2021-05-30 21:38:21 47      ANGI_BBG00HVKH3Q0_2021-03-12
+2021-05-30 21:38:21 48      ANGI: BuyPending. Strategy: GoodGrowStrategy. Price: 16. StopLoss: 15.69. Candle: ID:186, Time: 15:00, Close: 16. Details: Reason: Grow:0.51%;1.15%;0.50%;0.38%;
+2021-05-30 21:38:21 48      ANGI: OrderID: 6f22a7a2. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:21 48      ANGI: OrderID: 6f22a7a2 fully executed
+2021-05-30 21:38:21 48      ANGI: Seems price is decreases. Closing by current price. Price: 15.91. Candle: ID:220, Time: 15:15, Close: 15.91.
+2021-05-30 21:38:21 48      ANGI: SL reached. Pending. Close price: 15.89. Candle: ID:221, Time: 15:15, Close: 15.89. Profit: -0.11(-0.69%)
+2021-05-30 21:38:21 48      ANGI: OrderID: fea55a87. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:21 48      ANGI: OrderID: fea55a87 fully executed
+2021-05-30 21:38:21 50      ANIK_BBG000BBKZD8_2021-03-12
+2021-05-30 21:38:21 50      ANIP_BBG000KK1L04_2021-03-12
+2021-05-30 21:38:21 51      ANSS_BBG000GXZ4W7_2021-03-12
+2021-05-30 21:38:21 55      ANTM_BBG000BCG930_2021-03-12
+2021-05-30 21:38:21 57      AON_BBG00SSQFPK6_2021-03-12
+2021-05-30 21:38:21 59      AOS_BBG000BC1L02_2021-03-12
+2021-05-30 21:38:21 60      AOUT_BBG00QV8FS02_2021-03-12
+2021-05-30 21:38:21 61      APA_BBG00YTS96G2_2021-03-12
+2021-05-30 21:38:21 64      APD_BBG000BC4JJ4_2021-03-12
+2021-05-30 21:38:21 66      APEI_BBG000RVD346_2021-03-12
+2021-05-30 21:38:21 66      APEI: BuyPending. Strategy: GoodGrowStrategy. Price: 32.44. StopLoss: 31.79. Candle: ID:187, Time: 14:40, Close: 32.44. Details: Reason: DayMax: 31.8. Current change: +2.01%
+2021-05-30 21:38:21 66      APEI: OrderID: 7ab477bb. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:21 66      APEI: OrderID: 7ab477bb fully executed
+2021-05-30 21:38:21 66      APEI: Pulling stop loss to current price. Price: 32.19. MaxPrice: 32.44. Candle: ID:199, Time: 14:45, Close: 32.49.
+2021-05-30 21:38:21 66      APEI: SL reached. Pending. Close price: 32.13. Candle: ID:202, Time: 14:45, Close: 32.13. Profit: -0.31(-0.96%)
+2021-05-30 21:38:21 66      APEI: OrderID: d4ff9cbc. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:21 66      APEI: OrderID: d4ff9cbc fully executed
+2021-05-30 21:38:21 67      APEI: BuyPending. Strategy: GoodGrowStrategy. Price: 33.22. StopLoss: 32.9. Candle: ID:699, Time: 20:15, Close: 33.22. Details: Reason: Grow:0.34%;0.43%;0.58%;0.30%;
+2021-05-30 21:38:21 67      APEI: OrderID: c07e0df4. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:21 67      APEI: OrderID: c07e0df4 fully executed
+2021-05-30 21:38:21 67      APEI: Pulling stop loss to current price. Price: 32.95. MaxPrice: 33.22. Candle: ID:705, Time: 20:20, Close: 33.3.
+2021-05-30 21:38:21 67      APEI: Pulling stop loss to current price. Price: 33.12. MaxPrice: 33.27. Candle: ID:733, Time: 20:25, Close: 33.32.
+2021-05-30 21:38:21 67      APEI: Pulling stop loss to current price. Price: 33.26. MaxPrice: 33.38. Candle: ID:737, Time: 20:30, Close: 33.37.
+2021-05-30 21:38:21 67      APEI: SL reached. Pending. Close price: 33.21. Candle: ID:753, Time: 20:35, Close: 33.21. Profit: -0.01(-0.03%)
+2021-05-30 21:38:21 67      APEI: OrderID: 26759759. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:21 67      APEI: OrderID: 26759759 fully executed
+2021-05-30 21:38:21 67      APH_BBG000B9YJ35_2021-03-12
+2021-05-30 21:38:21 68      APLE_BBG006473QX9_2021-03-12
+2021-05-30 21:38:21 69      APLT_BBG000DD0489_2021-03-12
+2021-05-30 21:38:21 70      APPF_BBG008GC8CP6_2021-03-12
+2021-05-30 21:38:21 71      APPN_BBG001C7PMJ2_2021-03-12
+2021-05-30 21:38:21 72      APPN: BuyPending. Strategy: GoodGrowStrategy. Price: 170.83. StopLoss: 164. Candle: ID:594, Time: 14:50, Close: 170.83. Details: Reason: DayMax: 167.31. Current change: +2.10%
+2021-05-30 21:38:21 72      APPN: OrderID: 1d8253bc. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:21 72      APPN: OrderID: 1d8253bc fully executed
+2021-05-30 21:38:21 72      APPN: Pulling stop loss to current price. Price: 168.55. MaxPrice: 171.33. Candle: ID:627, Time: 14:55, Close: 171.4.
+2021-05-30 21:38:21 72      APPN: Seems price is decreases. Closing by current price. Price: 170.49. Candle: ID:744, Time: 15:10, Close: 170.49.
+2021-05-30 21:38:21 72      APPN: SL reached. Pending. Close price: 170.35. Candle: ID:745, Time: 15:10, Close: 170.35. Profit: -0.48(-0.28%)
+2021-05-30 21:38:21 72      APPN: OrderID: 1e0a6f47. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:21 72      APPN: OrderID: 1e0a6f47 fully executed
+2021-05-30 21:38:21 73      APPS_BBG000HZ3562_2021-03-12
+2021-05-30 21:38:21 79      APTV_BBG001QD41M9_2021-03-12
+2021-05-30 21:38:21 80      ARCC_BBG000PD6X77_2021-03-12
+2021-05-30 21:38:21 82      ARCT_BBG00NNW8JK1_2021-03-12
+2021-05-30 21:38:21 84      ARE_BBG000BC33T9_2021-03-12
+2021-05-30 21:38:21 85      ARMK_BBG001KY4N87_2021-03-12
+2021-05-30 21:38:21 86      ARNA_BBG000BKXBV7_2021-03-12
+2021-05-30 21:38:21 88      ARNC_BBG00R45JYB7_2021-03-12
+2021-05-30 21:38:21 88      ARNC: BuyPending. Strategy: GoodGrowStrategy. Price: 31.41. StopLoss: 30.52. Candle: ID:554, Time: 14:30, Close: 31.41. Details: Reason: DayMax: 30.77. Current change: +2.08%
+2021-05-30 21:38:21 88      ARNC: OrderID: 756ff45d. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:21 88      ARNC: OrderID: 756ff45d fully executed
+2021-05-30 21:38:21 88      ARNC: Seems price is decreases. Closing by current price. Price: 31.25. Candle: ID:624, Time: 14:45, Close: 31.25.
+2021-05-30 21:38:21 88      ARNC: SL reached. Pending. Close price: 31.14. Candle: ID:625, Time: 14:45, Close: 31.14. Profit: -0.27(-0.86%)
+2021-05-30 21:38:21 88      ARNC: OrderID: 3be17288. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:21 88      ARNC: OrderID: 3be17288 fully executed
+2021-05-30 21:38:21 89      ARQT_BBG00QN8K4M4_2021-03-12
+2021-05-30 21:38:21 90      ARVN_BBG00LW7YK82_2021-03-12
+2021-05-30 21:38:21 91      ARW_BBG000BCD3D5_2021-03-12
+2021-05-30 21:38:21 92      ARWR_BBG000BRVKH0_2021-03-12
+2021-05-30 21:38:21 94      ASGN_BBG000CRN8N8_2021-03-12
+2021-05-30 21:38:21 94      ASH_BBG00D0Y81M1_2021-03-12
+2021-05-30 21:38:21 95      ASIX_BBG00CWTTQ41_2021-03-12
+2021-05-30 21:38:21 96      ATEX_BBG0081NLHR0_2021-03-12
+2021-05-30 21:38:21 96      ATGE_BBG000DQBZJ7_2021-03-12
+2021-05-30 21:38:21 97      ATKR_BBG000QTFDQ4_2021-03-12
+2021-05-30 21:38:21 97      ATR_BBG000BGX2S0_2021-03-12
+2021-05-30 21:38:21 98      ATRA_BBG005Q3MQY4_2021-03-12
+2021-05-30 21:38:22 00      ATRC_BBG000BL6CB5_2021-03-12
+2021-05-30 21:38:22 00      ATRI_BBG000DTT624_2021-03-12
+2021-05-30 21:38:22 01      ATRO_BBG000BCLBY5_2021-03-12
+2021-05-30 21:38:22 01      ATRO: BuyPending. Strategy: GoodGrowStrategy. Price: 17.49. StopLoss: 17.03. Candle: ID:158, Time: 14:30, Close: 17.49. Details: Reason: DayMax: 17. Current change: +2.88%
+2021-05-30 21:38:22 01      ATRO: OrderID: 500164d7. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:22 01      ATRO: OrderID: 500164d7 fully executed
+2021-05-30 21:38:22 01      ATRO: Pulling stop loss to current price. Price: 17.48. MaxPrice: 17.61. Candle: ID:220, Time: 14:45, Close: 17.69.
+2021-05-30 21:38:22 01      ATRO: Pulling stop loss to current price. Price: 17.61. MaxPrice: 17.79. Candle: ID:282, Time: 15:10, Close: 17.82.
+2021-05-30 21:38:22 01      ATRO: Pulling stop loss to current price. Price: 17.7. MaxPrice: 17.89. Candle: ID:306, Time: 15:15, Close: 17.9.
+2021-05-30 21:38:22 01      ATRO: Seems price is decreases. Closing by current price. Price: 17.79. Candle: ID:345, Time: 15:30, Close: 17.79.
+2021-05-30 21:38:22 01      ATRO: Pulling stop loss to current price. Price: 17.81. MaxPrice: 17.96. Candle: ID:367, Time: 15:50, Close: 18.
+2021-05-30 21:38:22 01      ATRO: Pulling stop loss to current price. Price: 17.87. MaxPrice: 18.01. Candle: ID:400, Time: 15:55, Close: 18.06.
+2021-05-30 21:38:22 01      ATRO: Pulling stop loss to current price. Price: 18.01. MaxPrice: 18.03. Candle: ID:451, Time: 16:10, Close: 18.05.
+2021-05-30 21:38:22 01      ATRO: Pulling stop loss to current price. Price: 18.06. MaxPrice: 18.17. Candle: ID:495, Time: 16:25, Close: 18.17.
+2021-05-30 21:38:22 01      ATRO: SL reached. Pending. Close price: 18.04. Candle: ID:501, Time: 16:25, Close: 18.04. Profit: 0.55(3.14%)
+2021-05-30 21:38:22 01      ATRO: OrderID: 0bc6e3b0. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:22 01      ATRO: OrderID: 0bc6e3b0 fully executed
+2021-05-30 21:38:22 02      ATUS_BBG00GFMPRK0_2021-03-12
+2021-05-30 21:38:22 03      ATVI_BBG000CVWGS6_2021-03-12
+2021-05-30 21:38:22 09      AVAV_BBG000GX14P2_2021-03-12
+2021-05-30 21:38:22 10      AVB_BBG000BLPBL5_2021-03-12
+2021-05-30 21:38:22 11      AVGO_BBG00KHY5S69_2021-03-12
+2021-05-30 21:38:22 17      AVLR_BBG000R4Y9C1_2021-03-12
+2021-05-30 21:38:22 18      AVNS_BBG005L86G05_2021-03-12
+2021-05-30 21:38:22 18      AVNT_BBG000C8NJ10_2021-03-12
+2021-05-30 21:38:22 19      AVTR_BBG00G2HHYD7_2021-03-12
+2021-05-30 21:38:22 22      AVY_BBG000BCQ4P6_2021-03-12
+2021-05-30 21:38:22 23      AWI_BBG000DW4LB1_2021-03-12
+2021-05-30 21:38:22 23      AWK_BBG000TRJ294_2021-03-12
+2021-05-30 21:38:22 25      AWR_BBG000F964B6_2021-03-12
+2021-05-30 21:38:22 26      AX_BBG000QPHD08_2021-03-12
+2021-05-30 21:38:22 26      AXGN_BBG000BN46R9_2021-03-12
+2021-05-30 21:38:22 27      AXP_BBG000BCQZS4_2021-03-12
+2021-05-30 21:38:22 29      AXSM_BBG00B6G7GL7_2021-03-12
+2021-05-30 21:38:22 31      AYI_BBG000BJ5HK0_2021-03-12
+2021-05-30 21:38:22 32      AYX_BBG000BGZT72_2021-03-12
+2021-05-30 21:38:22 38      AZO_BBG000C7LMS8_2021-03-12
+2021-05-30 21:38:22 39      AZPN_BBG000DFMXT3_2021-03-12
+2021-05-30 21:38:22 41      BA_BBG000BCSST7_2021-03-12
+2021-05-30 21:38:22 49      BA: BuyPending. Strategy: GoodGrowStrategy. Price: 256.34. StopLoss: 250.72. Candle: ID:2784, Time: 13:00, Close: 256.34. Details: Reason: DayMax: 251.29. Current change: +2.01%
+2021-05-30 21:38:22 49      BA: OrderID: 322a82c9. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:22 49      BA: OrderID: 322a82c9 fully executed
+2021-05-30 21:38:22 49      BA: Pulling stop loss to current price. Price: 251. MaxPrice: 256.52. Candle: ID:2794, Time: 13:05, Close: 256.53.
+2021-05-30 21:38:22 49      BA: Seems price is decreases. Closing by current price. Price: 256.05. Candle: ID:3384, Time: 13:15, Close: 256.05.
+2021-05-30 21:38:22 49      BA: SL reached. Pending. Close price: 256.04. Candle: ID:3393, Time: 13:15, Close: 256.04. Profit: -0.30(-0.12%)
+2021-05-30 21:38:22 49      BA: OrderID: cabd2e7f. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:22 49      BA: OrderID: cabd2e7f fully executed
+2021-05-30 21:38:22 61      BABA_BBG006G2JVL2_2021-03-12
+2021-05-30 21:38:22 87      BAC_BBG000BCTLF6_2021-03-12
+2021-05-30 21:38:22 95      BAH_BBG000R2YFG7_2021-03-12
+2021-05-30 21:38:22 96      BAND_BBG001K003W2_2021-03-12
+2021-05-30 21:38:22 98      BAX_BBG000BCVJ77_2021-03-12
+2021-05-30 21:38:23 00      BBBY_BBG000CSY9H9_2021-03-12
+2021-05-30 21:38:23 04      BBIO_BBG00P9KDZK6_2021-03-12
+2021-05-30 21:38:23 06      BBSI_BBG000BHJSC4_2021-03-12
+2021-05-30 21:38:23 07      BBY_BBG000BCWCG1_2021-03-12
+2021-05-30 21:38:23 10      BC_BBG000BCWSS3_2021-03-12
+2021-05-30 21:38:23 10      BCO_BBG000DR5QP5_2021-03-12
+2021-05-30 21:38:23 11      BCPC_BBG000BCY878_2021-03-12
+2021-05-30 21:38:23 12      BDC_BBG000Q4XNV1_2021-03-12
+2021-05-30 21:38:23 12      BDTX_BBG00MS4Y0W9_2021-03-12
+2021-05-30 21:38:23 13      BDX_BBG000BCZYD3_2021-03-12
+2021-05-30 21:38:23 14      BECN_BBG000BKTXF2_2021-03-12
+2021-05-30 21:38:23 15      BEN_BBG000BD0TF8_2021-03-12
+2021-05-30 21:38:23 17      BERY_BBG000Q1R1Y9_2021-03-12
+2021-05-30 21:38:23 18      BF.B_BBG000BD2NY8_2021-03-12
+2021-05-30 21:38:23 19      BFAM_BBG003LFWP05_2021-03-12
+2021-05-30 21:38:23 20      BGS_BBG000RKXRQ1_2021-03-12
+2021-05-30 21:38:23 21      BH_BBG00JPRDQH1_2021-03-12
+2021-05-30 21:38:23 22      BHF_BBG00DYPZ4T0_2021-03-12
+2021-05-30 21:38:23 24      BIDU_BBG000QXWHD1_2021-03-12
+2021-05-30 21:38:23 42      BIG_BBG000J0D904_2021-03-12
+2021-05-30 21:38:23 43      BIG: BuyPending. Strategy: GoodGrowStrategy. Price: 67.83. StopLoss: 66.88. Candle: ID:436, Time: 16:55, Close: 67.83. Details: Reason: Grow:0.36%;0.93%;0.37%;0.31%;
+2021-05-30 21:38:23 43      BIG: OrderID: 9e842b90. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:23 43      BIG: OrderID: 9e842b90 fully executed
+2021-05-30 21:38:23 43      BIG: Pulling stop loss to current price. Price: 67.18. MaxPrice: 67.83. Candle: ID:483, Time: 17:10, Close: 67.81.
+2021-05-30 21:38:23 43      BIG: Pulling stop loss to current price. Price: 68.29. MaxPrice: 68.74. Candle: ID:660, Time: 17:35, Close: 68.69.
+2021-05-30 21:38:23 43      BIG: Pulling stop loss to current price. Price: 68.39. MaxPrice: 69.24. Candle: ID:705, Time: 17:40, Close: 69.32.
+2021-05-30 21:38:23 43      BIG: Seems price is decreases. Closing by current price. Price: 68.6. Candle: ID:763, Time: 17:50, Close: 68.6.
+2021-05-30 21:38:23 43      BIG: SL reached. Pending. Close price: 68.47. Candle: ID:764, Time: 17:50, Close: 68.47. Profit: 0.64(0.94%)
+2021-05-30 21:38:23 43      BIG: OrderID: f47068cb. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:23 43      BIG: OrderID: f47068cb fully executed
+2021-05-30 21:38:23 43      BIIB_BBG000C17X76_2021-03-12
+2021-05-30 21:38:23 46      BILI_BBG00K7T3037_2021-03-12
+2021-05-30 21:38:23 53      BILL_BBG00QVJV6V4_2021-03-12
+2021-05-30 21:38:23 55      BILL: BuyPending. Strategy: GoodGrowStrategy. Price: 154.16. StopLoss: 148.75. Candle: ID:248, Time: 14:50, Close: 154.16. Details: Reason: DayMax: 151. Current change: +2.09%
+2021-05-30 21:38:23 55      BILL: OrderID: 0dfcdaea. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:23 55      BILL: OrderID: 0dfcdaea fully executed
+2021-05-30 21:38:23 55      BILL: Pulling stop loss to current price. Price: 153.11. MaxPrice: 154.28. Candle: ID:358, Time: 14:55, Close: 154.27.
+2021-05-30 21:38:23 55      BILL: Pulling stop loss to current price. Price: 154.42. MaxPrice: 155.61. Candle: ID:696, Time: 15:20, Close: 155.5.
+2021-05-30 21:38:23 55      BILL: SL reached. Pending. Close price: 154.37. Candle: ID:783, Time: 15:25, Close: 154.37. Profit: 0.21(0.14%)
+2021-05-30 21:38:23 55      BILL: OrderID: da219028. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:23 55      BILL: OrderID: da219028 fully executed
+2021-05-30 21:38:23 57      BIO_BBG000DY28W5_2021-03-12
+2021-05-30 21:38:23 57      BJRI_BBG000H9LNX1_2021-03-12
+2021-05-30 21:38:23 58      BK_BBG000BD8PN9_2021-03-12
+2021-05-30 21:38:23 59      BK: BuyPending. Strategy: GoodGrowStrategy. Price: 46.8. StopLoss: 46.43. Candle: ID:502, Time: 14:40, Close: 46.8. Details: Reason: DayMax: 45.88. Current change: +2.01%
+2021-05-30 21:38:23 59      BK: OrderID: b910de48. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:23 59      BK: OrderID: b910de48 fully executed
+2021-05-30 21:38:23 59      BK: Pulling stop loss to current price. Price: 46.51. MaxPrice: 46.8. Candle: ID:822, Time: 14:55, Close: 46.76.
+2021-05-30 21:38:23 59      BK: Pulling stop loss to current price. Price: 46.67. MaxPrice: 46.81. Candle: ID:963, Time: 15:05, Close: 46.84.
+2021-05-30 21:38:23 59      BK: Pulling stop loss to current price. Price: 46.68. MaxPrice: 46.84. Candle: ID:1360, Time: 15:20, Close: 46.84.
+2021-05-30 21:38:23 59      BK: SL reached. Pending. Close price: 46.67. Candle: ID:1484, Time: 15:30, Close: 46.67. Profit: -0.13(-0.28%)
+2021-05-30 21:38:23 59      BK: OrderID: 0b347569. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:23 59      BK: OrderID: 0b347569 fully executed
+2021-05-30 21:38:23 61      BKI_BBG00GX77LW3_2021-03-12
+2021-05-30 21:38:23 62      BKNG_BBG000BLBVN4_2021-03-12
+2021-05-30 21:38:23 64      BKR_BBG00GBVBK51_2021-03-12
+2021-05-30 21:38:23 67      BL_BBG0029KJVB0_2021-03-12
+2021-05-30 21:38:23 69      BLD_BBG0077VS2C0_2021-03-12
+2021-05-30 21:38:23 70      BLDR_BBG000BKD3K9_2021-03-12
+2021-05-30 21:38:23 71      BLDR: BuyPending. Strategy: GoodGrowStrategy. Price: 47.09. StopLoss: 46.52. Candle: ID:148, Time: 14:40, Close: 47.09. Details: Reason: Grow:0.62%;0.64%;0.41%;0.30%;
+2021-05-30 21:38:23 71      BLDR: OrderID: fb17348e. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:23 71      BLDR: OrderID: fb17348e fully executed
+2021-05-30 21:38:23 71      BLDR: Pulling stop loss to current price. Price: 46.71. MaxPrice: 47.1. Candle: ID:190, Time: 14:45, Close: 47.12.
+2021-05-30 21:38:23 71      BLDR: Pulling stop loss to current price. Price: 47.06. MaxPrice: 47.26. Candle: ID:239, Time: 14:55, Close: 47.28.
+2021-05-30 21:38:23 71      BLDR: Pulling stop loss to current price. Price: 47.08. MaxPrice: 47.35. Candle: ID:279, Time: 15:00, Close: 47.35.
+2021-05-30 21:38:23 71      BLDR: SL reached. Pending. Close price: 47.07. Candle: ID:303, Time: 15:05, Close: 47.07. Profit: -0.02(-0.04%)
+2021-05-30 21:38:23 71      BLDR: OrderID: 9a447be3. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:23 71      BLDR: OrderID: 9a447be3 fully executed
+2021-05-30 21:38:23 73      BLK_BBG000C2PW58_2021-03-12
+2021-05-30 21:38:23 74      BLKB_BBG000BGGTW5_2021-03-12
+2021-05-30 21:38:23 76      BLL_BBG000BDDNH5_2021-03-12
+2021-05-30 21:38:23 77      BLUE_BBG000QGWY50_2021-03-12
+2021-05-30 21:38:23 82      BMI_BBG000BDGHD9_2021-03-12
+2021-05-30 21:38:23 82      BMRN_BBG000CZWZ05_2021-03-12
+2021-05-30 21:38:23 86      BMY_BBG000DQLV23_2021-03-12
+2021-05-30 21:38:23 89      BOH_BBG000C8D8G9_2021-03-12
+2021-05-30 21:38:23 90      BOKF_BBG000CFZ003_2021-03-12
+2021-05-30 21:38:23 91      BOOT_BBG0077SYZV6_2021-03-12
+2021-05-30 21:38:23 92      BOX_BBG000PMSK08_2021-03-12
+2021-05-30 21:38:23 92      BOX: BuyPending. Strategy: GoodGrowStrategy. Price: 22.45. StopLoss: 22.1. Candle: ID:239, Time: 14:40, Close: 22.45. Details: Reason: Grow:0.55%;0.36%;0.81%;0.31%;
+2021-05-30 21:38:23 92      BOX: OrderID: bb401084. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:23 92      BOX: OrderID: bb401084 fully executed
+2021-05-30 21:38:23 92      BOX: Pulling stop loss to current price. Price: 22.17. MaxPrice: 22.45. Candle: ID:330, Time: 14:45, Close: 22.43.
+2021-05-30 21:38:23 92      BOX: Pulling stop loss to current price. Price: 22.38. MaxPrice: 22.52. Candle: ID:358, Time: 14:50, Close: 22.55.
+2021-05-30 21:38:23 92      BOX: Pulling stop loss to current price. Price: 22.39. MaxPrice: 22.57. Candle: ID:441, Time: 14:55, Close: 22.59.
+2021-05-30 21:38:23 92      BOX: Seems price is decreases. Closing by current price. Price: 22.62. Candle: ID:737, Time: 15:10, Close: 22.62.
+2021-05-30 21:38:23 93      BOX: SL reached. Pending. Close price: 22.61. Candle: ID:738, Time: 15:10, Close: 22.61. Profit: 0.16(0.71%)
+2021-05-30 21:38:23 93      BOX: OrderID: d085bebf. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:23 93      BOX: OrderID: d085bebf fully executed
+2021-05-30 21:38:23 94      BPMC_BBG001MC8YF7_2021-03-12
+2021-05-30 21:38:23 95      BR_BBG000PPFKQ7_2021-03-12
+2021-05-30 21:38:23 96      BRC_BBG000BDNV95_2021-03-12
+2021-05-30 21:38:23 97      BRK.B_BBG000DWG505_2021-03-12
+2021-05-30 21:38:24 00      BRKR_BBG000CL1FG7_2021-03-12
+2021-05-30 21:38:24 01      BRO_BBG000BWSGF4_2021-03-12
+2021-05-30 21:38:24 02      BSX_BBG000C0LW92_2021-03-12
+2021-05-30 21:38:24 04      BTAI_BBG00K20GVD2_2021-03-12
+2021-05-30 21:38:24 05      BTI_BBG000BWPXQ8_2021-03-12
+2021-05-30 21:38:24 08      BUD_BBG000RYC984_2021-03-12
+2021-05-30 21:38:24 09      BURL_BBG004S641N5_2021-03-12
+2021-05-30 21:38:24 10      BWA_BBG000BJ49H3_2021-03-12
+2021-05-30 21:38:24 11      BWA: BuyPending. Strategy: GoodGrowStrategy. Price: 49.46. StopLoss: 48.85. Candle: ID:132, Time: 14:35, Close: 49.46. Details: Reason: DayMax: 48.48. Current change: +2.02%
+2021-05-30 21:38:24 11      BWA: OrderID: 3183a06e. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:24 11      BWA: OrderID: 3183a06e fully executed
+2021-05-30 21:38:24 11      BWA: Pulling stop loss to current price. Price: 49.11. MaxPrice: 49.51. Candle: ID:147, Time: 14:40, Close: 49.58.
+2021-05-30 21:38:24 11      BWA: SL reached. Pending. Close price: 49.1. Candle: ID:180, Time: 14:45, Close: 49.1. Profit: -0.36(-0.73%)
+2021-05-30 21:38:24 11      BWA: OrderID: c5a82221. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:24 11      BWA: OrderID: c5a82221 fully executed
+2021-05-30 21:38:24 12      BWXT_BBG000D86F25_2021-03-12
+2021-05-30 21:38:24 13      BX_BBG000BH0106_2021-03-12
+2021-05-30 21:38:24 16      BXP_BBG000BS5CM9_2021-03-12
+2021-05-30 21:38:24 17      BYND_BBG003CVJP50_2021-03-12
+2021-05-30 21:38:24 18      BYND: BuyPending. Strategy: GoodGrowStrategy. Price: 142. StopLoss: 140.32. Candle: ID:1663, Time: 14:55, Close: 142. Details: Reason: Grow:0.86%;0.33%;0.49%;0.62%;
+2021-05-30 21:38:24 18      BYND: OrderID: e6c7f53f. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:24 18      BYND: OrderID: e6c7f53f fully executed
+2021-05-30 21:38:24 18      BYND: Pulling stop loss to current price. Price: 140.47. MaxPrice: 142. Candle: ID:1669, Time: 15:00, Close: 142.
+2021-05-30 21:38:24 18      BYND: Seems price is decreases. Closing by current price. Price: 141.12. Candle: ID:1866, Time: 15:10, Close: 141.12.
+2021-05-30 21:38:24 18      BYND: SL reached. Pending. Close price: 141.1. Candle: ID:1869, Time: 15:10, Close: 141.1. Profit: -0.90(-0.63%)
+2021-05-30 21:38:24 18      BYND: OrderID: a49221c1. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:24 18      BYND: OrderID: a49221c1 fully executed
+2021-05-30 21:38:24 20      BZUN_BBG008HNS333_2021-03-12
+2021-05-30 21:38:24 21      BZUN: BuyPending. Strategy: GoodGrowStrategy. Price: 44.62. StopLoss: 43.99. Candle: ID:277, Time: 15:00, Close: 44.62. Details: Reason: Grow:0.32%;0.61%;0.45%;0.36%;
+2021-05-30 21:38:24 21      BZUN: OrderID: 5d4ca3c2. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:24 21      BZUN: OrderID: 5d4ca3c2 fully executed
+2021-05-30 21:38:24 21      BZUN: Seems price is decreases. Closing by current price. Price: 44.3. Candle: ID:293, Time: 15:15, Close: 44.3.
+2021-05-30 21:38:24 21      BZUN: SL reached. Pending. Close price: 44.23. Candle: ID:311, Time: 15:20, Close: 44.23. Profit: -0.39(-0.87%)
+2021-05-30 21:38:24 21      BZUN: OrderID: 8cc6e75b. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:24 21      BZUN: OrderID: 8cc6e75b fully executed
+2021-05-30 21:38:24 22      C_BBG000FY4S11_2021-03-12
+2021-05-30 21:38:24 28      CABO_BBG000F02T51_2021-03-12
+2021-05-30 21:38:24 29      CACC_BBG000CS0D96_2021-03-12
+2021-05-30 21:38:24 30      CAG_BBG000BDXGP9_2021-03-12
+2021-05-30 21:38:24 31      CAH_BBG000D898T9_2021-03-12
+2021-05-30 21:38:24 32      CALM_BBG000CDMJW6_2021-03-12
+2021-05-30 21:38:24 33      CARA_BBG001J2QYS9_2021-03-12
+2021-05-30 21:38:24 34      CARG_BBG00HQ77DS2_2021-03-12
+2021-05-30 21:38:24 35      CARR_BBG00RP5HYS8_2021-03-12
+2021-05-30 21:38:24 37      CARS_BBG000HGTH33_2021-03-12
+2021-05-30 21:38:24 37      CASY_BBG000BF0672_2021-03-12
+2021-05-30 21:38:24 38      CAT_BBG000BF0K17_2021-03-12
+2021-05-30 21:38:24 42      CB_BBG000BR14K5_2021-03-12
+2021-05-30 21:38:24 43      CBRE_BBG000C04224_2021-03-12
+2021-05-30 21:38:24 45      CBRL_BBG000BF33K1_2021-03-12
+2021-05-30 21:38:24 47      CBSH_BBG000BF3G77_2021-03-12
+2021-05-30 21:38:24 48      CBU_BBG000BF4D19_2021-03-12
+2021-05-30 21:38:24 48      CBU: SPYKE!. Candle: ID:32, Time: 14:30, Close: 80.93
+2021-05-30 21:38:24 49      CCI_BBG000FV1Z23_2021-03-12
+2021-05-30 21:38:24 51      CCK_BBG000BF6756_2021-03-12
+2021-05-30 21:38:24 52      CCL_BBG000BF6LY3_2021-03-12
+2021-05-30 21:38:24 61      CCOI_BBG000D0SMY8_2021-03-12
+2021-05-30 21:38:24 62      CCXI_BBG000PTSB12_2021-03-12
+2021-05-30 21:38:24 65      CCXI: BuyPending. Strategy: GoodGrowStrategy. Price: 57.85. StopLoss: 57.08. Candle: ID:183, Time: 14:55, Close: 57.85. Details: Reason: Grow:0.85%;0.42%;0.37%;0.31%;
+2021-05-30 21:38:24 65      CCXI: OrderID: b1ec2ab1. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:24 65      CCXI: OrderID: b1ec2ab1 fully executed
+2021-05-30 21:38:24 65      CCXI: Seems price is decreases. Closing by current price. Price: 57.36. Candle: ID:210, Time: 15:10, Close: 57.36.
+2021-05-30 21:38:24 65      CCXI: SL reached. Pending. Close price: 57.26. Candle: ID:219, Time: 15:15, Close: 57.26. Profit: -0.59(-1.02%)
+2021-05-30 21:38:24 65      CCXI: OrderID: 085de729. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:24 65      CCXI: OrderID: 085de729 fully executed
+2021-05-30 21:38:24 66      CDK_BBG006B6PVN9_2021-03-12
+2021-05-30 21:38:24 67      CDLX_BBG00225ZDD0_2021-03-12
+2021-05-30 21:38:24 68      CDNA_BBG006JS5785_2021-03-12
+2021-05-30 21:38:24 68      CDNA: SPYKE!. Candle: ID:80, Time: 14:30, Close: 66.11
+2021-05-30 21:38:24 70      CDNS_BBG000C13CD9_2021-03-12
+2021-05-30 21:38:24 75      CDW_BBG001P63B80_2021-03-12
+2021-05-30 21:38:24 77      CE_BBG000JYP7L8_2021-03-12
+2021-05-30 21:38:24 78      CEA_BBG000BCFNR4_2021-03-12
+2021-05-30 21:38:24 78      CENT_BBG000BFD605_2021-03-12
+2021-05-30 21:38:24 79      CENTA_BBG000KTYB56_2021-03-12
+2021-05-30 21:38:24 80      CERN_BBG000BFDLV8_2021-03-12
+2021-05-30 21:38:24 82      CEVA_BBG000BN3P07_2021-03-12
+2021-05-30 21:38:24 82      CF_BBG000BWJFZ4_2021-03-12
+2021-05-30 21:38:24 84      CFG_BBG006Q0HY77_2021-03-12
+2021-05-30 21:38:24 85      CFG: BuyPending. Strategy: GoodGrowStrategy. Price: 45.82. StopLoss: 45.08. Candle: ID:261, Time: 14:30, Close: 45.82. Details: Reason: DayMax: 44.91. Current change: +2.03%
+2021-05-30 21:38:24 85      CFG: OrderID: 954ef9f8. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:24 85      CFG: OrderID: 954ef9f8 fully executed
+2021-05-30 21:38:24 85      CFG: Pulling stop loss to current price. Price: 45.18. MaxPrice: 45.92. Candle: ID:319, Time: 14:35, Close: 45.89.
+2021-05-30 21:38:24 85      CFG: Seems price is decreases. Closing by current price. Price: 45.28. Candle: ID:1101, Time: 14:45, Close: 45.28.
+2021-05-30 21:38:24 85      CFG: SL reached. Pending. Close price: 45.27. Candle: ID:1106, Time: 14:45, Close: 45.27. Profit: -0.55(-1.20%)
+2021-05-30 21:38:24 85      CFG: OrderID: 26e401ae. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:24 85      CFG: OrderID: 26e401ae fully executed
+2021-05-30 21:38:24 87      CFR_BBG000C2PL98_2021-03-12
+2021-05-30 21:38:24 88      CFX_BBG000C5Z443_2021-03-12
+2021-05-30 21:38:24 89      CGEN_BBG000B9ZLB0_2021-03-12
+2021-05-30 21:38:24 91      CGNX_BBG000BPBVW5_2021-03-12
+2021-05-30 21:38:24 92      CHD_BBG000BFJT36_2021-03-12
+2021-05-30 21:38:24 93      CHDN_BBG000BGXMG9_2021-03-12
+2021-05-30 21:38:24 94      CHE_BBG000C19QW1_2021-03-12
+2021-05-30 21:38:24 95      CHEF_BBG001MFW6D6_2021-03-12
+2021-05-30 21:38:24 95      CHEF: BuyPending. Strategy: GoodGrowStrategy. Price: 33.72. StopLoss: 32.56. Candle: ID:98, Time: 14:30, Close: 33.72. Details: Reason: DayMax: 32.93. Current change: +2.40%
+2021-05-30 21:38:24 95      CHEF: OrderID: 3aa1e55f. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:24 95      CHEF: OrderID: 3aa1e55f fully executed
+2021-05-30 21:38:24 95      CHEF: Price does not grow. Try to set TakeProfit. Price: 33.51. Candle: ID:128, Time: 14:50, Close: 33.34.
+2021-05-30 21:38:24 95      CHEF: Price does not grow. Try to set TakeProfit. Price: 33.40. Candle: ID:129, Time: 14:55, Close: 33.09.
+2021-05-30 21:38:24 95      CHEF: Price does not grow. Try to set TakeProfit. Price: 33.32. Candle: ID:134, Time: 15:05, Close: 33.22.
+2021-05-30 21:38:24 95      CHEF: TP reached. Pending. Close price: 33.32. Candle: ID:138, Time: 15:10, Close: 33.32. Profit: -0.40(-1.19%)
+2021-05-30 21:38:24 95      CHEF: OrderID: a6991268. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:24 95      CHEF: OrderID: a6991268 fully executed
+2021-05-30 21:38:24 96      CHGG_BBG0014XR0N5_2021-03-12
+2021-05-30 21:38:24 97      CHGG: BuyPending. Strategy: GoodGrowStrategy. Price: 89.87. StopLoss: 89. Candle: ID:275, Time: 14:55, Close: 89.87. Details: Reason: DayMax: 87.98. Current change: +2.15%
+2021-05-30 21:38:24 97      CHGG: OrderID: 238ef9e0. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:24 97      CHGG: OrderID: 238ef9e0 fully executed
+2021-05-30 21:38:24 97      CHGG: SL reached. Pending. Close price: 88.96. Candle: ID:314, Time: 15:00, Close: 88.96. Profit: -0.91(-1.01%)
+2021-05-30 21:38:24 97      CHGG: OrderID: 7427eeaa. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:24 97      CHGG: OrderID: 7427eeaa fully executed
+2021-05-30 21:38:24 98      CHH_BBG000BPBTL2_2021-03-12
+2021-05-30 21:38:24 99      CHKP_BBG000K82ZT8_2021-03-12
+2021-05-30 21:38:25 01      CHNG_BBG0059KNH10_2021-03-12
+2021-05-30 21:38:25 03      CHRW_BBG000BTCH57_2021-03-12
+2021-05-30 21:38:25 05      CHTR_BBG000VPGNR2_2021-03-12
+2021-05-30 21:38:25 07      CHWY_BBG00P19DKZ6_2021-03-12
+2021-05-30 21:38:25 10      CHX_BBG00JH9TZ56_2021-03-12
+2021-05-30 21:38:25 11      CI_BBG00KXRCDP0_2021-03-12
+2021-05-30 21:38:25 13      CIEN_BBG000BP1152_2021-03-12
+2021-05-30 21:38:25 15      CINF_BBG000BFPK65_2021-03-12
+2021-05-30 21:38:25 16      CL_BBG000BFQYY3_2021-03-12
+2021-05-30 21:38:25 19      CLDR_BBG000DRJFC8_2021-03-12
+2021-05-30 21:38:25 21      CLDT_BBG000PT6BR8_2021-03-12
+2021-05-30 21:38:25 22      CLF_BBG000BFRF55_2021-03-12
+2021-05-30 21:38:25 23      CLF: BuyPending. Strategy: GoodGrowStrategy. Price: 17.27. StopLoss: 16.81. Candle: ID:1180, Time: 14:40, Close: 17.27. Details: Reason: DayMax: 16.92. Current change: +2.07%
+2021-05-30 21:38:25 23      CLF: OrderID: 7d147a10. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:25 23      CLF: OrderID: 7d147a10 fully executed
+2021-05-30 21:38:25 23      CLF: Pulling stop loss to current price. Price: 17.04. MaxPrice: 17.3. Candle: ID:1280, Time: 14:45, Close: 17.33.
+2021-05-30 21:38:25 23      CLF: SL reached. Pending. Close price: 17.03. Candle: ID:1499, Time: 14:50, Close: 17.03. Profit: -0.24(-1.39%)
+2021-05-30 21:38:25 23      CLF: OrderID: 86ec8436. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:25 23      CLF: OrderID: 86ec8436 fully executed
+2021-05-30 21:38:25 25      CLGX_BBG000C2H3F0_2021-03-12
+2021-05-30 21:38:25 26      CLH_BBG000BFRRX8_2021-03-12
+2021-05-30 21:38:25 27      CLR_BBG000BHBGN6_2021-03-12
+2021-05-30 21:38:25 28      CLX_BBG000BFS7D3_2021-03-12
+2021-05-30 21:38:25 30      CMA_BBG000C75N77_2021-03-12
+2021-05-30 21:38:25 32      CMC_BBG000BFSND8_2021-03-12
+2021-05-30 21:38:25 32      CMC: BuyPending. Strategy: GoodGrowStrategy. Price: 30.26. StopLoss: 29.28. Candle: ID:75, Time: 14:35, Close: 30.26. Details: Reason: DayMax: 29.59. Current change: +2.26%
+2021-05-30 21:38:25 33      CMC: OrderID: f7ba4a43. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:25 33      CMC: OrderID: f7ba4a43 fully executed
+2021-05-30 21:38:25 33      CMC: Seems price is decreases. Closing by current price. Price: 30.06. Candle: ID:138, Time: 14:45, Close: 30.06.
+2021-05-30 21:38:25 33      CMC: SL reached. Pending. Close price: 30.02. Candle: ID:139, Time: 14:45, Close: 30.02. Profit: -0.24(-0.79%)
+2021-05-30 21:38:25 33      CMC: OrderID: 7371cbb7. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:25 33      CMC: OrderID: 7371cbb7 fully executed
+2021-05-30 21:38:25 33      CMCO_BBG000BCWWV0_2021-03-12
+2021-05-30 21:38:25 34      CMCSA_BBG000BFT2L4_2021-03-12
+2021-05-30 21:38:25 40      CME_BBG000BHLYP4_2021-03-12
+2021-05-30 21:38:25 43      CMG_BBG000QX74T1_2021-03-12
+2021-05-30 21:38:25 43      CMI_BBG000BGPTV6_2021-03-12
+2021-05-30 21:38:25 44      CMP_BBG000C42WS4_2021-03-12
+2021-05-30 21:38:25 45      CMS_BBG000BFVXX0_2021-03-12
+2021-05-30 21:38:25 47      CNC_BBG000BDXCJ5_2021-03-12
+2021-05-30 21:38:25 50      CNK_BBG000QDVR53_2021-03-12
+2021-05-30 21:38:25 55      CNP_BBG000FDBX90_2021-03-12
+2021-05-30 21:38:25 58      CNS_BBG000BB0WG4_2021-03-12
+2021-05-30 21:38:25 58      CNST_BBG000R1H6P8_2021-03-12
+2021-05-30 21:38:25 59      CNST: BuyPending. Strategy: GoodGrowStrategy. Price: 30.18. StopLoss: 29.12. Candle: ID:279, Time: 14:30, Close: 30.18. Details: Reason: DayMax: 29.52. Current change: +2.24%
+2021-05-30 21:38:25 59      CNST: OrderID: a837d1ab. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:25 59      CNST: OrderID: a837d1ab fully executed
+2021-05-30 21:38:25 59      CNST: Price does not grow. Try to set TakeProfit. Price: 29.86. Candle: ID:312, Time: 14:50, Close: 29.87.
+2021-05-30 21:38:25 59      CNST: TP reached. Pending. Close price: 29.93. Candle: ID:313, Time: 14:50, Close: 29.93. Profit: -0.25(-0.83%)
+2021-05-30 21:38:25 59      CNST: OrderID: 1b10fa6a. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:25 59      CNST: OrderID: 1b10fa6a fully executed
+2021-05-30 21:38:25 59      CNXC_BBG00RCNQMX3_2021-03-12
+2021-05-30 21:38:25 61      CNXN_BBG000BX74M4_2021-03-12
+2021-05-30 21:38:25 61      COF_BBG000BGKTF9_2021-03-12
+2021-05-30 21:38:25 64      COG_BBG000C3GN47_2021-03-12
+2021-05-30 21:38:25 67      COHR_BBG000BG1DH3_2021-03-12
+2021-05-30 21:38:25 68      COKE_BBG000BG1SX2_2021-03-12
+2021-05-30 21:38:25 69      COLM_BBG000BKKQ84_2021-03-12
+2021-05-30 21:38:25 70      CONE_BBG0038V5TX1_2021-03-12
+2021-05-30 21:38:25 71      COO_BBG000BG3445_2021-03-12
+2021-05-30 21:38:25 72      COP_BBG000BQQH30_2021-03-12
+2021-05-30 21:38:25 76      CORR_BBG000CN80Y9_2021-03-12
+2021-05-30 21:38:25 77      CORT_BBG000BKJG33_2021-03-12
+2021-05-30 21:38:25 78      COST_BBG000F6H8W8_2021-03-12
+2021-05-30 21:38:25 82      COTY_BBG000F395V1_2021-03-12
+2021-05-30 21:38:25 83      COTY: BuyPending. Strategy: GoodGrowStrategy. Price: 8.94. StopLoss: 8.73. Candle: ID:1396, Time: 14:30, Close: 8.94. Details: Reason: DayMax: 8.76. Current change: +2.05%
+2021-05-30 21:38:25 83      COTY: OrderID: 9915c1a9. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:25 83      COTY: OrderID: 9915c1a9 fully executed
+2021-05-30 21:38:25 83      COTY: Price does not grow. Try to set TakeProfit. Price: 8.92. Candle: ID:1817, Time: 14:50, Close: 8.84.
+2021-05-30 21:38:25 83      COTY: Price does not grow. Try to set TakeProfit. Price: 8.89. Candle: ID:1855, Time: 14:55, Close: 8.85.
+2021-05-30 21:38:25 83      COTY: TP reached. Pending. Close price: 8.89. Candle: ID:1860, Time: 14:55, Close: 8.89. Profit: -0.05(-0.56%)
+2021-05-30 21:38:25 83      COTY: OrderID: 0f79ca3e. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:25 83      COTY: OrderID: 0f79ca3e fully executed
+2021-05-30 21:38:25 84      COUP_BBG001J4BCN4_2021-03-12
+2021-05-30 21:38:25 87      CPB_BBG000BG4202_2021-03-12
+2021-05-30 21:38:25 88      CPRI_BBG0029SNR63_2021-03-12
+2021-05-30 21:38:25 90      CPRT_BBG000BM9RH1_2021-03-12
+2021-05-30 21:38:25 92      CPS_BBG000PSXT64_2021-03-12
+2021-05-30 21:38:25 92      CPS: BuyPending. Strategy: GoodGrowStrategy. Price: 45.15. StopLoss: 44.52. Candle: ID:105, Time: 14:50, Close: 45.15. Details: Reason: DayMax: 44.15. Current change: +2.27%
+2021-05-30 21:38:25 92      CPS: OrderID: b59bbe31. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:25 92      CPS: OrderID: b59bbe31 fully executed
+2021-05-30 21:38:25 92      CPS: Pulling stop loss to current price. Price: 45.13. MaxPrice: 45.15. Candle: ID:109, Time: 14:55, Close: 45.14.
+2021-05-30 21:38:25 92      CPS: SL reached. Pending. Close price: 45.11. Candle: ID:113, Time: 14:55, Close: 45.11. Profit: -0.04(-0.09%)
+2021-05-30 21:38:25 92      CPS: OrderID: 18e2d195. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:25 92      CPS: OrderID: 18e2d195 fully executed
+2021-05-30 21:38:25 93      CR_BBG000BG7423_2021-03-12
+2021-05-30 21:38:25 93      CREE_BBG000BG14P4_2021-03-12
+2021-05-30 21:38:25 95      CRI_BBG000CTM4J9_2021-03-12
+2021-05-30 21:38:25 96      CRL_BBG000BG5BL8_2021-03-12
+2021-05-30 21:38:25 97      CRM_BBG000BN2DC2_2021-03-12
+2021-05-30 21:38:26 01      CRMT_BBG000CM6L31_2021-03-12
+2021-05-30 21:38:26 02      CROX_BBG000BLY663_2021-03-12
+2021-05-30 21:38:26 04      CRS_BBG000BGCQT9_2021-03-12
+2021-05-30 21:38:26 05      CRTX_BBG00BTK1DT8_2021-03-12
+2021-05-30 21:38:26 06      CRUS_BBG000C1DHF5_2021-03-12
+2021-05-30 21:38:26 07      CRVL_BBG000CVKZY0_2021-03-12
+2021-05-30 21:38:26 08      CRWD_BBG00BLYKS03_2021-03-12
+2021-05-30 21:38:26 12      CSCO_BBG000C3J3C9_2021-03-12
+2021-05-30 21:38:26 16      CSGP_BBG000D7JKW9_2021-03-12
+2021-05-30 21:38:26 17      CSGS_BBG000G3TQV2_2021-03-12
+2021-05-30 21:38:26 18      CSII_BBG000NWQ9S5_2021-03-12
+2021-05-30 21:38:26 18      CSL_BBG000BGGBT8_2021-03-12
+2021-05-30 21:38:26 19      CSOD_BBG0016X4XN6_2021-03-12
+2021-05-30 21:38:26 20      CSWI_BBG007NLG4L3_2021-03-12
+2021-05-30 21:38:26 20      CSX_BBG000BGJRC8_2021-03-12
+2021-05-30 21:38:26 23      CTAS_BBG000H3YXF8_2021-03-12
+2021-05-30 21:38:26 26      CTB_BBG000BGKXV2_2021-03-12
+2021-05-30 21:38:26 26      CTLT_BBG005XR47P5_2021-03-12
+2021-05-30 21:38:26 27      CTSH_BBG000BBDV81_2021-03-12
+2021-05-30 21:38:26 29      CTVA_BBG00BN969C1_2021-03-12
+2021-05-30 21:38:26 31      CTXS_BBG000FQ6PY6_2021-03-12
+2021-05-30 21:38:26 33      CVCO_BBG000K4WS65_2021-03-12
+2021-05-30 21:38:26 33      CVET_BBG00KR691K8_2021-03-12
+2021-05-30 21:38:26 34      CVGW_BBG000BGPQW1_2021-03-12
+2021-05-30 21:38:26 34      CVLT_BBG000BG88X9_2021-03-12
+2021-05-30 21:38:26 35      CVNA_BBG00GCTWDJ3_2021-03-12
+2021-05-30 21:38:26 37      CVS_BBG000BGRY34_2021-03-12
+2021-05-30 21:38:26 39      CVX_BBG000K4ND22_2021-03-12
+2021-05-30 21:38:26 44      CW_BBG000BGSPS5_2021-03-12
+2021-05-30 21:38:26 45      CWST_BBG000BT0J38_2021-03-12
+2021-05-30 21:38:26 45      CWT_BBG000D8KTN6_2021-03-12
+2021-05-30 21:38:26 46      D_BBG000BGVW60_2021-03-12
+2021-05-30 21:38:26 48      DAL_BBG000R7Z112_2021-03-12
+2021-05-30 21:38:26 54      DAR_BBG000BN8ZK8_2021-03-12
+2021-05-30 21:38:26 56      DBX_BBG0018SLDN0_2021-03-12
+2021-05-30 21:38:26 59      DBX: BuyPending. Strategy: GoodGrowStrategy. Price: 25.45. StopLoss: 25.08. Candle: ID:1195, Time: 14:55, Close: 25.45. Details: Reason: Grow:0.60%;0.40%;0.79%;0.32%;
+2021-05-30 21:38:26 59      DBX: OrderID: ef42d310. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:26 59      DBX: OrderID: ef42d310 fully executed
+2021-05-30 21:38:26 59      DBX: Pulling stop loss to current price. Price: 25.17. MaxPrice: 25.86. Candle: ID:2085, Time: 15:00, Close: 25.87.
+2021-05-30 21:38:26 59      DBX: Pulling stop loss to current price. Price: 25.37. MaxPrice: 26.2. Candle: ID:2368, Time: 15:05, Close: 26.21.
+2021-05-30 21:38:26 60      DBX: Pulling stop loss to current price. Price: 25.86. MaxPrice: 26.23. Candle: ID:2916, Time: 15:10, Close: 26.26.
+2021-05-30 21:38:26 60      DBX: Pulling stop loss to current price. Price: 26.2. MaxPrice: 26.28. Candle: ID:3184, Time: 15:15, Close: 26.29.
+2021-05-30 21:38:26 60      DBX: Pulling stop loss to current price. Price: 26.23. MaxPrice: 26.49. Candle: ID:3801, Time: 15:20, Close: 26.5.
+2021-05-30 21:38:26 60      DBX: Pulling stop loss to current price. Price: 26.28. MaxPrice: 26.68. Candle: ID:4196, Time: 15:25, Close: 26.69.
+2021-05-30 21:38:26 60      DBX: Pulling stop loss to current price. Price: 26.49. MaxPrice: 26.75. Candle: ID:4697, Time: 15:30, Close: 26.75.
+2021-05-30 21:38:26 60      DBX: SL reached. Pending. Close price: 26.48. Candle: ID:5000, Time: 15:35, Close: 26.48. Profit: 1.03(4.05%)
+2021-05-30 21:38:26 60      DBX: OrderID: 9d240559. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:26 60      DBX: OrderID: 9d240559 fully executed
+2021-05-30 21:38:26 63      DCI_BBG000BGZP70_2021-03-12
+2021-05-30 21:38:26 63      DCPH_BBG00HMJ9H54_2021-03-12
+2021-05-30 21:38:26 64      DD_BBG00BN961G4_2021-03-12
+2021-05-30 21:38:26 66      DDOG_BBG003NJHZT9_2021-03-12
+2021-05-30 21:38:26 69      DDS_BBG000BS4MP5_2021-03-12
+2021-05-30 21:38:26 69      DDS: BuyPending. Strategy: GoodGrowStrategy. Price: 90.6. StopLoss: 88.75. Candle: ID:89, Time: 14:40, Close: 90.6. Details: Reason: DayMax: 87.82. Current change: +3.17%
+2021-05-30 21:38:26 69      DDS: OrderID: 61348a6e. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:26 69      DDS: OrderID: 61348a6e fully executed
+2021-05-30 21:38:26 69      DDS: Seems price is decreases. Closing by current price. Price: 89.51. Candle: ID:148, Time: 15:05, Close: 89.51.
+2021-05-30 21:38:26 69      DDS: SL reached. Pending. Close price: 89.39. Candle: ID:164, Time: 15:10, Close: 89.39. Profit: -1.21(-1.34%)
+2021-05-30 21:38:26 69      DDS: OrderID: e6a3e663. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:26 69      DDS: OrderID: e6a3e663 fully executed
+2021-05-30 21:38:26 70      DE_BBG000BH1NH9_2021-03-12
+2021-05-30 21:38:26 73      DECK_BBG000BKXYX5_2021-03-12
+2021-05-30 21:38:26 74      DELL_BBG00DW3SZS1_2021-03-12
+2021-05-30 21:38:26 75      DFS_BBG000QBR5J5_2021-03-12
+2021-05-30 21:38:26 77      DG_BBG000NV1KK7_2021-03-12
+2021-05-30 21:38:26 78      DGX_BBG000BN84F3_2021-03-12
+2021-05-30 21:38:26 79      DHI_BBG000DQTXY6_2021-03-12
+2021-05-30 21:38:26 84      DHR_BBG000BH3JF8_2021-03-12
+2021-05-30 21:38:26 86      DIOD_BBG000G25P51_2021-03-12
+2021-05-30 21:38:26 87      DIS_BBG000BH4R78_2021-03-12
+2021-05-30 21:38:26 96      DISCA_BBG000CHWP52_2021-03-12
+2021-05-30 21:38:27 01      DISCA: BuyPending. Strategy: GoodGrowStrategy. Price: 69.51. StopLoss: 68.37. Candle: ID:1328, Time: 15:00, Close: 69.51. Details: Reason: Grow:0.81%;0.42%;0.86%;0.30%;
+2021-05-30 21:38:27 01      DISCA: OrderID: 8fe36312. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:27 01      DISCA: OrderID: 8fe36312 fully executed
+2021-05-30 21:38:27 01      DISCA: Pulling stop loss to current price. Price: 68.68. MaxPrice: 69.51. Candle: ID:1428, Time: 15:05, Close: 69.46.
+2021-05-30 21:38:27 01      DISCA: Pulling stop loss to current price. Price: 69.3. MaxPrice: 69.51. Candle: ID:1582, Time: 15:10, Close: 69.45.
+2021-05-30 21:38:27 01      DISCA: Pulling stop loss to current price. Price: 69.42. MaxPrice: 69.66. Candle: ID:1730, Time: 15:15, Close: 69.72.
+2021-05-30 21:38:27 01      DISCA: Pulling stop loss to current price. Price: 69.71. MaxPrice: 70.73. Candle: ID:2244, Time: 15:25, Close: 70.8.
+2021-05-30 21:38:27 01      DISCA: Pulling stop loss to current price. Price: 69.97. MaxPrice: 71.15. Candle: ID:2439, Time: 15:30, Close: 71.2.
+2021-05-30 21:38:27 01      DISCA: Pulling stop loss to current price. Price: 70.75. MaxPrice: 71.4. Candle: ID:2921, Time: 15:35, Close: 71.4.
+2021-05-30 21:38:27 01      DISCA: Pulling stop loss to current price. Price: 71.19. MaxPrice: 71.8. Candle: ID:3181, Time: 15:40, Close: 71.82.
+2021-05-30 21:38:27 01      DISCA: SL reached. Pending. Close price: 71.18. Candle: ID:3566, Time: 15:45, Close: 71.18. Profit: 1.67(2.40%)
+2021-05-30 21:38:27 01      DISCA: OrderID: 2f76b3a2. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:27 01      DISCA: OrderID: 2f76b3a2 fully executed
+2021-05-30 21:38:27 05      DISCB_BBG000F7L5N7_2021-03-12
+2021-05-30 21:38:27 05      DISCB: SPYKE!. Candle: ID:118, Time: 14:30, Close: 68.45
+2021-05-30 21:38:27 05      DISCB: SPYKE!. Candle: ID:181, Time: 17:15, Close: 70.54
+2021-05-30 21:38:27 05      DISCB: SPYKE!. Candle: ID:182, Time: 17:15, Close: 70.54
+2021-05-30 21:38:27 05      DISCK_BBG000VMWHH5_2021-03-12
+2021-05-30 21:38:27 06      DISCK: BuyPending. Strategy: GoodGrowStrategy. Price: 57.47. StopLoss: 57.11. Candle: ID:141, Time: 14:30, Close: 57.47. Details: Reason: DayMax: 56.28. Current change: +2.11%
+2021-05-30 21:38:27 06      DISCK: OrderID: a687e878. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:27 41      OrderID: a687e878 successfully canceled
+2021-05-30 21:38:27 42      DK_BBG00FZYFVC5_2021-03-12
+2021-05-30 21:38:27 43      DKNG_BBG00TCBG714_2021-03-12
+2021-05-30 21:38:27 55      DKS_BBG000F6ZWH2_2021-03-12
+2021-05-30 21:38:27 56      DLB_BBG000DGLTG5_2021-03-12
+2021-05-30 21:38:27 57      DLR_BBG000Q5ZRM7_2021-03-12
+2021-05-30 21:38:27 59      DLTH_BBG002GBMZG4_2021-03-12
+2021-05-30 21:38:27 59      DLTR_BBG000BSC0K9_2021-03-12
+2021-05-30 21:38:27 61      DLX_BBG000BH6360_2021-03-12
+2021-05-30 21:38:27 62      DNLI_BBG008P7F869_2021-03-12
+2021-05-30 21:38:27 63      DNOW_BBG005BLN209_2021-03-12
+2021-05-30 21:38:27 64      DOCU_BBG000N7KJX8_2021-03-12
+2021-05-30 21:38:27 75      DORM_BBG000BM22F5_2021-03-12
+2021-05-30 21:38:27 76      DOV_BBG000BHB3M6_2021-03-12
+2021-05-30 21:38:27 78      DOW_BBG00BN96922_2021-03-12
+2021-05-30 21:38:27 81      DPZ_BBG000P458P3_2021-03-12
+2021-05-30 21:38:27 82      DRE_BBG000BHD8S7_2021-03-12
+2021-05-30 21:38:27 84      DRI_BBG000BBNYF6_2021-03-12
+2021-05-30 21:38:27 86      DRNA_BBG001J1DB23_2021-03-12
+2021-05-30 21:38:27 86      DRNA: BuyPending. Strategy: GoodGrowStrategy. Price: 27.54. StopLoss: 26.83. Candle: ID:175, Time: 14:45, Close: 27.54. Details: Reason: DayMax: 26.95. Current change: +2.19%
+2021-05-30 21:38:27 86      DRNA: OrderID: 2ba53b2b. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:27 86      DRNA: OrderID: 2ba53b2b fully executed
+2021-05-30 21:38:27 86      DRNA: Pulling stop loss to current price. Price: 26.97. MaxPrice: 27.6. Candle: ID:182, Time: 14:50, Close: 27.69.
+2021-05-30 21:38:27 86      DRNA: SL reached. Pending. Close price: 26.94. Candle: ID:257, Time: 15:10, Close: 26.94. Profit: -0.60(-2.18%)
+2021-05-30 21:38:27 86      DRNA: OrderID: 9af13b4d. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:27 86      DRNA: OrderID: 9af13b4d fully executed
+2021-05-30 21:38:27 87      DRQ_BBG000BVDBY2_2021-03-12
+2021-05-30 21:38:27 87      DRQ: BuyPending. Strategy: GoodGrowStrategy. Price: 39.76. StopLoss: 39.22. Candle: ID:92, Time: 15:15, Close: 39.76. Details: Reason: Grow:0.67%;0.59%;0.38%;0.45%;
+2021-05-30 21:38:27 87      DRQ: OrderID: 39dd3d4a. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:27 87      DRQ: OrderID: 39dd3d4a fully executed
+2021-05-30 21:38:27 87      DRQ: Pulling stop loss to current price. Price: 39.58. MaxPrice: 39.84. Candle: ID:104, Time: 15:25, Close: 39.83.
+2021-05-30 21:38:27 87      DRQ: SL reached. Pending. Close price: 39.55. Candle: ID:118, Time: 15:40, Close: 39.55. Profit: -0.21(-0.53%)
+2021-05-30 21:38:27 87      DRQ: OrderID: 5bad0b5f. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:27 87      DRQ: OrderID: 5bad0b5f fully executed
+2021-05-30 21:38:27 88      DT_BBG00PNN7C40_2021-03-12
+2021-05-30 21:38:27 90      DVA_BBG000MQ1SN9_2021-03-12
+2021-05-30 21:38:27 90      DVN_BBG000BBVJZ8_2021-03-12
+2021-05-30 21:38:27 94      DXC_BBG00FN64XT9_2021-03-12
+2021-05-30 21:38:27 94      DXCM_BBG000QTF8K1_2021-03-12
+2021-05-30 21:38:27 96      DY_BBG000C4SKT1_2021-03-12
+2021-05-30 21:38:27 96      EA_BBG000BP0KQ8_2021-03-12
+2021-05-30 21:38:27 99      EAT_BBG000BK28N7_2021-03-12
+2021-05-30 21:38:27 99      EAT: BuyPending. Strategy: GoodGrowStrategy. Price: 74.78. StopLoss: 73.38. Candle: ID:112, Time: 15:15, Close: 74.78. Details: Reason: DayMax: 73.28. Current change: +2.05%
+2021-05-30 21:38:27 99      EAT: OrderID: cddef50c. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:27 99      EAT: OrderID: cddef50c fully executed
+2021-05-30 21:38:27 99      EAT: Pulling stop loss to current price. Price: 74.21. MaxPrice: 74.78. Candle: ID:142, Time: 15:30, Close: 74.87.
+2021-05-30 21:38:27 99      EAT: Pulling stop loss to current price. Price: 74.45. MaxPrice: 74.82. Candle: ID:157, Time: 15:40, Close: 74.95.
+2021-05-30 21:38:27 99      EAT: Seems price is decreases. Closing by current price. Price: 74.57. Candle: ID:175, Time: 15:55, Close: 74.57.
+2021-05-30 21:38:27 99      EAT: SL reached. Pending. Close price: 74.5. Candle: ID:176, Time: 15:55, Close: 74.5. Profit: -0.28(-0.37%)
+2021-05-30 21:38:27 99      EAT: OrderID: b4692cfb. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:27 99      EAT: OrderID: b4692cfb fully executed
+2021-05-30 21:38:28 00      EBAY_BBG000C43RR5_2021-03-12
+2021-05-30 21:38:28 06      EBS_BBG000GW06J7_2021-03-12
+2021-05-30 21:38:28 07      ECHO_BBG000RFP8W6_2021-03-12
+2021-05-30 21:38:28 08      ECL_BBG000BHKYH4_2021-03-12
+2021-05-30 21:38:28 09      ECPG_BBG000F369C7_2021-03-12
+2021-05-30 21:38:28 10      ED_BBG000BHLYS1_2021-03-12
+2021-05-30 21:38:28 12      EDIT_BBG005MX5GZ2_2021-03-12
+2021-05-30 21:38:28 15      EEFT_BBG000BMNBY1_2021-03-12
+2021-05-30 21:38:28 16      EFX_BBG000BHPL78_2021-03-12
+2021-05-30 21:38:28 18      EGHT_BBG000BCGHH7_2021-03-12
+2021-05-30 21:38:28 19      EGRX_BBG005Y3XWH9_2021-03-12
+2021-05-30 21:38:28 19      EHTH_BBG000P5JQX6_2021-03-12
+2021-05-30 21:38:28 21      EHTH: BuyPending. Strategy: GoodGrowStrategy. Price: 60.48. StopLoss: 58.75. Candle: ID:1761, Time: 14:40, Close: 60.48. Details: Reason: DayMax: 59.25. Current change: +2.08%
+2021-05-30 21:38:28 21      EHTH: OrderID: 9f77cb19. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:28 21      EHTH: OrderID: 9f77cb19 fully executed
+2021-05-30 21:38:28 21      EHTH: Pulling stop loss to current price. Price: 59.22. MaxPrice: 60.48. Candle: ID:1788, Time: 14:45, Close: 60.48.
+2021-05-30 21:38:28 21      EHTH: Pulling stop loss to current price. Price: 59.79. MaxPrice: 61.19. Candle: ID:1951, Time: 14:50, Close: 61.22.
+2021-05-30 21:38:28 21      EHTH: Seems price is decreases. Closing by current price. Price: 60.32. Candle: ID:2138, Time: 15:00, Close: 60.32.
+2021-05-30 21:38:28 21      EHTH: Pulling stop loss to current price. Price: 60.47. MaxPrice: 61.19. Candle: ID:2201, Time: 15:05, Close: 61.27.
+2021-05-30 21:38:28 21      EHTH: Pulling stop loss to current price. Price: 61.35. MaxPrice: 61.88. Candle: ID:2659, Time: 15:30, Close: 61.85.
+2021-05-30 21:38:28 21      EHTH: SL reached. Pending. Close price: 61.34. Candle: ID:2801, Time: 15:35, Close: 61.34. Profit: 0.86(1.42%)
+2021-05-30 21:38:28 21      EHTH: OrderID: 2208a539. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:28 21      EHTH: OrderID: 2208a539 fully executed
+2021-05-30 21:38:28 24      EIX_BBG000D7RKJ5_2021-03-12
+2021-05-30 21:38:28 26      EL_BBG000FKJRC5_2021-03-12
+2021-05-30 21:38:28 27      ELAN_BBG00LJYS1P8_2021-03-12
+2021-05-30 21:38:28 28      ELS_BBG000BB7SX7_2021-03-12
+2021-05-30 21:38:28 29      EME_BBG000BBRPL4_2021-03-12
+2021-05-30 21:38:28 30      EMN_BBG000BLW530_2021-03-12
+2021-05-30 21:38:28 31      EMR_BBG000BHX7N2_2021-03-12
+2021-05-30 21:38:28 34      ENDP_BBG000C0HQ54_2021-03-12
+2021-05-30 21:38:28 35      ENPH_BBG001R3MNY9_2021-03-12
+2021-05-30 21:38:28 39      ENR_BBG006FCB019_2021-03-12
+2021-05-30 21:38:28 40      ENS_BBG000PWTD92_2021-03-12
+2021-05-30 21:38:28 40      ENTA_BBG001V9NSB4_2021-03-12
+2021-05-30 21:38:28 41      ENTG_BBG000CTV4N4_2021-03-12
+2021-05-30 21:38:28 42      ENV_BBG000Q4NZ54_2021-03-12
+2021-05-30 21:38:28 43      EOG_BBG000BZ9223_2021-03-12
+2021-05-30 21:38:28 45      EPAM_BBG000MHTV89_2021-03-12
+2021-05-30 21:38:28 46      EPAY_BBG000BRNH31_2021-03-12
+2021-05-30 21:38:28 47      EPC_BBG000BRW644_2021-03-12
+2021-05-30 21:38:28 48      EPC: SPYKE!. Candle: ID:987, Time: 22:15, Close: 36.99
+2021-05-30 21:38:28 48      EPC: BuyPending. Strategy: GoodGrowStrategy. Price: 36.99. StopLoss: 35.74. Candle: ID:988, Time: 22:15, Close: 36.99. Details: Reason: DayMax: 36.07. Current change: +2.55%
+2021-05-30 21:38:28 48      EPC: OrderID: 08c7173b. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:28 48      EPC: OrderID: 08c7173b fully executed
+2021-05-30 21:38:28 48      EPC: Closing daily orders. Close price: 37.92. Lots: 1. Profit: 0.93(2.51%). Candle: ID:996, Time: 22:15, Close: 37.94
+2021-05-30 21:38:28 48      EQIX_BBG000MBDGM6_2021-03-12
+2021-05-30 21:38:28 50      EQT_BBG000BHZ5J9_2021-03-12
+2021-05-30 21:38:28 52      ERIE_BBG000BBTJZ1_2021-03-12
+2021-05-30 21:38:28 53      ES_BBG000BQ87N0_2021-03-12
+2021-05-30 21:38:28 55      ESPR_BBG004KB3S72_2021-03-12
+2021-05-30 21:38:28 55      ESPR: BuyPending. Strategy: GoodGrowStrategy. Price: 29.79. StopLoss: 29.07. Candle: ID:668, Time: 14:40, Close: 29.79. Details: Reason: DayMax: 29.18. Current change: +2.09%
+2021-05-30 21:38:28 55      ESPR: OrderID: d1036194. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:28 55      ESPR: OrderID: d1036194 fully executed
+2021-05-30 21:38:28 55      ESPR: Pulling stop loss to current price. Price: 29.42. MaxPrice: 29.79. Candle: ID:694, Time: 14:45, Close: 29.79.
+2021-05-30 21:38:28 55      ESPR: Pulling stop loss to current price. Price: 29.5. MaxPrice: 29.8. Candle: ID:716, Time: 14:50, Close: 29.81.
+2021-05-30 21:38:28 55      ESPR: Seems price is decreases. Closing by current price. Price: 29.51. Candle: ID:829, Time: 15:05, Close: 29.51.
+2021-05-30 21:38:28 55      ESPR: SL reached. Pending. Close price: 29.5. Candle: ID:832, Time: 15:05, Close: 29.5. Profit: -0.29(-0.97%)
+2021-05-30 21:38:28 55      ESPR: OrderID: 1489214c. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:28 55      ESPR: OrderID: 1489214c fully executed
+2021-05-30 21:38:28 56      ESS_BBG000CGJMB9_2021-03-12
+2021-05-30 21:38:28 57      ET_BBG000BM2FL9_2021-03-12
+2021-05-30 21:38:28 60      ETN_BBG000BJ3PD2_2021-03-12
+2021-05-30 21:38:28 63      ETR_BBG000C1FQS9_2021-03-12
+2021-05-30 21:38:28 64      ETRN_BBG00K53L394_2021-03-12
+2021-05-30 21:38:28 66      ETSY_BBG000N7MXL8_2021-03-12
+2021-05-30 21:38:28 70      EV_BBG000DBVBY4_2021-03-12
+2021-05-30 21:38:28 71      EVBG_BBG0022FMPD5_2021-03-12
+2021-05-30 21:38:28 72      EVER_BBG00F17NDH7_2021-03-12
+2021-05-30 21:38:28 74      EVH_BBG005CHLM96_2021-03-12
+2021-05-30 21:38:28 75      EVR_BBG000BP30Y0_2021-03-12
+2021-05-30 21:38:28 75      EVR: SPYKE!. Candle: ID:20, Time: 14:30, Close: 134.76
+2021-05-30 21:38:28 76      EVRG_BBG00H433CR2_2021-03-12
+2021-05-30 21:38:28 77      EW_BBG000BRXP69_2021-03-12
+2021-05-30 21:38:28 79      EWBC_BBG000CR20B1_2021-03-12
+2021-05-30 21:38:28 81      EXAS_BBG000CWL0F5_2021-03-12
+2021-05-30 21:38:28 82      EXC_BBG000J6XT05_2021-03-12
+2021-05-30 21:38:28 83      EXC: BuyPending. Strategy: GoodGrowStrategy. Price: 42.46. StopLoss: 41.78. Candle: ID:183, Time: 14:30, Close: 42.46. Details: Reason: DayMax: 41.5. Current change: +2.31%
+2021-05-30 21:38:28 83      EXC: OrderID: 889d47f7. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:28 83      EXC: OrderID: 889d47f7 fully executed
+2021-05-30 21:38:28 83      EXC: Price does not grow. Try to set TakeProfit. Price: 42.18. Candle: ID:680, Time: 14:50, Close: 42.08.
+2021-05-30 21:38:28 83      EXC: TP reached. Pending. Close price: 42.18. Candle: ID:711, Time: 14:50, Close: 42.18. Profit: -0.28(-0.66%)
+2021-05-30 21:38:28 83      EXC: OrderID: d64c5f29. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:28 83      EXC: OrderID: d64c5f29 fully executed
+2021-05-30 21:38:28 85      EXEL_BBG000BQ4WF8_2021-03-12
+2021-05-30 21:38:28 85      EXEL: BuyPending. Strategy: GoodGrowStrategy. Price: 23.04. StopLoss: 22.82. Candle: ID:675, Time: 14:50, Close: 23.04. Details: Reason: Grow:0.88%;0.39%;0.48%;0.30%;
+2021-05-30 21:38:28 85      EXEL: OrderID: 514ff915. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:28 85      EXEL: OrderID: 514ff915 fully executed
+2021-05-30 21:38:28 85      EXEL: Pulling stop loss to current price. Price: 22.86. MaxPrice: 23.04. Candle: ID:756, Time: 14:55, Close: 23.03.
+2021-05-30 21:38:28 85      EXEL: SL reached. Pending. Close price: 22.85. Candle: ID:834, Time: 15:10, Close: 22.85. Profit: -0.19(-0.82%)
+2021-05-30 21:38:28 85      EXEL: OrderID: 2e28a90d. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:28 85      EXEL: OrderID: 2e28a90d fully executed
+2021-05-30 21:38:28 87      EXLS_BBG000NS3P30_2021-03-12
+2021-05-30 21:38:28 88      EXP_BBG000BJW241_2021-03-12
+2021-05-30 21:38:28 88      EXPD_BBG000BJ5GK2_2021-03-12
+2021-05-30 21:38:28 89      EXPE_BBG000QY3XZ2_2021-03-12
+2021-05-30 21:38:28 91      EXPE: BuyPending. Strategy: GoodGrowStrategy. Price: 173. StopLoss: 170.72. Candle: ID:361, Time: 14:40, Close: 173. Details: Reason: Grow:0.70%;0.84%;0.43%;0.30%;
+2021-05-30 21:38:28 91      EXPE: OrderID: 67beff08. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:28 91      EXPE: OrderID: 67beff08 fully executed
+2021-05-30 21:38:28 91      EXPE: Pulling stop loss to current price. Price: 171.6. MaxPrice: 173. Candle: ID:452, Time: 14:45, Close: 173.25.
+2021-05-30 21:38:28 91      EXPE: Pulling stop loss to current price. Price: 172.49. MaxPrice: 173.5. Candle: ID:540, Time: 14:50, Close: 173.56.
+2021-05-30 21:38:28 91      EXPE: Pulling stop loss to current price. Price: 173.24. MaxPrice: 173.65. Candle: ID:609, Time: 14:55, Close: 174.05.
+2021-05-30 21:38:28 91      EXPE: Seems price is decreases. Closing by current price. Price: 173.9. Candle: ID:820, Time: 15:05, Close: 173.9.
+2021-05-30 21:38:28 91      EXPE: Pulling stop loss to current price. Price: 173.92. MaxPrice: 174.85. Candle: ID:876, Time: 15:10, Close: 174.98.
+2021-05-30 21:38:28 91      EXPE: Seems price is decreases. Closing by current price. Price: 174.37. Candle: ID:1084, Time: 15:20, Close: 174.37.
+2021-05-30 21:38:28 91      EXPE: SL reached. Pending. Close price: 174.35. Candle: ID:1085, Time: 15:20, Close: 174.35. Profit: 1.35(0.78%)
+2021-05-30 21:38:28 91      EXPE: OrderID: 47a41947. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:28 91      EXPE: OrderID: 47a41947 fully executed
+2021-05-30 21:38:28 94      EXR_BBG000PV27K3_2021-03-12
+2021-05-30 21:38:28 95      EYE_BBG00HVQF9K2_2021-03-12
+2021-05-30 21:38:28 96      F_BBG000BQPC32_2021-03-12
+2021-05-30 21:38:29 04      FANG_BBG002PHSYX9_2021-03-12
+2021-05-30 21:38:29 08      FARO_BBG000BJD7C2_2021-03-12
+2021-05-30 21:38:29 08      FAST_BBG000BJ8YN7_2021-03-12
+2021-05-30 21:38:29 11      FATE_BBG000QP35H2_2021-03-12
+2021-05-30 21:38:29 13      FB_BBG000MM2P62_2021-03-12
+2021-05-30 21:38:29 38      FBHS_BBG001B4BV87_2021-03-12
+2021-05-30 21:38:29 39      FCFS_BBG000DNF659_2021-03-12
+2021-05-30 21:38:29 40      FCN_BBG000K88H58_2021-03-12
+2021-05-30 21:38:29 40      FCX_BBG000BJDB15_2021-03-12
+2021-05-30 21:38:29 45      FDS_BBG000BDJL83_2021-03-12
+2021-05-30 21:38:29 46      FDX_BBG000BJF1Z8_2021-03-12
+2021-05-30 21:38:29 49      FELE_BBG000BJGGV8_2021-03-12
+2021-05-30 21:38:29 50      FFIV_BBG000CXYSZ6_2021-03-12
+2021-05-30 21:38:29 51      FGEN_BBG000FW5ZL6_2021-03-12
+2021-05-30 21:38:29 53      FICO_BBG000DW76Y6_2021-03-12
+2021-05-30 21:38:29 53      FIS_BBG000BK2F42_2021-03-12
+2021-05-30 21:38:29 58      FISV_BBG000BJKPG0_2021-03-12
+2021-05-30 21:38:29 63      FITB_BBG000BJL3N0_2021-03-12
+2021-05-30 21:38:29 67      FIVN_BBG001KHJM17_2021-03-12
+2021-05-30 21:38:29 69      FIZZ_BBG000BF8CB6_2021-03-12
+2021-05-30 21:38:29 71      FL_BBG000BX8DC4_2021-03-12
+2021-05-30 21:38:29 73      FLIR_BBG000BHK836_2021-03-12
+2021-05-30 21:38:29 74      FLOW_BBG007FL7ZD2_2021-03-12
+2021-05-30 21:38:29 75      FLR_BBG000BB1TH9_2021-03-12
+2021-05-30 21:38:29 76      FLR: BuyPending. Strategy: GoodGrowStrategy. Price: 21.43. StopLoss: 20.89. Candle: ID:206, Time: 14:40, Close: 21.43. Details: Reason: DayMax: 20.95. Current change: +2.29%
+2021-05-30 21:38:29 76      FLR: OrderID: 306cc366. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:29 76      FLR: OrderID: 306cc366 fully executed
+2021-05-30 21:38:29 76      FLR: Pulling stop loss to current price. Price: 21.4. MaxPrice: 21.59. Candle: ID:322, Time: 14:55, Close: 21.57.
+2021-05-30 21:38:29 76      FLR: Pulling stop loss to current price. Price: 21.44. MaxPrice: 21.59. Candle: ID:374, Time: 15:05, Close: 21.62.
+2021-05-30 21:38:29 76      FLR: Pulling stop loss to current price. Price: 21.54. MaxPrice: 21.59. Candle: ID:387, Time: 15:10, Close: 21.6.
+2021-05-30 21:38:29 76      FLR: SL reached. Pending. Close price: 21.53. Candle: ID:419, Time: 15:15, Close: 21.53. Profit: 0.10(0.47%)
+2021-05-30 21:38:29 76      FLR: OrderID: 6d5c779b. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:29 76      FLR: OrderID: 6d5c779b fully executed
+2021-05-30 21:38:29 76      FLR: BuyPending. Strategy: GoodGrowStrategy. Price: 22.38. StopLoss: 21.88. Candle: ID:1157, Time: 17:15, Close: 22.38. Details: Reason: DayMax: 21.89. Current change: +2.24%
+2021-05-30 21:38:29 76      FLR: OrderID: cab762aa. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:29 76      FLR: OrderID: cab762aa fully executed
+2021-05-30 21:38:29 76      FLR: Pulling stop loss to current price. Price: 22.06. MaxPrice: 22.38. Candle: ID:1170, Time: 17:20, Close: 22.36.
+2021-05-30 21:38:29 76      FLR: Pulling stop loss to current price. Price: 22.19. MaxPrice: 22.38. Candle: ID:1204, Time: 17:25, Close: 22.39.
+2021-05-30 21:38:29 76      FLR: Pulling stop loss to current price. Price: 22.34. MaxPrice: 22.38. Candle: ID:1271, Time: 17:35, Close: 22.38.
+2021-05-30 21:38:29 76      FLR: Pulling stop loss to current price. Price: 22.36. MaxPrice: 22.46. Candle: ID:1323, Time: 17:45, Close: 22.48.
+2021-05-30 21:38:29 76      FLR: SL reached. Pending. Close price: 22.34. Candle: ID:1371, Time: 17:50, Close: 22.34. Profit: -0.04(-0.18%)
+2021-05-30 21:38:29 76      FLR: OrderID: d1d27241. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:29 76      FLR: OrderID: d1d27241 fully executed
+2021-05-30 21:38:29 77      FLS_BBG000FFH4P5_2021-03-12
+2021-05-30 21:38:29 78      FLT_BBG000GPXKX9_2021-03-12
+2021-05-30 21:38:29 80      FLWS_BBG000BBR9P6_2021-03-12
+2021-05-30 21:38:29 82      FMC_BBG000BJP882_2021-03-12
+2021-05-30 21:38:29 84      FND_BBG007GJ2F81_2021-03-12
+2021-05-30 21:38:29 85      FNKO_BBG00HXSHDQ9_2021-03-12
+2021-05-30 21:38:29 87      FNKO: BuyPending. Strategy: GoodGrowStrategy. Price: 17. StopLoss: 16.65. Candle: ID:1597, Time: 12:45, Close: 17. Details: Reason: DayMax: 16.6. Current change: +2.41%
+2021-05-30 21:38:29 87      FNKO: OrderID: fed1fbca. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:29 87      FNKO: OrderID: fed1fbca fully executed
+2021-05-30 21:38:29 87      FNKO: Price does not grow. Try to set TakeProfit. Price: 16.88. Candle: ID:1658, Time: 13:05, Close: 16.7.
+2021-05-30 21:38:29 87      FNKO: Seems price is decreases. Closing by current price. Price: 16.7. Candle: ID:1658, Time: 13:05, Close: 16.7.
+2021-05-30 21:38:29 87      FNKO: SL reached. Pending. Close price: 16.6. Candle: ID:1660, Time: 13:05, Close: 16.6. Profit: -0.40(-2.35%)
+2021-05-30 21:38:29 87      FNKO: OrderID: e8adce48. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:29 87      FNKO: OrderID: e8adce48 fully executed
+2021-05-30 21:38:29 91      FOCS_BBG00L0YTFN8_2021-03-12
+2021-05-30 21:38:29 91      FOCS: BuyPending. Strategy: GoodGrowStrategy. Price: 48.56. StopLoss: 48.06. Candle: ID:135, Time: 15:40, Close: 48.56. Details: Reason: Grow:0.33%;0.40%;0.64%;0.37%;
+2021-05-30 21:38:29 91      FOCS: OrderID: fadec110. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:29 91      FOCS: OrderID: fadec110 fully executed
+2021-05-30 21:38:29 91      FOCS: SL reached. Pending. Close price: 48. Candle: ID:154, Time: 15:50, Close: 48. Profit: -0.56(-1.15%)
+2021-05-30 21:38:29 91      FOCS: OrderID: 6d8b950d. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:29 92      OrderID: 6d8b950d successfully canceled
+2021-05-30 21:38:29 92      FOCS: Closing daily orders. Close price: 47.22. Lots: 1. Profit: -1.34(-2.76%). Candle: ID:727, Time: 21:00, Close: 47.24
+2021-05-30 21:38:29 92      FOE_BBG000BJQK11_2021-03-12
+2021-05-30 21:38:29 93      FOLD_BBG000PLF6N0_2021-03-12
+2021-05-30 21:38:29 95      FORM_BBG000D1Y3P1_2021-03-12
+2021-05-30 21:38:29 96      FORR_BBG000HGNYG8_2021-03-12
+2021-05-30 21:38:29 97      FOX_BBG00JHNKJY8_2021-03-12
+2021-05-30 21:38:29 98      FOXA_BBG00JHNJW99_2021-03-12
+2021-05-30 21:38:30 01      FOXF_BBG004T7VS53_2021-03-12
+2021-05-30 21:38:30 03      FRHC_BBG000N625H8_2021-03-12
+2021-05-30 21:38:30 03      FRPH_BBG000HCVWW4_2021-03-12
+2021-05-30 21:38:30 04      FRPT_BBG001D0HB36_2021-03-12
+2021-05-30 21:38:30 05      FSLR_BBG000BFL116_2021-03-12
+2021-05-30 21:38:30 06      FSLR: BuyPending. Strategy: GoodGrowStrategy. Price: 80.25. StopLoss: 79.3. Candle: ID:2538, Time: 15:45, Close: 80.25. Details: Reason: Grow:0.51%;0.42%;0.59%;0.31%;
+2021-05-30 21:38:30 06      FSLR: OrderID: 901abfac. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:30 06      FSLR: OrderID: 901abfac fully executed
+2021-05-30 21:38:30 06      FSLR: Pulling stop loss to current price. Price: 79.63. MaxPrice: 80.25. Candle: ID:2567, Time: 15:50, Close: 80.32.
+2021-05-30 21:38:30 06      FSLR: SL reached. Pending. Close price: 79.55. Candle: ID:2621, Time: 15:50, Close: 79.55. Profit: -0.70(-0.87%)
+2021-05-30 21:38:30 06      FSLR: OrderID: 0d5dc658. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:30 06      FSLR: OrderID: 0d5dc658 fully executed
+2021-05-30 21:38:30 08      FSLY_BBG004NLQHL0_2021-03-12
+2021-05-30 21:38:30 12      FTCH_BBG00LSD4456_2021-03-12
+2021-05-30 21:38:30 15      FTI_BBG00DL8NMV2_2021-03-12
+2021-05-30 21:38:30 18      FTNT_BBG000BCMBG4_2021-03-12
+2021-05-30 21:38:30 21      FTV_BBG00BLVZ228_2021-03-12
+2021-05-30 21:38:30 23      FUL_BBG000BJZ7V7_2021-03-12
+2021-05-30 21:38:30 23      GATX_BBG000BKGXQ4_2021-03-12
+2021-05-30 21:38:30 24      GBCI_BBG000C3KB84_2021-03-12
+2021-05-30 21:38:30 25      GBT_BBG00341H6M0_2021-03-12
+2021-05-30 21:38:30 26      GBX_BBG000CF5097_2021-03-12
+2021-05-30 21:38:30 27      GCO_BBG000BK5S78_2021-03-12
+2021-05-30 21:38:30 28      GCP_BBG0082W8Q12_2021-03-12
+2021-05-30 21:38:30 28      GD_BBG000BK67C7_2021-03-12
+2021-05-30 21:38:30 29      GDDY_BBG006MDLY05_2021-03-12
+2021-05-30 21:38:30 31      GDOT_BBG000QDJT53_2021-03-12
+2021-05-30 21:38:30 31      GE_BBG000BK6MB5_2021-03-12
+2021-05-30 21:38:30 36      GE: BuyPending. Strategy: GoodGrowStrategy. Price: 12.6. StopLoss: 12.24. Candle: ID:5156, Time: 14:40, Close: 12.6. Details: Reason: DayMax: 12.35. Current change: +2.02%
+2021-05-30 21:38:30 36      GE: OrderID: 8217550e. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:30 36      GE: OrderID: 8217550e fully executed
+2021-05-30 21:38:30 36      GE: Seems price is decreases. Closing by current price. Price: 12.45. Candle: ID:6006, Time: 14:50, Close: 12.45.
+2021-05-30 21:38:30 36      GE: SL reached. Pending. Close price: 12.44. Candle: ID:6009, Time: 14:50, Close: 12.44. Profit: -0.16(-1.27%)
+2021-05-30 21:38:30 36      GE: OrderID: c16cd7f0. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:30 36      GE: OrderID: c16cd7f0 fully executed
+2021-05-30 21:38:30 41      GEF_BBG000BLFNC0_2021-03-12
+2021-05-30 21:38:30 43      GGG_BBG000BK9W84_2021-03-12
+2021-05-30 21:38:30 44      GH_BBG006D97VY9_2021-03-12
+2021-05-30 21:38:30 45      GHC_BBG000C3FGH9_2021-03-12
+2021-05-30 21:38:30 46      GILD_BBG000CKGBP2_2021-03-12
+2021-05-30 21:38:30 53      GIS_BBG000BKCFC2_2021-03-12
+2021-05-30 21:38:30 55      GKOS_BBG000WG2LQ1_2021-03-12
+2021-05-30 21:38:30 56      GL_BBG000BVD6X4_2021-03-12
+2021-05-30 21:38:30 57      GLW_BBG000BKFZM4_2021-03-12
+2021-05-30 21:38:30 59      GM_BBG000NDYB67_2021-03-12
+2021-05-30 21:38:30 71      GMED_BBG002V87SD0_2021-03-12
+2021-05-30 21:38:30 72      GMS_BBG009Q036D0_2021-03-12
+2021-05-30 21:38:30 74      GNL_BBG004HXD0G8_2021-03-12
+2021-05-30 21:38:30 75      GNRC_BBG000PQ4W72_2021-03-12
+2021-05-30 21:38:30 75      GNRC: BuyPending. Strategy: GoodGrowStrategy. Price: 336.43. StopLoss: 330. Candle: ID:1128, Time: 22:15, Close: 336.43. Details: Reason: DayMax: 329.1. Current change: +2.23%
+2021-05-30 21:38:30 75      GNRC: OrderID: c2a8602b. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:30 75      OrderID: c2a8602b successfully canceled
+2021-05-30 21:38:30 76      GO_BBG00P4R3079_2021-03-12
+2021-05-30 21:38:30 77      GOOG_BBG009S3NB30_2021-03-12
+2021-05-30 21:38:30 82      GOOGL_BBG009S39JX6_2021-03-12
+2021-05-30 21:38:30 86      GOSS_BBG00MVWLLM2_2021-03-12
+2021-05-30 21:38:30 89      GPC_BBG000BKL348_2021-03-12
+2021-05-30 21:38:30 90      GPI_BBG000BB88K4_2021-03-12
+2021-05-30 21:38:30 91      GPN_BBG000CX0P89_2021-03-12
+2021-05-30 21:38:30 94      GPS_BBG000BKLH74_2021-03-12
+2021-05-30 21:38:31 01      GRA_BBG000BB8PG1_2021-03-12
+2021-05-30 21:38:31 02      GRMN_BBG000C4LN67_2021-03-12
+2021-05-30 21:38:31 04      GRUB_BBG001KWG293_2021-03-12
+2021-05-30 21:38:31 06      GS_BBG000C6CFJ5_2021-03-12
+2021-05-30 21:38:31 09      GSH_BBG000GLG0G0_2021-03-12
+2021-05-30 21:38:31 09      GSKY_BBG00KT2SCV8_2021-03-12
+2021-05-30 21:38:31 10      GSKY: BuyPending. Strategy: GoodGrowStrategy. Price: 6.99. StopLoss: 6.9. Candle: ID:636, Time: 14:25, Close: 6.99. Details: Reason: DayMax: 6.8. Current change: +2.79%
+2021-05-30 21:38:31 10      GSKY: OrderID: 8370a841. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:31 10      GSKY: OrderID: 8370a841 fully executed
+2021-05-30 21:38:31 10      GSKY: Pulling stop loss to current price. Price: 7.14. MaxPrice: 7.17. Candle: ID:837, Time: 14:45, Close: 7.19.
+2021-05-30 21:38:31 10      GSKY: Pulling stop loss to current price. Price: 7.16. MaxPrice: 7.32. Candle: ID:1010, Time: 14:50, Close: 7.32.
+2021-05-30 21:38:31 10      GSKY: Pulling stop loss to current price. Price: 7.18. MaxPrice: 7.32. Candle: ID:1180, Time: 14:55, Close: 7.32.
+2021-05-30 21:38:31 10      GSKY: Pulling stop loss to current price. Price: 7.27. MaxPrice: 7.32. Candle: ID:1332, Time: 15:00, Close: 7.32.
+2021-05-30 21:38:31 10      GSKY: SL reached. Pending. Close price: 7.26. Candle: ID:1368, Time: 15:05, Close: 7.26. Profit: 0.27(3.86%)
+2021-05-30 21:38:31 10      GSKY: OrderID: b0256c4f. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:31 10      GSKY: OrderID: b0256c4f fully executed
+2021-05-30 21:38:31 11      GT_BBG000BKNX95_2021-03-12
+2021-05-30 21:38:31 13      GTHX_BBG005F1DK91_2021-03-12
+2021-05-30 21:38:31 19      GTLS_BBG000P1K2X6_2021-03-12
+2021-05-30 21:38:31 20      GTN_BBG000DSQLQ0_2021-03-12
+2021-05-30 21:38:31 20      GTN: BuyPending. Strategy: GoodGrowStrategy. Price: 20.91. StopLoss: 20.68. Candle: ID:125, Time: 15:25, Close: 20.91. Details: Reason: Grow:0.39%;0.34%;0.39%;0.34%;
+2021-05-30 21:38:31 20      GTN: OrderID: 91786527. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:31 20      GTN: OrderID: 91786527 fully executed
+2021-05-30 21:38:31 20      GTN: Price does not grow. Try to set TakeProfit. Price: 20.78. Candle: ID:141, Time: 15:45, Close: 20.7.
+2021-05-30 21:38:31 20      GTN: SL reached. Pending. Close price: 20.65. Candle: ID:145, Time: 15:45, Close: 20.65. Profit: -0.26(-1.24%)
+2021-05-30 21:38:31 20      GTN: OrderID: 504db771. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:31 20      GTN: OrderID: 504db771 fully executed
+2021-05-30 21:38:31 20      GVA_BBG000DVB833_2021-03-12
+2021-05-30 21:38:31 21      GWRE_BBG001C7PM75_2021-03-12
+2021-05-30 21:38:31 22      GWW_BBG000BKR1D6_2021-03-12
+2021-05-30 21:38:31 23      H_BBG000CVRFS4_2021-03-12
+2021-05-30 21:38:31 24      HA_BBG000BC4185_2021-03-12
+2021-05-30 21:38:31 24      HA: BuyPending. Strategy: GoodGrowStrategy. Price: 27.6. StopLoss: 27.05. Candle: ID:431, Time: 15:30, Close: 27.6. Details: Reason: Grow:0.78%;1.00%;0.44%;0.36%;
+2021-05-30 21:38:31 24      HA: OrderID: 107f258f. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:31 24      HA: OrderID: 107f258f fully executed
+2021-05-30 21:38:31 24      HA: Pulling stop loss to current price. Price: 27.69. MaxPrice: 27.73. Candle: ID:537, Time: 15:50, Close: 27.78.
+2021-05-30 21:38:31 24      HA: SL reached. Pending. Close price: 27.68. Candle: ID:607, Time: 15:55, Close: 27.68. Profit: 0.08(0.29%)
+2021-05-30 21:38:31 24      HA: OrderID: 6861e9d5. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:31 24      HA: OrderID: 6861e9d5 fully executed
+2021-05-30 21:38:31 25      HAE_BBG000C7TF41_2021-03-12
+2021-05-30 21:38:31 26      HAIN_BBG000BQW085_2021-03-12
+2021-05-30 21:38:31 27      HAL_BBG000BKTFN2_2021-03-12
+2021-05-30 21:38:31 30      HALO_BBG000CZ8W54_2021-03-12
+2021-05-30 21:38:31 32      HAS_BBG000BKVJK4_2021-03-12
+2021-05-30 21:38:31 34      HBAN_BBG000BKWSR6_2021-03-12
+2021-05-30 21:38:31 38      HBI_BBG000D2ZTS8_2021-03-12
+2021-05-30 21:38:31 39      HCA_BBG000QW7VC1_2021-03-12
+2021-05-30 21:38:31 41      HCCI_BBG000CCFB17_2021-03-12
+2021-05-30 21:38:31 41      HCSG_BBG000BKYVF0_2021-03-12
+2021-05-30 21:38:31 42      HD_BBG000BKZB36_2021-03-12
+2021-05-30 21:38:31 45      HEAR_BBG000BM6N47_2021-03-12
+2021-05-30 21:38:31 46      HEI_BBG000BL16Q7_2021-03-12
+2021-05-30 21:38:31 47      HES_BBG000BBD070_2021-03-12
+2021-05-30 21:38:31 49      HFC_BBG000BL9JQ1_2021-03-12
+2021-05-30 21:38:31 50      HGV_BBG00CBYY6M1_2021-03-12
+2021-05-30 21:38:31 51      HHC_BBG000MJRJJ2_2021-03-12
+2021-05-30 21:38:31 52      HHR_BBG00KHGQ0H4_2021-03-12
+2021-05-30 21:38:31 53      HIBB_BBG000H001V3_2021-03-12
+2021-05-30 21:38:31 53      HIBB: BuyPending. Strategy: GoodGrowStrategy. Price: 66.33. StopLoss: 65.72. Candle: ID:102, Time: 14:55, Close: 66.33. Details: Reason: DayMax: 65. Current change: +2.05%
+2021-05-30 21:38:31 53      HIBB: OrderID: 55eeabf8. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:31 53      HIBB: OrderID: 55eeabf8 fully executed
+2021-05-30 21:38:31 53      HIBB: Pulling stop loss to current price. Price: 66.35. MaxPrice: 66.54. Candle: ID:123, Time: 15:10, Close: 66.55.
+2021-05-30 21:38:31 53      HIBB: SL reached. Pending. Close price: 66.3. Candle: ID:129, Time: 15:10, Close: 66.3. Profit: -0.03(-0.05%)
+2021-05-30 21:38:31 53      HIBB: OrderID: c1a9dceb. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:31 53      HIBB: OrderID: c1a9dceb fully executed
+2021-05-30 21:38:31 54      HIG_BBG000G0Z878_2021-03-12
+2021-05-30 21:38:31 56      HII_BBG001KJ2HM9_2021-03-12
+2021-05-30 21:38:31 56      HII: BuyPending. Strategy: GoodGrowStrategy. Price: 194.99. StopLoss: 189.01. Candle: ID:67, Time: 14:35, Close: 194.99. Details: Reason: Grow:0.37%;1.69%;0.98%;0.31%;
+2021-05-30 21:38:31 56      HII: OrderID: b9cb6df4. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:31 56      HII: OrderID: b9cb6df4 fully executed
+2021-05-30 21:38:31 56      HII: Seems price is decreases. Closing by current price. Price: 193.95. Candle: ID:93, Time: 14:50, Close: 193.95.
+2021-05-30 21:38:31 56      HII: Pulling stop loss to current price. Price: 194.25. MaxPrice: 195.48. Candle: ID:122, Time: 15:10, Close: 195.48.
+2021-05-30 21:38:31 56      HII: Pulling stop loss to current price. Price: 195.05. MaxPrice: 195.75. Candle: ID:131, Time: 15:20, Close: 195.82.
+2021-05-30 21:38:31 56      HII: Pulling stop loss to current price. Price: 195.34. MaxPrice: 195.82. Candle: ID:147, Time: 15:25, Close: 195.76.
+2021-05-30 21:38:31 56      HII: SL reached. Pending. Close price: 195.11. Candle: ID:167, Time: 15:30, Close: 195.11. Profit: 0.12(0.06%)
+2021-05-30 21:38:31 56      HII: OrderID: df355b39. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:31 56      HII: OrderID: df355b39 fully executed
+2021-05-30 21:38:31 57      HLT_BBG0058KMH30_2021-03-12
+2021-05-30 21:38:31 59      HNP_BBG000BX5YM0_2021-03-12
+2021-05-30 21:38:31 60      HOG_BBG000BKZTP3_2021-03-12
+2021-05-30 21:38:31 62      HOLX_BBG000C3NTN5_2021-03-12
+2021-05-30 21:38:31 65      HON_BBG000H556T9_2021-03-12
+2021-05-30 21:38:31 66      HP_BBG000BLCPY4_2021-03-12
+2021-05-30 21:38:31 68      HPE_BBG0078W3NQ3_2021-03-12
+2021-05-30 21:38:31 69      HPE: BuyPending. Strategy: GoodGrowStrategy. Price: 15.77. StopLoss: 15.41. Candle: ID:187, Time: 14:30, Close: 15.77. Details: Reason: DayMax: 15.46. Current change: +2.01%
+2021-05-30 21:38:31 69      HPE: OrderID: b2b0b674. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:31 69      HPE: OrderID: b2b0b674 fully executed
+2021-05-30 21:38:31 69      HPE: Pulling stop loss to current price. Price: 15.49. MaxPrice: 15.77. Candle: ID:401, Time: 14:35, Close: 15.76.
+2021-05-30 21:38:31 69      HPE: Pulling stop loss to current price. Price: 15.65. MaxPrice: 15.78. Candle: ID:608, Time: 14:40, Close: 15.78.
+2021-05-30 21:38:31 69      HPE: Pulling stop loss to current price. Price: 15.72. MaxPrice: 15.84. Candle: ID:820, Time: 14:50, Close: 15.85.
+2021-05-30 21:38:31 69      HPE: Pulling stop loss to current price. Price: 15.75. MaxPrice: 15.88. Candle: ID:913, Time: 14:55, Close: 15.9.
+2021-05-30 21:38:31 69      HPE: Pulling stop loss to current price. Price: 15.84. MaxPrice: 15.91. Candle: ID:1012, Time: 15:00, Close: 15.92.
+2021-05-30 21:38:31 69      HPE: Pulling stop loss to current price. Price: 15.89. MaxPrice: 15.93. Candle: ID:1055, Time: 15:05, Close: 15.93.
+2021-05-30 21:38:31 69      HPE: SL reached. Pending. Close price: 15.88. Candle: ID:1071, Time: 15:05, Close: 15.88. Profit: 0.11(0.70%)
+2021-05-30 21:38:31 69      HPE: OrderID: 110452b4. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:31 69      HPE: OrderID: 110452b4 fully executed
+2021-05-30 21:38:31 70      HPQ_BBG000KHWT55_2021-03-12
+2021-05-30 21:38:31 73      HQY_BBG000TYXCT9_2021-03-12
+2021-05-30 21:38:31 74      HRB_BBG000BLDV98_2021-03-12
+2021-05-30 21:38:31 76      HRC_BBG000BKWCS0_2021-03-12
+2021-05-30 21:38:31 77      HRL_BBG000BLF8D2_2021-03-12
+2021-05-30 21:38:31 78      HRTX_BBG000G2GJT7_2021-03-12
+2021-05-30 21:38:31 80      HSC_BBG000BLH3P8_2021-03-12
+2021-05-30 21:38:31 81      HSIC_BBG000BNMMJ3_2021-03-12
+2021-05-30 21:38:31 83      HSKA_BBG000BWFH48_2021-03-12
+2021-05-30 21:38:31 83      HST_BBG000BL8804_2021-03-12
+2021-05-30 21:38:31 85      HSY_BBG000BLHRS2_2021-03-12
+2021-05-30 21:38:31 87      HTA_BBG000PRJCX9_2021-03-12
+2021-05-30 21:38:31 88      HTHT_BBG000QFPM65_2021-03-12
+2021-05-30 21:38:31 89      HUBB_BBG000BLK267_2021-03-12
+2021-05-30 21:38:31 89      HUBG_BBG000G9W6L0_2021-03-12
+2021-05-30 21:38:31 90      HUBS_BBG000N7MZ06_2021-03-12
+2021-05-30 21:38:31 92      HUM_BBG000BLKK03_2021-03-12
+2021-05-30 21:38:31 93      HURN_BBG000PV2M48_2021-03-12
+2021-05-30 21:38:31 94      HWM_BBG00DYNJGH9_2021-03-12
+2021-05-30 21:38:31 95      HXL_BBG000BLMDQ9_2021-03-12
+2021-05-30 21:38:31 96      IAC_BBG000BKQG80_2021-03-12
+2021-05-30 21:38:31 97      IART_BBG000BZJQL8_2021-03-12
+2021-05-30 21:38:31 98      IBKR_BBG000LV0836_2021-03-12
+2021-05-30 21:38:31 99      IBM_BBG000BLNNH6_2021-03-12
+2021-05-30 21:38:32 02      IBN_BBG000DRM643_2021-03-12
+2021-05-30 21:38:32 03      IBP_BBG005TJKDZ6_2021-03-12
+2021-05-30 21:38:32 03      ICE_BBG000C1FB75_2021-03-12
+2021-05-30 21:38:32 05      ICPT_BBG001J1QN87_2021-03-12
+2021-05-30 21:38:32 06      ICPT: BuyPending. Strategy: GoodGrowStrategy. Price: 21.39. StopLoss: 21.12. Candle: ID:1940, Time: 16:20, Close: 21.39. Details: Reason: Grow:0.33%;0.38%;0.47%;0.33%;
+2021-05-30 21:38:32 06      ICPT: OrderID: fb458552. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:32 06      ICPT: OrderID: fb458552 fully executed
+2021-05-30 21:38:32 06      ICPT: Seems price is decreases. Closing by current price. Price: 21.18. Candle: ID:1995, Time: 16:30, Close: 21.18.
+2021-05-30 21:38:32 06      ICPT: SL reached. Pending. Close price: 21.16. Candle: ID:1998, Time: 16:30, Close: 21.16. Profit: -0.23(-1.08%)
+2021-05-30 21:38:32 06      ICPT: OrderID: c085dd45. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:32 06      ICPT: OrderID: c085dd45 fully executed
+2021-05-30 21:38:32 07      ICUI_BBG000CQV2N4_2021-03-12
+2021-05-30 21:38:32 08      IDCC_BBG000HLJ7M4_2021-03-12
+2021-05-30 21:38:32 08      IDXX_BBG000BLRT07_2021-03-12
+2021-05-30 21:38:32 10      IEX_BBG000C1HN22_2021-03-12
+2021-05-30 21:38:32 10      IFF_BBG000BLSL58_2021-03-12
+2021-05-30 21:38:32 12      IGMS_BBG00PNR1BT2_2021-03-12
+2021-05-30 21:38:32 12      IGMS: BuyPending. Strategy: GoodGrowStrategy. Price: 89.39. StopLoss: 88.16. Candle: ID:131, Time: 15:40, Close: 89.39. Details: Reason: DayMax: 87.44. Current change: +2.23%
+2021-05-30 21:38:32 12      IGMS: OrderID: 660c4c31. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:32 12      IGMS: OrderID: 660c4c31 fully executed
+2021-05-30 21:38:32 12      IGMS: Pulling stop loss to current price. Price: 88.63. MaxPrice: 89.39. Candle: ID:149, Time: 15:45, Close: 89.78.
+2021-05-30 21:38:32 12      IGMS: Pulling stop loss to current price. Price: 89.14. MaxPrice: 89.78. Candle: ID:151, Time: 15:50, Close: 89.96.
+2021-05-30 21:38:32 12      IGMS: SL reached. Pending. Close price: 89.09. Candle: ID:166, Time: 15:50, Close: 89.09. Profit: -0.30(-0.34%)
+2021-05-30 21:38:32 12      IGMS: OrderID: 3a0b7958. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:32 12      IGMS: OrderID: 3a0b7958 fully executed
+2021-05-30 21:38:32 13      IIPR_BBG00F0SW7N8_2021-03-12
+2021-05-30 21:38:32 13      IIVI_BBG000BLW102_2021-03-12
+2021-05-30 21:38:32 18      ILMN_BBG000DSMS70_2021-03-12
+2021-05-30 21:38:32 20      INCY_BBG000BNPSQ9_2021-03-12
+2021-05-30 21:38:32 23      INDB_BBG000BM0597_2021-03-12
+2021-05-30 21:38:32 24      INFO_BBG006G063F9_2021-03-12
+2021-05-30 21:38:32 25      INGN_BBG0021PH456_2021-03-12
+2021-05-30 21:38:32 26      INGR_BBG000BXPZB7_2021-03-12
+2021-05-30 21:38:32 27      INMD_BBG00PPS73P4_2021-03-12
+2021-05-30 21:38:32 28      INSP_BBG00209SZJ7_2021-03-12
+2021-05-30 21:38:32 28      INTC_BBG000C0G1D1_2021-03-12
+2021-05-30 21:38:32 38      INTU_BBG000BH5DV1_2021-03-12
+2021-05-30 21:38:32 41      INVH_BBG00FQH6BS9_2021-03-12
+2021-05-30 21:38:32 45      IONS_BBG000JH6683_2021-03-12
+2021-05-30 21:38:32 46      IOSP_BBG000BMFNP4_2021-03-12
+2021-05-30 21:38:32 47      IOVA_BBG000FTLBV7_2021-03-12
+2021-05-30 21:38:32 48      IOVA: SPYKE!. Candle: ID:129, Time: 14:25, Close: 34.59
+2021-05-30 21:38:32 51      IP_BBG000BM5SR2_2021-03-12
+2021-05-30 21:38:32 53      IPAR_BBG000GCSWR5_2021-03-12
+2021-05-30 21:38:32 54      IPG_BBG000C90DH9_2021-03-12
+2021-05-30 21:38:32 55      IPG: BuyPending. Strategy: GoodGrowStrategy. Price: 29.45. StopLoss: 29. Candle: ID:62, Time: 14:30, Close: 29.45. Details: Reason: DayMax: 28.85. Current change: +2.08%
+2021-05-30 21:38:32 55      IPG: OrderID: 40b15107. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:32 55      IPG: OrderID: 40b15107 fully executed
+2021-05-30 21:38:32 55      IPG: Pulling stop loss to current price. Price: 29.21. MaxPrice: 29.47. Candle: ID:115, Time: 14:35, Close: 29.49.
+2021-05-30 21:38:32 55      IPG: Pulling stop loss to current price. Price: 29.29. MaxPrice: 29.54. Candle: ID:162, Time: 14:40, Close: 29.59.
+2021-05-30 21:38:32 55      IPG: Pulling stop loss to current price. Price: 29.44. MaxPrice: 29.58. Candle: ID:284, Time: 14:55, Close: 29.56.
+2021-05-30 21:38:32 55      IPG: Pulling stop loss to current price. Price: 29.56. MaxPrice: 29.59. Candle: ID:415, Time: 15:10, Close: 29.61.
+2021-05-30 21:38:32 55      IPG: Pulling stop loss to current price. Price: 29.6. MaxPrice: 29.69. Candle: ID:530, Time: 15:20, Close: 29.7.
+2021-05-30 21:38:32 55      IPG: Pulling stop loss to current price. Price: 29.67. MaxPrice: 29.7. Candle: ID:550, Time: 15:25, Close: 29.71.
+2021-05-30 21:38:32 55      IPG: Pulling stop loss to current price. Price: 29.69. MaxPrice: 29.74. Candle: ID:592, Time: 15:30, Close: 29.74.
+2021-05-30 21:38:32 55      IPG: SL reached. Pending. Close price: 29.68. Candle: ID:639, Time: 15:35, Close: 29.68. Profit: 0.23(0.78%)
+2021-05-30 21:38:32 55      IPG: OrderID: c0ae81f3. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:32 55      IPG: OrderID: c0ae81f3 fully executed
+2021-05-30 21:38:32 56      IPGP_BBG000DCGRL8_2021-03-12
+2021-05-30 21:38:32 57      IQV_BBG00333FYS2_2021-03-12
+2021-05-30 21:38:32 58      IR_BBG002R1CW27_2021-03-12
+2021-05-30 21:38:32 59      IRBT_BBG000HXJB21_2021-03-12
+2021-05-30 21:38:32 60      IRDM_BBG000VC0FC1_2021-03-12
+2021-05-30 21:38:32 62      IRM_BBG000KCZPC3_2021-03-12
+2021-05-30 21:38:32 63      IRTC_BBG001J19V24_2021-03-12
+2021-05-30 21:38:32 64      ISRG_BBG000BJPDZ1_2021-03-12
+2021-05-30 21:38:32 65      IT_BBG000BB65D0_2021-03-12
+2021-05-30 21:38:32 66      ITCI_BBG0026ZFZC4_2021-03-12
+2021-05-30 21:38:32 67      ITGR_BBG000BW6JV4_2021-03-12
+2021-05-30 21:38:32 67      ITRI_BBG000BD2167_2021-03-12
+2021-05-30 21:38:32 69      ITT_BBG00CVQZQ96_2021-03-12
+2021-05-30 21:38:32 70      ITW_BBG000BMBL90_2021-03-12
+2021-05-30 21:38:32 72      IVZ_BBG000BY2Y78_2021-03-12
+2021-05-30 21:38:32 73      J_BBG000BMFFQ0_2021-03-12
+2021-05-30 21:38:32 74      JACK_BBG000GZYVY1_2021-03-12
+2021-05-30 21:38:32 74      JACK: BuyPending. Strategy: GoodGrowStrategy. Price: 106.55. StopLoss: 105.23. Candle: ID:195, Time: 14:50, Close: 106.55. Details: Reason: DayMax: 104.45. Current change: +2.01%
+2021-05-30 21:38:32 74      JACK: OrderID: 046cb4e7. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:32 74      JACK: OrderID: 046cb4e7 fully executed
+2021-05-30 21:38:32 74      JACK: Pulling stop loss to current price. Price: 105.38. MaxPrice: 106.55. Candle: ID:208, Time: 14:55, Close: 106.45.
+2021-05-30 21:38:32 74      JACK: SL reached. Pending. Close price: 105.34. Candle: ID:226, Time: 15:00, Close: 105.34. Profit: -1.21(-1.14%)
+2021-05-30 21:38:32 74      JACK: OrderID: dee7a176. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:32 74      JACK: OrderID: dee7a176 fully executed
+2021-05-30 21:38:32 75      JBHT_BBG000BMDBZ1_2021-03-12
+2021-05-30 21:38:32 77      JBSS_BBG000CHPMY5_2021-03-12
+2021-05-30 21:38:32 77      JBT_BBG000VLBCQ1_2021-03-12
+2021-05-30 21:38:32 78      JCI_BBG000BVWLJ6_2021-03-12
+2021-05-30 21:38:32 82      JCOM_BBG000F3CWW7_2021-03-12
+2021-05-30 21:38:32 83      JD_BBG005YHY0Q7_2021-03-12
+2021-05-30 21:38:33 09      JEF_BBG000BNHSP9_2021-03-12
+2021-05-30 21:38:33 09      JEF: BuyPending. Strategy: GoodGrowStrategy. Price: 32.67. StopLoss: 32.2. Candle: ID:112, Time: 14:35, Close: 32.67. Details: Reason: DayMax: 32. Current change: +2.09%
+2021-05-30 21:38:33 09      JEF: OrderID: f3ad2eb7. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:33 09      JEF: OrderID: f3ad2eb7 fully executed
+2021-05-30 21:38:33 09      JEF: Pulling stop loss to current price. Price: 32.33. MaxPrice: 32.67. Candle: ID:121, Time: 14:40, Close: 32.73.
+2021-05-30 21:38:33 09      JEF: Seems price is decreases. Closing by current price. Price: 32.45. Candle: ID:296, Time: 15:20, Close: 32.45.
+2021-05-30 21:38:33 09      JEF: SL reached. Pending. Close price: 32.44. Candle: ID:297, Time: 15:20, Close: 32.44. Profit: -0.23(-0.70%)
+2021-05-30 21:38:33 09      JEF: OrderID: 5de32bba. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:33 09      JEF: OrderID: 5de32bba fully executed
+2021-05-30 21:38:33 10      JELD_BBG0019GM953_2021-03-12
+2021-05-30 21:38:33 11      JJSF_BBG000BMGPW0_2021-03-12
+2021-05-30 21:38:33 12      JKHY_BBG000BMH2Q7_2021-03-12
+2021-05-30 21:38:33 13      JLL_BBG000C2L2L0_2021-03-12
+2021-05-30 21:38:33 14      JNJ_BBG000BMHYD1_2021-03-12
+2021-05-30 21:38:33 19      JNPR_BBG000BY33P5_2021-03-12
+2021-05-30 21:38:33 20      JOBS_BBG000BJD1D4_2021-03-12
+2021-05-30 21:38:33 21      JOUT_BBG000HCXFS4_2021-03-12
+2021-05-30 21:38:33 22      JPM_BBG000DMBXR2_2021-03-12
+2021-05-30 21:38:33 29      JWN_BBG000G8N9C6_2021-03-12
+2021-05-30 21:38:33 30      JWN: BuyPending. Strategy: GoodGrowStrategy. Price: 38.76. StopLoss: 37.6. Candle: ID:280, Time: 14:30, Close: 38.76. Details: Reason: DayMax: 37.97. Current change: +2.08%
+2021-05-30 21:38:33 30      JWN: OrderID: d629a97b. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:33 30      JWN: OrderID: d629a97b fully executed
+2021-05-30 21:38:33 30      JWN: Pulling stop loss to current price. Price: 37.63. MaxPrice: 38.77. Candle: ID:321, Time: 14:35, Close: 38.83.
+2021-05-30 21:38:33 30      JWN: Pulling stop loss to current price. Price: 37.98. MaxPrice: 38.82. Candle: ID:469, Time: 14:40, Close: 38.88.
+2021-05-30 21:38:33 30      JWN: Pulling stop loss to current price. Price: 39.1. MaxPrice: 39.45. Candle: ID:786, Time: 14:55, Close: 39.5.
+2021-05-30 21:38:33 30      JWN: Pulling stop loss to current price. Price: 39.13. MaxPrice: 39.57. Candle: ID:926, Time: 15:00, Close: 39.6.
+2021-05-30 21:38:33 30      JWN: Pulling stop loss to current price. Price: 39.47. MaxPrice: 39.79. Candle: ID:994, Time: 15:05, Close: 39.86.
+2021-05-30 21:38:33 30      JWN: Seems price is decreases. Closing by current price. Price: 39.69. Candle: ID:1144, Time: 15:15, Close: 39.69.
+2021-05-30 21:38:33 30      JWN: SL reached. Pending. Close price: 39.68. Candle: ID:1145, Time: 15:15, Close: 39.68. Profit: 0.92(2.37%)
+2021-05-30 21:38:33 30      JWN: OrderID: 72e73bc8. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:33 30      JWN: OrderID: 72e73bc8 fully executed
+2021-05-30 21:38:33 32      K_BBG000BMKDM3_2021-03-12
+2021-05-30 21:38:33 34      KALU_BBG000PKZDX4_2021-03-12
+2021-05-30 21:38:33 34      KBH_BBG000BMLWX8_2021-03-12
+2021-05-30 21:38:33 36      KDP_BBG000TJM7F0_2021-03-12
+2021-05-30 21:38:33 40      KEP_BBG000BCWG90_2021-03-12
+2021-05-30 21:38:33 41      KEX_BBG000BMQCP6_2021-03-12
+2021-05-30 21:38:33 41      KEY_BBG000BMQPL1_2021-03-12
+2021-05-30 21:38:33 44      KEYS_BBG0059FN811_2021-03-12
+2021-05-30 21:38:33 46      KFY_BBG000C5QMB5_2021-03-12
+2021-05-30 21:38:33 46      KHC_BBG005CPNTQ2_2021-03-12
+2021-05-30 21:38:33 50      KIDS_BBG00HFFRW39_2021-03-12
+2021-05-30 21:38:33 51      KIM_BBG000CN3S73_2021-03-12
+2021-05-30 21:38:33 52      KIM: BuyPending. Strategy: GoodGrowStrategy. Price: 19.67. StopLoss: 19.45. Candle: ID:239, Time: 14:40, Close: 19.67. Details: Reason: Grow:0.41%;0.57%;0.41%;0.31%;
+2021-05-30 21:38:33 52      KIM: OrderID: 96a81dba. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:33 52      KIM: OrderID: 96a81dba fully executed
+2021-05-30 21:38:33 52      KIM: SL reached. Pending. Close price: 19.4. Candle: ID:300, Time: 14:50, Close: 19.4. Profit: -0.27(-1.37%)
+2021-05-30 21:38:33 52      KIM: OrderID: 66b56d12. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:33 52      KIM: OrderID: 66b56d12 fully executed
+2021-05-30 21:38:33 53      KLAC_BBG000BMTFR4_2021-03-12
+2021-05-30 21:38:33 56      KMB_BBG000BMW2Z0_2021-03-12
+2021-05-30 21:38:33 58      KMI_BBG0019JZ882_2021-03-12
+2021-05-30 21:38:33 60      KMPR_BBG000H3GDJ8_2021-03-12
+2021-05-30 21:38:33 61      KMT_BBG000BMWKC5_2021-03-12
+2021-05-30 21:38:33 62      KMX_BBG000BLMZK6_2021-03-12
+2021-05-30 21:38:33 63      KNSL_BBG00D8JD9Z9_2021-03-12
+2021-05-30 21:38:33 64      KNX_BBG000BFC848_2021-03-12
+2021-05-30 21:38:33 66      KO_BBG000BMX289_2021-03-12
+2021-05-30 21:38:33 72      KOD_BBG00BVR0D02_2021-03-12
+2021-05-30 21:38:33 73      KR_BBG000BMY992_2021-03-12
+2021-05-30 21:38:33 76      KRG_BBG000BC2KW8_2021-03-12
+2021-05-30 21:38:33 77      KRTX_BBG00NN875G0_2021-03-12
+2021-05-30 21:38:33 77      KRTX: SPYKE!. Candle: ID:28, Time: 14:30, Close: 116.27
+2021-05-30 21:38:33 77      KRYS_BBG00HDGRHH7_2021-03-12
+2021-05-30 21:38:33 78      KSU_BBG000BMZ7P7_2021-03-12
+2021-05-30 21:38:33 78      KTB_BBG00LPTHYD5_2021-03-12
+2021-05-30 21:38:33 79      KWR_BBG000DZS2L9_2021-03-12
+2021-05-30 21:38:33 80      L_BBG000C45984_2021-03-12
+2021-05-30 21:38:33 81      LAD_BBG000K3BC83_2021-03-12
+2021-05-30 21:38:33 82      LANC_BBG000BN1M88_2021-03-12
+2021-05-30 21:38:33 82      LASR_BBG0020BCPX5_2021-03-12
+2021-05-30 21:38:33 83      LB_BBG000BNGTQ7_2021-03-12
+2021-05-30 21:38:33 86      LBRDK_BBG006GNSZW5_2021-03-12
+2021-05-30 21:38:33 89      LCII_BBG000DNLMB0_2021-03-12
+2021-05-30 21:38:33 90      LDOS_BBG000C23PB0_2021-03-12
+2021-05-30 21:38:33 91      LEA_BBG000PTLGZ1_2021-03-12
+2021-05-30 21:38:33 92      LECO_BBG000BB72K8_2021-03-12
+2021-05-30 21:38:33 93      LEG_BBG000BN53G7_2021-03-12
+2021-05-30 21:38:33 94      LEG: BuyPending. Strategy: GoodGrowStrategy. Price: 49.02. StopLoss: 48.74. Candle: ID:71, Time: 14:45, Close: 49.02. Details: Reason: DayMax: 47.9. Current change: +2.34%
+2021-05-30 21:38:33 94      LEG: OrderID: 27f8e1d0. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:33 94      LEG: OrderID: 27f8e1d0 fully executed
+2021-05-30 21:38:33 94      LEG: SL reached. Pending. Close price: 48.73. Candle: ID:74, Time: 14:45, Close: 48.73. Profit: -0.29(-0.59%)
+2021-05-30 21:38:33 94      LEG: OrderID: ba52475e. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:33 94      LEG: OrderID: ba52475e fully executed
+2021-05-30 21:38:33 94      LEGH_BBG00MJDR6J9_2021-03-12
+2021-05-30 21:38:33 95      LEN_BBG000BN5HF7_2021-03-12
+2021-05-30 21:38:33 98      LEVI_BBG000BQDF10_2021-03-12
+2021-05-30 21:38:33 98      LEVI: BuyPending. Strategy: GoodGrowStrategy. Price: 24.92. StopLoss: 24.2. Candle: ID:111, Time: 14:35, Close: 24.92. Details: Reason: DayMax: 24.43. Current change: +2.01%
+2021-05-30 21:38:33 98      LEVI: OrderID: 01f19432. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:33 98      LEVI: OrderID: 01f19432 fully executed
+2021-05-30 21:38:33 98      LEVI: Pulling stop loss to current price. Price: 24.65. MaxPrice: 24.96. Candle: ID:118, Time: 14:40, Close: 24.97.
+2021-05-30 21:38:33 98      LEVI: Pulling stop loss to current price. Price: 24.92. MaxPrice: 25.03. Candle: ID:390, Time: 16:00, Close: 25.02.
+2021-05-30 21:38:33 98      LEVI: Pulling stop loss to current price. Price: 24.98. MaxPrice: 25.03. Candle: ID:404, Time: 16:10, Close: 25.04.
+2021-05-30 21:38:33 98      LEVI: SL reached. Pending. Close price: 24.95. Candle: ID:425, Time: 16:15, Close: 24.95. Profit: 0.03(0.12%)
+2021-05-30 21:38:33 98      LEVI: OrderID: 1316cb39. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:33 98      LEVI: OrderID: 1316cb39 fully executed
+2021-05-30 21:38:34 00      LFC_BBG000BBK4B9_2021-03-12
+2021-05-30 21:38:34 01      LFUS_BBG000BGFGT8_2021-03-12
+2021-05-30 21:38:34 01      LGIH_BBG0056655S1_2021-03-12
+2021-05-30 21:38:34 03      LGND_BBG000BKF014_2021-03-12
+2021-05-30 21:38:34 04      LH_BBG000D9DMK0_2021-03-12
+2021-05-30 21:38:34 05      LHCG_BBG000G7W420_2021-03-12
+2021-05-30 21:38:34 07      LHX_BBG000BLGFJ9_2021-03-12
+2021-05-30 21:38:34 08      LII_BBG000BB5B84_2021-03-12
+2021-05-30 21:38:34 08      LIN_BBG00GVR8YQ9_2021-03-12
+2021-05-30 21:38:34 10      LITE_BBG0073F9RT7_2021-03-12
+2021-05-30 21:38:34 13      LKQ_BBG000PXDL44_2021-03-12
+2021-05-30 21:38:34 13      LKQ: SPYKE!. Candle: ID:29, Time: 14:30, Close: 42.76
+2021-05-30 21:38:34 13      LKQ: BuyPending. Strategy: GoodGrowStrategy. Price: 42.89. StopLoss: 42.89. Candle: ID:161, Time: 14:45, Close: 42.89. Details: Reason: DayMax: 42. Current change: +2.12%
+2021-05-30 21:38:34 13      LKQ: OrderID: a7fa15b9. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:34 13      LKQ: OrderID: a7fa15b9 fully executed
+2021-05-30 21:38:34 13      LKQ: SL reached. Pending. Close price: 42.86. Candle: ID:162, Time: 14:45, Close: 42.86. Profit: -0.03(-0.07%)
+2021-05-30 21:38:34 13      LKQ: OrderID: 5244fb3f. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:34 13      LKQ: OrderID: 5244fb3f fully executed
+2021-05-30 21:38:34 15      LLY_BBG000BNBDC2_2021-03-12
+2021-05-30 21:38:34 18      LMT_BBG000C1BW00_2021-03-12
+2021-05-30 21:38:34 19      LNN_BBG000FJS1S8_2021-03-12
+2021-05-30 21:38:34 20      LNT_BBG000DW4Q75_2021-03-12
+2021-05-30 21:38:34 22      LNTH_BBG006Q52RD0_2021-03-12
+2021-05-30 21:38:34 23      LOPE_BBG000FV28W9_2021-03-12
+2021-05-30 21:38:34 24      LOW_BBG000BNDN65_2021-03-12
+2021-05-30 21:38:34 26      LPL_BBG000FJ0RK9_2021-03-12
+2021-05-30 21:38:34 26      LPLA_BBG000P2TYL8_2021-03-12
+2021-05-30 21:38:34 27      LPSN_BBG000BSV0W5_2021-03-12
+2021-05-30 21:38:34 29      LRCX_BBG000BNFLM9_2021-03-12
+2021-05-30 21:38:34 31      LRN_BBG000QSXPZ9_2021-03-12
+2021-05-30 21:38:34 33      LRN: BuyPending. Strategy: GoodGrowStrategy. Price: 26.6. StopLoss: 25.92. Candle: ID:1421, Time: 14:15, Close: 26.6. Details: Reason: DayMax: 26.05. Current change: +2.11%
+2021-05-30 21:38:34 33      LRN: OrderID: be08cceb. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:34 33      LRN: OrderID: be08cceb fully executed
+2021-05-30 21:38:34 33      LRN: SL reached. Pending. Close price: 25.72. Candle: ID:1424, Time: 14:15, Close: 25.72. Profit: -0.88(-3.31%)
+2021-05-30 21:38:34 33      LRN: OrderID: fda5ba4a. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:34 33      LRN: OrderID: fda5ba4a fully executed
+2021-05-30 21:38:34 33      LRN: BuyPending. Strategy: GoodGrowStrategy. Price: 26.81. StopLoss: 25.96. Candle: ID:1485, Time: 14:30, Close: 26.81. Details: Reason: DayMax: 26.05. Current change: +2.92%
+2021-05-30 21:38:34 33      LRN: OrderID: 5b81c1ec. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:34 33      LRN: OrderID: 5b81c1ec fully executed
+2021-05-30 21:38:34 33      LRN: Pulling stop loss to current price. Price: 26.3. MaxPrice: 27. Candle: ID:1597, Time: 14:35, Close: 27.13.
+2021-05-30 21:38:34 33      LRN: Pulling stop loss to current price. Price: 26.67. MaxPrice: 27.2. Candle: ID:1724, Time: 14:40, Close: 27.2.
+2021-05-30 21:38:34 33      LRN: Pulling stop loss to current price. Price: 27. MaxPrice: 27.51. Candle: ID:1837, Time: 14:45, Close: 27.52.
+2021-05-30 21:38:34 33      LRN: Pulling stop loss to current price. Price: 27.15. MaxPrice: 27.8. Candle: ID:2056, Time: 14:50, Close: 27.9.
+2021-05-30 21:38:34 33      LRN: Pulling stop loss to current price. Price: 27.67. MaxPrice: 27.87. Candle: ID:2206, Time: 15:00, Close: 27.89.
+2021-05-30 21:38:34 33      LRN: SL reached. Pending. Close price: 27.63. Candle: ID:2262, Time: 15:00, Close: 27.63. Profit: 0.82(3.06%)
+2021-05-30 21:38:34 33      LRN: OrderID: a90f8da5. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:34 33      LRN: OrderID: a90f8da5 fully executed
+2021-05-30 21:38:34 35      LSCC_BBG000C2D1C1_2021-03-12
+2021-05-30 21:38:34 38      LSTR_BBG000BB2KN0_2021-03-12
+2021-05-30 21:38:34 38      LTHM_BBG00LV3NRG0_2021-03-12
+2021-05-30 21:38:34 41      LULU_BBG000R8ZVD1_2021-03-12
+2021-05-30 21:38:34 43      LUMN_BBG000BGLRN3_2021-03-12
+2021-05-30 21:38:34 44      LUV_BBG000BNJHS8_2021-03-12
+2021-05-30 21:38:34 49      LVS_BBG000JWD753_2021-03-12
+2021-05-30 21:38:34 52      LW_BBG003CVMLQ2_2021-03-12
+2021-05-30 21:38:34 53      LYB_BBG000WCFV84_2021-03-12
+2021-05-30 21:38:34 54      LYFT_BBG004M9ZHX5_2021-03-12
+2021-05-30 21:38:34 57      LYFT: BuyPending. Strategy: GoodGrowStrategy. Price: 64.79. StopLoss: 64.09. Candle: ID:4211, Time: 17:55, Close: 64.79. Details: Reason: Grow:0.38%;0.30%;0.44%;0.37%;
+2021-05-30 21:38:34 57      LYFT: OrderID: fc8635cc. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:34 57      LYFT: OrderID: fc8635cc fully executed
+2021-05-30 21:38:34 57      LYFT: Pulling stop loss to current price. Price: 64.26. MaxPrice: 64.87. Candle: ID:4371, Time: 18:00, Close: 64.88.
+2021-05-30 21:38:34 57      LYFT: Pulling stop loss to current price. Price: 64.64. MaxPrice: 64.98. Candle: ID:4696, Time: 18:10, Close: 65.
+2021-05-30 21:38:34 57      LYFT: Pulling stop loss to current price. Price: 64.88. MaxPrice: 65.13. Candle: ID:4975, Time: 18:25, Close: 65.15.
+2021-05-30 21:38:34 57      LYFT: Pulling stop loss to current price. Price: 64.9. MaxPrice: 65.31. Candle: ID:5142, Time: 18:30, Close: 65.32.
+2021-05-30 21:38:34 57      LYFT: Pulling stop loss to current price. Price: 65.27. MaxPrice: 65.59. Candle: ID:5720, Time: 18:45, Close: 65.62.
+2021-05-30 21:38:34 58      LYFT: Pulling stop loss to current price. Price: 65.28. MaxPrice: 65.59. Candle: ID:6071, Time: 19:00, Close: 65.55.
+2021-05-30 21:38:34 58      LYFT: Pulling stop loss to current price. Price: 65.3. MaxPrice: 65.62. Candle: ID:6225, Time: 19:05, Close: 65.64.
+2021-05-30 21:38:34 58      LYFT: Pulling stop loss to current price. Price: 65.44. MaxPrice: 65.7. Candle: ID:6388, Time: 19:10, Close: 65.7.
+2021-05-30 21:38:34 58      LYFT: Pulling stop loss to current price. Price: 65.63. MaxPrice: 65.71. Candle: ID:6533, Time: 19:15, Close: 65.72.
+2021-05-30 21:38:34 58      LYFT: SL reached. Pending. Close price: 65.61. Candle: ID:6563, Time: 19:15, Close: 65.61. Profit: 0.82(1.27%)
+2021-05-30 21:38:34 58      LYFT: OrderID: 347bd0a8. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:34 58      LYFT: OrderID: 347bd0a8 fully executed
+2021-05-30 21:38:34 59      LYFT: BuyPending. Strategy: GoodGrowStrategy. Price: 66.87. StopLoss: 66.07. Candle: ID:8976, Time: 20:40, Close: 66.87. Details: Reason: Grow:0.55%;0.48%;0.42%;0.30%;
+2021-05-30 21:38:34 59      LYFT: OrderID: 8ad712bc. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:34 59      LYFT: OrderID: 8ad712bc fully executed
+2021-05-30 21:38:34 59      LYFT: Seems price is decreases. Closing by current price. Price: 66.49. Candle: ID:9450, Time: 20:50, Close: 66.49.
+2021-05-30 21:38:34 59      LYFT: SL reached. Pending. Close price: 66.48. Candle: ID:9454, Time: 20:50, Close: 66.48. Profit: -0.39(-0.58%)
+2021-05-30 21:38:34 59      LYFT: OrderID: 5395d4a4. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:34 59      LYFT: OrderID: 5395d4a4 fully executed
+2021-05-30 21:38:34 60      LYV_BBG000FQ7YR4_2021-03-12
+2021-05-30 21:38:34 62      M_BBG000C46HM9_2021-03-12
+2021-05-30 21:38:34 64      M: BuyPending. Strategy: GoodGrowStrategy. Price: 17.46. StopLoss: 17.03. Candle: ID:1164, Time: 14:30, Close: 17.46. Details: Reason: DayMax: 17.1. Current change: +2.11%
+2021-05-30 21:38:34 64      M: OrderID: 332044c4. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:34 64      M: OrderID: 332044c4 fully executed
+2021-05-30 21:38:34 64      M: Pulling stop loss to current price. Price: 17.04. MaxPrice: 17.53. Candle: ID:1359, Time: 14:35, Close: 17.54.
+2021-05-30 21:38:34 64      M: Pulling stop loss to current price. Price: 17.06. MaxPrice: 17.63. Candle: ID:1599, Time: 14:40, Close: 17.65.
+2021-05-30 21:38:34 64      M: Seems price is decreases. Closing by current price. Price: 17.42. Candle: ID:2045, Time: 14:50, Close: 17.42.
+2021-05-30 21:38:34 64      M: SL reached. Pending. Close price: 17.41. Candle: ID:2046, Time: 14:50, Close: 17.41. Profit: -0.05(-0.29%)
+2021-05-30 21:38:34 64      M: OrderID: 6928800e. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:34 64      M: OrderID: 6928800e fully executed
+2021-05-30 21:38:34 66      MA_BBG000F1ZSQ2_2021-03-12
+2021-05-30 21:38:34 70      MAA_BBG000BLMY92_2021-03-12
+2021-05-30 21:38:34 71      MAC_BBG000BL9C59_2021-03-12
+2021-05-30 21:38:34 75      MAN_BBG000BNMHS4_2021-03-12
+2021-05-30 21:38:34 75      MANH_BBG000BFV758_2021-03-12
+2021-05-30 21:38:34 76      MANT_BBG000BGF8B5_2021-03-12
+2021-05-30 21:38:34 76      MANU_BBG0035WV4N9_2021-03-12
+2021-05-30 21:38:34 78      MAR_BBG000BGD7W6_2021-03-12
+2021-05-30 21:38:34 80      MAS_BBG000BNNKG9_2021-03-12
+2021-05-30 21:38:34 81      MASI_BBG000C3W281_2021-03-12
+2021-05-30 21:38:34 82      MAT_BBG000BNNYW1_2021-03-12
+2021-05-30 21:38:34 84      MATX_BBG000BBK401_2021-03-12
+2021-05-30 21:38:34 84      MBT_BBG000CSZKR2_2021-03-12
+2021-05-30 21:38:34 86      MBUU_BBG005PXTR70_2021-03-12
+2021-05-30 21:38:34 86      MCD_BBG000BNSZP1_2021-03-12
+2021-05-30 21:38:34 88      MCHP_BBG000BHCP19_2021-03-12
+2021-05-30 21:38:34 94      MCK_BBG000DYGNW7_2021-03-12
+2021-05-30 21:38:34 95      MCO_BBG000F86GP6_2021-03-12
+2021-05-30 21:38:34 97      MCRI_BBG000BJ0932_2021-03-12
+2021-05-30 21:38:34 97      MD_BBG000H8LGK2_2021-03-12
+2021-05-30 21:38:34 99      MDB_BBG0022FDRY8_2021-03-12
+2021-05-30 21:38:35 02      MDGL_BBG000QS6NV8_2021-03-12
+2021-05-30 21:38:35 03      MDLA_BBG001BPKGT0_2021-03-12
+2021-05-30 21:38:35 04      MDLZ_BBG000D4LWF6_2021-03-12
+2021-05-30 21:38:35 08      MDRX_BBG000BLDXH5_2021-03-12
+2021-05-30 21:38:35 10      MDT_BBG000BNWG87_2021-03-12
+2021-05-30 21:38:35 15      MED_BBG000BWBW76_2021-03-12
+2021-05-30 21:38:35 15      MEDP_BBG0065B7K59_2021-03-12
+2021-05-30 21:38:35 16      MEI_BBG000BNY197_2021-03-12
+2021-05-30 21:38:35 17      MELI_BBG000GQPB11_2021-03-12
+2021-05-30 21:38:35 19      MET_BBG000BB6KF5_2021-03-12
+2021-05-30 21:38:35 22      MFGP_BBG00HFWVGN0_2021-03-12
+2021-05-30 21:38:35 24      MGLN_BBG000BD6DD9_2021-03-12
+2021-05-30 21:38:35 25      MGM_BBG000C2BXK4_2021-03-12
+2021-05-30 21:38:35 26      MGM: BuyPending. Strategy: GoodGrowStrategy. Price: 39.52. StopLoss: 38.93. Candle: ID:1213, Time: 15:05, Close: 39.52. Details: Reason: Grow:0.46%;0.85%;0.31%;0.30%;
+2021-05-30 21:38:35 26      MGM: OrderID: 367a979f. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:35 27      MGM: OrderID: 367a979f fully executed
+2021-05-30 21:38:35 27      MGM: Pulling stop loss to current price. Price: 39.27. MaxPrice: 39.52. Candle: ID:1286, Time: 15:10, Close: 39.52.
+2021-05-30 21:38:35 27      MGM: SL reached. Pending. Close price: 39.24. Candle: ID:1502, Time: 15:15, Close: 39.24. Profit: -0.28(-0.71%)
+2021-05-30 21:38:35 27      MGM: OrderID: 0b27a965. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:35 27      MGM: OrderID: 0b27a965 fully executed
+2021-05-30 21:38:35 30      MGY_BBG00GNC8DL2_2021-03-12
+2021-05-30 21:38:35 31      MHK_BBG000FLZN98_2021-03-12
+2021-05-30 21:38:35 32      MHO_BBG000BL9MZ4_2021-03-12
+2021-05-30 21:38:35 32      MIDD_BBG000DQN9R3_2021-03-12
+2021-05-30 21:38:35 33      MKC_BBG000G6Y5W4_2021-03-12
+2021-05-30 21:38:35 35      MKL_BBG000FC7366_2021-03-12
+2021-05-30 21:38:35 35      MKSI_BBG000BVMG26_2021-03-12
+2021-05-30 21:38:35 36      MKTX_BBG000BJBZ23_2021-03-12
+2021-05-30 21:38:35 37      MLAB_BBG000BP3PW7_2021-03-12
+2021-05-30 21:38:35 37      MLCO_BBG000BHP8J4_2021-03-12
+2021-05-30 21:38:35 39      MLHR_BBG000BP46T2_2021-03-12
+2021-05-30 21:38:35 39      MLM_BBG000BGYMH7_2021-03-12
+2021-05-30 21:38:35 40      MMC_BBG000BP4MH0_2021-03-12
+2021-05-30 21:38:35 41      MMI_BBG005GBRSR6_2021-03-12
+2021-05-30 21:38:35 42      MMM_BBG000BP52R2_2021-03-12
+2021-05-30 21:38:35 44      MMS_BBG000BC5WJ4_2021-03-12
+2021-05-30 21:38:35 45      MMSI_BBG000C42VX0_2021-03-12
+2021-05-30 21:38:35 45      MNRO_BBG000C0BZD1_2021-03-12
+2021-05-30 21:38:35 46      MNST_BBG008NVB1C0_2021-03-12
+2021-05-30 21:38:35 48      MO_BBG000BP6LJ8_2021-03-12
+2021-05-30 21:38:35 52      MOH_BBG000MBHNC8_2021-03-12
+2021-05-30 21:38:35 53      MOMO_BBG007HTCQT0_2021-03-12
+2021-05-30 21:38:35 61      MORN_BBG000CGQ4F7_2021-03-12
+2021-05-30 21:38:35 61      MOS_BBG000BFXHL6_2021-03-12
+2021-05-30 21:38:35 63      MOS: BuyPending. Strategy: GoodGrowStrategy. Price: 33.99. StopLoss: 33.21. Candle: ID:4468, Time: 21:10, Close: 33.99. Details: Reason: DayMax: 33.29. Current change: +2.10%
+2021-05-30 21:38:35 63      MOS: OrderID: a2fe4b79. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:35 63      OrderID: a2fe4b79 successfully canceled
+2021-05-30 21:38:35 64      MOV_BBG000BL30Y9_2021-03-12
+2021-05-30 21:38:35 64      MPC_BBG001DCCGR8_2021-03-12
+2021-05-30 21:38:35 68      MPWR_BBG000C30L48_2021-03-12
+2021-05-30 21:38:35 70      MRC_BBG000BKLTM1_2021-03-12
+2021-05-30 21:38:35 70      MRK_BBG000BPD168_2021-03-12
+2021-05-30 21:38:35 76      MRNA_BBG003PHHZT1_2021-03-12
+2021-05-30 21:38:35 85      MRO_BBG000C8H633_2021-03-12
+2021-05-30 21:38:35 89      MRTX_BBG004TPGBP5_2021-03-12
+2021-05-30 21:38:35 90      MS_BBG000BLZRJ2_2021-03-12
+2021-05-30 21:38:35 95      MSA_BBG000BPDXF8_2021-03-12
+2021-05-30 21:38:35 95      MSCI_BBG000RTDY25_2021-03-12
+2021-05-30 21:38:35 96      MSFT_BBG000BPH459_2021-03-12
+2021-05-30 21:38:36 19      MSGE_BBG00L9HLWV8_2021-03-12
+2021-05-30 21:38:36 20      MSGE: BuyPending. Strategy: GoodGrowStrategy. Price: 106.23. StopLoss: 102.32. Candle: ID:1063, Time: 20:35, Close: 106.23. Details: Reason: DayMax: 103.95. Current change: +2.19%
+2021-05-30 21:38:36 20      MSGE: OrderID: f9b037f7. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:36 20      MSGE: OrderID: f9b037f7 fully executed
+2021-05-30 21:38:36 20      MSGE: Pulling stop loss to current price. Price: 103.6. MaxPrice: 107.1. Candle: ID:1215, Time: 20:45, Close: 107.03.
+2021-05-30 21:38:36 20      MSGE: Pulling stop loss to current price. Price: 106.14. MaxPrice: 107.1. Candle: ID:1406, Time: 20:55, Close: 107.
+2021-05-30 21:38:36 20      MSGE: SL reached. Pending. Close price: 106.02. Candle: ID:1424, Time: 20:55, Close: 106.02. Profit: -0.21(-0.20%)
+2021-05-30 21:38:36 20      MSGE: OrderID: 19028a4b. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:36 20      MSGE: OrderID: 19028a4b fully executed
+2021-05-30 21:38:36 21      MSGN_BBG000NS03H7_2021-03-12
+2021-05-30 21:38:36 21      MSGN: BuyPending. Strategy: GoodGrowStrategy. Price: 20.24. StopLoss: 19.97. Candle: ID:150, Time: 15:25, Close: 20.24. Details: Reason: DayMax: 19.84. Current change: +2.02%
+2021-05-30 21:38:36 21      MSGN: OrderID: ae4d73a8. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:36 21      MSGN: OrderID: ae4d73a8 fully executed
+2021-05-30 21:38:36 21      MSGN: Pulling stop loss to current price. Price: 20.1. MaxPrice: 20.26. Candle: ID:166, Time: 15:35, Close: 20.27.
+2021-05-30 21:38:36 21      MSGN: Seems price is decreases. Closing by current price. Price: 20.2. Candle: ID:192, Time: 15:50, Close: 20.2.
+2021-05-30 21:38:36 21      MSGN: SL reached. Pending. Close price: 20.13. Candle: ID:196, Time: 16:00, Close: 20.13. Profit: -0.11(-0.54%)
+2021-05-30 21:38:36 21      MSGN: OrderID: 6f774cf1. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:36 21      MSGN: OrderID: 6f774cf1 fully executed
+2021-05-30 21:38:36 22      MSGS_BBG007FG0C23_2021-03-12
+2021-05-30 21:38:36 22      MSI_BBG000BP8Z50_2021-03-12
+2021-05-30 21:38:36 23      MSM_BBG000BCLYL9_2021-03-12
+2021-05-30 21:38:36 24      MSTR_BBG000GQJPZ0_2021-03-12
+2021-05-30 21:38:36 26      MTB_BBG000D9KWL9_2021-03-12
+2021-05-30 21:38:36 29      MTCH_BBG00B6WH9G3_2021-03-12
+2021-05-30 21:38:36 30      MTCH: BuyPending. Strategy: GoodGrowStrategy. Price: 154.55. StopLoss: 151.01. Candle: ID:64, Time: 14:30, Close: 154.55. Details: Reason: DayMax: 151.5. Current change: +2.01%
+2021-05-30 21:38:36 30      MTCH: OrderID: 8c16cc1e. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:36 30      MTCH: OrderID: 8c16cc1e fully executed
+2021-05-30 21:38:36 30      MTCH: Seems price is decreases. Closing by current price. Price: 151.91. Candle: ID:218, Time: 14:40, Close: 151.91.
+2021-05-30 21:38:36 30      MTCH: SL reached. Pending. Close price: 151.64. Candle: ID:220, Time: 14:40, Close: 151.64. Profit: -2.91(-1.88%)
+2021-05-30 21:38:36 30      MTCH: OrderID: f3726327. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:36 30      MTCH: OrderID: f3726327 fully executed
+2021-05-30 21:38:36 32      MTD_BBG000BZCKH3_2021-03-12
+2021-05-30 21:38:36 33      MTG_BBG000CBMH27_2021-03-12
+2021-05-30 21:38:36 34      MTH_BBG000F4F1N0_2021-03-12
+2021-05-30 21:38:36 35      MTN_BBG000BCMWM1_2021-03-12
+2021-05-30 21:38:36 37      MTOR_BBG000BH92D1_2021-03-12
+2021-05-30 21:38:36 38      MTRN_BBG000BDTT76_2021-03-12
+2021-05-30 21:38:36 39      MTSC_BBG000BPL8G3_2021-03-12
+2021-05-30 21:38:36 39      MU_BBG000C5Z1S3_2021-03-12
+2021-05-30 21:38:36 52      MUR_BBG000BPMH90_2021-03-12
+2021-05-30 21:38:36 52      MUR: BuyPending. Strategy: GoodGrowStrategy. Price: 20.3. StopLoss: 19.85. Candle: ID:197, Time: 14:30, Close: 20.3. Details: Reason: DayMax: 19.89. Current change: +2.06%
+2021-05-30 21:38:36 52      MUR: OrderID: 2a6ed3d5. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:36 52      MUR: OrderID: 2a6ed3d5 fully executed
+2021-05-30 21:38:36 52      MUR: Price does not grow. Try to set TakeProfit. Price: 20.29. Candle: ID:408, Time: 14:50, Close: 20.2.
+2021-05-30 21:38:36 52      MUR: Price does not grow. Try to set TakeProfit. Price: 20.25. Candle: ID:484, Time: 14:55, Close: 20.14.
+2021-05-30 21:38:36 52      MUR: Price does not grow. Try to set TakeProfit. Price: 20.19. Candle: ID:535, Time: 15:00, Close: 20.1.
+2021-05-30 21:38:36 52      MUR: TP reached. Pending. Close price: 20.19. Candle: ID:576, Time: 15:00, Close: 20.19. Profit: -0.11(-0.54%)
+2021-05-30 21:38:36 52      MUR: OrderID: 4895acba. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:36 52      MUR: OrderID: 4895acba fully executed
+2021-05-30 21:38:36 53      MUSA_BBG001Z0Q6T5_2021-03-12
+2021-05-30 21:38:36 54      MXIM_BBG000BPNP00_2021-03-12
+2021-05-30 21:38:36 58      MXL_BBG000BB6R33_2021-03-12
+2021-05-30 21:38:36 59      MYGN_BBG000D9H9F1_2021-03-12
+2021-05-30 21:38:36 60      MYRG_BBG000BC7VW9_2021-03-12
+2021-05-30 21:38:36 61      NARI_BBG009J8K7M0_2021-03-12
+2021-05-30 21:38:36 61      NARI: SPYKE!. Candle: ID:35, Time: 14:25, Close: 119
+2021-05-30 21:38:36 61      NARI: SPYKE!. Candle: ID:42, Time: 14:30, Close: 122.99
+2021-05-30 21:38:36 62      NATI_BBG000DZK6N6_2021-03-12
+2021-05-30 21:38:36 63      NAVI_BBG004MN1R41_2021-03-12
+2021-05-30 21:38:36 64      NBIX_BBG000GJS7C1_2021-03-12
+2021-05-30 21:38:36 66      NCBS_BBG000QK0TG5_2021-03-12
+2021-05-30 21:38:36 66      NCR_BBG000BMXK89_2021-03-12
+2021-05-30 21:38:36 68      NDAQ_BBG000F5VVB6_2021-03-12
+2021-05-30 21:38:36 69      NDSN_BBG000BPWGR1_2021-03-12
+2021-05-30 21:38:36 70      NEE_BBG000BJSBJ0_2021-03-12
+2021-05-30 21:38:36 74      NEM_BBG000BPWXK1_2021-03-12
+2021-05-30 21:38:36 77      NEO_BBG000BKH263_2021-03-12
+2021-05-30 21:38:36 79      NEOG_BBG000C1BCK2_2021-03-12
+2021-05-30 21:38:36 80      NET_BBG001WMKHH5_2021-03-12
+2021-05-30 21:38:36 83      NEU_BBG000BJ5SS8_2021-03-12
+2021-05-30 21:38:36 84      NEWR_BBG001NFKJ68_2021-03-12
+2021-05-30 21:38:36 85      NFLX_BBG000CL9VN6_2021-03-12
+2021-05-30 21:38:36 90      NGVT_BBG009LM28K6_2021-03-12
+2021-05-30 21:38:36 90      NJR_BBG000BPZVW9_2021-03-12
+2021-05-30 21:38:36 91      NKE_BBG000C5HS04_2021-03-12
+2021-05-30 21:38:36 95      NKTR_BBG000BHCYJ1_2021-03-12
+2021-05-30 21:38:36 97      NLOK_BBG000BH2JM1_2021-03-12
+2021-05-30 21:38:36 99      NLSN_BBG0088CYPX8_2021-03-12
+2021-05-30 21:38:37 01      NMIH_BBG005DLMMZ6_2021-03-12
+2021-05-30 21:38:37 02      NOC_BBG000BQ2C28_2021-03-12
+2021-05-30 21:38:37 05      NOK_BBG000BNGBW9_2021-03-12
+2021-05-30 21:38:37 13      NOV_BBG000BJX8C8_2021-03-12
+2021-05-30 21:38:37 15      NOW_BBG000M1R011_2021-03-12
+2021-05-30 21:38:37 18      NP_BBG000QCQ764_2021-03-12
+2021-05-30 21:38:37 19      NPK_BBG000BQ4GG2_2021-03-12
+2021-05-30 21:38:37 20      NRG_BBG000D8RG11_2021-03-12
+2021-05-30 21:38:37 22      NSC_BBG000BQ5DS5_2021-03-12
+2021-05-30 21:38:37 24      NSP_BBG000BJ41X2_2021-03-12
+2021-05-30 21:38:37 25      NTAP_BBG000FP1N32_2021-03-12
+2021-05-30 21:38:37 27      NTCO_BBG00R4ZKPN5_2021-03-12
+2021-05-30 21:38:37 27      NTCT_BBG000C136Z8_2021-03-12
+2021-05-30 21:38:37 28      NTES_BBG000BX72V8_2021-03-12
+2021-05-30 21:38:37 31      NTGR_BBG000C4GBR6_2021-03-12
+2021-05-30 21:38:37 31      NTLA_BBG007KC7PB0_2021-03-12
+2021-05-30 21:38:37 35      NTNX_BBG001NDW1Z7_2021-03-12
+2021-05-30 21:38:37 36      NTRA_BBG001J1BQ86_2021-03-12
+2021-05-30 21:38:37 37      NTRA: BuyPending. Strategy: GoodGrowStrategy. Price: 103.51. StopLoss: 101.25. Candle: ID:143, Time: 14:55, Close: 103.51. Details: Reason: DayMax: 101.42. Current change: +2.06%
+2021-05-30 21:38:37 37      NTRA: OrderID: a63e7efb. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:37 37      NTRA: OrderID: a63e7efb fully executed
+2021-05-30 21:38:37 37      NTRA: Price does not grow. Try to set TakeProfit. Price: 103.72. Candle: ID:246, Time: 15:15, Close: 103.17.
+2021-05-30 21:38:37 37      NTRA: Seems price is decreases. Closing by current price. Price: 103.17. Candle: ID:246, Time: 15:15, Close: 103.17.
+2021-05-30 21:38:37 37      NTRA: SL reached. Pending. Close price: 103.09. Candle: ID:247, Time: 15:15, Close: 103.09. Profit: -0.42(-0.41%)
+2021-05-30 21:38:37 37      NTRA: OrderID: 2f8ba0f5. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:37 37      NTRA: OrderID: 2f8ba0f5 fully executed
+2021-05-30 21:38:37 38      NTRS_BBG000BQ74K1_2021-03-12
+2021-05-30 21:38:37 39      NTUS_BBG000DPZHS3_2021-03-12
+2021-05-30 21:38:37 39      NUE_BBG000BQ8KV2_2021-03-12
+2021-05-30 21:38:37 40      NUE: BuyPending. Strategy: GoodGrowStrategy. Price: 69.39. StopLoss: 68.46. Candle: ID:267, Time: 14:30, Close: 69.39. Details: Reason: DayMax: 68.02. Current change: +2.01%
+2021-05-30 21:38:37 40      NUE: OrderID: 1535c445. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:37 40      NUE: OrderID: 1535c445 fully executed
+2021-05-30 21:38:37 40      NUE: Seems price is decreases. Closing by current price. Price: 69.54. Candle: ID:402, Time: 14:45, Close: 69.54.
+2021-05-30 21:38:37 40      NUE: SL reached. Pending. Close price: 69.5. Candle: ID:404, Time: 14:45, Close: 69.5. Profit: 0.11(0.16%)
+2021-05-30 21:38:37 40      NUE: OrderID: 2ed47c29. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:37 40      NUE: OrderID: 2ed47c29 fully executed
+2021-05-30 21:38:37 42      NUS_BBG000HG21Y3_2021-03-12
+2021-05-30 21:38:37 43      NUVA_BBG000LNL298_2021-03-12
+2021-05-30 21:38:37 45      NVDA_BBG000BBJQV0_2021-03-12
+2021-05-30 21:38:37 53      NVEE_BBG005BT60Y8_2021-03-12
+2021-05-30 21:38:37 54      NVR_BBG000BQBYR3_2021-03-12
+2021-05-30 21:38:37 55      NVRO_BBG001K61W36_2021-03-12
+2021-05-30 21:38:37 56      NVTA_BBG005DJFD43_2021-03-12
+2021-05-30 21:38:37 57      NVTA: BuyPending. Strategy: GoodGrowStrategy. Price: 42.68. StopLoss: 41.94. Candle: ID:4394, Time: 20:05, Close: 42.68. Details: Reason: DayMax: 41.84. Current change: +2.01%
+2021-05-30 21:38:37 57      NVTA: OrderID: 3d2088fd. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:37 57      NVTA: OrderID: 3d2088fd fully executed
+2021-05-30 21:38:37 58      NVTA: Pulling stop loss to current price. Price: 42.88. MaxPrice: 43.08. Candle: ID:5190, Time: 20:20, Close: 43.07.
+2021-05-30 21:38:37 58      NVTA: SL reached. Pending. Close price: 42.87. Candle: ID:5229, Time: 20:20, Close: 42.87. Profit: 0.19(0.45%)
+2021-05-30 21:38:37 58      NVTA: OrderID: 4e8ef641. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:37 58      NVTA: OrderID: 4e8ef641 fully executed
+2021-05-30 21:38:37 58      NWE_BBG000Q1NMJ4_2021-03-12
+2021-05-30 21:38:37 60      NWL_BBG000BQC9V2_2021-03-12
+2021-05-30 21:38:37 61      NWLI_BBG008HNHZ07_2021-03-12
+2021-05-30 21:38:37 62      NWS_BBG0035M2ZB7_2021-03-12
+2021-05-30 21:38:37 63      NWSA_BBG0035LY913_2021-03-12
+2021-05-30 21:38:37 64      NWSA: BuyPending. Strategy: GoodGrowStrategy. Price: 26.85. StopLoss: 26.28. Candle: ID:3811, Time: 22:30, Close: 26.85. Details: Reason: DayMax: 26.22. Current change: +2.40%
+2021-05-30 21:38:37 64      NWSA: OrderID: b5012b66. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:37 64      NWSA: OrderID: b5012b66 fully executed
+2021-05-30 21:38:37 64      NWSA: Pulling stop loss to current price. Price: 26.85. MaxPrice: 26.85. Candle: ID:3815, Time: 22:35, Close: 26.85.
+2021-05-30 21:38:37 64      NWSA: Closing daily orders. Close price: 27.04. Lots: 1. Profit: 0.19(0.71%). Candle: ID:3818, Time: 22:40, Close: 27.06
+2021-05-30 21:38:37 65      NXPI_BBG000BND699_2021-03-12
+2021-05-30 21:38:37 67      NXPI: BuyPending. Strategy: GoodGrowStrategy. Price: 188.99. StopLoss: 184. Candle: ID:6124, Time: 22:15, Close: 188.99. Details: Reason: DayMax: 185.06. Current change: +2.12%
+2021-05-30 21:38:37 67      NXPI: OrderID: 2e323a47. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:37 67      NXPI: OrderID: 2e323a47 fully executed
+2021-05-30 21:38:37 67      NXPI: Pulling stop loss to current price. Price: 193.5. MaxPrice: 195. Candle: ID:6186, Time: 22:30, Close: 195.
+2021-05-30 21:38:37 67      NXPI: SL reached. Pending. Close price: 193.03. Candle: ID:6210, Time: 22:35, Close: 193.03. Profit: 4.04(2.14%)
+2021-05-30 21:38:37 67      NXPI: OrderID: b11cb5c2. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:37 67      NXPI: OrderID: b11cb5c2 fully executed
+2021-05-30 21:38:37 68      NXST_BBG000DZJVH0_2021-03-12
+2021-05-30 21:38:37 69      NYT_BBG000FFC0B3_2021-03-12
+2021-05-30 21:38:37 70      O_BBG000DHPN63_2021-03-12
+2021-05-30 21:38:37 73      OC_BBG000M44VW8_2021-03-12
+2021-05-30 21:38:37 74      ODFL_BBG000CHSS88_2021-03-12
+2021-05-30 21:38:37 77      OFIX_BBG000G1C210_2021-03-12
+2021-05-30 21:38:37 78      OHI_BBG000BGBTC2_2021-03-12
+2021-05-30 21:38:37 79      OI_BBG00R2JZG39_2021-03-12
+2021-05-30 21:38:37 80      OII_BBG000CPBCL8_2021-03-12
+2021-05-30 21:38:37 81      OIS_BBG000BDDN94_2021-03-12
+2021-05-30 21:38:37 83      OKE_BBG000BQHGR6_2021-03-12
+2021-05-30 21:38:37 84      OKTA_BBG001YV1SM4_2021-03-12
+2021-05-30 21:38:37 89      OLED_BBG000BLRP41_2021-03-12
+2021-05-30 21:38:37 90      OLED: BuyPending. Strategy: GoodGrowStrategy. Price: 222.81. StopLoss: 219.17. Candle: ID:116, Time: 14:50, Close: 222.81. Details: Reason: DayMax: 218.31. Current change: +2.06%
+2021-05-30 21:38:37 90      OLED: OrderID: 2fa11961. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:37 90      OLED: OrderID: 2fa11961 fully executed
+2021-05-30 21:38:37 90      OLED: Pulling stop loss to current price. Price: 221.73. MaxPrice: 222.81. Candle: ID:124, Time: 14:55, Close: 222.88.
+2021-05-30 21:38:37 90      OLED: SL reached. Pending. Close price: 221.65. Candle: ID:126, Time: 14:55, Close: 221.65. Profit: -1.16(-0.52%)
+2021-05-30 21:38:37 90      OLED: OrderID: 16c6248f. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:37 90      OLED: OrderID: 16c6248f fully executed
+2021-05-30 21:38:37 91      OLLI_BBG0098VVDT9_2021-03-12
+2021-05-30 21:38:37 92      OMC_BBG000BS9489_2021-03-12
+2021-05-30 21:38:37 93      OMCL_BBG000BTNGZ4_2021-03-12
+2021-05-30 21:38:37 95      ON_BBG000DV7MX4_2021-03-12
+2021-05-30 21:38:37 98      ONTO_BBG000BPRN29_2021-03-12
+2021-05-30 21:38:37 99      ORCL_BBG000BQLTW7_2021-03-12
+2021-05-30 21:38:38 03      ORLY_BBG000BGYWY6_2021-03-12
+2021-05-30 21:38:38 04      OSIS_BBG000BWPR54_2021-03-12
+2021-05-30 21:38:38 05      OSK_BBG000CC53X1_2021-03-12
+2021-05-30 21:38:38 06      OSUR_BBG000J3D1Y8_2021-03-12
+2021-05-30 21:38:38 10      OTIS_BBG00RP60KV0_2021-03-12
+2021-05-30 21:38:38 11      OVV_BBG00R2NHQ65_2021-03-12
+2021-05-30 21:38:38 12      OXY_BBG000BQQ2S6_2021-03-12
+2021-05-30 21:38:38 17      PAGS_BBG00JM7QBR6_2021-03-12
+2021-05-30 21:38:38 18      PANW_BBG0014GJCT9_2021-03-12
+2021-05-30 21:38:38 19      PATK_BBG000BQSBB2_2021-03-12
+2021-05-30 21:38:38 20      PAYC_BBG0064N0ZZ5_2021-03-12
+2021-05-30 21:38:38 21      PB_BBG000BHY4D9_2021-03-12
+2021-05-30 21:38:38 21      PBCT_BBG000BQT4L6_2021-03-12
+2021-05-30 21:38:38 23      PBF_BBG002832GV8_2021-03-12
+2021-05-30 21:38:38 23      PBF: BuyPending. Strategy: GoodGrowStrategy. Price: 18.36. StopLoss: 17.85. Candle: ID:537, Time: 14:35, Close: 18.36. Details: Reason: DayMax: 17.98. Current change: +2.11%
+2021-05-30 21:38:38 23      PBF: OrderID: fe17fb6c. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:38 23      PBF: OrderID: fe17fb6c fully executed
+2021-05-30 21:38:38 23      PBF: Pulling stop loss to current price. Price: 18.1. MaxPrice: 18.52. Candle: ID:692, Time: 14:45, Close: 18.52.
+2021-05-30 21:38:38 23      PBF: Pulling stop loss to current price. Price: 18.14. MaxPrice: 18.69. Candle: ID:853, Time: 14:50, Close: 18.72.
+2021-05-30 21:38:38 24      PBF: Seems price is decreases. Closing by current price. Price: 18.52. Candle: ID:1259, Time: 15:15, Close: 18.52.
+2021-05-30 21:38:38 24      PBF: SL reached. Pending. Close price: 18.51. Candle: ID:1260, Time: 15:15, Close: 18.51. Profit: 0.15(0.82%)
+2021-05-30 21:38:38 24      PBF: OrderID: 9c4575e1. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:38 24      PBF: OrderID: 9c4575e1 fully executed
+2021-05-30 21:38:38 25      PBH_BBG000QM0RZ4_2021-03-12
+2021-05-30 21:38:38 25      PBI_BBG000BQTMJ9_2021-03-12
+2021-05-30 21:38:38 26      PBI: BuyPending. Strategy: GoodGrowStrategy. Price: 9.5. StopLoss: 9.36. Candle: ID:635, Time: 15:05, Close: 9.5. Details: Reason: Grow:0.43%;0.75%;0.53%;0.32%;
+2021-05-30 21:38:38 26      PBI: OrderID: 2261b1ba. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:38 26      PBI: OrderID: 2261b1ba fully executed
+2021-05-30 21:38:38 26      PBI: Pulling stop loss to current price. Price: 9.44. MaxPrice: 9.52. Candle: ID:688, Time: 15:10, Close: 9.54.
+2021-05-30 21:38:38 26      PBI: SL reached. Pending. Close price: 9.43. Candle: ID:790, Time: 15:20, Close: 9.43. Profit: -0.07(-0.74%)
+2021-05-30 21:38:38 26      PBI: OrderID: 271ed9f8. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:38 26      PBI: OrderID: 271ed9f8 fully executed
+2021-05-30 21:38:38 26      PCAR_BBG000BQVTF5_2021-03-12
+2021-05-30 21:38:38 29      PCG_BBG000BQWPC5_2021-03-12
+2021-05-30 21:38:38 30      PCRX_BBG0018FQNS6_2021-03-12
+2021-05-30 21:38:38 31      PCTY_BBG006598YS8_2021-03-12
+2021-05-30 21:38:38 32      PD_BBG0043BYPB8_2021-03-12
+2021-05-30 21:38:38 33      PDCO_BBG000BQY289_2021-03-12
+2021-05-30 21:38:38 35      PEAK_BBG000BKYDP9_2021-03-12
+2021-05-30 21:38:38 38      PEG_BBG000BQZMH4_2021-03-12
+2021-05-30 21:38:38 39      PEGA_BBG000H1RYG7_2021-03-12
+2021-05-30 21:38:38 40      PEN_BBG001BP92V1_2021-03-12
+2021-05-30 21:38:38 40      PEP_BBG000DH7JK6_2021-03-12
+2021-05-30 21:38:38 46      PETQ_BBG00H1CY328_2021-03-12
+2021-05-30 21:38:38 47      PFE_BBG000BR2B91_2021-03-12
+2021-05-30 21:38:38 51      PFG_BBG000NSCNT7_2021-03-12
+2021-05-30 21:38:38 53      PFGC_BBG009XW2WB8_2021-03-12
+2021-05-30 21:38:38 53      PFPT_BBG000RQ2GY7_2021-03-12
+2021-05-30 21:38:38 55      PG_BBG000BR2TH3_2021-03-12
+2021-05-30 21:38:38 59      PGNY_BBG002H1K1H1_2021-03-12
+2021-05-30 21:38:38 60      PGR_BBG000BR37X2_2021-03-12
+2021-05-30 21:38:38 61      PGTI_BBG000FX3Y66_2021-03-12
+2021-05-30 21:38:38 61      PH_BBG000BR3KL6_2021-03-12
+2021-05-30 21:38:38 62      PHM_BBG000BR54L0_2021-03-12
+2021-05-30 21:38:38 64      PII_BBG000D5S4M0_2021-03-12
+2021-05-30 21:38:38 65      PINC_BBG000G7QX50_2021-03-12
+2021-05-30 21:38:38 66      PINS_BBG002583CV8_2021-03-12
+2021-05-30 21:38:38 71      PIPR_BBG000FQXC75_2021-03-12
+2021-05-30 21:38:38 71      PKG_BBG000BB8SW7_2021-03-12
+2021-05-30 21:38:38 72      PKI_BBG000FXW512_2021-03-12
+2021-05-30 21:38:38 73      PLAN_BBG002DZS299_2021-03-12
+2021-05-30 21:38:38 75      PLAY_BBG001WWJTK5_2021-03-12
+2021-05-30 21:38:38 76      PLCE_BBG000JK9DK4_2021-03-12
+2021-05-30 21:38:38 77      PLCE: BuyPending. Strategy: GoodGrowStrategy. Price: 82.71. StopLoss: 80.04. Candle: ID:196, Time: 15:00, Close: 82.71. Details: Reason: DayMax: 81.04. Current change: +2.06%
+2021-05-30 21:38:38 77      PLCE: OrderID: 929c186c. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:38 77      PLCE: OrderID: 929c186c fully executed
+2021-05-30 21:38:38 77      PLCE: Seems price is decreases. Closing by current price. Price: 81.6. Candle: ID:229, Time: 15:15, Close: 81.6.
+2021-05-30 21:38:38 77      PLCE: SL reached. Pending. Close price: 81.43. Candle: ID:230, Time: 15:15, Close: 81.43. Profit: -1.28(-1.55%)
+2021-05-30 21:38:38 77      PLCE: OrderID: a2701784. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:38 77      PLCE: OrderID: a2701784 fully executed
+2021-05-30 21:38:38 77      PLD_BBG000B9Z0J8_2021-03-12
+2021-05-30 21:38:38 79      PLNT_BBG009H04M17_2021-03-12
+2021-05-30 21:38:38 81      PLTR_BBG000N7QR55_2021-03-12
+2021-05-30 21:38:38 86      PLTR: BuyPending. Strategy: GoodGrowStrategy. Price: 26.27. StopLoss: 25.93. Candle: ID:5028, Time: 12:15, Close: 26.27. Details: Reason: DayMax: 25.72. Current change: +2.14%
+2021-05-30 21:38:38 86      PLTR: OrderID: e2b31268. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:38 86      PLTR: OrderID: e2b31268 fully executed
+2021-05-30 21:38:38 86      PLTR: Seems price is decreases. Closing by current price. Price: 26.02. Candle: ID:5140, Time: 12:30, Close: 26.02.
+2021-05-30 21:38:38 86      PLTR: SL reached. Pending. Close price: 26.01. Candle: ID:5150, Time: 12:30, Close: 26.01. Profit: -0.26(-0.99%)
+2021-05-30 21:38:38 86      PLTR: OrderID: 83fcede1. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:38 86      PLTR: OrderID: 83fcede1 fully executed
+2021-05-30 21:38:38 88      PLTR: BuyPending. Strategy: GoodGrowStrategy. Price: 26.39. StopLoss: 25.99. Candle: ID:12165, Time: 15:00, Close: 26.39. Details: Reason: Grow:0.82%;0.62%;0.65%;0.30%;
+2021-05-30 21:38:38 88      PLTR: OrderID: 7fac7134. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:38 88      PLTR: OrderID: 7fac7134 fully executed
+2021-05-30 21:38:38 88      PLTR: Pulling stop loss to current price. Price: 26.13. MaxPrice: 26.39. Candle: ID:12191, Time: 15:05, Close: 26.37.
+2021-05-30 21:38:38 88      PLTR: Seems price is decreases. Closing by current price. Price: 26.18. Candle: ID:12812, Time: 15:15, Close: 26.18.
+2021-05-30 21:38:38 88      PLTR: SL reached. Pending. Close price: 26.17. Candle: ID:12813, Time: 15:15, Close: 26.17. Profit: -0.22(-0.83%)
+2021-05-30 21:38:38 88      PLTR: OrderID: 7ff9821a. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:38 88      PLTR: OrderID: 7ff9821a fully executed
+2021-05-30 21:38:38 93      PLUS_BBG000HN7W02_2021-03-12
+2021-05-30 21:38:38 94      PLXS_BBG000BRBX66_2021-03-12
+2021-05-30 21:38:38 94      PM_BBG000J2XL74_2021-03-12
+2021-05-30 21:38:38 97      PNC_BBG000BRD0D8_2021-03-12
+2021-05-30 21:38:38 99      PNFP_BBG000C1XKF6_2021-03-12
+2021-05-30 21:38:39 00      PNTG_BBG00P33SY72_2021-03-12
+2021-05-30 21:38:39 01      PODD_BBG000R7XX87_2021-03-12
+2021-05-30 21:38:39 02      POOL_BBG000BCVG28_2021-03-12
+2021-05-30 21:38:39 03      POR_BBG000BCRMW7_2021-03-12
+2021-05-30 21:38:39 04      POST_BBG001WTBC36_2021-03-12
+2021-05-30 21:38:39 05      POWI_BBG000BTT3D1_2021-03-12
+2021-05-30 21:38:39 06      PPC_BBG000BFLXV3_2021-03-12
+2021-05-30 21:38:39 07      PPG_BBG000BRJ809_2021-03-12
+2021-05-30 21:38:39 09      PPL_BBG000BRJL00_2021-03-12
+2021-05-30 21:38:39 10      PRAA_BBG000BNTW77_2021-03-12
+2021-05-30 21:38:39 11      PRAH_BBG007387YL8_2021-03-12
+2021-05-30 21:38:39 13      PRFT_BBG000BVXFK6_2021-03-12
+2021-05-30 21:38:39 13      PRG_BBG00VSH86G4_2021-03-12
+2021-05-30 21:38:39 14      PRG: BuyPending. Strategy: GoodGrowStrategy. Price: 50.98. StopLoss: 50.28. Candle: ID:116, Time: 15:15, Close: 50.98. Details: Reason: DayMax: 49.97. Current change: +2.02%
+2021-05-30 21:38:39 14      PRG: OrderID: b17ccbac. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:39 14      PRG: OrderID: b17ccbac fully executed
+2021-05-30 21:38:39 14      PRG: SL reached. Pending. Close price: 50.27. Candle: ID:182, Time: 15:55, Close: 50.27. Profit: -0.71(-1.39%)
+2021-05-30 21:38:39 14      PRG: OrderID: dbe30c4c. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:39 14      PRG: OrderID: dbe30c4c fully executed
+2021-05-30 21:38:39 14      PRGS_BBG000C4QP94_2021-03-12
+2021-05-30 21:38:39 15      PRI_BBG000T8ZF80_2021-03-12
+2021-05-30 21:38:39 15      PRLB_BBG000BT13B3_2021-03-12
+2021-05-30 21:38:39 16      PRSP_BBG00KMXKWF9_2021-03-12
+2021-05-30 21:38:39 17      PRU_BBG000HCJMF9_2021-03-12
+2021-05-30 21:38:39 19      PS_BBG00KMYC574_2021-03-12
+2021-05-30 21:38:39 20      PSA_BBG000BPPN67_2021-03-12
+2021-05-30 21:38:39 21      PSN_BBG000C3TKY6_2021-03-12
+2021-05-30 21:38:39 22      PSTG_BBG00212PVZ5_2021-03-12
+2021-05-30 21:38:39 24      PSX_BBG00286S4N9_2021-03-12
+2021-05-30 21:38:39 25      PTC_BBG000C2VBB0_2021-03-12
+2021-05-30 21:38:39 26      PTCT_BBG000QT15P7_2021-03-12
+2021-05-30 21:38:39 27      PTON_BBG00JG0FFZ2_2021-03-12
+2021-05-30 21:38:39 34      PTR_BBG000BR85F1_2021-03-12
+2021-05-30 21:38:39 35      PUMP_BBG00FYCQ352_2021-03-12
+2021-05-30 21:38:39 35      PVH_BBG000BRRG02_2021-03-12
+2021-05-30 21:38:39 36      PWR_BBG000BBL8V7_2021-03-12
+2021-05-30 21:38:39 37      PXD_BBG000BXRPH1_2021-03-12
+2021-05-30 21:38:39 40      PYPL_BBG0077VNXV6_2021-03-12
+2021-05-30 21:38:39 50      PZZA_BBG000BFWF13_2021-03-12
+2021-05-30 21:38:39 52      QADA_BBG001BP77C3_2021-03-12
+2021-05-30 21:38:39 52      QCOM_BBG000CGC1X8_2021-03-12
+2021-05-30 21:38:39 63      QDEL_BBG000C6GN04_2021-03-12
+2021-05-30 21:38:39 66      QLYS_BBG000HT5G06_2021-03-12
+2021-05-30 21:38:39 68      QNST_BBG000S9XXB8_2021-03-12
+2021-05-30 21:38:39 68      QRTEA_BBG000PCQQL6_2021-03-12
+2021-05-30 21:38:39 70      QRVO_BBG007TJF1N7_2021-03-12
+2021-05-30 21:38:39 72      QTS_BBG0054B20Z8_2021-03-12
+2021-05-30 21:38:39 73      QTWO_BBG005ZVK9P2_2021-03-12
+2021-05-30 21:38:39 73      QUOT_BBG001QYNR63_2021-03-12
+2021-05-30 21:38:39 73      QUOT: BuyPending. Strategy: GoodGrowStrategy. Price: 15.75. StopLoss: 15.7. Candle: ID:126, Time: 14:50, Close: 15.75. Details: Reason: DayMax: 15.43. Current change: +2.07%
+2021-05-30 21:38:39 74      QUOT: OrderID: 27db1dfb. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:39 74      QUOT: OrderID: 27db1dfb fully executed
+2021-05-30 21:38:39 74      QUOT: SL reached. Pending. Close price: 15.69. Candle: ID:172, Time: 14:55, Close: 15.69. Profit: -0.06(-0.38%)
+2021-05-30 21:38:39 74      QUOT: OrderID: d0b07bd1. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:39 74      QUOT: OrderID: d0b07bd1 fully executed
+2021-05-30 21:38:39 75      R_BBG000BRVP70_2021-03-12
+2021-05-30 21:38:39 75      RACE_BBG009PH3Q86_2021-03-12
+2021-05-30 21:38:39 76      RAMP_BBG000BB4HM6_2021-03-12
+2021-05-30 21:38:39 77      RARE_BBG001RWPDW6_2021-03-12
+2021-05-30 21:38:39 77      RAVN_BBG000CXQTZ3_2021-03-12
+2021-05-30 21:38:39 78      RBC_BBG000BRXTR8_2021-03-12
+2021-05-30 21:38:39 79      RCL_BBG000BB5792_2021-03-12
+2021-05-30 21:38:39 80      RCL: SPYKE!. Candle: ID:54, Time: 8:10, Close: 86.06
+2021-05-30 21:38:39 80      RCL: SPYKE!. Candle: ID:61, Time: 8:15, Close: 86.5
+2021-05-30 21:38:39 82      RDFN_BBG001Q7HP63_2021-03-12
+2021-05-30 21:38:39 84      RDS.A_BBG000QXSSS6_2021-03-12
+2021-05-30 21:38:39 86      RDY_BBG000NJ96L6_2021-03-12
+2021-05-30 21:38:39 86      RE_BBG000C1XVK6_2021-03-12
+2021-05-30 21:38:39 87      REG_BBG000BL46Q4_2021-03-12
+2021-05-30 21:38:39 89      REGI_BBG0016SSV00_2021-03-12
+2021-05-30 21:38:39 90      REGI: BuyPending. Strategy: GoodGrowStrategy. Price: 80.95. StopLoss: 80.17. Candle: ID:589, Time: 14:40, Close: 80.95. Details: Reason: Grow:0.37%;0.47%;0.39%;0.30%;
+2021-05-30 21:38:39 90      REGI: OrderID: a70f607a. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:39 90      REGI: OrderID: a70f607a fully executed
+2021-05-30 21:38:39 90      REGI: Pulling stop loss to current price. Price: 80.36. MaxPrice: 82.6. Candle: ID:636, Time: 14:45, Close: 82.75.
+2021-05-30 21:38:39 90      REGI: Pulling stop loss to current price. Price: 81.84. MaxPrice: 82.8. Candle: ID:740, Time: 14:55, Close: 82.9.
+2021-05-30 21:38:39 90      REGI: SL reached. Pending. Close price: 81.71. Candle: ID:804, Time: 15:00, Close: 81.71. Profit: 0.76(0.94%)
+2021-05-30 21:38:39 90      REGI: OrderID: 17f40bca. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:39 90      REGI: OrderID: 17f40bca fully executed
+2021-05-30 21:38:39 91      REGN_BBG000C734W3_2021-03-12
+2021-05-30 21:38:39 92      RETA_BBG000R33BD1_2021-03-12
+2021-05-30 21:38:39 93      RETA: BuyPending. Strategy: GoodGrowStrategy. Price: 132.5. StopLoss: 130.62. Candle: ID:345, Time: 15:40, Close: 132.5. Details: Reason: Grow:0.65%;0.62%;0.59%;0.30%;
+2021-05-30 21:38:39 93      RETA: OrderID: 7ecbad63. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:39 93      RETA: OrderID: 7ecbad63 fully executed
+2021-05-30 21:38:39 93      RETA: Seems price is decreases. Closing by current price. Price: 131.15. Candle: ID:382, Time: 15:50, Close: 131.15.
+2021-05-30 21:38:39 93      RETA: SL reached. Pending. Close price: 130.98. Candle: ID:384, Time: 15:50, Close: 130.98. Profit: -1.52(-1.15%)
+2021-05-30 21:38:39 93      RETA: OrderID: a17ecdbe. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:39 93      RETA: OrderID: a17ecdbe fully executed
+2021-05-30 21:38:39 94      REX_BBG000D2ZK61_2021-03-12
+2021-05-30 21:38:39 94      REZI_BBG00HY28K89_2021-03-12
+2021-05-30 21:38:39 95      RF_BBG000Q3JN03_2021-03-12
+2021-05-30 21:38:39 97      RGA_BBG000BDLCQ0_2021-03-12
+2021-05-30 21:38:39 98      RGEN_BBG000BS48J3_2021-03-12
+2021-05-30 21:38:39 99      RGLD_BBG000BS5170_2021-03-12
+2021-05-30 21:38:40 00      RGNX_BBG007Z9V591_2021-03-12
+2021-05-30 21:38:40 01      RGR_BBG000C4FQG6_2021-03-12
+2021-05-30 21:38:40 01      RH_BBG002293PJ4_2021-03-12
+2021-05-30 21:38:40 02      RHI_BBG000BS5DR2_2021-03-12
+2021-05-30 21:38:40 03      RIG_BBG000BH5LT6_2021-03-12
+2021-05-30 21:38:40 06      RJF_BBG000BS73J1_2021-03-12
+2021-05-30 21:38:40 08      RL_BBG000BS0ZF1_2021-03-12
+2021-05-30 21:38:40 09      RMD_BBG000L4M7F1_2021-03-12
+2021-05-30 21:38:40 11      RNG_BBG000J094P3_2021-03-12
+2021-05-30 21:38:40 13      ROCK_BBG000BKQDQ7_2021-03-12
+2021-05-30 21:38:40 14      ROG_BBG000BS9HN3_2021-03-12
+2021-05-30 21:38:40 14      ROK_BBG000BBCDZ2_2021-03-12
+2021-05-30 21:38:40 15      ROKU_BBG001ZZPQJ6_2021-03-12
+2021-05-30 21:38:40 19      ROL_BBG000BSBBP1_2021-03-12
+2021-05-30 21:38:40 20      ROLL_BBG000GMGNB3_2021-03-12
+2021-05-30 21:38:40 21      ROP_BBG000F1ZSN5_2021-03-12
+2021-05-30 21:38:40 22      ROST_BBG000BSBZH7_2021-03-12
+2021-05-30 21:38:40 25      RP_BBG000CN5CJ3_2021-03-12
+2021-05-30 21:38:40 26      RPD_BBG009DFHWG6_2021-03-12
+2021-05-30 21:38:40 27      RPM_BBG000DCNK80_2021-03-12
+2021-05-30 21:38:40 27      RRBI_BBG000QKNLB2_2021-03-12
+2021-05-30 21:38:40 28      RRC_BBG000FVXD63_2021-03-12
+2021-05-30 21:38:40 30      RRGB_BBG000MXH9C1_2021-03-12
+2021-05-30 21:38:40 31      RS_BBG000CJ2181_2021-03-12
+2021-05-30 21:38:40 31      RSG_BBG000BPXVJ6_2021-03-12
+2021-05-30 21:38:40 32      RTX_BBG000BW8S60_2021-03-12
+2021-05-30 21:38:40 36      RVLV_BBG00M4RHBD0_2021-03-12
+2021-05-30 21:38:40 36      RVLV: BuyPending. Strategy: GoodGrowStrategy. Price: 46.93. StopLoss: 46.34. Candle: ID:107, Time: 14:50, Close: 46.93. Details: Reason: DayMax: 45.98. Current change: +2.07%
+2021-05-30 21:38:40 36      RVLV: OrderID: de64d4a7. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:40 36      RVLV: OrderID: de64d4a7 fully executed
+2021-05-30 21:38:40 36      RVLV: Pulling stop loss to current price. Price: 46.36. MaxPrice: 46.93. Candle: ID:118, Time: 14:55, Close: 46.99.
+2021-05-30 21:38:40 36      RVLV: Pulling stop loss to current price. Price: 46.82. MaxPrice: 47.14. Candle: ID:165, Time: 15:10, Close: 47.11.
+2021-05-30 21:38:40 36      RVLV: SL reached. Pending. Close price: 46.8. Candle: ID:177, Time: 15:15, Close: 46.8. Profit: -0.13(-0.28%)
+2021-05-30 21:38:40 36      RVLV: OrderID: b67949d1. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:40 36      RVLV: OrderID: b67949d1 fully executed
+2021-05-30 21:38:40 37      RXN_BBG000H8R0N8_2021-03-12
+2021-05-30 21:38:40 38      RYN_BBG000BG7L34_2021-03-12
+2021-05-30 21:38:40 38      RYTM_BBG007DLZ601_2021-03-12
+2021-05-30 21:38:40 39      SAFM_BBG000BSHJ96_2021-03-12
+2021-05-30 21:38:40 40      SAGE_BBG0025X16Y5_2021-03-12
+2021-05-30 21:38:40 41      SAIA_BBG000P5LMQ0_2021-03-12
+2021-05-30 21:38:40 41      SAIC_BBG003BW05K6_2021-03-12
+2021-05-30 21:38:40 42      SAIL_BBG00J0BBZL0_2021-03-12
+2021-05-30 21:38:40 43      SAIL: BuyPending. Strategy: GoodGrowStrategy. Price: 57.35. StopLoss: 56.15. Candle: ID:1233, Time: 21:15, Close: 57.35. Details: Reason: DayMax: 56.18. Current change: +2.08%
+2021-05-30 21:38:40 43      SAIL: OrderID: fcb51681. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:40 43      OrderID: fcb51681 successfully canceled
+2021-05-30 21:38:40 43      SAM_BBG000BCZBF1_2021-03-12
+2021-05-30 21:38:40 44      SAVE_BBG000BF6RQ9_2021-03-12
+2021-05-30 21:38:40 45      SAVE: BuyPending. Strategy: GoodGrowStrategy. Price: 37.43. StopLoss: 36.4. Candle: ID:794, Time: 14:35, Close: 37.43. Details: Reason: DayMax: 36.69. Current change: +2.02%
+2021-05-30 21:38:40 45      SAVE: OrderID: 6ecf1d74. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:40 45      SAVE: OrderID: 6ecf1d74 fully executed
+2021-05-30 21:38:40 45      SAVE: Pulling stop loss to current price. Price: 36.7. MaxPrice: 37.43. Candle: ID:859, Time: 14:40, Close: 37.4.
+2021-05-30 21:38:40 45      SAVE: Pulling stop loss to current price. Price: 37.08. MaxPrice: 37.43. Candle: ID:998, Time: 14:45, Close: 37.4.
+2021-05-30 21:38:40 45      SAVE: Pulling stop loss to current price. Price: 37.24. MaxPrice: 37.45. Candle: ID:1165, Time: 14:50, Close: 37.43.
+2021-05-30 21:38:40 45      SAVE: SL reached. Pending. Close price: 37.23. Candle: ID:1251, Time: 14:50, Close: 37.23. Profit: -0.20(-0.53%)
+2021-05-30 21:38:40 45      SAVE: OrderID: 78b0d71a. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:40 45      SAVE: OrderID: 78b0d71a fully executed
+2021-05-30 21:38:40 47      SBAC_BBG000D2M0Z7_2021-03-12
+2021-05-30 21:38:40 49      SBCF_BBG000KK3464_2021-03-12
+2021-05-30 21:38:40 50      SBGI_BBG000F2XXP2_2021-03-12
+2021-05-30 21:38:40 51      SBH_BBG000LR8515_2021-03-12
+2021-05-30 21:38:40 52      SBRA_BBG000MTDW24_2021-03-12
+2021-05-30 21:38:40 54      SBUX_BBG000CTQBF3_2021-03-12
+2021-05-30 21:38:40 57      SCCO_BBG000BSHH72_2021-03-12
+2021-05-30 21:38:40 58      SCHW_BBG000BSLZY7_2021-03-12
+2021-05-30 21:38:40 61      SCI_BBG000BTHH16_2021-03-12
+2021-05-30 21:38:40 62      SCSC_BBG000BHTPZ4_2021-03-12
+2021-05-30 21:38:40 62      SDGR_BBG000T88BN2_2021-03-12
+2021-05-30 21:38:40 63      SDGR: SPYKE!. Candle: ID:420, Time: 7:30, Close: 88.58
+2021-05-30 21:38:40 65      SEDG_BBG0084BBZY6_2021-03-12
+2021-05-30 21:38:40 67      SEE_BBG000C22QV7_2021-03-12
+2021-05-30 21:38:40 69      SEIC_BBG000BSQLT9_2021-03-12
+2021-05-30 21:38:40 70      SF_BBG000BSS5C0_2021-03-12
+2021-05-30 21:38:40 71      SFIX_BBG0046L1KL9_2021-03-12
+2021-05-30 21:38:40 73      SFIX: BuyPending. Strategy: GoodGrowStrategy. Price: 50.9. StopLoss: 49.31. Candle: ID:485, Time: 14:40, Close: 50.9. Details: Reason: DayMax: 49.89. Current change: +2.02%
+2021-05-30 21:38:40 73      SFIX: OrderID: e67b632d. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:40 73      SFIX: OrderID: e67b632d fully executed
+2021-05-30 21:38:40 73      SFIX: Pulling stop loss to current price. Price: 49.81. MaxPrice: 51.23. Candle: ID:561, Time: 14:45, Close: 51.2.
+2021-05-30 21:38:40 73      SFIX: Pulling stop loss to current price. Price: 51. MaxPrice: 51.24. Candle: ID:683, Time: 14:55, Close: 51.22.
+2021-05-30 21:38:40 73      SFIX: Pulling stop loss to current price. Price: 51.04. MaxPrice: 51.7. Candle: ID:767, Time: 15:00, Close: 51.66.
+2021-05-30 21:38:40 73      SFIX: Pulling stop loss to current price. Price: 51.19. MaxPrice: 51.87. Candle: ID:824, Time: 15:05, Close: 51.99.
+2021-05-30 21:38:40 73      SFIX: Seems price is decreases. Closing by current price. Price: 51.29. Candle: ID:1000, Time: 15:15, Close: 51.29.
+2021-05-30 21:38:40 73      SFIX: SL reached. Pending. Close price: 51.26. Candle: ID:1002, Time: 15:15, Close: 51.26. Profit: 0.36(0.71%)
+2021-05-30 21:38:40 73      SFIX: OrderID: b8e85d1c. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:40 73      SFIX: OrderID: b8e85d1c fully executed
+2021-05-30 21:38:40 74      SFIX: BuyPending. Strategy: GoodGrowStrategy. Price: 53.55. StopLoss: 52.66. Candle: ID:3568, Time: 19:40, Close: 53.55. Details: Reason: Grow:0.67%;0.76%;0.60%;0.36%;
+2021-05-30 21:38:40 74      SFIX: OrderID: 20330314. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:40 74      SFIX: OrderID: 20330314 fully executed
+2021-05-30 21:38:40 74      SFIX: Pulling stop loss to current price. Price: 53.04. MaxPrice: 53.71. Candle: ID:3638, Time: 19:45, Close: 53.72.
+2021-05-30 21:38:40 74      SFIX: Pulling stop loss to current price. Price: 53.36. MaxPrice: 53.88. Candle: ID:3810, Time: 19:50, Close: 53.95.
+2021-05-30 21:38:40 74      SFIX: Pulling stop loss to current price. Price: 53.7. MaxPrice: 53.91. Candle: ID:3914, Time: 19:55, Close: 53.92.
+2021-05-30 21:38:40 74      SFIX: SL reached. Pending. Close price: 53.69. Candle: ID:3934, Time: 19:55, Close: 53.69. Profit: 0.14(0.26%)
+2021-05-30 21:38:40 74      SFIX: OrderID: a2465ae2. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:40 74      SFIX: OrderID: a2465ae2 fully executed
+2021-05-30 21:38:40 75      SFM_BBG001KFKQM7_2021-03-12
+2021-05-30 21:38:40 77      SGEN_BBG000BH0FR6_2021-03-12
+2021-05-30 21:38:40 80      SHAK_BBG0063GCHH8_2021-03-12
+2021-05-30 21:38:40 81      SHEN_BBG000BTC2N0_2021-03-12
+2021-05-30 21:38:40 81      SHI_BBG000BHR1H9_2021-03-12
+2021-05-30 21:38:40 82      SHW_BBG000BSXQV7_2021-03-12
+2021-05-30 21:38:40 83      SIG_BBG000C4ZZ10_2021-03-12
+2021-05-30 21:38:40 84      SIGI_BBG000BSZ738_2021-03-12
+2021-05-30 21:38:40 85      SITE_BBG009T22D49_2021-03-12
+2021-05-30 21:38:40 86      SIVB_BBG000BT0CM2_2021-03-12
+2021-05-30 21:38:40 87      SJI_BBG000BT0T72_2021-03-12
+2021-05-30 21:38:40 88      SJM_BBG000BT1715_2021-03-12
+2021-05-30 21:38:40 89      SKM_BBG000BLN497_2021-03-12
+2021-05-30 21:38:40 90      SKX_BBG000C4HKK2_2021-03-12
+2021-05-30 21:38:40 91      SLAB_BBG000BB99S3_2021-03-12
+2021-05-30 21:38:40 92      SLB_BBG000BT41Q8_2021-03-12
+2021-05-30 21:38:40 95      SLG_BBG000BVP5P2_2021-03-12
+2021-05-30 21:38:40 96      SMAR_BBG00GQK3WB5_2021-03-12
+2021-05-30 21:38:40 97      SMG_BBG000BT5PG5_2021-03-12
+2021-05-30 21:38:40 98      SMPL_BBG00GVP5JL4_2021-03-12
+2021-05-30 21:38:40 99      SMTC_BBG000DBKR53_2021-03-12
+2021-05-30 21:38:41 00      SNA_BBG000BT7JW9_2021-03-12
+2021-05-30 21:38:41 00      SNAP_BBG00441QMJ7_2021-03-12
+2021-05-30 21:38:41 07      SNAP: BuyPending. Strategy: GoodGrowStrategy. Price: 62.19. StopLoss: 60.95. Candle: ID:15744, Time: 20:45, Close: 62.19. Details: Reason: DayMax: 60.96. Current change: +2.02%
+2021-05-30 21:38:41 07      SNAP: OrderID: 01469b31. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:41 07      SNAP: OrderID: 01469b31 fully executed
+2021-05-30 21:38:41 07      SNAP: Pulling stop loss to current price. Price: 61.13. MaxPrice: 62.19. Candle: ID:16617, Time: 20:50, Close: 62.14.
+2021-05-30 21:38:41 08      SNAP: Pulling stop loss to current price. Price: 61.52. MaxPrice: 63.18. Candle: ID:17536, Time: 20:55, Close: 63.13.
+2021-05-30 21:38:41 08      SNAP: Closing daily orders. Close price: 62.80. Lots: 1. Profit: 0.61(0.98%). Candle: ID:20138, Time: 22:40, Close: 62.82
+2021-05-30 21:38:41 09      SNBR_BBG000DM2BF3_2021-03-12
+2021-05-30 21:38:41 10      SNPS_BBG000BSFRF3_2021-03-12
+2021-05-30 21:38:41 13      SNX_BBG000CL9JV4_2021-03-12
+2021-05-30 21:38:41 13      SNY_BBG000BBD5N1_2021-03-12
+2021-05-30 21:38:41 14      SO_BBG000BT9DW0_2021-03-12
+2021-05-30 21:38:41 17      SOHU_BBG00L2DB535_2021-03-12
+2021-05-30 21:38:41 18      SON_BBG000D7HF89_2021-03-12
+2021-05-30 21:38:41 18      SONO_BBG001JZPSQ2_2021-03-12
+2021-05-30 21:38:41 20      SP_BBG000BJ91B1_2021-03-12
+2021-05-30 21:38:41 21      SPB@US_BBG000DS5588_2021-03-12
+2021-05-30 21:38:41 21      SPCE_BBG00HTN2CQ3_2021-03-12
+2021-05-30 21:38:41 32      SPCE: BuyPending. Strategy: GoodGrowStrategy. Price: 34.79. StopLoss: 34.1. Candle: ID:999, Time: 4:20, Close: 34.79. Details: Reason: DayMax: 34.1. Current change: +2.02%
+2021-05-30 21:38:41 32      SPCE: OrderID: 78aacf3b. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:41 32      SPCE: OrderID: 78aacf3b fully executed
+2021-05-30 21:38:41 32      SPCE: Pulling stop loss to current price. Price: 34.46. MaxPrice: 34.79. Candle: ID:1280, Time: 4:25, Close: 34.76.
+2021-05-30 21:38:41 32      SPCE: Pulling stop loss to current price. Price: 34.47. MaxPrice: 34.79. Candle: ID:1295, Time: 4:30, Close: 34.77.
+2021-05-30 21:38:41 32      SPCE: Seems price is decreases. Closing by current price. Price: 34.68. Candle: ID:1919, Time: 4:45, Close: 34.68.
+2021-05-30 21:38:41 32      SPCE: SL reached. Pending. Close price: 34.65. Candle: ID:1922, Time: 4:45, Close: 34.65. Profit: -0.14(-0.40%)
+2021-05-30 21:38:41 32      SPCE: OrderID: db276954. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:41 32      SPCE: OrderID: db276954 fully executed
+2021-05-30 21:38:41 50      SPG_BBG000BJ2D31_2021-03-12
+2021-05-30 21:38:41 52      SPGI_BBG000BP1Q11_2021-03-12
+2021-05-30 21:38:41 53      SPLK_BBG001C7TST4_2021-03-12
+2021-05-30 21:38:41 57      SPOT_BBG003T4VFC2_2021-03-12
+2021-05-30 21:38:41 59      SPR_BBG000PRJ2Z9_2021-03-12
+2021-05-30 21:38:41 62      SPR: BuyPending. Strategy: GoodGrowStrategy. Price: 50.63. StopLoss: 49.6. Candle: ID:944, Time: 13:05, Close: 50.63. Details: Reason: DayMax: 49.59. Current change: +2.10%
+2021-05-30 21:38:41 62      SPR: OrderID: 09ec3860. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:41 62      SPR: OrderID: 09ec3860 fully executed
+2021-05-30 21:38:41 62      SPR: Seems price is decreases. Closing by current price. Price: 49.92. Candle: ID:985, Time: 13:15, Close: 49.92.
+2021-05-30 21:38:41 62      SPR: SL reached. Pending. Close price: 49.88. Candle: ID:986, Time: 13:15, Close: 49.88. Profit: -0.75(-1.48%)
+2021-05-30 21:38:41 62      SPR: OrderID: a52c8b18. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:41 62      SPR: OrderID: a52c8b18 fully executed
+2021-05-30 21:38:41 64      SPSC_BBG000PZGB75_2021-03-12
+2021-05-30 21:38:41 65      SQ_BBG0018SLC07_2021-03-12
+2021-05-30 21:38:41 72      SRC_BBG0027Z6X10_2021-03-12
+2021-05-30 21:38:41 73      SRCL_BBG000H3FZM6_2021-03-12
+2021-05-30 21:38:41 74      SRDX_BBG000BZ2QG2_2021-03-12
+2021-05-30 21:38:41 74      SRE_BBG000C2ZCH8_2021-03-12
+2021-05-30 21:38:41 76      SRI_BBG000BB9Q78_2021-03-12
+2021-05-30 21:38:41 76      SRPT_BBG000BCJ161_2021-03-12
+2021-05-30 21:38:41 78      SSD_BBG000JLC8L8_2021-03-12
+2021-05-30 21:38:41 79      SSNC_BBG000RJ2J04_2021-03-12
+2021-05-30 21:38:41 80      SSTK_BBG002ZCK2V9_2021-03-12
+2021-05-30 21:38:41 81      STAA_BBG000C4QB95_2021-03-12
+2021-05-30 21:38:41 82      STAG_BBG000BGLFP7_2021-03-12
+2021-05-30 21:38:41 83      STLD_BBG000HGYNZ9_2021-03-12
+2021-05-30 21:38:41 85      STMP_BBG000CZ4KF3_2021-03-12
+2021-05-30 21:38:41 85      STMP: BuyPending. Strategy: GoodGrowStrategy. Price: 192.15. StopLoss: 189.84. Candle: ID:151, Time: 14:55, Close: 192.15. Details: Reason: Grow:1.55%;0.40%;0.66%;0.34%;
+2021-05-30 21:38:41 85      STMP: OrderID: 262d174a. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:41 85      STMP: OrderID: 262d174a fully executed
+2021-05-30 21:38:41 85      STMP: Seems price is decreases. Closing by current price. Price: 190.98. Candle: ID:169, Time: 15:10, Close: 190.98.
+2021-05-30 21:38:41 85      STMP: SL reached. Pending. Close price: 190.11. Candle: ID:170, Time: 15:10, Close: 190.11. Profit: -2.04(-1.06%)
+2021-05-30 21:38:41 85      STMP: OrderID: 199404a4. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:41 85      STMP: OrderID: 199404a4 fully executed
+2021-05-30 21:38:41 86      STRA_BBG000GRZDV1_2021-03-12
+2021-05-30 21:38:41 87      STT_BBG000BKFBD7_2021-03-12
+2021-05-30 21:38:41 88      STT: BuyPending. Strategy: GoodGrowStrategy. Price: 85.3. StopLoss: 84.07. Candle: ID:72, Time: 14:30, Close: 85.3. Details: Reason: DayMax: 83.6. Current change: +2.03%
+2021-05-30 21:38:41 88      STT: OrderID: 474f6649. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:41 88      STT: OrderID: 474f6649 fully executed
+2021-05-30 21:38:41 88      STT: Pulling stop loss to current price. Price: 84.2. MaxPrice: 85.49. Candle: ID:92, Time: 14:35, Close: 85.51.
+2021-05-30 21:38:41 88      STT: Pulling stop loss to current price. Price: 84.84. MaxPrice: 85.49. Candle: ID:133, Time: 14:40, Close: 85.56.
+2021-05-30 21:38:41 88      STT: Pulling stop loss to current price. Price: 85.45. MaxPrice: 85.66. Candle: ID:171, Time: 14:45, Close: 85.67.
+2021-05-30 21:38:41 88      STT: SL reached. Pending. Close price: 85.44. Candle: ID:199, Time: 14:45, Close: 85.44. Profit: 0.14(0.16%)
+2021-05-30 21:38:41 88      STT: OrderID: 4bd324c5. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:41 88      STT: OrderID: 4bd324c5 fully executed
+2021-05-30 21:38:41 90      STX_BBG000F0KF42_2021-03-12
+2021-05-30 21:38:41 90      Warning: figi `BBG000F0KF42` for history data does not match actual figi `BBG0113JGQF0`. Ticker: STX. Will be used actual!
+2021-05-30 21:38:41 93      STZ_BBG000J1QLT0_2021-03-12
+2021-05-30 21:38:41 95      SUPN_BBG000BP0HX7_2021-03-12
+2021-05-30 21:38:41 96      SWAV_BBG005XVXML5_2021-03-12
+2021-05-30 21:38:41 97      SWBI_BBG000BM0QL7_2021-03-12
+2021-05-30 21:38:41 98      SWCH_BBG00HPDM5Z2_2021-03-12
+2021-05-30 21:38:42 00      SWI_BBG00M1CKSK7_2021-03-12
+2021-05-30 21:38:42 01      SWK_BBG000BTQR96_2021-03-12
+2021-05-30 21:38:42 02      SWKS_BBG000KLB4Q1_2021-03-12
+2021-05-30 21:38:42 05      SWN_BBG000BTR593_2021-03-12
+2021-05-30 21:38:42 07      SWN: BuyPending. Strategy: GoodGrowStrategy. Price: 4.57. StopLoss: 4.48. Candle: ID:2938, Time: 16:05, Close: 4.57. Details: Reason: DayMax: 4.48. Current change: +2.01%
+2021-05-30 21:38:42 07      SWN: OrderID: 77887283. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:42 07      SWN: OrderID: 77887283 fully executed
+2021-05-30 21:38:42 07      SWN: Price does not grow. Try to set TakeProfit. Price: 4.53. Candle: ID:3220, Time: 16:25, Close: 4.52.
+2021-05-30 21:38:42 07      SWN: TP reached. Pending. Close price: 4.53. Candle: ID:3224, Time: 16:25, Close: 4.53. Profit: -0.04(-0.88%)
+2021-05-30 21:38:42 07      SWN: OrderID: e81eda0a. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:42 07      SWN: OrderID: e81eda0a fully executed
+2021-05-30 21:38:42 08      SWX_BBG00FWP4JW4_2021-03-12
+2021-05-30 21:38:42 09      SXI_BBG000BTT5B8_2021-03-12
+2021-05-30 21:38:42 10      SXT_BBG000J79P80_2021-03-12
+2021-05-30 21:38:42 10      SYF_BBG00658F3P3_2021-03-12
+2021-05-30 21:38:42 12      SYK_BBG000DN7P92_2021-03-12
+2021-05-30 21:38:42 13      SYKE_BBG000BBHPV4_2021-03-12
+2021-05-30 21:38:42 14      SYNA_BBG000BQV1S2_2021-03-12
+2021-05-30 21:38:42 15      SYNH_BBG0078Y1D92_2021-03-12
+2021-05-30 21:38:42 16      SYY_BBG000BTVJ25_2021-03-12
+2021-05-30 21:38:42 18      T_BBG000BSJK37_2021-03-12
+2021-05-30 21:38:42 26      TAK_BBG000LF8708_2021-03-12
+2021-05-30 21:38:42 27      TAL_BBG0016XJ8S0_2021-03-12
+2021-05-30 21:38:42 27      TAL: BuyPending. Strategy: GoodGrowStrategy. Price: 69.34. StopLoss: 67.5. Candle: ID:379, Time: 14:30, Close: 69.34. Details: Reason: DayMax: 67.97. Current change: +2.02%
+2021-05-30 21:38:42 27      TAL: OrderID: d3e3da1b. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:42 27      TAL: OrderID: d3e3da1b fully executed
+2021-05-30 21:38:42 27      TAL: Pulling stop loss to current price. Price: 67.59. MaxPrice: 69.41. Candle: ID:418, Time: 14:35, Close: 69.53.
+2021-05-30 21:38:42 27      TAL: Pulling stop loss to current price. Price: 69.31. MaxPrice: 69.76. Candle: ID:926, Time: 14:45, Close: 69.82.
+2021-05-30 21:38:42 27      TAL: Pulling stop loss to current price. Price: 69.36. MaxPrice: 70.1. Candle: ID:1013, Time: 14:50, Close: 70.1.
+2021-05-30 21:38:42 27      TAL: Pulling stop loss to current price. Price: 69.77. MaxPrice: 70.42. Candle: ID:1170, Time: 14:55, Close: 70.43.
+2021-05-30 21:38:42 27      TAL: Pulling stop loss to current price. Price: 70.09. MaxPrice: 70.99. Candle: ID:1265, Time: 15:00, Close: 71.05.
+2021-05-30 21:38:42 27      TAL: Seems price is decreases. Closing by current price. Price: 70.89. Candle: ID:1631, Time: 15:15, Close: 70.89.
+2021-05-30 21:38:42 27      TAL: SL reached. Pending. Close price: 70.87. Candle: ID:1632, Time: 15:15, Close: 70.87. Profit: 1.53(2.21%)
+2021-05-30 21:38:42 27      TAL: OrderID: dc0ca4e2. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:42 27      TAL: OrderID: dc0ca4e2 fully executed
+2021-05-30 21:38:42 29      TAP_BBG000BS7KS3_2021-03-12
+2021-05-30 21:38:42 30      TCBI_BBG000DN4ZT1_2021-03-12
+2021-05-30 21:38:42 31      TCMD_BBG001B12Z39_2021-03-12
+2021-05-30 21:38:42 31      TCRR_BBG00FH3FM15_2021-03-12
+2021-05-30 21:38:42 32      TCRR: SPYKE!. Candle: ID:141, Time: 9:30, Close: 26.69
+2021-05-30 21:38:42 32      TCRR: SPYKE!. Candle: ID:154, Time: 9:30, Close: 26
+2021-05-30 21:38:42 32      TCRR: SPYKE!. Candle: ID:155, Time: 9:30, Close: 25.55
+2021-05-30 21:38:42 32      TCRR: BuyPending. Strategy: GoodGrowStrategy. Price: 28.31. StopLoss: 27.89. Candle: ID:338, Time: 14:30, Close: 28.31. Details: Reason: DayMax: 27.68. Current change: +2.28%
+2021-05-30 21:38:42 32      TCRR: OrderID: e0e3a06c. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:42 32      TCRR: OrderID: e0e3a06c fully executed
+2021-05-30 21:38:42 32      TCRR: SL reached. Pending. Close price: 27.66. Candle: ID:346, Time: 14:30, Close: 27.66. Profit: -0.65(-2.30%)
+2021-05-30 21:38:42 32      TCRR: OrderID: e95dcdf8. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:42 32      TCRR: OrderID: e95dcdf8 fully executed
+2021-05-30 21:38:42 32      TCS_BBG005DXJS36_2021-03-12
+2021-05-30 21:38:42 34      TCS: BuyPending. Strategy: GoodGrowStrategy. Price: 54.91. StopLoss: 54.45. Candle: ID:1223, Time: 10:35, Close: 54.91. Details: Reason: DayMax: 53.79. Current change: +2.08%
+2021-05-30 21:38:42 34      TCS: OrderID: 61220a18. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:42 34      TCS: OrderID: 61220a18 fully executed
+2021-05-30 21:38:42 34      TCS: Pulling stop loss to current price. Price: 55.23. MaxPrice: 55.3. Candle: ID:1438, Time: 10:50, Close: 55.39.
+2021-05-30 21:38:42 34      TCS: Pulling stop loss to current price. Price: 55.24. MaxPrice: 55.37. Candle: ID:1479, Time: 10:55, Close: 55.51.
+2021-05-30 21:38:42 34      TCS: Pulling stop loss to current price. Price: 55.31. MaxPrice: 55.5. Candle: ID:1593, Time: 11:10, Close: 55.48.
+2021-05-30 21:38:42 34      TCS: SL reached. Pending. Close price: 55.21. Candle: ID:1600, Time: 11:10, Close: 55.21. Profit: 0.30(0.55%)
+2021-05-30 21:38:42 34      TCS: OrderID: 2c8f3340. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:42 34      TCS: OrderID: 2c8f3340 fully executed
+2021-05-30 21:38:42 35      TCX_BBG000L69KL5_2021-03-12
+2021-05-30 21:38:42 36      TDC_BBG000R0L5J4_2021-03-12
+2021-05-30 21:38:42 36      TDC: BuyPending. Strategy: GoodGrowStrategy. Price: 43.24. StopLoss: 42.88. Candle: ID:332, Time: 16:20, Close: 43.24. Details: Reason: Grow:0.42%;0.49%;0.42%;0.32%;
+2021-05-30 21:38:42 36      TDC: OrderID: 739a3df0. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:42 36      TDC: OrderID: 739a3df0 fully executed
+2021-05-30 21:38:42 36      TDC: Pulling stop loss to current price. Price: 43.1. MaxPrice: 43.28. Candle: ID:342, Time: 16:30, Close: 43.37.
+2021-05-30 21:38:42 36      TDC: SL reached. Pending. Close price: 43.09. Candle: ID:364, Time: 16:35, Close: 43.09. Profit: -0.15(-0.35%)
+2021-05-30 21:38:42 36      TDC: OrderID: 8c9394fe. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:42 36      TDC: OrderID: 8c9394fe fully executed
+2021-05-30 21:38:42 36      TDG_BBG000L8CBX4_2021-03-12
+2021-05-30 21:38:42 37      TDOC_BBG0019T5SG0_2021-03-12
+2021-05-30 21:38:42 41      TDS_BBG000BV0VK7_2021-03-12
+2021-05-30 21:38:42 42      TDY_BBG000BMT9T6_2021-03-12
+2021-05-30 21:38:42 42      TECH_BBG000C15114_2021-03-12
+2021-05-30 21:38:42 43      TEL_BBG000RGM5P1_2021-03-12
+2021-05-30 21:38:42 44      TENB_BBG00LBLCD02_2021-03-12
+2021-05-30 21:38:42 46      TER_BBG000BV4DR6_2021-03-12
+2021-05-30 21:38:42 50      TFC_BBG000BYYLS8_2021-03-12
+2021-05-30 21:38:42 53      TFX_BBG000BV59Y6_2021-03-12
+2021-05-30 21:38:42 54      TGNA_BBG000BK5DP1_2021-03-12
+2021-05-30 21:38:42 55      TGT_BBG000H8TVT2_2021-03-12
+2021-05-30 21:38:42 57      THG_BBG000FJH8W0_2021-03-12
+2021-05-30 21:38:42 57      THO_BBG000BV6R84_2021-03-12
+2021-05-30 21:38:42 58      THRM_BBG000BQLM34_2021-03-12
+2021-05-30 21:38:42 59      THS_BBG000GQGJT4_2021-03-12
+2021-05-30 21:38:42 60      TJX_BBG000BV8DN6_2021-03-12
+2021-05-30 21:38:42 62      TKR_BBG000BV95H9_2021-03-12
+2021-05-30 21:38:42 63      TMHC_BBG003PGJHP5_2021-03-12
+2021-05-30 21:38:42 64      TMO_BBG000BVDLH9_2021-03-12
+2021-05-30 21:38:42 65      TMUS_BBG000NDV1D4_2021-03-12
+2021-05-30 21:38:42 70      TMX_BBG002WMH2F2_2021-03-12
+2021-05-30 21:38:42 71      TNC_BBG000JCZJS2_2021-03-12
+2021-05-30 21:38:42 72      TNDM_BBG0019V9M65_2021-03-12
+2021-05-30 21:38:42 72      TNET_BBG000BR2040_2021-03-12
+2021-05-30 21:38:42 73      TOL_BBG000BVHBM1_2021-03-12
+2021-05-30 21:38:42 75      TOT_BBG000CHZ857_2021-03-12
+2021-05-30 21:38:42 76      TPH_BBG0016YQTR5_2021-03-12
+2021-05-30 21:38:42 77      TPIC_BBG0016MQ7C5_2021-03-12
+2021-05-30 21:38:42 78      TPIC: SPYKE!. Candle: ID:669, Time: 14:10, Close: 48.01
+2021-05-30 21:38:42 79      TPR_BBG000BY29C7_2021-03-12
+2021-05-30 21:38:42 81      TPTX_BBG00NPL9WH7_2021-03-12
+2021-05-30 21:38:42 81      TPTX: BuyPending. Strategy: GoodGrowStrategy. Price: 115.23. StopLoss: 112.9. Candle: ID:762, Time: 20:10, Close: 115.23. Details: Reason: DayMax: 112.81. Current change: +2.15%
+2021-05-30 21:38:42 81      TPTX: OrderID: 5c34aa0f. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:42 81      TPTX: OrderID: 5c34aa0f fully executed
+2021-05-30 21:38:42 81      TPTX: Price does not grow. Try to set TakeProfit. Price: 113.44. Candle: ID:817, Time: 20:30, Close: 113.07.
+2021-05-30 21:38:42 81      TPTX: Price does not grow. Try to set TakeProfit. Price: 113.33. Candle: ID:825, Time: 20:35, Close: 113.14.
+2021-05-30 21:38:42 81      TPTX: TP reached. Pending. Close price: 113.33. Candle: ID:832, Time: 20:35, Close: 113.33. Profit: -1.90(-1.65%)
+2021-05-30 21:38:42 81      TPTX: OrderID: d1821b13. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:42 81      TPTX: OrderID: d1821b13 fully executed
+2021-05-30 21:38:42 82      TPX_BBG000PXGT62_2021-03-12
+2021-05-30 21:38:42 83      TREE_BBG000TVRB50_2021-03-12
+2021-05-30 21:38:42 84      TREX_BBG000BTGKK9_2021-03-12
+2021-05-30 21:38:42 85      TRHC_BBG00BT7PPY8_2021-03-12
+2021-05-30 21:38:42 86      TRIP_BBG001M8HHB7_2021-03-12
+2021-05-30 21:38:42 88      TRIP: BuyPending. Strategy: GoodGrowStrategy. Price: 56.3. StopLoss: 55.91. Candle: ID:1602, Time: 14:45, Close: 56.3. Details: Reason: DayMax: 55.19. Current change: +2.01%
+2021-05-30 21:38:42 88      TRIP: OrderID: fd5f746a. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:42 88      TRIP: OrderID: fd5f746a fully executed
+2021-05-30 21:38:42 88      TRIP: Pulling stop loss to current price. Price: 56.12. MaxPrice: 56.51. Candle: ID:1936, Time: 14:55, Close: 56.6.
+2021-05-30 21:38:42 88      TRIP: Pulling stop loss to current price. Price: 56.13. MaxPrice: 57.2. Candle: ID:2273, Time: 15:00, Close: 57.2.
+2021-05-30 21:38:42 88      TRIP: Pulling stop loss to current price. Price: 56.58. MaxPrice: 57.54. Candle: ID:2535, Time: 15:05, Close: 57.59.
+2021-05-30 21:38:42 88      TRIP: Pulling stop loss to current price. Price: 57.18. MaxPrice: 57.78. Candle: ID:2813, Time: 15:10, Close: 57.83.
+2021-05-30 21:38:42 88      TRIP: Pulling stop loss to current price. Price: 57.56. MaxPrice: 58.2. Candle: ID:3104, Time: 15:15, Close: 58.2.
+2021-05-30 21:38:42 88      TRIP: Pulling stop loss to current price. Price: 58.02. MaxPrice: 58.2. Candle: ID:3634, Time: 15:25, Close: 58.17.
+2021-05-30 21:38:42 88      TRIP: SL reached. Pending. Close price: 58. Candle: ID:3650, Time: 15:25, Close: 58. Profit: 1.70(3.02%)
+2021-05-30 21:38:42 88      TRIP: OrderID: 609599ea. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:42 88      TRIP: OrderID: 609599ea fully executed
+2021-05-30 21:38:42 91      TRMB_BBG000BNPS52_2021-03-12
+2021-05-30 21:38:42 93      TROW_BBG000BVMPN3_2021-03-12
+2021-05-30 21:38:42 94      TRU_BBG002Q7J5Z1_2021-03-12
+2021-05-30 21:38:42 95      TRUP_BBG002BC7WC5_2021-03-12
+2021-05-30 21:38:42 96      TRV_BBG000BJ81C1_2021-03-12
+2021-05-30 21:38:42 97      TSCO_BBG000BLXZN1_2021-03-12
+2021-05-30 21:38:43 01      TSLA_BBG000N9MNX3_2021-03-12
+2021-05-30 21:38:43 38      TSM_BBG000BD8ZK0_2021-03-12
+2021-05-30 21:38:43 43      TSN_BBG000DKCC19_2021-03-12
+2021-05-30 21:38:43 46      TT_BBG000BM6788_2021-03-12
+2021-05-30 21:38:43 47      TTC_BBG000BVQRY3_2021-03-12
+2021-05-30 21:38:43 48      TTD_BBG00629NGT2_2021-03-12
+2021-05-30 21:38:43 50      TTEK_BBG000BYZ0Q5_2021-03-12
+2021-05-30 21:38:43 50      TTM_BBG000PVGDH9_2021-03-12
+2021-05-30 21:38:43 51      TTMI_BBG000BYQ0B1_2021-03-12
+2021-05-30 21:38:43 52      TTWO_BBG000BS1YV5_2021-03-12
+2021-05-30 21:38:43 56      TW_BBG00NK8H8T2_2021-03-12
+2021-05-30 21:38:43 56      TWLO_BBG0029ZX840_2021-03-12
+2021-05-30 21:38:43 58      TWNK_BBG00B6KGNN1_2021-03-12
+2021-05-30 21:38:43 59      TWOU_BBG001KS9450_2021-03-12
+2021-05-30 21:38:43 61      TWTR_BBG000H6HNW3_2021-03-12
+2021-05-30 21:38:43 69      TXG_BBG007WX14X0_2021-03-12
+2021-05-30 21:38:43 71      TXN_BBG000BVV7G1_2021-03-12
+2021-05-30 21:38:43 77      TXRH_BBG000PSJMV7_2021-03-12
+2021-05-30 21:38:43 79      TXT_BBG000BVVQQ8_2021-03-12
+2021-05-30 21:38:43 81      TYL_BBG000BVWZF9_2021-03-12
+2021-05-30 21:38:43 81      UA_BBG009DTD8H2_2021-03-12
+2021-05-30 21:38:43 83      UAA_BBG000BXM6V2_2021-03-12
+2021-05-30 21:38:43 83      UAA: BuyPending. Strategy: GoodGrowStrategy. Price: 23.25. StopLoss: 22.87. Candle: ID:255, Time: 14:40, Close: 23.25. Details: Reason: DayMax: 22.79. Current change: +2.02%
+2021-05-30 21:38:43 83      UAA: OrderID: b4d93245. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:43 83      UAA: OrderID: b4d93245 fully executed
+2021-05-30 21:38:43 83      UAA: Pulling stop loss to current price. Price: 22.97. MaxPrice: 23.25. Candle: ID:260, Time: 14:45, Close: 23.28.
+2021-05-30 21:38:43 83      UAA: Pulling stop loss to current price. Price: 23.24. MaxPrice: 23.27. Candle: ID:377, Time: 14:55, Close: 23.28.
+2021-05-30 21:38:43 83      UAA: Pulling stop loss to current price. Price: 23.25. MaxPrice: 23.34. Candle: ID:459, Time: 15:00, Close: 23.33.
+2021-05-30 21:38:43 83      UAA: Pulling stop loss to current price. Price: 23.26. MaxPrice: 23.42. Candle: ID:503, Time: 15:05, Close: 23.43.
+2021-05-30 21:38:43 83      UAA: SL reached. Pending. Close price: 23.25. Candle: ID:579, Time: 15:15, Close: 23.25. Profit: 0.00(0%)
+2021-05-30 21:38:43 83      UAA: OrderID: 7e55ab28. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:43 83      UAA: OrderID: 7e55ab28 fully executed
+2021-05-30 21:38:43 84      UAL_BBG000M65M61_2021-03-12
+2021-05-30 21:38:43 95      UBER_BBG002B04MT8_2021-03-12
+2021-05-30 21:38:44 00      UCTT_BBG000HSLV70_2021-03-12
+2021-05-30 21:38:44 02      UDR_BBG000C41023_2021-03-12
+2021-05-30 21:38:44 03      UFPI_BBG000BL0T06_2021-03-12
+2021-05-30 21:38:44 05      UFS_BBG000BHFHP8_2021-03-12
+2021-05-30 21:38:44 05      UGI_BBG000BVYN55_2021-03-12
+2021-05-30 21:38:44 06      UHS_BBG000CB8Q50_2021-03-12
+2021-05-30 21:38:44 07      UI_BBG001R72SR9_2021-03-12
+2021-05-30 21:38:44 07      ULTA_BBG00FWQ4VD6_2021-03-12
+2021-05-30 21:38:44 13      UMBF_BBG000DD8WX1_2021-03-12
+2021-05-30 21:38:44 14      UNF_BBG000BW29L1_2021-03-12
+2021-05-30 21:38:44 14      UNH_BBG000CH5208_2021-03-12
+2021-05-30 21:38:44 16      UNM_BBG000BW2QX0_2021-03-12
+2021-05-30 21:38:44 18      UNP_BBG000BW3299_2021-03-12
+2021-05-30 21:38:44 20      UNVR_BBG000BDHD29_2021-03-12
+2021-05-30 21:38:44 21      UPS_BBG000L9CV04_2021-03-12
+2021-05-30 21:38:44 23      UPWK_BBG00FBJ6390_2021-03-12
+2021-05-30 21:38:44 25      URBN_BBG000BL79J3_2021-03-12
+2021-05-30 21:38:44 27      URI_BBG000BXMFC3_2021-03-12
+2021-05-30 21:38:44 28      USB_BBG000FFDM15_2021-03-12
+2021-05-30 21:38:44 30      USFD_BBG00C6H6D40_2021-03-12
+2021-05-30 21:38:44 32      USM_BBG000BW6P59_2021-03-12
+2021-05-30 21:38:44 32      USNA_BBG000BX28M0_2021-03-12
+2021-05-30 21:38:44 33      USPH_BBG000CSRSG6_2021-03-12
+2021-05-30 21:38:44 33      UTHR_BBG000BV4XJ1_2021-03-12
+2021-05-30 21:38:44 34      UTL_BBG000BW7X97_2021-03-12
+2021-05-30 21:38:44 35      V_BBG000PSKYX7_2021-03-12
+2021-05-30 21:38:44 39      VAC_BBG001J2R5H3_2021-03-12
+2021-05-30 21:38:44 40      VALE_BBG000BN5LG7_2021-03-12
+2021-05-30 21:38:44 42      VC_BBG0016T3GQ0_2021-03-12
+2021-05-30 21:38:44 43      VCEL_BBG000BDCM24_2021-03-12
+2021-05-30 21:38:44 44      VCRA_BBG00179VSY7_2021-03-12
+2021-05-30 21:38:44 45      VCYT_BBG001J2M542_2021-03-12
+2021-05-30 21:38:44 46      VEEV_BBG001CGB489_2021-03-12
+2021-05-30 21:38:44 47      VEON_BBG000QCW561_2021-03-12
+2021-05-30 21:38:44 50      VFC_BBG000BWCKB6_2021-03-12
+2021-05-30 21:38:44 51      VG_BBG000BRB5D9_2021-03-12
+2021-05-30 21:38:44 53      VIAC_BBG000C496P7_2021-03-12
+2021-05-30 21:38:44 56      VIAC: BuyPending. Strategy: GoodGrowStrategy. Price: 87.33. StopLoss: 85.18. Candle: ID:584, Time: 14:30, Close: 87.33. Details: Reason: DayMax: 85.6. Current change: +2.02%
+2021-05-30 21:38:44 56      VIAC: OrderID: e2f02cc4. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:44 56      VIAC: OrderID: e2f02cc4 fully executed
+2021-05-30 21:38:44 56      VIAC: Pulling stop loss to current price. Price: 86. MaxPrice: 87.5. Candle: ID:847, Time: 14:35, Close: 87.54.
+2021-05-30 21:38:44 56      VIAC: Pulling stop loss to current price. Price: 86.05. MaxPrice: 89.39. Candle: ID:1374, Time: 14:40, Close: 89.4.
+2021-05-30 21:38:44 56      VIAC: Pulling stop loss to current price. Price: 88.45. MaxPrice: 89.39. Candle: ID:2265, Time: 14:50, Close: 89.31.
+2021-05-30 21:38:44 57      VIAC: Pulling stop loss to current price. Price: 88.52. MaxPrice: 91.02. Candle: ID:3050, Time: 15:00, Close: 91.03.
+2021-05-30 21:38:44 57      VIAC: Pulling stop loss to current price. Price: 89.05. MaxPrice: 91.28. Candle: ID:3653, Time: 15:05, Close: 91.37.
+2021-05-30 21:38:44 57      VIAC: Pulling stop loss to current price. Price: 91.02. MaxPrice: 91.63. Candle: ID:4185, Time: 15:10, Close: 91.67.
+2021-05-30 21:38:44 57      VIAC: Pulling stop loss to current price. Price: 91.36. MaxPrice: 92.93. Candle: ID:4789, Time: 15:15, Close: 92.97.
+2021-05-30 21:38:44 57      VIAC: Pulling stop loss to current price. Price: 91.65. MaxPrice: 93.61. Candle: ID:5407, Time: 15:20, Close: 93.64.
+2021-05-30 21:38:44 57      VIAC: Pulling stop loss to current price. Price: 92.94. MaxPrice: 94.35. Candle: ID:6335, Time: 15:25, Close: 94.39.
+2021-05-30 21:38:44 57      VIAC: SL reached. Pending. Close price: 92.91. Candle: ID:8588, Time: 15:40, Close: 92.91. Profit: 5.58(6.39%)
+2021-05-30 21:38:44 57      VIAC: OrderID: d954789a. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:44 57      VIAC: OrderID: d954789a fully executed
+2021-05-30 21:38:44 62      VICR_BBG000C3VHF1_2021-03-12
+2021-05-30 21:38:44 63      VIE_BBG00K6P5XM1_2021-03-12
+2021-05-30 21:38:44 64      VIPS_BBG002NLDLV8_2021-03-12
+2021-05-30 21:38:44 66      VIR_BBG00H2QQ8T5_2021-03-12
+2021-05-30 21:38:44 72      VLO_BBG000BBGGQ1_2021-03-12
+2021-05-30 21:38:44 74      VMC_BBG000BWGYF8_2021-03-12
+2021-05-30 21:38:44 74      VMI_BBG000BWB7V4_2021-03-12
+2021-05-30 21:38:44 75      VMW_BBG000BC9938_2021-03-12
+2021-05-30 21:38:44 76      VNDA_BBG000HT5MG6_2021-03-12
+2021-05-30 21:38:44 77      VNE_BBG00K4MPP27_2021-03-12
+2021-05-30 21:38:44 77      VNO_BBG000BWHD54_2021-03-12
+2021-05-30 21:38:44 77      VNO: BuyPending. Strategy: GoodGrowStrategy. Price: 49.24. StopLoss: 48.54. Candle: ID:112, Time: 14:35, Close: 49.24. Details: Reason: DayMax: 48.25. Current change: +2.05%
+2021-05-30 21:38:44 78      VNO: OrderID: 4af06281. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:44 78      VNO: OrderID: 4af06281 fully executed
+2021-05-30 21:38:44 78      VNO: Price does not grow. Try to set TakeProfit. Price: 48.98. Candle: ID:237, Time: 14:55, Close: 48.93.
+2021-05-30 21:38:44 78      VNO: TP reached. Pending. Close price: 49. Candle: ID:247, Time: 15:00, Close: 49. Profit: -0.24(-0.49%)
+2021-05-30 21:38:44 78      VNO: OrderID: eb247cbb. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:44 78      VNO: OrderID: eb247cbb fully executed
+2021-05-30 21:38:44 78      VNT_BBG00RRGSJR4_2021-03-12
+2021-05-30 21:38:44 79      VPG_BBG000PRQ0V9_2021-03-12
+2021-05-30 21:38:44 80      VREX_BBG00CZNLR47_2021-03-12
+2021-05-30 21:38:44 81      VRNS_BBG001Y04TN6_2021-03-12
+2021-05-30 21:38:44 81      VRNT_BBG000BCBYT2_2021-03-12
+2021-05-30 21:38:44 82      VRSK_BBG000BCZL41_2021-03-12
+2021-05-30 21:38:44 84      VRSN_BBG000BGKHZ3_2021-03-12
+2021-05-30 21:38:44 86      VRTS_BBG000DMFQS2_2021-03-12
+2021-05-30 21:38:44 86      VRTV_BBG005XZHR97_2021-03-12
+2021-05-30 21:38:44 87      VRTX_BBG000C1S2X2_2021-03-12
+2021-05-30 21:38:44 89      VTR_BBG000FRVHB9_2021-03-12
+2021-05-30 21:38:44 91      VTRS_BBG00Y4RQNH4_2021-03-12
+2021-05-30 21:38:44 94      VZ_BBG000HS77T5_2021-03-12
+2021-05-30 21:38:44 98      W_BBG001B17MV2_2021-03-12
+2021-05-30 21:38:45 00      WAB_BBG000BDD940_2021-03-12
+2021-05-30 21:38:45 01      WAL_BBG000Q1KFH4_2021-03-12
+2021-05-30 21:38:45 01      WAT_BBG000FQRVM3_2021-03-12
+2021-05-30 21:38:45 02      WB_BBG0065XPGX9_2021-03-12
+2021-05-30 21:38:45 03      WBA_BBG000BWLMJ4_2021-03-12
+2021-05-30 21:38:45 07      WCC_BBG000D0FNV3_2021-03-12
+2021-05-30 21:38:45 08      WDAY_BBG000VC0T95_2021-03-12
+2021-05-30 21:38:45 11      WDC_BBG000BWNFZ9_2021-03-12
+2021-05-30 21:38:45 13      WDFC_BBG000BWNV93_2021-03-12
+2021-05-30 21:38:45 13      WEC_BBG000BWP7D9_2021-03-12
+2021-05-30 21:38:45 15      WELL_BBG000BKY1G5_2021-03-12
+2021-05-30 21:38:45 16      WERN_BBG000BWPP85_2021-03-12
+2021-05-30 21:38:45 17      WEX_BBG000BVZP59_2021-03-12
+2021-05-30 21:38:45 18      WFC_BBG000BWQFY7_2021-03-12
+2021-05-30 21:38:45 23      WGO_BBG000BWS3F3_2021-03-12
+2021-05-30 21:38:45 24      WH_BBG00HCY3Q67_2021-03-12
+2021-05-30 21:38:45 25      WHD_BBG00JRH1P95_2021-03-12
+2021-05-30 21:38:45 26      WHR_BBG000BWSV34_2021-03-12
+2021-05-30 21:38:45 26      WING_BBG008N298Y8_2021-03-12
+2021-05-30 21:38:45 28      WK_BBG007BVZ8H9_2021-03-12
+2021-05-30 21:38:45 29      WLK_BBG000PXZFW2_2021-03-12
+2021-05-30 21:38:45 29      WLTW_BBG000DB3KT1_2021-03-12
+2021-05-30 21:38:45 30      WM_BBG000BWVSR1_2021-03-12
+2021-05-30 21:38:45 31      WMB_BBG000BWVCP8_2021-03-12
+2021-05-30 21:38:45 33      WMT_BBG000BWXBC2_2021-03-12
+2021-05-30 21:38:45 38      WOR_BBG000HL7499_2021-03-12
+2021-05-30 21:38:45 38      WORK_BBG007G7V505_2021-03-12
+2021-05-30 21:38:45 39      WRB_BBG000BD1HP2_2021-03-12
+2021-05-30 21:38:45 40      WRK_BBG008NXC572_2021-03-12
+2021-05-30 21:38:45 42      WRLD_BBG000C3G9J2_2021-03-12
+2021-05-30 21:38:45 42      WSC_BBG00B0FS947_2021-03-12
+2021-05-30 21:38:45 43      WSM_BBG000FSMWC3_2021-03-12
+2021-05-30 21:38:45 44      WSO_BBG000DJN7L9_2021-03-12
+2021-05-30 21:38:45 45      WST_BBG000BX24N8_2021-03-12
+2021-05-30 21:38:45 45      WTFC_BBG000HD3DW5_2021-03-12
+2021-05-30 21:38:45 46      WTS_BBG000C4Z6C2_2021-03-12
+2021-05-30 21:38:45 47      WTTR_BBG00G4Y2DC1_2021-03-12
+2021-05-30 21:38:45 48      WU_BBG000BB5373_2021-03-12
+2021-05-30 21:38:45 49      WWD_BBG000BD53V2_2021-03-12
+2021-05-30 21:38:45 50      WWE_BBG000F5YH15_2021-03-12
+2021-05-30 21:38:45 51      WWW_BBG000BX2YN2_2021-03-12
+2021-05-30 21:38:45 52      WY_BBG000BX3BL3_2021-03-12
+2021-05-30 21:38:45 54      WYNN_BBG000LD9JQ8_2021-03-12
+2021-05-30 21:38:45 56      XEC_BBG000D6L294_2021-03-12
+2021-05-30 21:38:45 57      XEL_BBG000BCTQ65_2021-03-12
+2021-05-30 21:38:45 60      XLNX_BBG000C0F570_2021-03-12
+2021-05-30 21:38:45 63      XLRN_BBG000R5HWZ1_2021-03-12
+2021-05-30 21:38:45 63      XLRN: BuyPending. Strategy: GoodGrowStrategy. Price: 138.1. StopLoss: 134. Candle: ID:130, Time: 14:50, Close: 138.1. Details: Reason: DayMax: 135.27. Current change: +2.09%
+2021-05-30 21:38:45 63      XLRN: OrderID: 3c2e1037. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:45 63      XLRN: OrderID: 3c2e1037 fully executed
+2021-05-30 21:38:45 63      XLRN: Price does not grow. Try to set TakeProfit. Price: 137.29. Candle: ID:190, Time: 15:10, Close: 137.57.
+2021-05-30 21:38:45 63      XLRN: TP reached. Pending. Close price: 137.83. Candle: ID:191, Time: 15:10, Close: 137.83. Profit: -0.27(-0.20%)
+2021-05-30 21:38:45 63      XLRN: OrderID: 86582d18. PlacedOrder. Status: New. RejectReason: 
+2021-05-30 21:38:45 63      XLRN: OrderID: 86582d18 fully executed
+2021-05-30 21:38:45 63      XNCR_BBG0026ZG4W0_2021-03-12
+2021-05-30 21:38:45 64      XOM_BBG000GZQ728_2021-03-12
+2021-05-30 21:38:45 70      XPO_BBG000L5CJF3_2021-03-12
+2021-05-30 21:38:45 71      XRAY_BBG000BX57K1_2021-03-12
+2021-05-30 21:38:45 73      XRX_BBG00NNG2ZJ8_2021-03-12
+2021-05-30 21:38:45 74      XYL_BBG001D8R5D0_2021-03-12
+2021-05-30 21:38:45 75      Y_BBG000BX6BJ3_2021-03-12
+2021-05-30 21:38:45 75      YELP_BBG000Q2HM09_2021-03-12
+2021-05-30 21:38:45 76      YETI_BBG00D8JC882_2021-03-12
+2021-05-30 21:38:45 77      YEXT_BBG001MKZGY7_2021-03-12
+2021-05-30 21:38:45 78      YUM_BBG000BH3GZ2_2021-03-12
+2021-05-30 21:38:45 79      YUMC_BBG00B8N0HG1_2021-03-12
+2021-05-30 21:38:45 81      YY_BBG003H0XV18_2021-03-12
+2021-05-30 21:38:45 81      YY: SPYKE!. Candle: ID:240, Time: 14:25, Close: 120.06
+2021-05-30 21:38:45 82      Z_BBG009NRSWJ4_2021-03-12
+2021-05-30 21:38:45 86      ZBH_BBG000BKPL53_2021-03-12
+2021-05-30 21:38:45 87      ZBRA_BBG000CC7LQ7_2021-03-12
+2021-05-30 21:38:45 88      ZEN_BBG001HRFJG4_2021-03-12
+2021-05-30 21:38:45 89      ZG_BBG000D13GN8_2021-03-12
+2021-05-30 21:38:45 91      ZGNX_BBG000VDC3G9_2021-03-12
+2021-05-30 21:38:45 92      ZI_BBG00S1HJ3M8_2021-03-12
+2021-05-30 21:38:45 93      ZION_BBG000BX9WL1_2021-03-12
+2021-05-30 21:38:45 95      ZM_BBG0042V6JM8_2021-03-12
+2021-05-30 21:38:46 01      ZNH_BBG000BXQ7R1_2021-03-12
+2021-05-30 21:38:46 02      ZS_BBG003338H34_2021-03-12
+2021-05-30 21:38:46 04      ZTS_BBG0039320N9_2021-03-12
+2021-05-30 21:38:46 05      ZUMZ_BBG000PYX812_2021-03-12
+2021-05-30 21:38:46 06      ZUO_BBG000BT3HG5_2021-03-12
+2021-05-30 21:38:46 06      ZUO: SPYKE!. Candle: ID:100, Time: 14:25, Close: 14.95
+2021-05-30 21:38:46 07      ZYNE_BBG007BBS8B7_2021-03-12
+2021-05-30 21:38:46 13      ZYXI_BBG000BJBXZ2_2021-03-12
+2021-05-30 21:38:46 15      Total candles read: 4411713
+2021-05-30 21:38:46 15      Start DisposeAsync...
+2021-05-30 21:38:46 15      Trade statistic. Total/Pos/Neg: 112/35/77; Profit: -11.46; Volume: 0; MaxVolume: 1162.69; Commission: 6.799940;
+2021-05-30 21:38:46 15      BaseBot::DisposeAsync...
+2021-05-30 21:38:46 16      BaseBot::DisposeAsync done!
+2021-05-30 21:38:46 16      End DisposeAsync...
