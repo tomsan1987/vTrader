@@ -364,6 +364,7 @@ namespace TradingBot
             Test("FDX_BBG000BJF1Z8_2020-12-14", 0, 0.0m); // gap up, no reason to buy until prev day close price
             Test("QDEL_BBG000C6GN04_2021-01-19", 0, 0.0m); // gap up, do not buy
             Test("FOXA_BBG00JHNJW99_2021-01-28", 0, 0.0m); // does not make sense to buy if low significantly less
+            Test("LPL_BBG000FJ0RK9_2021-05-25", 0, 0.0m); // big grow on market close
 
             Test("OXY_BBG000BQQ2S6_2020-12-21", 2, -0.7m); // big loss
             Test("FSLY_BBG004NLQHL0_2021-01-28", 1, -1.0m); // do not buy when falling
@@ -554,7 +555,6 @@ namespace TradingBot
             RunPositiveTestsMorningOpenStrategy();
             RunNegativeTestsMorningOpenStrategy();
 
-            Test("", 1, 0.0m);
             Test("", 1, 0.0m);
             Test("", 1, 0.0m);
             Test("", 1, 0.0m);

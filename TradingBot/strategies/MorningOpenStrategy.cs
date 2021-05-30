@@ -218,7 +218,7 @@ namespace TradingBot
                 else
                 {
                     var prevChange = Helpers.GetChangeInPercent(candles[candles.Count - 2]);
-                    if (/*prevChange == 0 || */(Math.Abs(prevChange) > 1.5m && candles[candles.Count - 2].Volume < 10)) // first condition significantly reduced orders count with little less profit
+                    if (/*prevChange == 0 || */prevChange > 3m || (Math.Abs(prevChange) > 1.5m && candles[candles.Count - 2].Volume < 10)) // first condition significantly reduced orders count with little less profit
                     {
                         // we cant rely on this data due to price significantly changed with low volume
                         tradeData.PrevDayClosePrice = 0;
