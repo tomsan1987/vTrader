@@ -10,7 +10,7 @@ namespace TradingBot
     {
         // Trade settings
         public const decimal sMinVolume = 250; // USD
-        public const int s_OrdersPerTrade = 2; // it means we can place one more order to buy the dip more
+        public const int sOrdersPerTrade = 2; // it means we can place one more order to buy the dip more
 
         public IStrategy.StrategyResultType Process(MarketInstrument instrument, TradeData tradeData, Quotes quotes, out LimitOrder order)
         {
@@ -164,7 +164,7 @@ namespace TradingBot
             var candle = candles[candles.Count - 1];
 
             var profit = Helpers.GetChangeInPercent(tradeData.AvgPrice, candle.Close);
-            if (tradeData.BuyTime == candle.Time && tradeData.Orders.Count < s_OrdersPerTrade)
+            if (tradeData.BuyTime == candle.Time && tradeData.Orders.Count < sOrdersPerTrade)
             {
                 var lastBuyPrice = tradeData.Orders[tradeData.Orders.Count - 1].Price;
                 var changeFromLastBuy = Helpers.GetChangeInPercent(lastBuyPrice, candle.Close);

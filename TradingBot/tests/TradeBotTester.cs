@@ -291,7 +291,7 @@ namespace TradingBot
             Test("ET_BBG000BM2FL9_2021-02-18", 1, 0.10m);
             Test("COG_BBG000C3GN47_2021-03-12", 1, 0.3m);
             Test("TPR_BBG000BY29C7_2021-02-18", 1, 0.7m);
-            Test("COTY_BBG000F395V1_2021-02-25", 1, 0.14m);
+            Test("COTY_BBG000F395V1_2021-02-25", 0, 0.0m); // old expectations: 1, 0.14m
             Test("FSLY_BBG004NLQHL0_2021-03-05", 1, 1.0m);
             Test("SDGR_BBG000T88BN2_2021-03-12", 1, 1.0m);
             Test("BABA_BBG006G2JVL2_2021-03-12", 1, 4.0m);
@@ -317,7 +317,7 @@ namespace TradingBot
             // great profit for this day
             Test("AAPL_BBG000B9XRY4_2021-04-19", 2, 5.5m);
             Test("ADBE_BBG000BB5006_2021-04-19", 1, 50.0m);
-            Test("ATVI_BBG000CVWGS6_2021-04-19", 1, 1.0m); // this can be bought early due to big gap down
+            Test("ATVI_BBG000CVWGS6_2021-04-19", 0, 0.0m); // old expectations: 1, 1.0m; this can be bought early due to big gap down
             Test("AYX_BBG000BGZT72_2021-04-19", 2, 11.8m); // this can be bought early due to big gap down?
             Test("BK_BBG000BD8PN9_2021-04-19", 1, 0.5m);
             Test("BLUE_BBG000QGWY50_2021-04-19", 1, 0.2m);
@@ -331,7 +331,7 @@ namespace TradingBot
             Test("NVDA_BBG000BBJQV0_2021-04-19", 1, 80.0m); // wow!
             Test("RYTM_BBG007DLZ601_2021-04-19", 1, 0.5m); // this can be bought early due to big gap down?
             Test("SDGR_BBG000T88BN2_2021-04-19", 1, 5.5m);
-            Test("SQ_BBG0018SLC07_2021-04-19", 1, 6.0m); // this can be bought early due to big gap down?
+            Test("SQ_BBG0018SLC07_2021-04-19", 0, 0.0m); // old expectations: 1, 6.0m; this can be bought early due to big gap down?
             Test("MA_BBG000F1ZSQ2_2021-04-19", 0, 0.0m); // TODO: want to buy this
             Test("SOHU_BBG00L2DB535_2021-04-19", 0, 0.0m); // TODO: want to buy this
             Test("MSTR_BBG000GQJPZ0_2021-04-19", 1, 0.0m); // TODO: why per test bought 1 lot, but in real bought more...? // 
@@ -503,51 +503,6 @@ namespace TradingBot
             _writer.WriteLine("");
         }
 
-        private void Test2(string testName, string fileName)
-        {
-            if (testName.Length == 0)
-                return;
-
-            if (_testNameFilter.Length > 0 && _testNameFilter != testName)
-                return;
-
-            try
-            {
-                if (File.Exists(fileName))
-                {
-                    var candleList = TradeBot.ReadCandles(fileName);
-                    var res = _bot.TradeByHistory(candleList);
-
-                    if (res.lots > 0)
-                    {
-                        var profit = Math.Round(res.totalProfit / res.lots, 2);
-                        _writer.WriteLine(testName);
-                        _writer.WriteLine("Orders: " + res.totalOrders);
-                        _writer.WriteLine("Lots: " + res.lots);
-                        _writer.WriteLine("Profit: " + profit);
-                        _writer.WriteLine("TotalProfit: " + res.totalProfit);
-                        _writer.WriteLine("");
-                    }
-
-                    _totalOrders += res.totalOrders;
-                    _totalProfit += res.totalProfit;
-
-                    // some assertions for Bot's state
-                    if (_bot.HasOrders())
-                        Logger.Write("Error! Trade finished, but some orders or shares still in portfolio....");
-                }
-                else
-                {
-                    _writer.WriteLine("FAILED");
-                    _writer.WriteLine("File name {0} not found", fileName);
-                }
-            }
-            catch (Exception e)
-            {
-                _writer.WriteLine("Exception: " + e.Message);
-            }
-        }
-
         private void TestMorningOpenStrategy()
         {
             _testNameFilter = "";
@@ -555,7 +510,7 @@ namespace TradingBot
             RunPositiveTestsMorningOpenStrategy();
             RunNegativeTestsMorningOpenStrategy();
 
-            Test("", 1, 0.0m);
+            //Test("GSKY_BBG00KT2SCV8_2021-05-20", 0, 0.0m);
             Test("", 1, 0.0m);
             Test("", 1, 0.0m);
             Test("", 1, 0.0m);

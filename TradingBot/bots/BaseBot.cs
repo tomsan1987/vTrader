@@ -450,7 +450,7 @@ namespace TradingBot
                 // add new one
                 candles.Candles.Add(candle);
                 candles.Raw.Add(new Quotes.Quote(candle.Close, candle.Volume, candle.Time));
-                candles.RawPosStart.Add(candles.Raw.Count);
+                candles.RawPosStart.Add(candles.Raw.Count - 1);
             }
 
             candles.DayMax = Math.Max(candles.DayMax, candle.Close);

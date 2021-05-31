@@ -10,7 +10,8 @@ namespace TradingBot
     {
         // Trade settings
         public const decimal sMinVolume = 250; // USD
-        static public int s_OrdersPerTrade = 2; // it means we can place one more order to buy the dip more
+        static public int sOrdersPerTrade = 2; // it means we can place one more order to buy the dip more
+        public static decimal sPriceTrigger = -2.0m; // down price after which strategy get triggered
 
         public IStrategy.StrategyResultType Process(MarketInstrument instrument, TradeData tradeData, Quotes quotes, out LimitOrder order)
         {
@@ -57,13 +58,23 @@ namespace TradingBot
 
             CalculatePrevDayClosePrice(candles, tradeData);
 
-            var currCandleChange = Helpers.GetChangeInPercent(candle);
-
             if (quotes.Raw.Count < 10)
                 return IStrategy.StrategyResultType.NoOp;
 
             if (candle.Volume < 100)
                 return IStrategy.StrategyResultType.NoOp;
+
+            var currCandleChange = Helpers.GetChangeInPercent(candle);
+            if (currCandleChange < sPriceTrigger)
+            {
+                // correct candle open price if need
+                int posFrom = quotes.RawPosStart[candles.Count - 1];
+                if (quotes.SpikePositions.FindIndex(x => x == posFrom + 1) >= 0)
+                {
+                    // it means we have Spike after open price => open price is not sufficient
+                    currCandleChange = Helpers.GetChangeInPercent(quotes.Raw[posFrom + 1].Price, candle.Close);
+                }
+            }
 
             bool buy = false;
             decimal changeFromPrevClose = 0.0m;
@@ -79,13 +90,13 @@ namespace TradingBot
                 if (changeFromPrevClose > 0.5m) // TODO currCandleChange < 4.0m then ignore
                     return IStrategy.StrategyResultType.NoOp; // opened with gap up and price does not interesting now
 
-                if (currCandleChange < -2.0m || changeFromPrevClose < -2.0m)
+                if (currCandleChange < sPriceTrigger || changeFromPrevClose < sPriceTrigger)
                     buy = true;
             }
             else
             {
                 // we have no previous day close price, so buy only big falls
-                if (currCandleChange < -3.0m)
+                if (currCandleChange < sPriceTrigger - 1m)
                     buy = true;
             }
 
@@ -135,11 +146,11 @@ namespace TradingBot
             var candle = candles[candles.Count - 1];
 
             var profit = Helpers.GetChangeInPercent(tradeData.AvgPrice, candle.Close);
-            if (tradeData.BuyTime == candle.Time && tradeData.Orders.Count < s_OrdersPerTrade)
+            if (tradeData.BuyTime == candle.Time && tradeData.Orders.Count < sOrdersPerTrade)
             {
                 var lastBuyPrice = tradeData.Orders[tradeData.Orders.Count - 1].Price;
                 var changeFromLastBuy = Helpers.GetChangeInPercent(lastBuyPrice, candle.Close);
-                if (changeFromLastBuy < -2.0m)
+                if (changeFromLastBuy < sPriceTrigger)
                 {
                     // buy more
                     int lots = Math.Max((int)(sMinVolume / candle.Close), 1);

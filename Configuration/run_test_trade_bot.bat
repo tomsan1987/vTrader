@@ -14,7 +14,6 @@ FOR /f "tokens=*" %%G IN ('dir /b /s /a:d "%INPUT_FOLDER%"') DO (
 	echo %%G
 	start ..\TradingBot\bin\Release\netcoreapp3.1\TradingBot.exe mode="TestTradeBot" DumpQuotes=false SubscribeQuotes=false Strategies="%STRATEGY%" Token="token.txt" ConfigPath="usd.json" OutputFolder="%OUTPUT_FOLDER%" CandlesPath="%%G"
 	SET /a PROCESSED+=1
-	echo !PROCESSED!
 	IF !PROCESSED!==%CPU_CORES% (
 		timeout /T 20 /NOBREAK
 		SET PROCESSED=0
