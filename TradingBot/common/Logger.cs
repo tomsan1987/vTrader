@@ -12,12 +12,30 @@ namespace TradingBot
     {
         private readonly StreamWriter _file;
         private static Logger _instance;
+        private static string _outputFolder;
         private string _fileName;
         private Logger()
         {
-            _fileName = DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".log";
+            if (_outputFolder?.Length > 0)
+            {
+                try
+                {
+                    _fileName = _outputFolder;
+                    if (!Directory.Exists(_fileName))
+                        Directory.CreateDirectory(_fileName);
+                }
+                catch (Exception)
+                {
+                }
+            }
+            _fileName += DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".log";
             _file = new StreamWriter(_fileName, false);
             _file.AutoFlush = true;
+        }
+
+        public static void setOutputFolder(string outputFolder)
+        {
+            _outputFolder = outputFolder;
         }
 
         public static void Write(string format, params object?[] args)

@@ -14,6 +14,7 @@ namespace TradingBot
             {
                 var po = new ProgramOptions(args);
                 var settings = new BaseBot.Settings(po);
+                Logger.setOutputFolder(po.Get<string>("OutputFolder"));
                 Logger.Write(po.ToString());
 
                 var mode = po.Get<string>("mode");
@@ -155,6 +156,9 @@ namespace TradingBot
             settings.SubscribeQuotes = false;
             settings.RequestCandlesHistory = false;
             settings.FakeConnection = true;
+
+            if (!po.Get<bool>("CopyData"))
+                outputFolder = null;
 
             var bot = new TradeBot(settings);
             await bot.StartAsync();
