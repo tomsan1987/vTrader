@@ -1,1 +1,1 @@
-..\TradingBot\bin\Release\netcoreapp3.1\TradingBot.exe mode="AnalyzeLogs" Token="token.txt" ConfigPath="config.json" SourceFolder=".\MorningOpenStrategy"
+..\TradingBot\bin\Release\netcoreapp3.1\TradingBot.exe mode="AnalyzeLogs" ConfigPath="config.json" SourceFolder=".\new"

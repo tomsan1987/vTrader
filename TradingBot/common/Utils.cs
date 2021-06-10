@@ -167,20 +167,21 @@ namespace TradingBot
                 if (lastStr.Length > 0)
                 {
                     //Trade statistic. Total/Pos/Neg 42/16/26. Profit: -6,46. Volume: 3120,24. MaxVolume: 1704,93.Commission: 3,117010
+                    //Trade statistic. Total/Pos/Neg/(ratio): 3/1/2/(0.5); Profit: -0.77/-0.26; Volume: 0; MaxVolume: 223.51; Commission: 0.665945;
                     for (;;)
                     {
                         int start = 0;
                         int end = 0;
 
-                        start = lastStr.IndexOf("Total/Pos/Neg: ");
+                        start = lastStr.IndexOf("Total/Pos/Neg/(ratio): ");
                         if (start > 0)
                         {
                             end = lastStr.IndexOf(';', start);
                             if (end > start)
                             {
-                                var str = lastStr.Substring(start + 15, end - (start + 15));
+                                var str = lastStr.Substring(start + 23, end - (start + 23));
                                 var array = str.Split("/");
-                                if (array.Length == 3)
+                                if (array.Length >= 3)
                                 {
                                     stat.totalOrders += int.Parse(array[0]);
                                     stat.posOrders += int.Parse(array[1]);
@@ -194,7 +195,7 @@ namespace TradingBot
                         start = lastStr.IndexOf("Profit: ");
                         if (start > 0)
                         {
-                            end = lastStr.IndexOf(';', start);
+                            end = lastStr.IndexOf('/', start);
                             if (end > start)
                             {
                                 var str = lastStr.Substring(start + 8, end - (start + 8));

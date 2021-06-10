@@ -51,12 +51,6 @@ namespace TradingBot
             if (candle.Time.Hour > 13 || (candle.Time.Hour == 13 && candle.Time.Minute >= 30))
                 return IStrategy.StrategyResultType.NoOp;
 
-            // TODO: make sure that it will not market open
-            //if (candle.Time.Hour == 7 && candles.Count > 2)
-            //    return IStrategy.StrategyResultType.NoOp;
-
-            //CalculatePrevDayClosePrice(candles, tradeData);
-
             var currCandleChange = Helpers.GetChangeInPercent(candle);
 
             if (quotes.Raw.Count - quotes.RawPosStart[candles.Count - 1] < 10)
@@ -68,26 +62,6 @@ namespace TradingBot
             bool buy = false;
             if (currCandleChange < -4.0m)
                 buy = true;
-            //if (tradeData.PrevDayClosePrice > 0)
-            //{
-            //    // we have previous day close price, lets estimate how we open relatively this price
-            //    changeFromPrevClose = Helpers.GetChangeInPercent(tradeData.PrevDayClosePrice, candle.Close);
-
-            //    // TODO
-            //    //if (changeFromPrevClose > 5m /*&& short-able*/)
-            //    //    return IStrategy.StrategyResultType.Sell;
-
-            //    if (changeFromPrevClose > 0.5m) // TODO currCandleChange < 4.0m then ignore
-            //        return IStrategy.StrategyResultType.NoOp; // opened with gap up and price does not interesting now
-
-            //    if (currCandleChange < -2.0m || changeFromPrevClose < -2.0m)
-            //        buy = true;
-            //}
-            //else
-            //{
-            //    // we have no previous day close price, so buy only big falls
-
-            //}
 
             decimal changeFromLow = 0.0m;
 
