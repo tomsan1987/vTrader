@@ -2,7 +2,7 @@ echo OFF
 Setlocal EnableDelayedExpansion
 
 rem INPUT VARIABLES
-SET STRATEGY=BuyTheDipPremarket
+SET STRATEGY=MorningOpenStrategy
 SET INPUT_FOLDER=..\TestData\RawQuotes\5m\uncompressed\
 SET OUTPUT_FOLDER=.\new\\
 SET CPU_CORES=8

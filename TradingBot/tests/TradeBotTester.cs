@@ -244,7 +244,7 @@ namespace TradingBot
             Test("DKNG_BBG00TCBG714_2021-01-28", 2, 0.2m); // can be improved to buy by statistic. // there was not enough liquidity when buy > 1 lots
             Test("PINS_BBG002583CV8_2021-01-27", 1, 2.0m); // +
             Test("ETRN_BBG00K53L394_2021-01-27", 1, 0.08m);
-            Test("BBBY_BBG000CSY9H9_2021-02-04", 1, 0.4m);
+            Test("BBBY_BBG000CSY9H9_2021-02-04", 0, 0.0m);
             Test("F_BBG000BQPC32_2021-01-28", 1, 0.00m); // little profit
             Test("PINS_BBG002583CV8_2021-02-02", 1, 0.5m);
             Test("SPCE_BBG00HTN2CQ3_2021-01-25", 1, 0.05m);
