@@ -336,6 +336,7 @@ namespace TradingBot
             Test("SOHU_BBG00L2DB535_2021-04-19", 2, 1.0m);
             Test("MSTR_BBG000GQJPZ0_2021-04-19", 2, 8.0m); // TODO: why per test bought 1 lot, but in real bought more...? // 
             Test("VRTX_BBG000C1S2X2_2021-04-19", 0, 0.0m); // TODO: did not bought per test, but bought in realty
+            Test("SQ_BBG0018SLC07_2021-05-27", 0, 0.0m); // TODO: Want to buy this!
 
 
             _basePath = basePath;
@@ -507,10 +508,9 @@ namespace TradingBot
         {
             _testNameFilter = "";
 
-            RunPositiveTestsMorningOpenStrategy();
-            RunNegativeTestsMorningOpenStrategy();
+            //RunPositiveTestsMorningOpenStrategy();
+            //RunNegativeTestsMorningOpenStrategy();
 
-            Test("", 1, 0.0m);
             Test("", 1, 0.0m);
             Test("", 1, 0.0m);
             Test("", 1, 0.0m);
