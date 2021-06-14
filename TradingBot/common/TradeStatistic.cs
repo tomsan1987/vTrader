@@ -107,7 +107,15 @@ namespace TradingBot
 
         public string GetStringStat()
         {
-            return String.Format("Trade statistic. Total/Pos/Neg/(ratio): {0}/{1}/{2}/({3}); Profit: {4}/{5}; Volume: {6}; MaxVolume: {7}; Commission: {8};", totalOrders, posOrders, negOrders, Math.Round((decimal)posOrders/negOrders, 2), totalProfit, Math.Round(totalProfit/totalOrders, 2), volume, GetMaxVolume(), comission);
+            decimal ordersRatio = 0.0m;
+            if (negOrders > 0)
+                ordersRatio = Math.Round((decimal)posOrders / negOrders, 2);
+
+            decimal profitPerOrder = 0.0m;
+            if (totalOrders > 0)
+                profitPerOrder = Math.Round(totalProfit / totalOrders, 2);
+
+            return String.Format("Trade statistic. Total/Pos/Neg/(ratio): {0}/{1}/{2}/({3}); Profit: {4}/{5}; Volume: {6}; MaxVolume: {7}; Commission: {8};", totalOrders, posOrders, negOrders, ordersRatio, totalProfit, profitPerOrder, volume, GetMaxVolume(), comission);
         }
     }
 }
