@@ -32,28 +32,6 @@ namespace TradingBot
         public TradeBot(Settings settings) : base(settings)
         {
             Logger.Write("Trade bot created");
-
-            if (settings.Strategies != null && settings.Strategies.Length > 0)
-            {
-                var strategyNames = settings.Strategies.Split(",");
-                _strategies = new IStrategy[strategyNames.Length];
-
-                for (int i = 0; i < strategyNames.Length; ++i)
-                {
-                    switch (strategyNames[i])
-                    {
-                        case "GoodGrowStrategy":        _strategies[i] = new GoodGrowStrategy(); break;
-                        case "ImpulseStrategy":         _strategies[i] = new ImpulseStrategy(); break;
-                        case "MorningOpenStrategy":     _strategies[i] = new MorningOpenStrategy(); break;
-                        case "BuyTheDipPremarket":      _strategies[i] = new BuyTheDipPremarket(); break;
-                        default: Logger.Write("Unknown strategy name '{0}'", strategyNames[i]); break;
-                    }
-                }
-            }
-            else
-            {
-                throw new Exception("No strategies specified!");
-            }
         }
 
         public override async ValueTask DisposeAsync()
@@ -98,37 +76,8 @@ namespace TradingBot
         public override async Task StartAsync()
         {
             await base.StartAsync();
-
-            // make a list of Figis which we will not trade due to it exist in portfolio
-            {
-                List<string> disabledFigis = null;
-                string disabledTickers = "";
-
-                if (!_settings.FakeConnection)
-                {
-                    disabledFigis = new List<string>();
-                    var positions = _context.PortfolioAsync(_accountId).Result.Positions;
-                    foreach (var it in positions)
-                    {
-                        disabledFigis.Add(it.Figi);
-                        disabledTickers += it.Ticker;
-                        disabledTickers += ";";
-                    }
-                }
-
-                foreach (var ticker in _watchList)
-                {
-                    var figi = _tickerToFigi[ticker];
-                    var tradeData = new TradeData();
-
-                    if (disabledFigis != null && disabledFigis.Exists(x => x.Contains(figi)))
-                        tradeData.DisabledTrading.Permanently = true;
-
-                    _tradeData.Add(figi, tradeData);
-                }
-
-                Logger.Write("List of disabled tickers: " + disabledTickers);
-            }
+            CreateStrategies();
+            DisableTradingForInstrumentsFromPortfolio();
 
             _tradeTask = Task.Run(async () =>
             {
@@ -161,6 +110,63 @@ namespace TradingBot
         public bool HasOrders()
         {
             return _portfolio.Count > 0 || _portfolioOrders.Count > 0 || _orders.Count > 0;
+        }
+
+        private void CreateStrategies()
+        {
+            if (_settings.Strategies != null && _settings.Strategies.Length > 0)
+            {
+                var strategyNames = _settings.Strategies.Split(",");
+                _strategies = new IStrategy[strategyNames.Length];
+
+                for (int i = 0; i < strategyNames.Length; ++i)
+                {
+                    switch (strategyNames[i])
+                    {
+                        case "GoodGrowStrategy": _strategies[i] = new GoodGrowStrategy(); break;
+                        case "ImpulseStrategy": _strategies[i] = new ImpulseStrategy(); break;
+                        case "MorningOpenStrategy": _strategies[i] = new MorningOpenStrategy(_liquidInstruments); break;
+                        case "BuyTheDipPremarket": _strategies[i] = new BuyTheDipPremarket(); break;
+                        default: Logger.Write("Unknown strategy name '{0}'", strategyNames[i]); break;
+                    }
+                }
+            }
+            else
+            {
+                throw new Exception("No strategies specified!");
+            }
+        }
+
+        private void DisableTradingForInstrumentsFromPortfolio()
+        {
+            // make a list of Figis which we will not trade due to it exist in portfolio
+            List<string> disabledFigis = null;
+            string disabledTickers = "";
+
+            if (!_settings.FakeConnection)
+            {
+                disabledFigis = new List<string>();
+                var positions = _context.PortfolioAsync(_accountId).Result.Positions;
+                foreach (var it in positions)
+                {
+                    disabledFigis.Add(it.Figi);
+                    disabledTickers += it.Ticker;
+                    disabledTickers += ";";
+                }
+            }
+
+            foreach (var ticker in _watchList)
+            {
+                var figi = _tickerToFigi[ticker];
+                var tradeData = new TradeData();
+
+                if (disabledFigis != null && disabledFigis.Exists(x => x.Contains(figi)))
+                    tradeData.DisabledTrading.Permanently = true;
+
+                _tradeData.Add(figi, tradeData);
+            }
+
+            Logger.Write("List of disabled tickers: " + disabledTickers);
         }
 
         private async Task OnCandleUpdate(string figi)

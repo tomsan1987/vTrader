@@ -13,6 +13,13 @@ namespace TradingBot
         static public int sOrdersPerTrade = 2; // it means we can place one more order to buy the dip more
         public static decimal sPriceTrigger = -2.0m; // down price after which strategy get triggered
 
+        private IList<string> _liquidInstruments;
+
+        public MorningOpenStrategy(IList<string> liquidInstruments)
+        {
+            _liquidInstruments = liquidInstruments;
+        }
+
         public IStrategy.StrategyResultType Process(MarketInstrument instrument, TradeData tradeData, Quotes quotes, out LimitOrder order)
         {
             order = null;
@@ -58,10 +65,11 @@ namespace TradingBot
 
             CalculatePrevDayClosePrice(candles, tradeData);
 
-            if (quotes.Raw.Count < 10)
+            if (quotes.Raw.Count <= 4)
                 return IStrategy.StrategyResultType.NoOp;
 
-            if (candle.Volume < 100)
+            bool isLiquid = (_liquidInstruments == null) ? false : _liquidInstruments.Contains(instrument.Ticker);
+            if (!isLiquid && (quotes.Raw.Count < 10 || candle.Volume < 100))
                 return IStrategy.StrategyResultType.NoOp;
 
             var currCandleChange = Helpers.GetChangeInPercent(candle);
@@ -136,6 +144,9 @@ namespace TradingBot
                 return IStrategy.StrategyResultType.CancelOrder;
             }
 
+            if (ShouldBuyMore(instrument, tradeData, quotes, out order))
+                return IStrategy.StrategyResultType.Buy;
+
             return IStrategy.StrategyResultType.NoOp;
         }
 
@@ -145,23 +156,8 @@ namespace TradingBot
             var candles = quotes.Candles;
             var candle = candles[candles.Count - 1];
 
-            var profit = Helpers.GetChangeInPercent(tradeData.AvgPrice, candle.Close);
-            if (tradeData.BuyTime == candle.Time && tradeData.Orders.Count < sOrdersPerTrade)
-            {
-                var lastBuyPrice = tradeData.Orders[tradeData.Orders.Count - 1].Price;
-                var changeFromLastBuy = Helpers.GetChangeInPercent(lastBuyPrice, candle.Close);
-                if (changeFromLastBuy < sPriceTrigger)
-                {
-                    // buy more
-                    int lots = Math.Max((int)(sMinVolume / candle.Close), 1);
-                    order = new LimitOrder(instrument.Figi, lots, OperationType.Buy, candle.Close);
-
-                    Logger.Write("{0}: Buy more. Price: {1}. Lots: {2}. changeFromLastBuy: {3}. {4}.",
-                        instrument.Ticker, order.Price, order.Lots, changeFromLastBuy, Helpers.CandleDesc(quotes.Raw.Count - 1, candle));
-
-                    return IStrategy.StrategyResultType.Buy;
-                }
-            }
+            if (ShouldBuyMore(instrument, tradeData, quotes, out order))
+                return IStrategy.StrategyResultType.Buy;
 
             // if price is growing - waiting
             var candleChange = Helpers.GetChangeInPercent(candle);
@@ -172,6 +168,7 @@ namespace TradingBot
             if (candleChange >= changeThreshold && changeFromMax > -1.0m)
                 return IStrategy.StrategyResultType.NoOp;
 
+            var profit = Helpers.GetChangeInPercent(tradeData.AvgPrice, candle.Close);
             if (candle.Time >= tradeData.BuyTime.AddMinutes(5) && profit >= 0.1m)
             {
                 // if we had deep dropdown - just sell per current price, otherwise, hold on
@@ -240,6 +237,32 @@ namespace TradingBot
                     }
                 }
             }
+        }
+
+        private bool ShouldBuyMore(MarketInstrument instrument, TradeData tradeData, Quotes quotes, out LimitOrder order)
+        {
+            order = null;
+            var candles = quotes.Candles;
+            var candle = candles[candles.Count - 1];
+
+            if (tradeData.BuyTime == candle.Time && tradeData.Orders.Count < sOrdersPerTrade)
+            {
+                var lastBuyPrice = tradeData.Orders[tradeData.Orders.Count - 1].Price;
+                var changeFromLastBuy = Helpers.GetChangeInPercent(lastBuyPrice, candle.Close);
+                if (changeFromLastBuy < sPriceTrigger)
+                {
+                    // buy more
+                    int lots = Math.Max((int)(sMinVolume / candle.Close), 1);
+                    order = new LimitOrder(instrument.Figi, lots, OperationType.Buy, candle.Close);
+
+                    Logger.Write("{0}: Buy more. Price: {1}. Lots: {2}. changeFromLastBuy: {3}. {4}.",
+                        instrument.Ticker, order.Price, order.Lots, changeFromLastBuy, Helpers.CandleDesc(quotes.Raw.Count - 1, candle));
+
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 

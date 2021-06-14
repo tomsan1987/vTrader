@@ -209,20 +209,20 @@ namespace TradingBot
             _basePath += "Positive\\";
 
             // tests removed by some conditions
-            Test("AAL_BBG005P7Q881_2020-12-16", 0, 0.0m); // candle low - now too big
+            Test("AAL_BBG005P7Q881_2020-12-16", 1, 0.0m); // candle low - now too big
             Test("AA_BBG00B3T3HD3_2021-01-28", 0, 0.0m); // +- candle low - now too big
 
             Test("SPCE_BBG00HTN2CQ3_2021-01-28", 1, 3.0m); // just lucky now
             Test("SPCE_BBG00HTN2CQ3_2020-12-14", 2, 0.4m); // may be improve buy and sell
             Test("SPCE_BBG00HTN2CQ3_2021-02-02", 1, 2.5m);
-            Test("ZYXI_BBG000BJBXZ2_2021-01-28", 1, 0.5m);
+            Test("ZYXI_BBG000BJBXZ2_2021-01-28", 1, 0.4m);
             Test("SWBI_BBG000BM0QL7_2020-12-04", 1, 0.2m);
             Test("NTNX_BBG001NDW1Z7_2021-01-06", 1, 0.0m); // OK if not buy
             Test("MRNA_BBG003PHHZT1_2021-01-19", 1, 0.0m); // TODO: stat calculated not correct
             Test("SEDG_BBG0084BBZY6_2021-01-25", 1, 7.0m); // mega positive
             Test("BILI_BBG00K7T3037_2021-01-27", 1, 2.0m);
             Test("NTLA_BBG007KC7PB0_2021-01-27", 1, 1.0m);
-            Test("MFGP_BBG00HFWVGN0_2020-12-04", 1, 0.1m);
+            Test("MFGP_BBG00HFWVGN0_2020-12-04", 0, 0.0m);
             Test("CCL_BBG000BF6LY3_2021-02-03", 1, 0.2m);
             Test("OXY_BBG000BQQ2S6_2020-12-14", 1, 0.25m);
             Test("EQT_BBG000BHZ5J9_2021-01-19", 1, 0.05m); // improve me when low quotes count
@@ -237,9 +237,9 @@ namespace TradingBot
             Test("EQT_BBG000BHZ5J9_2020-12-04", 1, 0.1m);
             Test("MFGP_BBG00HFWVGN0_2020-12-09", 1, 0.05m); // may be improved. gap down and price falling
             Test("ETRN_BBG00K53L394_2021-02-02", 1, 0.0m); // little profit
-            Test("SPCE_BBG00HTN2CQ3_2021-01-22", 1, 0.5m);
-            Test("TSLA_BBG000N9MNX3_2021-01-28", 1, 5.0m);
-            Test("ZYXI_BBG000BJBXZ2_2021-01-22", 1, -0.45m); // may be we can improve it with buy more? OLD:it is good that we have small profit here and sold at time
+            Test("SPCE_BBG00HTN2CQ3_2021-01-22", 1, 0.3m);
+            Test("TSLA_BBG000N9MNX3_2021-01-28", 1, 4.0m);
+            Test("ZYXI_BBG000BJBXZ2_2021-01-22", 0, 0.0m); // may be we can improve it with buy more? OLD:it is good that we have small profit here and sold at time
             Test("SPCE_BBG00HTN2CQ3_2021-01-26", 1, 0.0m); // improve me: if the next candle has not significant change - do not close
             Test("DKNG_BBG00TCBG714_2021-01-28", 2, 0.2m); // can be improved to buy by statistic. // there was not enough liquidity when buy > 1 lots
             Test("PINS_BBG002583CV8_2021-01-27", 1, 2.0m); // +
@@ -257,7 +257,7 @@ namespace TradingBot
             Test("SPCE_BBG00HTN2CQ3_2020-12-10", 2, 0.30m);
             Test("TSLA_BBG000N9MNX3_2020-12-09", 1, 2.0m);
             Test("ARCT_BBG00NNW8JK1_2021-02-03", 1, 1.0m); // big gap up, price is close to prev day close
-            Test("TSLA_BBG000N9MNX3_2020-12-10", 1, 8.0m);
+            Test("TSLA_BBG000N9MNX3_2020-12-10", 1, 3.0m);
             Test("SNAP_BBG00441QMJ7_2021-01-28", 1, 0.6m);
             Test("PBF_BBG002832GV8_2020-12-21", 1, 0.10m);
             Test("DKNG_BBG00TCBG714_2020-12-09", 1, 0.20m);
@@ -267,17 +267,17 @@ namespace TradingBot
             Test("MAC_BBG000BL9C59_2021-01-20", 1, 0.0m);
             Test("MFGP_BBG00HFWVGN0_2021-01-28", 1, 0.0m);
             Test("MAC_BBG000BL9C59_2021-02-04", 1, 0.0m);
-            Test("ZYXI_BBG000BJBXZ2_2020-12-21", 1, 0.0m);
+            Test("ZYXI_BBG000BJBXZ2_2020-12-21", 1, -0.10m);
             Test("EQT_BBG000BHZ5J9_2020-12-07", 1, 0.0m);
             Test("PBF_BBG002832GV8_2021-01-19", 1, 0.02m);
             Test("PBF_BBG002832GV8_2020-12-14", 1, 0.05m);
-            Test("NET_BBG001WMKHH5_2021-01-27", 1, 3.0m); //++
+            Test("NET_BBG001WMKHH5_2021-01-27", 2, 1.0m); //++
             Test("PBI_BBG000BQTMJ9_2021-01-28", 1, 0.05m);
             Test("SPCE_BBG00HTN2CQ3_2020-12-21", 2, 0.01m); // buy more!
             Test("ICPT_BBG001J1QN87_2021-03-15", 1, 1.0m);
             Test("MFGP_BBG00HFWVGN0_2021-03-04", 1, 0.2m);
-            Test("GILD_BBG000CKGBP2_2021-03-15", 1, 1.5m);
-            Test("BILI_BBG00K7T3037_2021-03-05", 1, 3.0m);
+            Test("GILD_BBG000CKGBP2_2021-03-15", 0, 0.0m);
+            Test("BILI_BBG00K7T3037_2021-03-05", 2, 1.0m);
             Test("AA_BBG00B3T3HD3_2021-03-04", 1, 0.80m);
             Test("SNAP_BBG00441QMJ7_2021-02-24", 1, 1.5m);
             Test("FTI_BBG00DL8NMV2_2021-02-25", 1, 0.18m);
@@ -294,19 +294,19 @@ namespace TradingBot
             Test("COTY_BBG000F395V1_2021-02-25", 0, 0.0m); // old expectations: 1, 0.14m
             Test("FSLY_BBG004NLQHL0_2021-03-05", 1, 1.0m);
             Test("SDGR_BBG000T88BN2_2021-03-12", 1, 1.0m);
-            Test("BABA_BBG006G2JVL2_2021-03-12", 1, 4.0m);
+            Test("BABA_BBG006G2JVL2_2021-03-12", 1, 2.0m);
             Test("PINS_BBG002583CV8_2021-02-24", 1, 1.0m);
             Test("NVDA_BBG000BBJQV0_2021-02-26", 1, 8.0m);
             Test("CRTX_BBG00BTK1DT8_2021-03-11", 1, 0.5m);
             Test("ENPH_BBG001R3MNY9_2021-03-04", 1, 1.5m);
             Test("JD_BBG005YHY0Q7_2021-03-12", 1, 0.8m);
-            Test("AMD_BBG000BBQCY0_2021-02-26", 1, 0.7m);
+            Test("AMD_BBG000BBQCY0_2021-02-26", 0, 0.0m);
             Test("MOMO_BBG007HTCQT0_2021-02-26", 1, 0.1m);
             Test("ENDP_BBG000C0HQ54_2021-02-26", 1, 0.05m);
             Test("GT_BBG000BKNX95_2021-03-01", 1, 0.05m);
             Test("CCL_BBG000BF6LY3_2021-02-26", 1, -0.07m); // can be improved if wait more
             Test("UAL_BBG000M65M61_2021-02-26", 2, 0.3m); // TODO: buy more!
-            Test("BYND_BBG003CVJP50_2021-02-24", 1, 0.2m); // big gap up
+            Test("BYND_BBG003CVJP50_2021-02-24", 1, -0.3m); // big gap up
             Test("ACH_BBG000CMRVH1_2021-04-09", 2, 0.2m);
             Test("M_BBG000C46HM9_2021-01-28", 2, 0.05m); // improve me: per stat - it is more quotes until buy gap down. improve TP
             Test("INTC_BBG000C0G1D1_2021-01-22", 0, 0.0m); // just should not buy
@@ -315,26 +315,26 @@ namespace TradingBot
             Test("IRM_BBG000KCZPC3_2020-12-14", 1, 0.0m); // improve TP
 
             // great profit for this day
-            Test("AAPL_BBG000B9XRY4_2021-04-19", 2, 5.5m);
-            Test("ADBE_BBG000BB5006_2021-04-19", 1, 50.0m);
+            Test("AAPL_BBG000B9XRY4_2021-04-19", 2, 2.5m);
+            Test("ADBE_BBG000BB5006_2021-04-19", 1, 40.0m);
             Test("ATVI_BBG000CVWGS6_2021-04-19", 0, 0.0m); // old expectations: 1, 1.0m; this can be bought early due to big gap down
-            Test("AYX_BBG000BGZT72_2021-04-19", 2, 11.8m); // this can be bought early due to big gap down?
+            Test("AYX_BBG000BGZT72_2021-04-19", 2, 10.0m); // this can be bought early due to big gap down?
             Test("BK_BBG000BD8PN9_2021-04-19", 1, 0.5m);
             Test("BLUE_BBG000QGWY50_2021-04-19", 1, 0.2m);
-            Test("CRM_BBG000BN2DC2_2021-04-19", 2, 12.0m); // this can be bought early due to big gap down
+            Test("CRM_BBG000BN2DC2_2021-04-19", 2, 11.0m); // this can be bought early due to big gap down
             Test("CRTX_BBG00BTK1DT8_2021-04-19", 1, 0.9m);
-            Test("FB_BBG000MM2P62_2021-04-19", 1, 8.0m);
-            Test("FDX_BBG000BJF1Z8_2021-04-19", 1, 30.0m); // perfect deal!
-            Test("GILD_BBG000CKGBP2_2021-04-19", 1, 1.5m); // this can be bought early due to big gap down?
+            Test("FB_BBG000MM2P62_2021-04-19", 0, 0.0m);
+            Test("FDX_BBG000BJF1Z8_2021-04-19", 2, 14.0m); // perfect deal!
+            Test("GILD_BBG000CKGBP2_2021-04-19", 1, 1.0m); // this can be bought early due to big gap down?
             Test("IRTC_BBG001J19V24_2021-04-19", 1, 5.0m);
             Test("MSFT_BBG000BPH459_2021-04-19", 2, 17.0m); // this can be bought early due to big gap down?
             Test("NVDA_BBG000BBJQV0_2021-04-19", 1, 80.0m); // wow!
             Test("RYTM_BBG007DLZ601_2021-04-19", 1, 0.5m); // this can be bought early due to big gap down?
             Test("SDGR_BBG000T88BN2_2021-04-19", 1, 5.5m);
             Test("SQ_BBG0018SLC07_2021-04-19", 0, 0.0m); // old expectations: 1, 6.0m; this can be bought early due to big gap down?
-            Test("MA_BBG000F1ZSQ2_2021-04-19", 0, 0.0m); // TODO: want to buy this
-            Test("SOHU_BBG00L2DB535_2021-04-19", 0, 0.0m); // TODO: want to buy this
-            Test("MSTR_BBG000GQJPZ0_2021-04-19", 1, 0.0m); // TODO: why per test bought 1 lot, but in real bought more...? // 
+            Test("MA_BBG000F1ZSQ2_2021-04-19", 2, 5.0m);
+            Test("SOHU_BBG00L2DB535_2021-04-19", 2, 1.0m);
+            Test("MSTR_BBG000GQJPZ0_2021-04-19", 2, 8.0m); // TODO: why per test bought 1 lot, but in real bought more...? // 
             Test("VRTX_BBG000C1S2X2_2021-04-19", 0, 0.0m); // TODO: did not bought per test, but bought in realty
 
 
@@ -353,7 +353,7 @@ namespace TradingBot
             Test("MFGP_BBG00HFWVGN0_2020-12-21", 2, 0.04m);
             Test("XOM_BBG000GZQ728_2020-12-21", 2, 0.01m);
             Test("C_BBG000FY4S11_2020-12-21", 2, 0.7m);
-            Test("DBX_BBG0018SLDN0_2021-02-19", 2, 0.1m);
+            Test("DBX_BBG0018SLDN0_2021-02-19", 2, 0.0m);
             Test("BLUE_BBG000QGWY50_2021-03-04", 2, 0.02m);
             Test("GSKY_BBG00KT2SCV8_2021-03-08", 0, 0.0m); // candle low - now too big
 
@@ -382,7 +382,7 @@ namespace TradingBot
             Test("COTY_BBG000F395V1_2021-02-26", 1, -0.80m); // just no lack
             Test("SPCE_BBG00HTN2CQ3_2021-03-04", 2, -0.70m); // TODO: buy more!
             Test("PYPL_BBG0077VNXV6_2021-02-26", 1, -7.0m); // no lack, may be buy more
-            Test("BIDU_BBG000QXWHD1_2021-02-26", 1, -6.0m); // no lack, may be buy more or minimize loss
+            Test("BIDU_BBG000QXWHD1_2021-02-26", 1, -8.0m); // no lack, may be buy more or minimize loss
             Test("VIPS_BBG002NLDLV8_2021-02-26", 1, -0.7m); // ChangeOpenToCurrent = 0
             Test("DKNG_BBG00TCBG714_2021-03-05", 1, -0.80m); // no luck
             Test("AAL_BBG005P7Q881_2021-02-26", 1, -0.30m); // FIXME: why not closed with profit?!
@@ -510,7 +510,6 @@ namespace TradingBot
             RunPositiveTestsMorningOpenStrategy();
             RunNegativeTestsMorningOpenStrategy();
 
-            //Test("GSKY_BBG00KT2SCV8_2021-05-20", 0, 0.0m);
             Test("", 1, 0.0m);
             Test("", 1, 0.0m);
             Test("", 1, 0.0m);

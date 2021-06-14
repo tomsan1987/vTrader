@@ -22,6 +22,7 @@ namespace TradingBot
         protected Settings _settings;
         protected string _accountId;
         protected List<MarketInstrument> _instruments;
+        protected IList<string> _liquidInstruments;
         protected IList<string> _watchList;
         protected Dictionary<string, string> _figiToTicker = new Dictionary<string, string>();
         protected Dictionary<string, MarketInstrument> _figiToInstrument = new Dictionary<string, MarketInstrument>();
@@ -207,6 +208,14 @@ namespace TradingBot
 
             var configJson = JObject.Parse(File.ReadAllText(_settings.ConfigPath));
             _watchList = ((JArray)configJson["watch-list"]).ToObject<IList<string>>();
+
+            var liquidConfigPath = Path.Combine(Path.GetDirectoryName(_settings.ConfigPath), "usd_liquid.json");
+            if (File.Exists(liquidConfigPath))
+            {
+                var liquidConfigJson = JObject.Parse(File.ReadAllText(liquidConfigPath));
+                _liquidInstruments = ((JArray)liquidConfigJson["watch-list"]).ToObject<IList<string>>();
+                Logger.Write("Loaded {0} liquid instruments", _liquidInstruments.Count);
+            }
 
             // get account ID
             var accounts = await _context.AccountsAsync();
