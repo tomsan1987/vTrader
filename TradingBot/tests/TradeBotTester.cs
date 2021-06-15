@@ -150,6 +150,8 @@ namespace TradingBot
             Test("BZUN_BBG008HNS333_2021-01-26", 2, 0.9m); // TODO: do not measure fall from far maximum -> much better profit
             Test("W_BBG001B17MV2_2021-01-12", 1, 0.7m); // entry point could be improved =? profit > 7$
             Test("SPCE_BBG00HTN2CQ3_2021-02-04", 2, 0.2m); // profit could be much bigger...
+            Test("ZS_BBG003338H34_2021-02-26", 1, -4m); // improve me: close with little profit
+
 
 
             // TODO tests
@@ -563,8 +565,24 @@ namespace TradingBot
         {
             //_testNameFilter = "FSLY_BBG004NLQHL0_2021-01-21";
 
-            RunPositiveTestsImpulseStrategy();
-            RunNegativeTestsImpulseStrategy();
+            //RunPositiveTestsImpulseStrategy();
+            //RunNegativeTestsImpulseStrategy();
+
+            var stat = _bot.TradeByHistory(_options.Get<string>("CandlesPath"), _options.Get<string>("OutputFolder"));
+
+            // log results
+            foreach (var it in stat)
+            {
+                _writer.WriteLine(it.Key); // test name
+                _writer.WriteLine(it.Value.totalProfit >= 0 ? "PASSED" : "FAILED");
+                _writer.WriteLine("TotalOrders: " + it.Value.totalOrders);
+                _writer.WriteLine("TotalProfit: " + it.Value.totalProfit);
+
+                _totalOrders += it.Value.totalOrders;
+                _totalProfit += it.Value.totalProfit;
+
+                _writer.WriteLine("");
+            }
 
             // bad
             //Test("UPWK_BBG00FBJ6390_2021-01-27", 1, 0m);
@@ -589,8 +607,7 @@ namespace TradingBot
             //Test("NKTR_BBG000BHCYJ1_2021-02-04", 1, 0m); // do not buy or improve moving SL
             //Test("PCAR_BBG000BQVTF5_2021-02-04", 1, 0m); // do not buy if possible: grow 2%, fall 1%
 
-            //Test("", 1, 0m);
-            //Test("", 1, 0m);
+            //Test("W_BBG001B17MV2_2021-01-21", 1, 0m);
             //Test("", 1, 0m);
             //Test("", 1, 0m);
             //Test("", 1, 0m);
