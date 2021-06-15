@@ -565,24 +565,8 @@ namespace TradingBot
         {
             //_testNameFilter = "FSLY_BBG004NLQHL0_2021-01-21";
 
-            //RunPositiveTestsImpulseStrategy();
-            //RunNegativeTestsImpulseStrategy();
-
-            var stat = _bot.TradeByHistory(_options.Get<string>("CandlesPath"), _options.Get<string>("OutputFolder"));
-
-            // log results
-            foreach (var it in stat)
-            {
-                _writer.WriteLine(it.Key); // test name
-                _writer.WriteLine(it.Value.totalProfit >= 0 ? "PASSED" : "FAILED");
-                _writer.WriteLine("TotalOrders: " + it.Value.totalOrders);
-                _writer.WriteLine("TotalProfit: " + it.Value.totalProfit);
-
-                _totalOrders += it.Value.totalOrders;
-                _totalProfit += it.Value.totalProfit;
-
-                _writer.WriteLine("");
-            }
+            RunPositiveTestsImpulseStrategy();
+            RunNegativeTestsImpulseStrategy();
 
             // bad
             //Test("UPWK_BBG00FBJ6390_2021-01-27", 1, 0m);
