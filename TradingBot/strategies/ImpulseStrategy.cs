@@ -29,6 +29,10 @@ namespace TradingBot
             {
                 return OnStatusBuyDone(instrument, tradeData, quotes, out order);
             }
+            else if (tradeData.Status == Status.SellPending)
+            {
+                return OnStatusSellPending(instrument, tradeData, quotes, out order);
+            }
 
             return IStrategy.StrategyResultType.NoOp;
         }
@@ -207,7 +211,7 @@ namespace TradingBot
             var candles = quotes.Candles;
             var candle = candles[candles.Count - 1];
 
-            // check if price changed is not significantly
+            // check if price changed not significantly
             var change = Helpers.GetChangeInPercent(tradeData.AvgPrice, candle.Close);
             if (change >= 0.5m)
             {
@@ -452,6 +456,24 @@ namespace TradingBot
                 //        instrument.Ticker, tradeData.MaxPrice, quotes.AvgCandleChange, change, quotes.Raw.Count, candle.Time.ToShortTimeString(), candle.Close, tradeData.SellPrice - tradeData.BuyPrice, Helpers.GetChangeInPercent(tradeData.BuyPrice, tradeData.SellPrice));
                 //    return IStrategy.StrategyResultType.Sell;
                 //}
+            }
+
+            return IStrategy.StrategyResultType.NoOp;
+        }
+
+        private IStrategy.StrategyResultType OnStatusSellPending(MarketInstrument instrument, TradeData tradeData, Quotes quotes, out LimitOrder order)
+        {
+            order = null;
+
+            if (tradeData.Orders.Count > 0)
+            {
+                var lastOrder = tradeData.Orders[tradeData.Orders.Count - 1];
+                var change = Helpers.GetChangeInPercent(lastOrder.Price, quotes.Raw[quotes.Raw.Count - 1].Price);
+                if (lastOrder.Operation == OperationType.Sell && lastOrder.Status == OrderStatus.New && change <= -0.5m)
+                {
+                    Logger.Write("{0}: Cancel order. {1}. Details: price change {2}", instrument.Ticker, Helpers.CandleDesc(quotes.Raw.Count - 1, quotes.Candles[quotes.Candles.Count - 1]), change);
+                    lastOrder.Status = OrderStatus.PendingCancel; // try to cancel order
+                }
             }
 
             return IStrategy.StrategyResultType.NoOp;
