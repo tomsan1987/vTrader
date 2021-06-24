@@ -23,7 +23,7 @@ namespace TradingBot
             return this.MemberwiseClone();
         }
 
-        public void Update(string ticker, decimal buyPrice, decimal sellPrice, int orders, int l)
+        public void Update(string ticker, decimal buyPrice, decimal sellPrice, int orders, int l, string fileName)
         {
             totalProfit += Math.Round((sellPrice - buyPrice) * l, 2);
             totalOrders += orders;
@@ -40,7 +40,7 @@ namespace TradingBot
             comission += buyPrice * l * k;
             comission += sellPrice * l *k;
 
-            logMessages.Add(String.Format("{0};{1};{2};{3};{4}", ticker, orders, l, (sellPrice - buyPrice) * l, Helpers.GetChangeInPercent(buyPrice, sellPrice)));
+            logMessages.Add(String.Format("{0};{1};{2};{3};{4};{5}", fileName, ticker, orders, l, (sellPrice - buyPrice) * l, Helpers.GetChangeInPercent(buyPrice, sellPrice)));
         }
 
         public void Sell(DateTime buyTime, DateTime sellTime, decimal price, string ticker)

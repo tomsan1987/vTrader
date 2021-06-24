@@ -46,11 +46,13 @@ namespace TradingBot
             Trend = null;
             DisabledTrading.Reset();
             CandleID = 0;
-            Positions.Clear();
             Orders.Clear();
 
             if (full)
+            {
                 Time = DateTime.Today.AddYears(-10).ToUniversalTime();
+                Positions.Clear();
+            }
         }
 
         public void Update(OperationType type, int lots, decimal price, string orderID, decimal minPriceIncrement)

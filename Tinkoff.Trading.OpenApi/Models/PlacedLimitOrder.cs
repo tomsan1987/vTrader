@@ -1,3 +1,4 @@
+using System;
 using Newtonsoft.Json;
 
 namespace Tinkoff.Trading.OpenApi.Models
@@ -13,6 +14,7 @@ namespace Tinkoff.Trading.OpenApi.Models
         public MoneyAmount Commission { get; }
         public string Figi { get; set; }
         public decimal Price { get; set; }
+        public DateTime Time { get; set; }
 
         [JsonConstructor]
         public PlacedLimitOrder(string orderId, OperationType operation, OrderStatus status, string rejectReason, int requestedLots, int executedLots, MoneyAmount commission)

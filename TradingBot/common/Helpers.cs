@@ -9,6 +9,9 @@ namespace TradingBot{
     {
         static public decimal RoundPrice(decimal price, decimal minIncrement)
         {
+            if (minIncrement == 0.0m)
+                return price;
+
             int units = (int)(price / minIncrement);
             return units * minIncrement;
         }

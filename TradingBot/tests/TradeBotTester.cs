@@ -77,7 +77,7 @@ namespace TradingBot
             Test("MOMO_BBG007HTCQT0_2021-01-13", 2, 0.13m);
             Test("BYND_BBG003CVJP50_2021-01-13", 3, -0.1m); // -
             Test("FTI_BBG00DL8NMV2_2021-01-12", 2, 0.2m);
-            Test("EXAS_BBG000CWL0F5_2021-01-11", 1, 10.64m);
+            Test("EXAS_BBG000CWL0F5_2021-01-11", 1, 9m);
             Test("CREE_BBG000BG14P4_2021-01-11", 1, 4m);
             Test("DD_BBG00BN961G4_2021-01-11", 1, 3.0m);
             Test("DBX_BBG0018SLDN0_2021-01-11", 1, 0.9m);
@@ -92,7 +92,7 @@ namespace TradingBot
             Test("BILI_BBG00K7T3037_2021-01-07", 1, 3.88m);
             Test("AMD_BBG000BBQCY0_2021-01-07", 1, 2.5m);
             Test("RDFN_BBG001Q7HP63_2021-01-07", 1, 2.0m);
-            Test("NTES_BBG000BX72V8_2021-01-07", 2, 1.5m); // reduce orders count
+            Test("NTES_BBG000BX72V8_2021-01-07", 1, 1.5m); // reduce orders count
             Test("UBER_BBG002B04MT8_2021-01-07", 1, 1.0m);
             Test("TDOC_BBG0019T5SG0_2021-01-07", 2, 1.6m); // example of long trend, improve to 1 order
             Test("EDIT_BBG005MX5GZ2_2021-01-06", 1, 7.99m);
@@ -102,14 +102,14 @@ namespace TradingBot
             Test("FITB_BBG000BJL3N0_2021-01-06", 1, 1.1m);
             Test("GPS_BBG000BKLH74_2021-01-06", 1, 0.8m);
             Test("EBAY_BBG000C43RR5_2021-01-06", 1, 1.5m);
-            Test("OLLI_BBG0098VVDT9_2021-01-06", 1, 3.44m);
+            Test("OLLI_BBG0098VVDT9_2021-01-06", 1, 3.0m);
             Test("OMC_BBG000BS9489_2021-01-06", 1, 2.32m);
-            Test("TOT_BBG000CHZ857_2021-01-06", 1, 1.4m);
+            Test("TOT_BBG000CHZ857_2021-01-06", 0, 0.0m);
             Test("JWN_BBG000G8N9C6_2021-01-06", 1, 1.0m); // -
             Test("PBCT_BBG000BQT4L6_2021-01-06", 1, 0.42m);
             Test("TDOC_BBG0019T5SG0_2021-01-20", 2, 1.8m); // possible candidate for TP
             Test("DT_BBG00PNN7C40_2021-01-20", 1, 2.11m);
-            Test("CHRW_BBG000BTCH57_2021-01-20", 1, 0.8m);
+            Test("CHRW_BBG000BTCH57_2021-01-20", 1, 0.5m);
             Test("TAL_BBG0016XJ8S0_2021-01-21", 1, 13.0m);
             Test("MAC_BBG000BL9C59_2021-01-25", 1, 3.47m);
             Test("IRM_BBG000KCZPC3_2021-01-25", 1, 4.0m);
@@ -121,7 +121,7 @@ namespace TradingBot
             Test("PBI_BBG000BQTMJ9_2021-01-26", 1, 1.92m); // +++
             Test("TWTR_BBG000H6HNW3_2021-01-26", 1, 2.2m);
             Test("BBBY_BBG000CSY9H9_2021-01-21", 1, 2m);
-            Test("OSUR_BBG000J3D1Y8_2021-01-21", 1, 0.8m); // good. possible second order
+            Test("OSUR_BBG000J3D1Y8_2021-01-21", 1, 0.5m); // good. possible second order
             Test("BBBY_BBG000CSY9H9_2021-01-22", 2, 1.5m); // +-
             Test("AMCX_BBG000H01H92_2021-01-22", 2, 1.8m);
             Test("M_BBG000C46HM9_2021-01-25", 2, 1m); // +
@@ -192,7 +192,7 @@ namespace TradingBot
             Test("CHX_BBG00JH9TZ56_2021-02-04", 1, -0.42m); // very bad... to small quotes, do not buy at US open...
             Test("CRUS_BBG000C1DHF5_2021-02-02", 1, -2.6m); // too bad trend...
             Test("VIPS_BBG002NLDLV8_2021-02-02", 1, -0.7m); // buy on the high...
-            Test("TRIP_BBG001M8HHB7_2021-01-19", 1, -0.4m); // will be good to not buy. how?
+            Test("TRIP_BBG001M8HHB7_2021-01-19", 1, -0.5m); // will be good to not buy. how?
             Test("HFC_BBG000BL9JQ1_2021-01-26", 1, -0.7m); // will be good to do not by it. ? 100 quotes ?
             Test("ENDP_BBG000C0HQ54_2021-02-03", 1, -0.3m); // not enough quotes?
             Test("GPS_BBG000BKLH74_2021-01-28", 1, -1m); // 4% loss, someone sell by market price, try to average
@@ -339,6 +339,9 @@ namespace TradingBot
             Test("MSTR_BBG000GQJPZ0_2021-04-19", 2, 8.0m); // TODO: why per test bought 1 lot, but in real bought more...? // 
             Test("VRTX_BBG000C1S2X2_2021-04-19", 0, 0.0m); // TODO: did not bought per test, but bought in realty
             Test("SQ_BBG0018SLC07_2021-05-27", 0, 0.0m); // TODO: Want to buy this!
+
+            // re-order when did not luck to execute order
+            Test("EQT_BBG000BHZ5J9_2020-12-28", 0, 0.0m);
 
 
             _basePath = basePath;
@@ -513,8 +516,8 @@ namespace TradingBot
             //RunPositiveTestsMorningOpenStrategy();
             //RunNegativeTestsMorningOpenStrategy();
 
-            Test("", 1, 0.0m);
-            Test("", 1, 0.0m);
+            //Test("ACH_BBG000CMRVH1_2021-03-12", 1, 0.0m);
+            Test("TOT_BBG000CHZ857_2020-12-21", 1, 0.0m);
             Test("", 1, 0.0m);
             Test("", 1, 0.0m);
             Test("", 1, 0.0m);
@@ -563,7 +566,7 @@ namespace TradingBot
 
         private void TestImpulseStrategy()
         {
-            //_testNameFilter = "FSLY_BBG004NLQHL0_2021-01-21";
+            _testNameFilter = "EQT_BBG000BHZ5J9_2020-12-28";
 
             RunPositiveTestsImpulseStrategy();
             RunNegativeTestsImpulseStrategy();

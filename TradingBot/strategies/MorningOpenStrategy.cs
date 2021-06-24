@@ -55,15 +55,40 @@ namespace TradingBot
             var candles = quotes.Candles;
             var candle = candles[candles.Count - 1];
 
-            // working only on market opening
-            if ((candle.Time.Hour != 7 && candle.Time.Hour != 4) || candle.Time.Minute != 0)
-                return IStrategy.StrategyResultType.NoOp;
+            if (IsMarketOpen(candles))
+            {
+                CalculatePrevDayClosePrice(candles, tradeData);
+                if (OnMarketOpen(instrument, tradeData, quotes, out order) == IStrategy.StrategyResultType.Buy)
+                    return IStrategy.StrategyResultType.Buy;
+            }
+            else if (candle.Time.Hour <= 7)
+            {
+                var startPrice = (tradeData.PrevDayClosePrice > 0) ? tradeData.PrevDayClosePrice : candles[0].Close;
+                if (tradeData.Positions.Count > 0)
+                    startPrice = tradeData.Positions[tradeData.Positions.Count - 1].Price;
 
-            // make sure that it will not market open at 4h: on market open we only can have previous day close candle and current candle
-            if (candle.Time.Hour == 7 && candles.Count > 2)
-                return IStrategy.StrategyResultType.NoOp;
+                var change = Helpers.GetChangeInPercent(startPrice, candle.Close);
+                if (change < 2 * sPriceTrigger)
+                {
+                    // place limited order
+                    int lots = Math.Max((int)(sMinVolume / candle.Close), 1);
+                    order = new LimitOrder(instrument.Figi, lots, OperationType.Buy, candle.Close);
 
-            CalculatePrevDayClosePrice(candles, tradeData);
+                    Logger.Write("{0}: BuyPending. Strategy: {1}2. Price: {2}. Lots: {3}. ChangeOpenToCurrent: {4}. ChangePrevCloseToCurrent: {5}. {6}.",
+                        instrument.Ticker, Description(), order.Price, order.Lots, change, change, Helpers.CandleDesc(quotes.Raw.Count - 1, candle));
+
+                    return IStrategy.StrategyResultType.Buy;
+                }
+            }
+
+            return IStrategy.StrategyResultType.NoOp;
+        }
+
+        private IStrategy.StrategyResultType OnMarketOpen(MarketInstrument instrument, TradeData tradeData, Quotes quotes, out LimitOrder order)
+        {
+            order = null;
+            var candles = quotes.Candles;
+            var candle = candles[candles.Count - 1];
 
             if (quotes.Raw.Count <= 4)
                 return IStrategy.StrategyResultType.NoOp;
@@ -225,7 +250,7 @@ namespace TradingBot
                 }
                 else
                 {
-                    var prevChange = Helpers.GetChangeInPercent(candles[candles.Count - 2]);
+                    var prevChange = Helpers.GetChangeInPercent(candles[0]);
                     if (/*prevChange == 0 || */prevChange > 3m || (Math.Abs(prevChange) > 1.5m && candles[candles.Count - 2].Volume < 10)) // first condition significantly reduced orders count with little less profit
                     {
                         // we cant rely on this data due to price significantly changed with low volume
@@ -237,6 +262,24 @@ namespace TradingBot
                     }
                 }
             }
+        }
+
+        private bool IsMarketOpen(List<CandlePayload> candles)
+        {
+            var candle = candles[candles.Count - 1];
+
+            // Market open is a 4:00AM and 7:00AM
+            if (candle.Time.Hour == 4 && candle.Time.Minute == 0)
+                return true;
+
+            if (candle.Time.Hour == 7 && candle.Time.Minute == 0)
+            {
+                // make sure that it will not market open at 4h: on market open we only can have previous day close candle and current candle
+                if (candles.FindIndex(x => x.Time.Hour < 7) == -1)
+                    return true;
+            }
+
+            return false;
         }
 
         private bool ShouldBuyMore(MarketInstrument instrument, TradeData tradeData, Quotes quotes, out LimitOrder order)
