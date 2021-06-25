@@ -28,6 +28,7 @@ namespace TradingBot
         private List<Order> _portfolioOrders = new List<Order>(); // orders got from API
         private List<Portfolio.Position> _portfolio = new List<Portfolio.Position>(); // active portfolio
         private DateTime _lastPortfolioStatusQuery = DateTime.UtcNow;
+        private string _fileName = ""; // current processed history filename
 
         public TradeBot(Settings settings) : base(settings)
         {
@@ -238,6 +239,7 @@ namespace TradingBot
                     var placedOrder = await _context.PlaceLimitOrderAsync(order);
                     placedOrder.Figi = instrument.Figi;
                     placedOrder.Price = order.Price;
+                    placedOrder.Time = candle.Time;
 
                     if (placedOrder.Status == OrderStatus.Cancelled || placedOrder.Status == OrderStatus.PendingCancel || placedOrder.Status == OrderStatus.Rejected || placedOrder.RejectReason?.Length > 0)
                     {
@@ -397,7 +399,7 @@ namespace TradingBot
                         {
                             // trade finished
                             _stats.Sell(tradeData.BuyTime, _candles[it.Figi].Candles[_candles[it.Figi].Candles.Count - 1].Time, tradeData.AvgPrice * tradeData.GetLotsInLastTrade(), instrument.Ticker);
-                            _stats.Update(instrument.Ticker, tradeData.AvgPrice, tradeData.AvgSellPrice, tradeData.GetOrdersInLastTrade(), tradeData.GetLotsInLastTrade());
+                            _stats.Update(instrument.Ticker, tradeData.AvgPrice, tradeData.AvgSellPrice, tradeData.GetOrdersInLastTrade(), tradeData.GetLotsInLastTrade(), _fileName);
                             tradeData.Reset(false);
 
                             // cancel all remaining orders by this instrument
@@ -640,7 +642,7 @@ namespace TradingBot
 
                                 // trade finished
                                 _stats.Sell(tradeData.BuyTime, candle.Time, tradeData.AvgPrice * tradeData.GetLotsInLastTrade(), instrument.Ticker);
-                                _stats.Update(instrument.Ticker, tradeData.AvgPrice, tradeData.AvgSellPrice, tradeData.GetOrdersInLastTrade(), tradeData.GetLotsInLastTrade());
+                                _stats.Update(instrument.Ticker, tradeData.AvgPrice, tradeData.AvgSellPrice, tradeData.GetOrdersInLastTrade(), tradeData.GetLotsInLastTrade(), _fileName);
                                 tradeData.Reset(false);
 
                                 _portfolioOrders.RemoveAll(x => x.Figi == candle.Figi);
@@ -705,8 +707,8 @@ namespace TradingBot
                             it.Value.Reset(true);
                     }
 
-                    var fileName = file.Name.Substring(0, file.Name.LastIndexOf("."));
-                    Logger.Write(fileName);
+                    _fileName = file.Name.Substring(0, file.Name.LastIndexOf("."));
+                    Logger.Write(_fileName);
 
                     // read history candles
                     var candleList = ReadCandles(file.FullName, figi);
@@ -730,15 +732,15 @@ namespace TradingBot
                         currentStat.comission = _stats.comission - statPrev.comission;
                         currentStat.totalProfit = _stats.totalProfit - statPrev.totalProfit;
 
-                        if (!globalStat.ContainsKey(fileName))
-                            globalStat.Add(fileName, currentStat);
+                        if (!globalStat.ContainsKey(_fileName))
+                            globalStat.Add(_fileName, currentStat);
 
                         if (outputFolder?.Length > 0)
                         {
                             // copy candles to output folder
                             try
                             {
-                                File.Copy(file.FullName, outputFolder + "\\" + file.Name);
+                                File.Copy(file.FullName, Path.Combine(outputFolder, file.Name));
                             }
                             catch (Exception e)
                             {

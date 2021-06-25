@@ -168,7 +168,7 @@ namespace TradingBot
                 {
                     //Trade statistic. Total/Pos/Neg 42/16/26. Profit: -6,46. Volume: 3120,24. MaxVolume: 1704,93.Commission: 3,117010
                     //Trade statistic. Total/Pos/Neg/(ratio): 3/1/2/(0.5); Profit: -0.77/-0.26; Volume: 0; MaxVolume: 223.51; Commission: 0.665945;
-                    for (;;)
+                    for (; ; )
                     {
                         int start = 0;
                         int end = 0;
@@ -256,6 +256,44 @@ namespace TradingBot
 
             if (stat.totalOrders > 0)
                 Logger.Write(stat.GetStringStat());
+
+            //-----
+
+            // combine order statistic file into one
+            List<string[]> orderStats = new List<string[]>();
+            foreach (FileInfo f in folder.GetFiles("*_OS.csv"))
+            {
+                var lines = File.ReadLines(f.FullName).GetEnumerator();
+                while (lines.MoveNext())
+                {
+                    orderStats.Add(lines.Current.Split(";"));
+                }
+            }
+
+            orderStats.Sort(CompareOrderStat);
+
+            var path = Path.Combine(Path.GetDirectoryName(Logger.FileName()), "_orderStats.csv");
+            var orderStatisticFile = new StreamWriter(path, false);
+            foreach (var s in orderStats)
+            {
+                orderStatisticFile.WriteLine(String.Join(";", s));
+            }
+            orderStatisticFile.Flush();
+            orderStatisticFile.Close();
+        }
+
+        private static int CompareOrderStat(string[] left, string[] right)
+        {
+            // by filename
+            if (left[0] != right[0])
+                return left[0].CompareTo(right[0]);
+
+            // by ticker
+            if (left[1] != right[1])
+                return left[0].CompareTo(right[0]);
+
+            // by profit in percentage
+            return left[5].CompareTo(right[5]);
         }
 
         // Convert quotes from json to csv format

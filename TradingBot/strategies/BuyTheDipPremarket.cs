@@ -233,15 +233,4 @@ namespace TradingBot
             }
         }
     }
-
-    public class BuyTheDipPremarketData : IStrategyData
-    {
-        public int OutsetStart { get; set; }
-        public int OutsetEnd { get; set; }
-        public decimal Max { get; set; }
-        public decimal Min { get; set; }
-        public decimal Change { get; set; }
-        public Trend PrevTrend { get; set; }
-        public Trend CurrTrend { get; set; }
-    }
 }
