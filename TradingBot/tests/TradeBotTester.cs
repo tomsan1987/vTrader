@@ -513,11 +513,11 @@ namespace TradingBot
         {
             _testNameFilter = "";
 
-            //RunPositiveTestsMorningOpenStrategy();
-            //RunNegativeTestsMorningOpenStrategy();
+            RunPositiveTestsMorningOpenStrategy();
+            RunNegativeTestsMorningOpenStrategy();
 
             //Test("ACH_BBG000CMRVH1_2021-03-12", 1, 0.0m);
-            Test("TOT_BBG000CHZ857_2020-12-21", 1, 0.0m);
+            //Test("TOT_BBG000CHZ857_2020-12-21", 1, 0.0m);
             Test("", 1, 0.0m);
             Test("", 1, 0.0m);
             Test("", 1, 0.0m);
@@ -621,7 +621,7 @@ namespace TradingBot
             Test("AAL_BBG005P7Q881_2021-01-28", 1, 0m); // should not buy after pump
             Test("DKS_BBG000F6ZWH2_2021-03-09", 1, 0m);
             Test("BILI_BBG00K7T3037_2021-02-22", 1, 0m);
-            //Test("", 1, 0m);
+            Test("DISCB_BBG000F7L5N7_2021-03-23", 2, 0m); // just issue with calculating statistic
             //Test("", 1, 0m);
             //Test("", 1, 0m);
             //Test("", 1, 0m);

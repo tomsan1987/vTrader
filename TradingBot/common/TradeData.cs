@@ -164,12 +164,9 @@ namespace TradingBot
             for (int i = 0; i < Positions.Count; ++i)
             {
                 totalLots += Positions[i].Lots;
-                if (totalLots == 0)
+                if (totalLots == 0 && (i + 1 != Positions.Count))
                     posBegin = i + 1;
             }
-
-            if (posBegin == Positions.Count)
-                posBegin = 0;
 
             return posBegin;
         }

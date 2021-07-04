@@ -1,0 +1,1142 @@
+2021-07-04 23:31:16 33      mode=TestTradeBot;CopyDDDDData=true;DumpQuotes=false;SubscribeQuotes=false;Strategies=MorningOpenStrategy;Token=token.txt;ConfigPath=usd.json;OutputFolder=.\new\;CandlesPath=C:\tinkoff\TestData\RawQuotes\5m\uncompressed\quotes_2021-01-28;
+2021-07-04 23:31:16 33      Trade bot created
+2021-07-04 23:31:16 35      Fake connection created
+2021-07-04 23:31:16 46      Loaded 142 liquid instruments
+2021-07-04 23:31:17 10      List of disabled tickers: 
+2021-07-04 23:31:17 12      AA_BBG00B3T3HD3_2021-01-28
+2021-07-04 23:31:17 18      AA: SPYKE!. Candle: ID:8, Time: 7:00, Close: 18.04
+2021-07-04 23:31:17 18      AA: BuyPending. Strategy: MorningOpenStrategy2. Price: 17.63. Lots: 14. ChangeOpenToCurrent: -4.24. ChangePrevCloseToCurrent: -4.24. Candle: ID:63, Time: 7:05, Close: 17.63.
+2021-07-04 23:31:17 19      AA: OrderID: 8d1dde7d. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:17 19      AA: OrderID: 8d1dde7d fully executed
+2021-07-04 23:31:17 20      AA: SPYKE!. Candle: ID:70, Time: 7:05, Close: 17.97
+2021-07-04 23:31:17 20      AA: SPYKE!. Candle: ID:91, Time: 7:05, Close: 17.32
+2021-07-04 23:31:17 20      AA: Buy more. Price: 17.24. Lots: 14. changeFromLastBuy: -2.21. Candle: ID:94, Time: 7:05, Close: 17.24.
+2021-07-04 23:31:17 20      AA: OrderID: f98aac66. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:17 20      AA: Morning closing. Close price: 17.9. Lots: 14. CandleChange: -0.56%. ChangeFromCandleHigh: -0.56%. Profit: 0.27(1.53%). Candle: ID:122, Time: 7:10, Close: 17.9
+2021-07-04 23:31:17 20      AA: OrderID: 4b0ec638. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:17 20      AA: OrderID: f98aac66 automatically canceling...
+2021-07-04 23:31:17 20      OrderID: f98aac66 successfully canceled
+2021-07-04 23:31:17 20      AA: OrderID: 4b0ec638 fully executed
+2021-07-04 23:31:17 24      AAL_BBG005P7Q881_2021-01-28
+2021-07-04 23:31:17 63      AAL: BuyPending. Strategy: MorningOpenStrategy. Price: 16.4. Lots: 15. ChangeOpenToCurrent: -0.79. ChangePrevCloseToCurrent: -2.50. Candle: ID:34, Time: 7:00, Close: 16.4.
+2021-07-04 23:31:17 63      AAL: OrderID: 280d3731. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:17 63      AAL: Cancel order. Did not bought at market open. Candle: ID:98, Time: 7:05, Close: 16.59
+2021-07-04 23:31:17 63      OrderID: 280d3731 successfully canceled
+2021-07-04 23:31:17 64      AAL: SPYKE!. Candle: ID:3920, Time: 12:10, Close: 16.7
+2021-07-04 23:31:17 64      AAL: SPYKE!. Candle: ID:3925, Time: 12:10, Close: 18
+2021-07-04 23:31:17 64      AAL: SPYKE!. Candle: ID:3927, Time: 12:10, Close: 16.35
+2021-07-04 23:31:17 64      AAL: SPYKE!. Candle: ID:3936, Time: 12:10, Close: 17.5
+2021-07-04 23:31:17 64      AAL: SPYKE!. Candle: ID:3939, Time: 12:10, Close: 17.8
+2021-07-04 23:31:17 64      AAL: SPYKE!. Candle: ID:3950, Time: 12:10, Close: 17.01
+2021-07-04 23:31:17 64      AAL: SPYKE!. Candle: ID:3951, Time: 12:10, Close: 16.69
+2021-07-04 23:31:17 64      AAL: SPYKE!. Candle: ID:3952, Time: 12:10, Close: 17.94
+2021-07-04 23:31:17 64      AAL: SPYKE!. Candle: ID:3953, Time: 12:10, Close: 18
+2021-07-04 23:31:17 64      AAL: SPYKE!. Candle: ID:3964, Time: 12:10, Close: 17.01
+2021-07-04 23:31:17 64      AAL: SPYKE!. Candle: ID:3965, Time: 12:10, Close: 16.69
+2021-07-04 23:31:17 64      AAL: SPYKE!. Candle: ID:3976, Time: 12:10, Close: 17.01
+2021-07-04 23:31:17 64      AAL: SPYKE!. Candle: ID:3983, Time: 12:10, Close: 16.7
+2021-07-04 23:31:17 64      AAL: SPYKE!. Candle: ID:3993, Time: 12:10, Close: 17.2
+2021-07-04 23:31:17 64      AAL: SPYKE!. Candle: ID:4003, Time: 12:10, Close: 17.98
+2021-07-04 23:31:17 64      AAL: SPYKE!. Candle: ID:4008, Time: 12:10, Close: 17.04
+2021-07-04 23:31:17 64      AAL: SPYKE!. Candle: ID:4009, Time: 12:10, Close: 17.04
+2021-07-04 23:31:17 64      AAL: SPYKE!. Candle: ID:4011, Time: 12:10, Close: 17.9
+2021-07-04 23:31:17 64      AAL: SPYKE!. Candle: ID:4012, Time: 12:10, Close: 17.98
+2021-07-04 23:31:17 64      AAL: SPYKE!. Candle: ID:4015, Time: 12:10, Close: 17
+2021-07-04 23:31:17 64      AAL: SPYKE!. Candle: ID:4016, Time: 12:10, Close: 17
+2021-07-04 23:31:17 64      AAL: SPYKE!. Candle: ID:4017, Time: 12:10, Close: 17.98
+2021-07-04 23:31:17 64      AAL: SPYKE!. Candle: ID:4018, Time: 12:10, Close: 18
+2021-07-04 23:31:17 64      AAL: SPYKE!. Candle: ID:4040, Time: 12:10, Close: 17.07
+2021-07-04 23:31:17 64      AAL: SPYKE!. Candle: ID:4046, Time: 12:10, Close: 17.08
+2021-07-04 23:31:17 65      AAL: SPYKE!. Candle: ID:8450, Time: 12:35, Close: 19.81
+2021-07-04 23:31:17 66      AAL: SPYKE!. Candle: ID:18279, Time: 12:50, Close: 25.7
+2021-07-04 23:31:17 71      AAL: SPYKE!. Candle: ID:31507, Time: 13:25, Close: 25.26
+2021-07-04 23:31:17 71      AAL: SPYKE!. Candle: ID:31510, Time: 13:25, Close: 23.95
+2021-07-04 23:31:17 72      AAL: SPYKE!. Candle: ID:39977, Time: 13:50, Close: 21.77
+2021-07-04 23:31:17 72      AAL: SPYKE!. Candle: ID:39978, Time: 13:50, Close: 21.8
+2021-07-04 23:31:17 75      AAL: SPYKE!. Candle: ID:49783, Time: 14:20, Close: 20.1
+2021-07-04 23:31:17 75      AAL: SPYKE!. Candle: ID:49790, Time: 14:20, Close: 19.46
+2021-07-04 23:31:18 00      AAPL_BBG000B9XRY4_2021-01-28
+2021-07-04 23:31:18 51      ABBV_BBG0025Y4RY4_2021-01-28
+2021-07-04 23:31:18 61      ABNB_BBG001Y2XS07_2021-01-28
+2021-07-04 23:31:18 67      ABNB: SPYKE!. Candle: ID:668, Time: 13:50, Close: 202.8
+2021-07-04 23:31:18 71      ABT_BBG000B9ZXB4_2021-01-28
+2021-07-04 23:31:18 76      ACAD_BBG000BHG9K0_2021-01-28
+2021-07-04 23:31:18 78      ACH_BBG000CMRVH1_2021-01-28
+2021-07-04 23:31:18 79      ADBE_BBG000BB5006_2021-01-28
+2021-07-04 23:31:18 84      ADM_BBG000BB6WG8_2021-01-28
+2021-07-04 23:31:18 86      ADP_BBG000JG0547_2021-01-28
+2021-07-04 23:31:18 89      ADSK_BBG000BM7HL0_2021-01-28
+2021-07-04 23:31:18 92      AES_BBG000C23KJ3_2021-01-28
+2021-07-04 23:31:18 96      AES: SPYKE!. Candle: ID:120, Time: 13:00, Close: 22.98
+2021-07-04 23:31:18 97      AFL_BBG000BBBNC6_2021-01-28
+2021-07-04 23:31:18 99      AIG_BBG000BBDZG3_2021-01-28
+2021-07-04 23:31:19 02      AKAM_BBG000BJQWD2_2021-01-28
+2021-07-04 23:31:19 07      ALK_BBG000BBL0Y1_2021-01-28
+2021-07-04 23:31:19 09      ALL_BBG000BVMGF2_2021-01-28
+2021-07-04 23:31:19 12      ALXN_BBG000G30YX4_2021-01-28
+2021-07-04 23:31:19 14      AMAT_BBG000BBPFB9_2021-01-28
+2021-07-04 23:31:19 17      AMAT: BuyPending. Strategy: MorningOpenStrategy. Price: 98.39. Lots: 2. ChangeOpenToCurrent: -2.42. ChangePrevCloseToCurrent: -0.69. Candle: ID:5, Time: 7:00, Close: 98.39.
+2021-07-04 23:31:19 17      AMAT: OrderID: 87e9542a. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:19 17      AMAT: OrderID: 87e9542a partially executed. Executed lots: 1. OrderStatus: 1/2 lots
+2021-07-04 23:31:19 17      AMAT: OrderID: 87e9542a fully executed
+2021-07-04 23:31:19 17      AMAT: Morning closing by timeout. Close price: 97.8. Lots: 2. Profit: -0.59(-0.60%). Candle: ID:42, Time: 7:20, Close: 97.8
+2021-07-04 23:31:19 17      AMAT: OrderID: f9c4f7eb. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:19 17      AMAT: OrderID: f9c4f7eb fully executed
+2021-07-04 23:31:19 20      AMCX_BBG000H01H92_2021-01-28
+2021-07-04 23:31:19 24      AMCX: BuyPending. Strategy: MorningOpenStrategy. Price: 47.74. Lots: 5. ChangeOpenToCurrent: 0.08. ChangePrevCloseToCurrent: -3.36. Candle: ID:18, Time: 7:00, Close: 47.74.
+2021-07-04 23:31:19 24      AMCX: OrderID: bcf4df15. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:19 24      AMCX: OrderID: bcf4df15 partially executed. Executed lots: 2. OrderStatus: 2/5 lots
+2021-07-04 23:31:19 24      AMCX: OrderID: bcf4df15 fully executed
+2021-07-04 23:31:19 24      AMCX: Morning closing by timeout. Close price: 47.46. Lots: 5. Profit: -0.28(-0.59%). Candle: ID:120, Time: 7:20, Close: 47.46
+2021-07-04 23:31:19 24      AMCX: OrderID: c4b51518. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:19 24      AMCX: OrderID: c4b51518 partially executed. Executed lots: 1. OrderStatus: 1/5 lots
+2021-07-04 23:31:19 24      AMCX: OrderID: c4b51518 fully executed
+2021-07-04 23:31:19 26      AMD_BBG000BBQCY0_2021-01-28
+2021-07-04 23:31:19 49      AMGN_BBG000BBS2Y0_2021-01-28
+2021-07-04 23:31:19 54      AMZN_BBG000BVPV84_2021-01-28
+2021-07-04 23:31:19 66      ANGI_BBG00HVKH3Q0_2021-01-28
+2021-07-04 23:31:19 69      APA_BBG000BC2C10_2021-01-28
+2021-07-04 23:31:19 70      Warning: figi `BBG000BC2C10` for history data does not match actual figi `BBG00YTS96G2`. Ticker: APA. Will be used actual!
+2021-07-04 23:31:19 72      APA: BuyPending. Strategy: MorningOpenStrategy. Price: 14.4. Lots: 17. ChangeOpenToCurrent: 0. ChangePrevCloseToCurrent: -2.17. Candle: ID:11, Time: 7:00, Close: 14.4.
+2021-07-04 23:31:19 72      APA: OrderID: 34e91b79. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:19 72      APA: OrderID: 34e91b79 fully executed
+2021-07-04 23:31:19 72      APA: Buy more. Price: 14.06. Lots: 17. changeFromLastBuy: -2.36. Candle: ID:34, Time: 7:00, Close: 14.06.
+2021-07-04 23:31:19 72      APA: OrderID: d3b27757. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:19 72      APA: OrderID: d3b27757 fully executed
+2021-07-04 23:31:19 72      APA: Morning closing by timeout. Close price: 14.22. Lots: 34. Profit: -0.01(-0.07%). Candle: ID:347, Time: 7:20, Close: 14.22
+2021-07-04 23:31:19 72      APA: OrderID: 04468d16. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:19 72      APA: OrderID: 04468d16 partially executed. Executed lots: 4. OrderStatus: 4/34 lots
+2021-07-04 23:31:19 72      APA: OrderID: 04468d16 partially executed. Executed lots: 4. OrderStatus: 8/34 lots
+2021-07-04 23:31:19 72      APA: OrderID: 04468d16 partially executed. Executed lots: 1. OrderStatus: 9/34 lots
+2021-07-04 23:31:19 72      APA: OrderID: 04468d16 partially executed. Executed lots: 1. OrderStatus: 10/34 lots
+2021-07-04 23:31:19 72      APA: OrderID: 04468d16 partially executed. Executed lots: 4. OrderStatus: 14/34 lots
+2021-07-04 23:31:19 72      APA: OrderID: 04468d16 partially executed. Executed lots: 1. OrderStatus: 15/34 lots
+2021-07-04 23:31:19 72      APA: OrderID: 04468d16 partially executed. Executed lots: 3. OrderStatus: 18/34 lots
+2021-07-04 23:31:19 72      APA: OrderID: 04468d16 partially executed. Executed lots: 1. OrderStatus: 19/34 lots
+2021-07-04 23:31:19 72      APA: OrderID: 04468d16 partially executed. Executed lots: 4. OrderStatus: 23/34 lots
+2021-07-04 23:31:19 72      APA: OrderID: 04468d16 partially executed. Executed lots: 1. OrderStatus: 24/34 lots
+2021-07-04 23:31:19 72      APA: OrderID: 04468d16 partially executed. Executed lots: 8. OrderStatus: 32/34 lots
+2021-07-04 23:31:19 72      APA: OrderID: 04468d16 fully executed
+2021-07-04 23:31:19 73      APLE_BBG006473QX9_2021-01-28
+2021-07-04 23:31:19 75      APTV_BBG001QD41M9_2021-01-28
+2021-07-04 23:31:19 78      ARCT_BBG00NNW8JK1_2021-01-28
+2021-07-04 23:31:19 79      ARCT: BuyPending. Strategy: MorningOpenStrategy. Price: 66.52. Lots: 3. ChangeOpenToCurrent: -2.89. ChangePrevCloseToCurrent: -2.03. Candle: ID:14, Time: 7:00, Close: 66.52.
+2021-07-04 23:31:19 79      ARCT: OrderID: c4a5c80b. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:19 79      ARCT: OrderID: c4a5c80b fully executed
+2021-07-04 23:31:19 79      ARCT: Morning closing. Close price: 67.5. Lots: 3. CandleChange: 0.76%. ChangeFromCandleHigh: -1.45%. Profit: 0.98(1.47%). Candle: ID:37, Time: 7:05, Close: 67.5
+2021-07-04 23:31:19 79      ARCT: OrderID: 02bc9cb0. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:19 79      ARCT: OrderID: 02bc9cb0 partially executed. Executed lots: 1. OrderStatus: 1/3 lots
+2021-07-04 23:31:19 79      ARCT: OrderID: 02bc9cb0 fully executed
+2021-07-04 23:31:19 81      ARMK_BBG001KY4N87_2021-01-28
+2021-07-04 23:31:19 82      ARWR_BBG000BRVKH0_2021-01-28
+2021-07-04 23:31:19 84      ATRA_BBG005Q3MQY4_2021-01-28
+2021-07-04 23:31:19 85      ATRA: BuyPending. Strategy: MorningOpenStrategy. Price: 18.8. Lots: 13. ChangeOpenToCurrent: -0.53. ChangePrevCloseToCurrent: -2.34. Candle: ID:27, Time: 7:00, Close: 18.8.
+2021-07-04 23:31:19 85      ATRA: OrderID: 7c5ec02d. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:19 85      ATRA: Cancel order. Did not bought at market open. Candle: ID:36, Time: 7:05, Close: 18.83
+2021-07-04 23:31:19 85      OrderID: 7c5ec02d successfully canceled
+2021-07-04 23:31:19 86      ATUS_BBG00GFMPRK0_2021-01-28
+2021-07-04 23:31:19 88      ATUS: SPYKE!. Candle: ID:5715, Time: 21:55, Close: 36.79
+2021-07-04 23:31:19 89      ATVI_BBG000CVWGS6_2021-01-28
+2021-07-04 23:31:19 93      AVGO_BBG00KHY5S69_2021-01-28
+2021-07-04 23:31:19 97      AXP_BBG000BCQZS4_2021-01-28
+2021-07-04 23:31:20 03      BA_BBG000BCSST7_2021-01-28
+2021-07-04 23:31:20 10      BABA_BBG006G2JVL2_2021-01-28
+2021-07-04 23:31:20 22      BAC_BBG000BCTLF6_2021-01-28
+2021-07-04 23:31:20 31      BAX_BBG000BCVJ77_2021-01-28
+2021-07-04 23:31:20 33      BBY_BBG000BCWCG1_2021-01-28
+2021-07-04 23:31:20 35      BBBY_BBG000CSY9H9_2021-01-28
+2021-07-04 23:31:20 53      BBBY: SPYKE!. Candle: ID:13058, Time: 13:30, Close: 56.43
+2021-07-04 23:31:20 54      BBBY: SPYKE!. Candle: ID:16650, Time: 14:00, Close: 43.74
+2021-07-04 23:31:20 54      BBBY: SPYKE!. Candle: ID:17384, Time: 14:00, Close: 45.9
+2021-07-04 23:31:20 54      BBBY: SPYKE!. Candle: ID:17397, Time: 14:00, Close: 45.9
+2021-07-04 23:31:20 54      BBBY: SPYKE!. Candle: ID:18574, Time: 14:05, Close: 46.79
+2021-07-04 23:31:20 54      BBBY: SPYKE!. Candle: ID:18635, Time: 14:05, Close: 46.9
+2021-07-04 23:31:20 55      BBBY: SPYKE!. Candle: ID:22153, Time: 14:30, Close: 41.53
+2021-07-04 23:31:20 64      BEN_BBG000BD0TF8_2021-01-28
+2021-07-04 23:31:20 66      BHF_BBG00DYPZ4T0_2021-01-28
+2021-07-04 23:31:20 67      BIDU_BBG000QXWHD1_2021-01-28
+2021-07-04 23:31:20 75      BIIB_BBG000C17X76_2021-01-28
+2021-07-04 23:31:20 77      BILI_BBG00K7T3037_2021-01-28
+2021-07-04 23:31:20 79      BILI: BuyPending. Strategy: MorningOpenStrategy2. Price: 112.31. Lots: 2. ChangeOpenToCurrent: -4.89. ChangePrevCloseToCurrent: -4.89. Candle: ID:23, Time: 7:05, Close: 112.31.
+2021-07-04 23:31:20 79      BILI: OrderID: a305946c. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:20 79      BILI: OrderID: a305946c partially executed. Executed lots: 1. OrderStatus: 1/2 lots
+2021-07-04 23:31:20 79      BILI: OrderID: a305946c fully executed
+2021-07-04 23:31:20 79      BILI: Morning closing. Close price: 114. Lots: 2. CandleChange: 0.72%. ChangeFromCandleHigh: -1.72%. Profit: 1.69(1.50%). Candle: ID:78, Time: 7:10, Close: 114
+2021-07-04 23:31:20 79      BILI: OrderID: df972118. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:20 79      BILI: OrderID: df972118 partially executed. Executed lots: 1. OrderStatus: 1/2 lots
+2021-07-04 23:31:20 79      BILI: OrderID: df972118 fully executed
+2021-07-04 23:31:20 82      BK_BBG000BD8PN9_2021-01-28
+2021-07-04 23:31:20 85      BKR_BBG00GBVBK51_2021-01-28
+2021-07-04 23:31:20 88      BLDR_BBG000BKD3K9_2021-01-28
+2021-07-04 23:31:20 90      BLUE_BBG000QGWY50_2021-01-28
+2021-07-04 23:31:20 92      BMRN_BBG000CZWZ05_2021-01-28
+2021-07-04 23:31:20 94      BMY_BBG000DQLV23_2021-01-28
+2021-07-04 23:31:20 99      BRK.B_BBG000DWG505_2021-01-28
+2021-07-04 23:31:21 02      BSX_BBG000C0LW92_2021-01-28
+2021-07-04 23:31:21 06      BTI_BBG000BWPXQ8_2021-01-28
+2021-07-04 23:31:21 07      BUD_BBG000RYC984_2021-01-28
+2021-07-04 23:31:21 09      BWA_BBG000BJ49H3_2021-01-28
+2021-07-04 23:31:21 11      BYND_BBG003CVJP50_2021-01-28
+2021-07-04 23:31:21 17      BZUN_BBG008HNS333_2021-01-28
+2021-07-04 23:31:21 17      BZUN: BuyPending. Strategy: MorningOpenStrategy. Price: 42.38. Lots: 5. ChangeOpenToCurrent: 0.05. ChangePrevCloseToCurrent: -2.80. Candle: ID:4, Time: 7:00, Close: 42.38.
+2021-07-04 23:31:21 17      BZUN: OrderID: 4f5c841c. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:21 17      BZUN: Cancel order. Did not bought at market open. Candle: ID:5, Time: 7:05, Close: 42.44
+2021-07-04 23:31:21 17      OrderID: 4f5c841c successfully canceled
+2021-07-04 23:31:21 18      C_BBG000FY4S11_2021-01-28
+2021-07-04 23:31:21 23      CAG_BBG000BDXGP9_2021-01-28
+2021-07-04 23:31:21 26      CAH_BBG000D898T9_2021-01-28
+2021-07-04 23:31:21 27      CARG_BBG00HQ77DS2_2021-01-28
+2021-07-04 23:31:21 28      CARR_BBG00RP5HYS8_2021-01-28
+2021-07-04 23:31:21 30      CAT_BBG000BF0K17_2021-01-28
+2021-07-04 23:31:21 33      CB_BBG000BR14K5_2021-01-28
+2021-07-04 23:31:21 35      CBRE_BBG000C04224_2021-01-28
+2021-07-04 23:31:21 36      CCL_BBG000BF6LY3_2021-01-28
+2021-07-04 23:31:21 43      CCL: BuyPending. Strategy: MorningOpenStrategy. Price: 18.54. Lots: 13. ChangeOpenToCurrent: -0.86. ChangePrevCloseToCurrent: -2.06. Candle: ID:52, Time: 7:00, Close: 18.54.
+2021-07-04 23:31:21 43      CCL: OrderID: d728dc7a. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:21 43      CCL: OrderID: d728dc7a fully executed
+2021-07-04 23:31:21 43      CCL: Morning closing. Close price: 18.77. Lots: 13. CandleChange: -0.05%. ChangeFromCandleHigh: -0.11%. Profit: 0.23(1.24%). Candle: ID:169, Time: 7:10, Close: 18.77
+2021-07-04 23:31:21 43      CCL: OrderID: 9f42f18d. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:21 43      CCL: OrderID: 9f42f18d partially executed. Executed lots: 2. OrderStatus: 2/13 lots
+2021-07-04 23:31:21 43      CCL: OrderID: 9f42f18d partially executed. Executed lots: 1. OrderStatus: 3/13 lots
+2021-07-04 23:31:21 43      CCL: OrderID: 9f42f18d partially executed. Executed lots: 2. OrderStatus: 5/13 lots
+2021-07-04 23:31:21 43      CCL: OrderID: 9f42f18d fully executed
+2021-07-04 23:31:21 49      CDNS_BBG000C13CD9_2021-01-28
+2021-07-04 23:31:21 53      CDW_BBG001P63B80_2021-01-28
+2021-07-04 23:31:21 55      CERN_BBG000BFDLV8_2021-01-28
+2021-07-04 23:31:21 56      CF_BBG000BWJFZ4_2021-01-28
+2021-07-04 23:31:21 59      CFG_BBG006Q0HY77_2021-01-28
+2021-07-04 23:31:21 62      CGNX_BBG000BPBVW5_2021-01-28
+2021-07-04 23:31:21 63      CHEF_BBG001MFW6D6_2021-01-28
+2021-07-04 23:31:21 64      CHGG_BBG0014XR0N5_2021-01-28
+2021-07-04 23:31:21 65      CHNG_BBG0059KNH10_2021-01-28
+2021-07-04 23:31:21 66      CHRW_BBG000BTCH57_2021-01-28
+2021-07-04 23:31:21 67      CHTR_BBG000VPGNR2_2021-01-28
+2021-07-04 23:31:21 70      CHX_BBG00JH9TZ56_2021-01-28
+2021-07-04 23:31:21 70      CHX: BuyPending. Strategy: MorningOpenStrategy2. Price: 14.82. Lots: 16. ChangeOpenToCurrent: -4.26. ChangePrevCloseToCurrent: -4.26. Candle: ID:2, Time: 7:05, Close: 14.82.
+2021-07-04 23:31:21 70      CHX: OrderID: b452f9b7. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:21 70      CHX: OrderID: b452f9b7 partially executed. Executed lots: 5. OrderStatus: 5/16 lots
+2021-07-04 23:31:21 70      CHX: OrderID: b452f9b7 partially executed. Executed lots: 2. OrderStatus: 7/16 lots
+2021-07-04 23:31:21 70      CHX: OrderID: b452f9b7 partially executed. Executed lots: 1. OrderStatus: 8/16 lots
+2021-07-04 23:31:21 70      CHX: OrderID: b452f9b7 partially executed. Executed lots: 1. OrderStatus: 9/16 lots
+2021-07-04 23:31:21 70      CHX: OrderID: b452f9b7 partially executed. Executed lots: 1. OrderStatus: 10/16 lots
+2021-07-04 23:31:21 70      CHX: OrderID: b452f9b7 partially executed. Executed lots: 4. OrderStatus: 14/16 lots
+2021-07-04 23:31:21 70      CHX: OrderID: b452f9b7 partially executed. Executed lots: 1. OrderStatus: 15/16 lots
+2021-07-04 23:31:21 70      CHX: Morning closing by timeout. Close price: 14.81. Lots: 15. Profit: -0.01(-0.07%). Candle: ID:19, Time: 7:35, Close: 14.81
+2021-07-04 23:31:21 70      CHX: OrderID: 3effb09e. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:21 70      CHX: OrderID: b452f9b7 automatically canceling...
+2021-07-04 23:31:21 70      CHX: OrderID: 3effb09e partially executed. Executed lots: 1. OrderStatus: 1/15 lots
+2021-07-04 23:31:21 70      OrderID: b452f9b7 successfully canceled
+2021-07-04 23:31:21 70      CHX: OrderID: 3effb09e partially executed. Executed lots: 1. OrderStatus: 2/15 lots
+2021-07-04 23:31:21 70      CHX: OrderID: 3effb09e partially executed. Executed lots: 1. OrderStatus: 3/15 lots
+2021-07-04 23:31:21 70      CHX: OrderID: 3effb09e partially executed. Executed lots: 1. OrderStatus: 4/15 lots
+2021-07-04 23:31:21 70      CHX: OrderID: 3effb09e partially executed. Executed lots: 1. OrderStatus: 5/15 lots
+2021-07-04 23:31:21 70      CHX: OrderID: 3effb09e partially executed. Executed lots: 1. OrderStatus: 6/15 lots
+2021-07-04 23:31:21 70      CHX: OrderID: 3effb09e partially executed. Executed lots: 2. OrderStatus: 8/15 lots
+2021-07-04 23:31:21 70      CHX: OrderID: 3effb09e partially executed. Executed lots: 6. OrderStatus: 14/15 lots
+2021-07-04 23:31:21 70      CHX: OrderID: 3effb09e fully executed
+2021-07-04 23:31:21 71      CIEN_BBG000BP1152_2021-01-28
+2021-07-04 23:31:21 73      CINF_BBG000BFPK65_2021-01-28
+2021-07-04 23:31:21 74      CL_BBG000BFQYY3_2021-01-28
+2021-07-04 23:31:21 77      CLF_BBG000BFRF55_2021-01-28
+2021-07-04 23:31:21 79      CLR_BBG000BHBGN6_2021-01-28
+2021-07-04 23:31:21 82      CMA_BBG000C75N77_2021-01-28
+2021-07-04 23:31:21 83      CMCSA_BBG000BFT2L4_2021-01-28
+2021-07-04 23:31:21 91      CME_BBG000BHLYP4_2021-01-28
+2021-07-04 23:31:21 93      CMS_BBG000BFVXX0_2021-01-28
+2021-07-04 23:31:21 95      CNC_BBG000BDXCJ5_2021-01-28
+2021-07-04 23:31:21 98      CNK_BBG000QDVR53_2021-01-28
+2021-07-04 23:31:22 04      CNP_BBG000FDBX90_2021-01-28
+2021-07-04 23:31:22 06      COF_BBG000BGKTF9_2021-01-28
+2021-07-04 23:31:22 09      COG_BBG000C3GN47_2021-01-28
+2021-07-04 23:31:22 11      COP_BBG000BQQH30_2021-01-28
+2021-07-04 23:31:22 15      CORT_BBG000BKJG33_2021-01-28
+2021-07-04 23:31:22 17      COST_BBG000F6H8W8_2021-01-28
+2021-07-04 23:31:22 20      COTY_BBG000F395V1_2021-01-28
+2021-07-04 23:31:22 23      COUP_BBG001J4BCN4_2021-01-28
+2021-07-04 23:31:22 24      CPB_BBG000BG4202_2021-01-28
+2021-07-04 23:31:22 26      CPRI_BBG0029SNR63_2021-01-28
+2021-07-04 23:31:22 28      CPRT_BBG000BM9RH1_2021-01-28
+2021-07-04 23:31:22 29      CREE_BBG000BG14P4_2021-01-28
+2021-07-04 23:31:22 31      CRM_BBG000BN2DC2_2021-01-28
+2021-07-04 23:31:22 36      CROX_BBG000BLY663_2021-01-28
+2021-07-04 23:31:22 38      CRUS_BBG000C1DHF5_2021-01-28
+2021-07-04 23:31:22 40      CRWD_BBG00BLYKS03_2021-01-28
+2021-07-04 23:31:22 43      CSCO_BBG000C3J3C9_2021-01-28
+2021-07-04 23:31:22 49      CSX_BBG000BGJRC8_2021-01-28
+2021-07-04 23:31:22 54      CTSH_BBG000BBDV81_2021-01-28
+2021-07-04 23:31:22 56      CTVA_BBG00BN969C1_2021-01-28
+2021-07-04 23:31:22 59      CTVA: BuyPending. Strategy: MorningOpenStrategy2. Price: 37.59. Lots: 6. ChangeOpenToCurrent: -4.06. ChangePrevCloseToCurrent: -4.06. Candle: ID:5, Time: 7:05, Close: 37.59.
+2021-07-04 23:31:22 59      CTVA: OrderID: e368021b. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:22 59      CTVA: OrderID: e368021b partially executed. Executed lots: 2. OrderStatus: 2/6 lots
+2021-07-04 23:31:22 59      CTVA: Morning closing by timeout. Close price: 37.75. Lots: 2. Profit: 0.16(0.43%). Candle: ID:22, Time: 9:25, Close: 37.75
+2021-07-04 23:31:22 59      CTVA: OrderID: 29e979fa. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:22 59      CTVA: OrderID: e368021b automatically canceling...
+2021-07-04 23:31:22 59      OrderID: e368021b successfully canceled
+2021-07-04 23:31:22 59      CTVA: OrderID: 29e979fa partially executed. Executed lots: 1. OrderStatus: 1/2 lots
+2021-07-04 23:31:22 59      CTVA: OrderID: 29e979fa fully executed
+2021-07-04 23:31:22 60      CTXS_BBG000FQ6PY6_2021-01-28
+2021-07-04 23:31:22 62      CVET_BBG00KR691K8_2021-01-28
+2021-07-04 23:31:22 63      CVET: SPYKE!. Candle: ID:1809, Time: 22:30, Close: 34
+2021-07-04 23:31:22 63      CVET: SPYKE!. Candle: ID:1811, Time: 22:30, Close: 36.15
+2021-07-04 23:31:22 63      CVS_BBG000BGRY34_2021-01-28
+2021-07-04 23:31:22 65      CVX_BBG000K4ND22_2021-01-28
+2021-07-04 23:31:22 69      D_BBG000BGVW60_2021-01-28
+2021-07-04 23:31:22 71      DAL_BBG000R7Z112_2021-01-28
+2021-07-04 23:31:22 75      DAL: SPYKE!. Candle: ID:5154, Time: 14:05, Close: 40.15
+2021-07-04 23:31:22 77      DBX_BBG0018SLDN0_2021-01-28
+2021-07-04 23:31:22 81      DD_BBG00BN961G4_2021-01-28
+2021-07-04 23:31:22 82      DDOG_BBG003NJHZT9_2021-01-28
+2021-07-04 23:31:22 84      DFS_BBG000QBR5J5_2021-01-28
+2021-07-04 23:31:22 87      DHI_BBG000DQTXY6_2021-01-28
+2021-07-04 23:31:22 89      DHR_BBG000BH3JF8_2021-01-28
+2021-07-04 23:31:22 91      DIS_BBG000BH4R78_2021-01-28
+2021-07-04 23:31:22 95      DIS: BuyPending. Strategy: MorningOpenStrategy. Price: 162.63. Lots: 1. ChangeOpenToCurrent: -2.02. ChangePrevCloseToCurrent: -0.23. Candle: ID:21, Time: 7:00, Close: 162.63.
+2021-07-04 23:31:22 95      DIS: OrderID: f5001255. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:22 95      DIS: OrderID: f5001255 fully executed
+2021-07-04 23:31:22 95      DIS: Morning closing by timeout. Close price: 161.43. Lots: 1. Profit: -1.20(-0.74%). Candle: ID:73, Time: 7:20, Close: 161.43
+2021-07-04 23:31:22 95      DIS: OrderID: c5017a71. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:22 95      DIS: OrderID: c5017a71 fully executed
+2021-07-04 23:31:22 99      DISCA_BBG000CHWP52_2021-01-28
+2021-07-04 23:31:23 06      DISCA: BuyPending. Strategy: MorningOpenStrategy. Price: 41.86. Lots: 5. ChangeOpenToCurrent: 0.60. ChangePrevCloseToCurrent: -3.35. Candle: ID:4, Time: 7:00, Close: 41.86.
+2021-07-04 23:31:23 06      DISCA: OrderID: 0b3ecd6e. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:23 06      DISCA: OrderID: 0b3ecd6e partially executed. Executed lots: 2. OrderStatus: 2/5 lots
+2021-07-04 23:31:23 06      DISCA: OrderID: 0b3ecd6e partially executed. Executed lots: 2. OrderStatus: 4/5 lots
+2021-07-04 23:31:23 06      DISCA: OrderID: 0b3ecd6e fully executed
+2021-07-04 23:31:23 06      DISCA: Morning closing by timeout. Close price: 41.58. Lots: 5. Profit: -0.28(-0.67%). Candle: ID:22, Time: 7:20, Close: 41.58
+2021-07-04 23:31:23 06      DISCA: OrderID: 737b5869. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:23 06      DISCA: OrderID: 737b5869 partially executed. Executed lots: 1. OrderStatus: 1/5 lots
+2021-07-04 23:31:23 06      DISCA: OrderID: 737b5869 fully executed
+2021-07-04 23:31:23 13      DISCK_BBG000VMWHH5_2021-01-28
+2021-07-04 23:31:23 17      DISCK: BuyPending. Strategy: MorningOpenStrategy2. Price: 31.73. Lots: 7. ChangeOpenToCurrent: -5.00. ChangePrevCloseToCurrent: -5.00. Candle: ID:4, Time: 7:15, Close: 31.73.
+2021-07-04 23:31:23 17      DISCK: OrderID: 7f7226a3. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:23 17      DISCK: OrderID: 7f7226a3 partially executed. Executed lots: 5. OrderStatus: 5/7 lots
+2021-07-04 23:31:23 17      DISCK: OrderID: 7f7226a3 fully executed
+2021-07-04 23:31:23 17      DISCK: Morning closing by timeout. Close price: 32. Lots: 7. Profit: 0.27(0.85%). Candle: ID:23, Time: 7:55, Close: 32
+2021-07-04 23:31:23 17      DISCK: OrderID: c8fbb414. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:23 17      DISCK: OrderID: c8fbb414 fully executed
+2021-07-04 23:31:23 18      DISCK: SPYKE!. Candle: ID:93, Time: 13:50, Close: 33.96
+2021-07-04 23:31:23 18      DISCK: SPYKE!. Candle: ID:98, Time: 14:00, Close: 34.26
+2021-07-04 23:31:23 23      DKNG_BBG00TCBG714_2021-01-28
+2021-07-04 23:31:23 27      DKNG: BuyPending. Strategy: MorningOpenStrategy. Price: 52. Lots: 4. ChangeOpenToCurrent: -2.27. ChangePrevCloseToCurrent: -3.49. Candle: ID:4, Time: 7:00, Close: 52.
+2021-07-04 23:31:23 27      DKNG: OrderID: 09590d6f. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:23 27      DKNG: OrderID: 09590d6f partially executed. Executed lots: 1. OrderStatus: 1/4 lots
+2021-07-04 23:31:23 27      DKNG: OrderID: 09590d6f fully executed
+2021-07-04 23:31:23 27      DKNG: Buy more. Price: 50.93. Lots: 4. changeFromLastBuy: -2.06. Candle: ID:11, Time: 7:00, Close: 50.93.
+2021-07-04 23:31:23 27      DKNG: OrderID: d73e5819. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:23 27      DKNG: OrderID: d73e5819 fully executed
+2021-07-04 23:31:23 27      DKNG: Morning closing. Close price: 52.61. Lots: 8. CandleChange: -0.53%. ChangeFromCandleHigh: -0.74%. Profit: 1.15(2.23%). Candle: ID:89, Time: 7:10, Close: 52.61
+2021-07-04 23:31:23 27      DKNG: OrderID: 0222b9af. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:23 27      DKNG: OrderID: 0222b9af partially executed. Executed lots: 1. OrderStatus: 1/8 lots
+2021-07-04 23:31:23 27      DKNG: OrderID: 0222b9af partially executed. Executed lots: 1. OrderStatus: 2/8 lots
+2021-07-04 23:31:23 27      DKNG: OrderID: 0222b9af fully executed
+2021-07-04 23:31:23 31      DKS_BBG000F6ZWH2_2021-01-28
+2021-07-04 23:31:23 33      DLTR_BBG000BSC0K9_2021-01-28
+2021-07-04 23:31:23 36      DOCU_BBG000N7KJX8_2021-01-28
+2021-07-04 23:31:23 39      DOW_BBG00BN96922_2021-01-28
+2021-07-04 23:31:23 43      DRI_BBG000BBNYF6_2021-01-28
+2021-07-04 23:31:23 45      DT_BBG00PNN7C40_2021-01-28
+2021-07-04 23:31:23 46      DVN_BBG000BBVJZ8_2021-01-28
+2021-07-04 23:31:23 48      DXC_BBG00FN64XT9_2021-01-28
+2021-07-04 23:31:23 50      DXCM_BBG000QTF8K1_2021-01-28
+2021-07-04 23:31:23 52      EA_BBG000BP0KQ8_2021-01-28
+2021-07-04 23:31:23 55      EBAY_BBG000C43RR5_2021-01-28
+2021-07-04 23:31:23 60      ED_BBG000BHLYS1_2021-01-28
+2021-07-04 23:31:23 62      EDIT_BBG005MX5GZ2_2021-01-28
+2021-07-04 23:31:23 64      EIX_BBG000D7RKJ5_2021-01-28
+2021-07-04 23:31:23 66      ELAN_BBG00LJYS1P8_2021-01-28
+2021-07-04 23:31:23 68      EMR_BBG000BHX7N2_2021-01-28
+2021-07-04 23:31:23 70      ENDP_BBG000C0HQ54_2021-01-28
+2021-07-04 23:31:23 70      ENPH_BBG001R3MNY9_2021-01-28
+2021-07-04 23:31:23 74      ENTG_BBG000CTV4N4_2021-01-28
+2021-07-04 23:31:23 76      EOG_BBG000BZ9223_2021-01-28
+2021-07-04 23:31:23 79      EQT_BBG000BHZ5J9_2021-01-28
+2021-07-04 23:31:23 82      ET_BBG000BM2FL9_2021-01-28
+2021-07-04 23:31:23 85      ETRN_BBG00K53L394_2021-01-28
+2021-07-04 23:31:23 89      ETSY_BBG000N7MXL8_2021-01-28
+2021-07-04 23:31:23 91      EVH_BBG005CHLM96_2021-01-28
+2021-07-04 23:31:23 92      EW_BBG000BRXP69_2021-01-28
+2021-07-04 23:31:23 94      EWBC_BBG000CR20B1_2021-01-28
+2021-07-04 23:31:23 95      EWBC: SPYKE!. Candle: ID:7, Time: 14:30, Close: 60.13
+2021-07-04 23:31:23 95      EXAS_BBG000CWL0F5_2021-01-28
+2021-07-04 23:31:23 97      EXC_BBG000J6XT05_2021-01-28
+2021-07-04 23:31:24 00      EXEL_BBG000BQ4WF8_2021-01-28
+2021-07-04 23:31:24 01      EXPD_BBG000BJ5GK2_2021-01-28
+2021-07-04 23:31:24 03      EXPE_BBG000QY3XZ2_2021-01-28
+2021-07-04 23:31:24 07      F_BBG000BQPC32_2021-01-28
+2021-07-04 23:31:24 13      F: BuyPending. Strategy: MorningOpenStrategy. Price: 10.5. Lots: 23. ChangeOpenToCurrent: -2.23. ChangePrevCloseToCurrent: -1.22. Candle: ID:5, Time: 7:00, Close: 10.5.
+2021-07-04 23:31:24 13      F: OrderID: abbcffbf. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:24 13      F: OrderID: abbcffbf fully executed
+2021-07-04 23:31:24 13      F: Morning closing by timeout. Close price: 10.5. Lots: 23. Profit: 0.00(0%). Candle: ID:202, Time: 7:20, Close: 10.5
+2021-07-04 23:31:24 13      F: OrderID: 7d81e6f2. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:24 13      F: OrderID: 7d81e6f2 partially executed. Executed lots: 15. OrderStatus: 15/23 lots
+2021-07-04 23:31:24 13      F: OrderID: 7d81e6f2 partially executed. Executed lots: 2. OrderStatus: 17/23 lots
+2021-07-04 23:31:24 13      F: OrderID: 7d81e6f2 partially executed. Executed lots: 1. OrderStatus: 18/23 lots
+2021-07-04 23:31:24 13      F: OrderID: 7d81e6f2 partially executed. Executed lots: 1. OrderStatus: 19/23 lots
+2021-07-04 23:31:24 13      F: OrderID: 7d81e6f2 partially executed. Executed lots: 2. OrderStatus: 21/23 lots
+2021-07-04 23:31:24 13      F: OrderID: 7d81e6f2 partially executed. Executed lots: 1. OrderStatus: 22/23 lots
+2021-07-04 23:31:24 13      F: OrderID: 7d81e6f2 fully executed
+2021-07-04 23:31:24 15      FANG_BBG002PHSYX9_2021-01-28
+2021-07-04 23:31:24 16      FANG: BuyPending. Strategy: MorningOpenStrategy2. Price: 54.38. Lots: 4. ChangeOpenToCurrent: -4.60. ChangePrevCloseToCurrent: -4.60. Candle: ID:18, Time: 7:25, Close: 54.38.
+2021-07-04 23:31:24 16      FANG: OrderID: c6d3ffe6. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:24 16      FANG: OrderID: c6d3ffe6 partially executed. Executed lots: 1. OrderStatus: 1/4 lots
+2021-07-04 23:31:24 16      FANG: OrderID: c6d3ffe6 partially executed. Executed lots: 1. OrderStatus: 2/4 lots
+2021-07-04 23:31:24 16      FANG: OrderID: c6d3ffe6 partially executed. Executed lots: 1. OrderStatus: 3/4 lots
+2021-07-04 23:31:24 16      FANG: OrderID: c6d3ffe6 fully executed
+2021-07-04 23:31:24 16      FANG: Morning closing. Close price: 54.76. Lots: 4. CandleChange: -0.22%. ChangeFromCandleHigh: -0.22%. Profit: 0.38(0.70%). Candle: ID:30, Time: 7:30, Close: 54.76
+2021-07-04 23:31:24 16      FANG: OrderID: 5cb0cf42. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:24 16      FANG: OrderID: 5cb0cf42 fully executed
+2021-07-04 23:31:24 17      FAST_BBG000BJ8YN7_2021-01-28
+2021-07-04 23:31:24 19      FATE_BBG000QP35H2_2021-01-28
+2021-07-04 23:31:24 20      FB_BBG000MM2P62_2021-01-28
+2021-07-04 23:31:24 34      FB: BuyPending. Strategy: MorningOpenStrategy. Price: 268. Lots: 1. ChangeOpenToCurrent: -1.25. ChangePrevCloseToCurrent: -2.37. Candle: ID:4, Time: 7:00, Close: 268.
+2021-07-04 23:31:24 34      FB: OrderID: 517649cc. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:24 34      FB: OrderID: 517649cc fully executed
+2021-07-04 23:31:24 34      FB: Morning closing. Close price: 268.58. Lots: 1. CandleChange: -0.05%. ChangeFromCandleHigh: -0.05%. Profit: 0.58(0.22%). Candle: ID:579, Time: 7:20, Close: 268.58
+2021-07-04 23:31:24 34      FB: OrderID: 7fc9486b. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:24 34      FB: OrderID: 7fc9486b fully executed
+2021-07-04 23:31:24 45      FCX_BBG000BJDB15_2021-01-28
+2021-07-04 23:31:24 50      FDX_BBG000BJF1Z8_2021-01-28
+2021-07-04 23:31:24 52      FIS_BBG000BK2F42_2021-01-28
+2021-07-04 23:31:24 54      FISV_BBG000BJKPG0_2021-01-28
+2021-07-04 23:31:24 60      FITB_BBG000BJL3N0_2021-01-28
+2021-07-04 23:31:24 62      FIVN_BBG001KHJM17_2021-01-28
+2021-07-04 23:31:24 64      FL_BBG000BX8DC4_2021-01-28
+2021-07-04 23:31:24 65      FLIR_BBG000BHK836_2021-01-28
+2021-07-04 23:31:24 67      FLR_BBG000BB1TH9_2021-01-28
+2021-07-04 23:31:24 69      FOX_BBG00JHNKJY8_2021-01-28
+2021-07-04 23:31:24 70      FOX: BuyPending. Strategy: MorningOpenStrategy2. Price: 31.97. Lots: 7. ChangeOpenToCurrent: -4.02. ChangePrevCloseToCurrent: -4.02. Candle: ID:8, Time: 7:50, Close: 31.97.
+2021-07-04 23:31:24 70      FOX: OrderID: 486ead67. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:24 70      FOX: Cancel order. Did not bought at market open. Candle: ID:11, Time: 9:25, Close: 32.01
+2021-07-04 23:31:24 70      OrderID: 486ead67 successfully canceled
+2021-07-04 23:31:24 72      FOXA_BBG00JHNJW99_2021-01-28
+2021-07-04 23:31:24 74      FOXA: SPYKE!. Candle: ID:2, Time: 7:00, Close: 32.24
+2021-07-04 23:31:24 74      FOXA: SPYKE!. Candle: ID:7, Time: 7:00, Close: 31.66
+2021-07-04 23:31:24 76      FRHC_BBG000N625H8_2021-01-28
+2021-07-04 23:31:24 78      FSLR_BBG000BFL116_2021-01-28
+2021-07-04 23:31:24 81      FSLY_BBG004NLQHL0_2021-01-28
+2021-07-04 23:31:24 82      FSLY: BuyPending. Strategy: MorningOpenStrategy. Price: 106. Lots: 2. ChangeOpenToCurrent: -2.02. ChangePrevCloseToCurrent: -2.53. Candle: ID:27, Time: 7:00, Close: 106.
+2021-07-04 23:31:24 82      FSLY: OrderID: 5b813450. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:24 82      FSLY: OrderID: 5b813450 partially executed. Executed lots: 1. OrderStatus: 1/2 lots
+2021-07-04 23:31:24 82      FSLY: OrderID: 5b813450 fully executed
+2021-07-04 23:31:24 82      FSLY: Morning closing by timeout. Close price: 105.16. Lots: 2. Profit: -0.84(-0.79%). Candle: ID:125, Time: 7:20, Close: 105.16
+2021-07-04 23:31:24 82      FSLY: OrderID: 20d9e0f8. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:24 82      FSLY: OrderID: 20d9e0f8 fully executed
+2021-07-04 23:31:24 84      FTI_BBG00DL8NMV2_2021-01-28
+2021-07-04 23:31:24 84      FTI: BuyPending. Strategy: MorningOpenStrategy2. Price: 10.76. Lots: 23. ChangeOpenToCurrent: -4.01. ChangePrevCloseToCurrent: -4.01. Candle: ID:72, Time: 7:30, Close: 10.76.
+2021-07-04 23:31:24 84      FTI: OrderID: b2f9b090. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:24 84      FTI: OrderID: b2f9b090 partially executed. Executed lots: 8. OrderStatus: 8/23 lots
+2021-07-04 23:31:24 84      FTI: OrderID: b2f9b090 partially executed. Executed lots: 10. OrderStatus: 18/23 lots
+2021-07-04 23:31:24 84      FTI: OrderID: b2f9b090 fully executed
+2021-07-04 23:31:24 84      FTI: Morning closing. Close price: 11. Lots: 23. CandleChange: -0.09%. ChangeFromCandleHigh: -0.90%. Profit: 0.24(2.23%). Candle: ID:93, Time: 7:40, Close: 11
+2021-07-04 23:31:24 84      FTI: OrderID: d8b21266. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:24 84      FTI: OrderID: d8b21266 partially executed. Executed lots: 10. OrderStatus: 10/23 lots
+2021-07-04 23:31:24 84      FTI: OrderID: d8b21266 partially executed. Executed lots: 1. OrderStatus: 11/23 lots
+2021-07-04 23:31:24 84      FTI: OrderID: d8b21266 fully executed
+2021-07-04 23:31:24 86      FTNT_BBG000BCMBG4_2021-01-28
+2021-07-04 23:31:24 87      FTV_BBG00BLVZ228_2021-01-28
+2021-07-04 23:31:24 89      GE_BBG000BK6MB5_2021-01-28
+2021-07-04 23:31:24 92      GE: BuyPending. Strategy: MorningOpenStrategy. Price: 10.99. Lots: 22. ChangeOpenToCurrent: -0.72. ChangePrevCloseToCurrent: -2.66. Candle: ID:4, Time: 7:00, Close: 10.99.
+2021-07-04 23:31:24 92      GE: OrderID: 868b9772. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:24 92      GE: OrderID: 868b9772 fully executed
+2021-07-04 23:31:24 92      GE: Morning closing by timeout. Close price: 11.01. Lots: 22. Profit: 0.02(0.18%). Candle: ID:268, Time: 7:20, Close: 11.01
+2021-07-04 23:31:24 92      GE: OrderID: 778ab05a. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:24 92      GE: OrderID: 778ab05a partially executed. Executed lots: 11. OrderStatus: 11/22 lots
+2021-07-04 23:31:24 92      GE: OrderID: 778ab05a partially executed. Executed lots: 5. OrderStatus: 16/22 lots
+2021-07-04 23:31:24 92      GE: OrderID: 778ab05a fully executed
+2021-07-04 23:31:24 94      GH_BBG006D97VY9_2021-01-28
+2021-07-04 23:31:24 96      GILD_BBG000CKGBP2_2021-01-28
+2021-07-04 23:31:25 00      GIS_BBG000BKCFC2_2021-01-28
+2021-07-04 23:31:25 02      GLW_BBG000BKFZM4_2021-01-28
+2021-07-04 23:31:25 04      GLW: BuyPending. Strategy: MorningOpenStrategy. Price: 34.5. Lots: 7. ChangeOpenToCurrent: -1.29. ChangePrevCloseToCurrent: -3.17. Candle: ID:9, Time: 7:00, Close: 34.5.
+2021-07-04 23:31:25 04      GLW: OrderID: 65d5c336. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:25 04      GLW: Cancel order. Did not bought at market open. Candle: ID:10, Time: 7:05, Close: 34.53
+2021-07-04 23:31:25 04      OrderID: 65d5c336 successfully canceled
+2021-07-04 23:31:25 04      GLW: BuyPending. Strategy: MorningOpenStrategy2. Price: 34. Lots: 7. ChangeOpenToCurrent: -4.57. ChangePrevCloseToCurrent: -4.57. Candle: ID:15, Time: 7:05, Close: 34.
+2021-07-04 23:31:25 04      GLW: OrderID: 99be79b9. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:25 04      GLW: OrderID: 99be79b9 fully executed
+2021-07-04 23:31:25 04      GLW: Morning closing by timeout. Close price: 34.15. Lots: 7. Profit: 0.15(0.44%). Candle: ID:38, Time: 7:35, Close: 34.15
+2021-07-04 23:31:25 04      GLW: OrderID: 224aed35. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:25 04      GLW: OrderID: 224aed35 partially executed. Executed lots: 1. OrderStatus: 1/7 lots
+2021-07-04 23:31:25 04      GLW: OrderID: 224aed35 fully executed
+2021-07-04 23:31:25 05      GM_BBG000NDYB67_2021-01-28
+2021-07-04 23:31:25 13      GOOG_BBG009S3NB30_2021-01-28
+2021-07-04 23:31:25 17      GOOGL_BBG009S39JX6_2021-01-28
+2021-07-04 23:31:25 22      GPS_BBG000BKLH74_2021-01-28
+2021-07-04 23:31:25 24      GPS: SPYKE!. Candle: ID:2084, Time: 15:00, Close: 20.41
+2021-07-04 23:31:25 25      GRMN_BBG000C4LN67_2021-01-28
+2021-07-04 23:31:25 27      GRUB_BBG001KWG293_2021-01-28
+2021-07-04 23:31:25 27      Warning: figi `BBG001KWG293` for history data does not match actual figi `BBG010R8C3Y4`. Ticker: GRUB. Will be used actual!
+2021-07-04 23:31:25 27      GS_BBG000C6CFJ5_2021-01-28
+2021-07-04 23:31:25 31      GSKY_BBG00KT2SCV8_2021-01-28
+2021-07-04 23:31:25 32      GSKY: SPYKE!. Candle: ID:372, Time: 12:30, Close: 4.85
+2021-07-04 23:31:25 32      GT_BBG000BKNX95_2021-01-28
+2021-07-04 23:31:25 34      HA_BBG000BC4185_2021-01-28
+2021-07-04 23:31:25 35      HAL_BBG000BKTFN2_2021-01-28
+2021-07-04 23:31:25 38      HALO_BBG000CZ8W54_2021-01-28
+2021-07-04 23:31:25 39      HAS_BBG000BKVJK4_2021-01-28
+2021-07-04 23:31:25 40      HBAN_BBG000BKWSR6_2021-01-28
+2021-07-04 23:31:25 42      HBI_BBG000D2ZTS8_2021-01-28
+2021-07-04 23:31:25 43      HCA_BBG000QW7VC1_2021-01-28
+2021-07-04 23:31:25 45      HD_BBG000BKZB36_2021-01-28
+2021-07-04 23:31:25 47      HES_BBG000BBD070_2021-01-28
+2021-07-04 23:31:25 48      HFC_BBG000BL9JQ1_2021-01-28
+2021-07-04 23:31:25 51      HIG_BBG000G0Z878_2021-01-28
+2021-07-04 23:31:25 52      HLT_BBG0058KMH30_2021-01-28
+2021-07-04 23:31:25 55      HOG_BBG000BKZTP3_2021-01-28
+2021-07-04 23:31:25 56      HOLX_BBG000C3NTN5_2021-01-28
+2021-07-04 23:31:25 58      HON_BBG000H556T9_2021-01-28
+2021-07-04 23:31:25 60      HP_BBG000BLCPY4_2021-01-28
+2021-07-04 23:31:25 61      HPE_BBG0078W3NQ3_2021-01-28
+2021-07-04 23:31:25 62      HPQ_BBG000KHWT55_2021-01-28
+2021-07-04 23:31:25 64      HRB_BBG000BLDV98_2021-01-28
+2021-07-04 23:31:25 66      HRL_BBG000BLF8D2_2021-01-28
+2021-07-04 23:31:25 68      HRTX_BBG000G2GJT7_2021-01-28
+2021-07-04 23:31:25 70      HSIC_BBG000BNMMJ3_2021-01-28
+2021-07-04 23:31:25 71      HST_BBG000BL8804_2021-01-28
+2021-07-04 23:31:25 73      HTHT_BBG000QFPM65_2021-01-28
+2021-07-04 23:31:25 74      HWM_BBG00DYNJGH9_2021-01-28
+2021-07-04 23:31:25 76      IAC_BBG000BKQG80_2021-01-28
+2021-07-04 23:31:25 76      Warning: figi `BBG000BKQG80` for history data does not match actual figi `BBG00S1LR2C3`. Ticker: IAC. Will be used actual!
+2021-07-04 23:31:25 77      IBM_BBG000BLNNH6_2021-01-28
+2021-07-04 23:31:25 80      IBN_BBG000DRM643_2021-01-28
+2021-07-04 23:31:25 82      ICE_BBG000C1FB75_2021-01-28
+2021-07-04 23:31:25 84      IIVI_BBG000BLW102_2021-01-28
+2021-07-04 23:31:25 86      ILMN_BBG000DSMS70_2021-01-28
+2021-07-04 23:31:25 88      INCY_BBG000BNPSQ9_2021-01-28
+2021-07-04 23:31:25 90      INFO_BBG006G063F9_2021-01-28
+2021-07-04 23:31:25 92      INTC_BBG000C0G1D1_2021-01-28
+2021-07-04 23:31:26 04      INTU_BBG000BH5DV1_2021-01-28
+2021-07-04 23:31:26 07      IOVA_BBG000FTLBV7_2021-01-28
+2021-07-04 23:31:26 08      IP_BBG000BM5SR2_2021-01-28
+2021-07-04 23:31:26 10      IPG_BBG000C90DH9_2021-01-28
+2021-07-04 23:31:26 12      IR_BBG002R1CW27_2021-01-28
+2021-07-04 23:31:26 14      IRM_BBG000KCZPC3_2021-01-28
+2021-07-04 23:31:26 15      IRM: SPYKE!. Candle: ID:3, Time: 7:00, Close: 35.4
+2021-07-04 23:31:26 15      IRM: BuyPending. Strategy: MorningOpenStrategy2. Price: 34.8. Lots: 7. ChangeOpenToCurrent: -4.40. ChangePrevCloseToCurrent: -4.40. Candle: ID:74, Time: 7:40, Close: 34.8.
+2021-07-04 23:31:26 15      IRM: OrderID: fd02835b. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:26 15      IRM: OrderID: fd02835b partially executed. Executed lots: 2. OrderStatus: 2/7 lots
+2021-07-04 23:31:26 15      IRM: OrderID: fd02835b fully executed
+2021-07-04 23:31:26 15      IRM: Morning closing by timeout. Close price: 34.38. Lots: 7. Profit: -0.42(-1.21%). Candle: ID:110, Time: 8:00, Close: 34.38
+2021-07-04 23:31:26 15      IRM: OrderID: 1ee9b77c. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:26 15      IRM: OrderID: 1ee9b77c partially executed. Executed lots: 1. OrderStatus: 1/7 lots
+2021-07-04 23:31:26 15      IRM: OrderID: 1ee9b77c partially executed. Executed lots: 1. OrderStatus: 2/7 lots
+2021-07-04 23:31:26 15      IRM: OrderID: 1ee9b77c partially executed. Executed lots: 2. OrderStatus: 4/7 lots
+2021-07-04 23:31:26 15      IRM: OrderID: 1ee9b77c partially executed. Executed lots: 1. OrderStatus: 5/7 lots
+2021-07-04 23:31:26 15      IRM: OrderID: 1ee9b77c fully executed
+2021-07-04 23:31:26 17      IVZ_BBG000BY2Y78_2021-01-28
+2021-07-04 23:31:26 19      JBHT_BBG000BMDBZ1_2021-01-28
+2021-07-04 23:31:26 20      JCI_BBG000BVWLJ6_2021-01-28
+2021-07-04 23:31:26 23      JD_BBG005YHY0Q7_2021-01-28
+2021-07-04 23:31:26 28      JNJ_BBG000BMHYD1_2021-01-28
+2021-07-04 23:31:26 31      JNPR_BBG000BY33P5_2021-01-28
+2021-07-04 23:31:26 34      JPM_BBG000DMBXR2_2021-01-28
+2021-07-04 23:31:26 39      JWN_BBG000G8N9C6_2021-01-28
+2021-07-04 23:31:26 41      JWN: BuyPending. Strategy: MorningOpenStrategy. Price: 38.42. Lots: 6. ChangeOpenToCurrent: -2.39. ChangePrevCloseToCurrent: -2.24. Candle: ID:4, Time: 7:00, Close: 38.42.
+2021-07-04 23:31:26 41      JWN: OrderID: 48d1e49f. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:26 41      JWN: OrderID: 48d1e49f partially executed. Executed lots: 5. OrderStatus: 5/6 lots
+2021-07-04 23:31:26 41      JWN: OrderID: 48d1e49f fully executed
+2021-07-04 23:31:26 41      JWN: Morning closing by timeout. Close price: 38.41. Lots: 6. Profit: -0.01(-0.03%). Candle: ID:33, Time: 7:25, Close: 38.41
+2021-07-04 23:31:26 41      JWN: OrderID: 3618f775. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:26 41      JWN: OrderID: 3618f775 fully executed
+2021-07-04 23:31:26 42      K_BBG000BMKDM3_2021-01-28
+2021-07-04 23:31:26 44      KDP_BBG000TJM7F0_2021-01-28
+2021-07-04 23:31:26 46      KEY_BBG000BMQPL1_2021-01-28
+2021-07-04 23:31:26 50      KHC_BBG005CPNTQ2_2021-01-28
+2021-07-04 23:31:26 53      KIM_BBG000CN3S73_2021-01-28
+2021-07-04 23:31:26 55      KLAC_BBG000BMTFR4_2021-01-28
+2021-07-04 23:31:26 56      KMI_BBG0019JZ882_2021-01-28
+2021-07-04 23:31:26 59      KNX_BBG000BFC848_2021-01-28
+2021-07-04 23:31:26 61      KO_BBG000BMX289_2021-01-28
+2021-07-04 23:31:26 64      KO: BuyPending. Strategy: MorningOpenStrategy. Price: 47.54. Lots: 5. ChangeOpenToCurrent: -1.72. ChangePrevCloseToCurrent: -2.02. Candle: ID:160, Time: 7:00, Close: 47.54.
+2021-07-04 23:31:26 64      KO: OrderID: 757178b7. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:26 64      KO: OrderID: 757178b7 fully executed
+2021-07-04 23:31:26 64      KO: Morning closing. Close price: 48.05. Lots: 5. CandleChange: -0.08%. ChangeFromCandleHigh: -0.08%. Profit: 0.51(1.07%). Candle: ID:819, Time: 7:20, Close: 48.05
+2021-07-04 23:31:26 64      KO: OrderID: ec920b42. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:26 64      KO: OrderID: ec920b42 partially executed. Executed lots: 1. OrderStatus: 1/5 lots
+2021-07-04 23:31:26 64      KO: OrderID: ec920b42 partially executed. Executed lots: 1. OrderStatus: 2/5 lots
+2021-07-04 23:31:26 64      KO: OrderID: ec920b42 fully executed
+2021-07-04 23:31:26 67      KR_BBG000BMY992_2021-01-28
+2021-07-04 23:31:26 69      KR: BuyPending. Strategy: MorningOpenStrategy. Price: 37.67. Lots: 6. ChangeOpenToCurrent: -0.92. ChangePrevCloseToCurrent: -2.49. Candle: ID:9, Time: 7:00, Close: 37.67.
+2021-07-04 23:31:26 69      KR: OrderID: 04c5fa9d. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:26 69      KR: OrderID: 04c5fa9d partially executed. Executed lots: 1. OrderStatus: 1/6 lots
+2021-07-04 23:31:26 69      KR: OrderID: 04c5fa9d fully executed
+2021-07-04 23:31:26 69      KR: Morning closing by timeout. Close price: 37.61. Lots: 6. Profit: -0.06(-0.16%). Candle: ID:32, Time: 7:25, Close: 37.61
+2021-07-04 23:31:26 69      KR: OrderID: ed0a9445. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:26 69      KR: OrderID: ed0a9445 fully executed
+2021-07-04 23:31:26 73      LB_BBG000BNGTQ7_2021-01-28
+2021-07-04 23:31:26 78      LEN_BBG000BN5HF7_2021-01-28
+2021-07-04 23:31:26 80      LIN_BBG00GVR8YQ9_2021-01-28
+2021-07-04 23:31:26 82      LITE_BBG0073F9RT7_2021-01-28
+2021-07-04 23:31:26 84      LKQ_BBG000PXDL44_2021-01-28
+2021-07-04 23:31:26 85      LLY_BBG000BNBDC2_2021-01-28
+2021-07-04 23:31:26 88      LNT_BBG000DW4Q75_2021-01-28
+2021-07-04 23:31:26 90      LOW_BBG000BNDN65_2021-01-28
+2021-07-04 23:31:26 92      LPSN_BBG000BSV0W5_2021-01-28
+2021-07-04 23:31:26 93      LRCX_BBG000BNFLM9_2021-01-28
+2021-07-04 23:31:26 96      LTHM_BBG00LV3NRG0_2021-01-28
+2021-07-04 23:31:26 97      LTHM: BuyPending. Strategy: MorningOpenStrategy2. Price: 19.14. Lots: 13. ChangeOpenToCurrent: -4.11. ChangePrevCloseToCurrent: -4.11. Candle: ID:247, Time: 7:40, Close: 19.14.
+2021-07-04 23:31:26 97      LTHM: OrderID: f81d581b. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:26 97      LTHM: OrderID: f81d581b partially executed. Executed lots: 1. OrderStatus: 1/13 lots
+2021-07-04 23:31:26 97      LTHM: OrderID: f81d581b fully executed
+2021-07-04 23:31:26 97      LTHM: Morning closing. Close price: 19.2. Lots: 13. CandleChange: 0%. ChangeFromCandleHigh: -1.13%. Profit: 0.06(0.31%). Candle: ID:290, Time: 7:45, Close: 19.2
+2021-07-04 23:31:26 97      LTHM: OrderID: 9dad6f7e. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:26 97      LTHM: OrderID: 9dad6f7e fully executed
+2021-07-04 23:31:26 99      LULU_BBG000R8ZVD1_2021-01-28
+2021-07-04 23:31:27 01      LUMN_BBG000BGLRN3_2021-01-28
+2021-07-04 23:31:27 06      LUV_BBG000BNJHS8_2021-01-28
+2021-07-04 23:31:27 09      LVS_BBG000JWD753_2021-01-28
+2021-07-04 23:31:27 13      LYB_BBG000WCFV84_2021-01-28
+2021-07-04 23:31:27 15      LYFT_BBG004M9ZHX5_2021-01-28
+2021-07-04 23:31:27 17      LYFT: SPYKE!. Candle: ID:54, Time: 10:10, Close: 42
+2021-07-04 23:31:27 19      LYV_BBG000FQ7YR4_2021-01-28
+2021-07-04 23:31:27 20      M_BBG000C46HM9_2021-01-28
+2021-07-04 23:31:27 24      M: BuyPending. Strategy: MorningOpenStrategy. Price: 16.96. Lots: 14. ChangeOpenToCurrent: 0.18. ChangePrevCloseToCurrent: -2.14. Candle: ID:4, Time: 7:00, Close: 16.96.
+2021-07-04 23:31:27 24      M: OrderID: 38c0806a. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:27 24      M: OrderID: 38c0806a fully executed
+2021-07-04 23:31:27 24      M: Buy more. Price: 16.53. Lots: 15. changeFromLastBuy: -2.54. Candle: ID:33, Time: 7:00, Close: 16.53.
+2021-07-04 23:31:27 24      M: OrderID: e108bd7a. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:27 24      M: OrderID: e108bd7a fully executed
+2021-07-04 23:31:27 24      M: Morning closing. Close price: 16.78. Lots: 29. CandleChange: -0.12%. ChangeFromCandleHigh: -0.24%. Profit: 0.05(0.30%). Candle: ID:251, Time: 7:05, Close: 16.78
+2021-07-04 23:31:27 24      M: OrderID: 54cf177c. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:27 24      M: OrderID: 54cf177c partially executed. Executed lots: 5. OrderStatus: 5/29 lots
+2021-07-04 23:31:27 24      M: OrderID: 54cf177c partially executed. Executed lots: 1. OrderStatus: 6/29 lots
+2021-07-04 23:31:27 24      M: OrderID: 54cf177c partially executed. Executed lots: 20. OrderStatus: 26/29 lots
+2021-07-04 23:31:27 25      M: OrderID: 54cf177c partially executed. Executed lots: 1. OrderStatus: 27/29 lots
+2021-07-04 23:31:27 25      M: OrderID: 54cf177c partially executed. Executed lots: 1. OrderStatus: 28/29 lots
+2021-07-04 23:31:27 25      M: OrderID: 54cf177c fully executed
+2021-07-04 23:31:27 28      MA_BBG000F1ZSQ2_2021-01-28
+2021-07-04 23:31:27 31      MAC_BBG000BL9C59_2021-01-28
+2021-07-04 23:31:27 37      MAC: BuyPending. Strategy: MorningOpenStrategy. Price: 20.89. Lots: 11. ChangeOpenToCurrent: -0.10. ChangePrevCloseToCurrent: -2.38. Candle: ID:4, Time: 7:00, Close: 20.89.
+2021-07-04 23:31:27 37      MAC: OrderID: 71c57008. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:27 37      MAC: OrderID: 71c57008 fully executed
+2021-07-04 23:31:27 37      MAC: Morning closing. Close price: 21.4. Lots: 11. CandleChange: 1.95%. ChangeFromCandleHigh: -1.74%. Profit: 0.51(2.44%). Candle: ID:134, Time: 7:05, Close: 21.4
+2021-07-04 23:31:27 37      MAC: OrderID: abff2163. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:27 37      MAC: OrderID: abff2163 fully executed
+2021-07-04 23:31:27 37      MAC: SPYKE!. Candle: ID:1292, Time: 9:00, Close: 20.6
+2021-07-04 23:31:27 40      MAR_BBG000BGD7W6_2021-01-28
+2021-07-04 23:31:27 43      MAS_BBG000BNNKG9_2021-01-28
+2021-07-04 23:31:27 44      MAT_BBG000BNNYW1_2021-01-28
+2021-07-04 23:31:27 46      MBT_BBG000CSZKR2_2021-01-28
+2021-07-04 23:31:27 47      MCD_BBG000BNSZP1_2021-01-28
+2021-07-04 23:31:27 51      MCHP_BBG000BHCP19_2021-01-28
+2021-07-04 23:31:27 53      MDLZ_BBG000D4LWF6_2021-01-28
+2021-07-04 23:31:27 57      MDRX_BBG000BLDXH5_2021-01-28
+2021-07-04 23:31:27 58      MDRX: SPYKE!. Candle: ID:156, Time: 14:30, Close: 17.02
+2021-07-04 23:31:27 59      MDT_BBG000BNWG87_2021-01-28
+2021-07-04 23:31:27 61      MET_BBG000BB6KF5_2021-01-28
+2021-07-04 23:31:27 63      MFGP_BBG00HFWVGN0_2021-01-28
+2021-07-04 23:31:27 65      MFGP: BuyPending. Strategy: MorningOpenStrategy. Price: 5.82. Lots: 42. ChangeOpenToCurrent: -3.00. ChangePrevCloseToCurrent: -1.69. Candle: ID:26, Time: 7:00, Close: 5.82.
+2021-07-04 23:31:27 65      MFGP: OrderID: e2332d29. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:27 65      MFGP: OrderID: e2332d29 partially executed. Executed lots: 2. OrderStatus: 2/42 lots
+2021-07-04 23:31:27 65      MFGP: OrderID: e2332d29 fully executed
+2021-07-04 23:31:27 65      MFGP: Morning closing. Close price: 5.88. Lots: 42. CandleChange: -0.34%. ChangeFromCandleHigh: -1.01%. Profit: 0.06(1.03%). Candle: ID:149, Time: 7:20, Close: 5.88
+2021-07-04 23:31:27 65      MFGP: OrderID: 313c484f. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:27 65      MFGP: OrderID: 313c484f partially executed. Executed lots: 5. OrderStatus: 5/42 lots
+2021-07-04 23:31:27 65      MFGP: OrderID: 313c484f partially executed. Executed lots: 5. OrderStatus: 10/42 lots
+2021-07-04 23:31:27 65      MFGP: OrderID: 313c484f partially executed. Executed lots: 1. OrderStatus: 11/42 lots
+2021-07-04 23:31:27 65      MFGP: OrderID: 313c484f partially executed. Executed lots: 1. OrderStatus: 12/42 lots
+2021-07-04 23:31:27 65      MFGP: OrderID: 313c484f partially executed. Executed lots: 14. OrderStatus: 26/42 lots
+2021-07-04 23:31:27 65      MFGP: OrderID: 313c484f partially executed. Executed lots: 1. OrderStatus: 27/42 lots
+2021-07-04 23:31:27 65      MFGP: OrderID: 313c484f partially executed. Executed lots: 1. OrderStatus: 28/42 lots
+2021-07-04 23:31:27 65      MFGP: OrderID: 313c484f partially executed. Executed lots: 11. OrderStatus: 39/42 lots
+2021-07-04 23:31:27 65      MFGP: OrderID: 313c484f partially executed. Executed lots: 1. OrderStatus: 40/42 lots
+2021-07-04 23:31:27 65      MFGP: OrderID: 313c484f fully executed
+2021-07-04 23:31:27 66      MIDD_BBG000DQN9R3_2021-01-28
+2021-07-04 23:31:27 67      MLCO_BBG000BHP8J4_2021-01-28
+2021-07-04 23:31:27 69      MLHR_BBG000BP46T2_2021-01-28
+2021-07-04 23:31:27 70      MMC_BBG000BP4MH0_2021-01-28
+2021-07-04 23:31:27 71      MMM_BBG000BP52R2_2021-01-28
+2021-07-04 23:31:27 74      MNST_BBG008NVB1C0_2021-01-28
+2021-07-04 23:31:27 76      MO_BBG000BP6LJ8_2021-01-28
+2021-07-04 23:31:27 78      MOMO_BBG007HTCQT0_2021-01-28
+2021-07-04 23:31:27 85      MOS_BBG000BFXHL6_2021-01-28
+2021-07-04 23:31:27 87      MPC_BBG001DCCGR8_2021-01-28
+2021-07-04 23:31:27 90      MRK_BBG000BPD168_2021-01-28
+2021-07-04 23:31:27 94      MRNA_BBG003PHHZT1_2021-01-28
+2021-07-04 23:31:28 07      MRO_BBG000C8H633_2021-01-28
+2021-07-04 23:31:28 09      MS_BBG000BLZRJ2_2021-01-28
+2021-07-04 23:31:28 14      MSFT_BBG000BPH459_2021-01-28
+2021-07-04 23:31:28 45      MTCH_BBG00B6WH9G3_2021-01-28
+2021-07-04 23:31:28 47      MTG_BBG000CBMH27_2021-01-28
+2021-07-04 23:31:28 49      MU_BBG000C5Z1S3_2021-01-28
+2021-07-04 23:31:28 57      MUR_BBG000BPMH90_2021-01-28
+2021-07-04 23:31:28 60      MXIM_BBG000BPNP00_2021-01-28
+2021-07-04 23:31:28 62      MYGN_BBG000D9H9F1_2021-01-28
+2021-07-04 23:31:28 64      NAVI_BBG004MN1R41_2021-01-28
+2021-07-04 23:31:28 65      NEM_BBG000BPWXK1_2021-01-28
+2021-07-04 23:31:28 74      NEO_BBG000BKH263_2021-01-28
+2021-07-04 23:31:28 75      NET_BBG001WMKHH5_2021-01-28
+2021-07-04 23:31:28 76      NET: BuyPending. Strategy: MorningOpenStrategy. Price: 72.99. Lots: 3. ChangeOpenToCurrent: -1.06. ChangePrevCloseToCurrent: -2.74. Candle: ID:4, Time: 7:00, Close: 72.99.
+2021-07-04 23:31:28 76      NET: OrderID: 76ea2fbd. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:28 76      NET: OrderID: 76ea2fbd partially executed. Executed lots: 1. OrderStatus: 1/3 lots
+2021-07-04 23:31:28 76      NET: Morning closing. Close price: 73.5. Lots: 1. CandleChange: -0.30%. ChangeFromCandleHigh: -0.46%. Profit: 0.51(0.70%). Candle: ID:23, Time: 7:10, Close: 73.5
+2021-07-04 23:31:28 76      NET: OrderID: 6b70ec26. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:28 76      NET: OrderID: 76ea2fbd automatically canceling...
+2021-07-04 23:31:28 76      NET: OrderID: 6b70ec26 fully executed
+2021-07-04 23:31:28 76      OrderID: 76ea2fbd successfully canceled
+2021-07-04 23:31:28 78      NFLX_BBG000CL9VN6_2021-01-28
+2021-07-04 23:31:28 83      NKE_BBG000C5HS04_2021-01-28
+2021-07-04 23:31:28 87      NKTR_BBG000BHCYJ1_2021-01-28
+2021-07-04 23:31:28 88      NLOK_BBG000BH2JM1_2021-01-28
+2021-07-04 23:31:28 89      NLSN_BBG0088CYPX8_2021-01-28
+2021-07-04 23:31:28 92      NMIH_BBG005DLMMZ6_2021-01-28
+2021-07-04 23:31:28 93      NOK_BBG000BNGBW9_2021-01-28
+2021-07-04 23:31:29 28      NOK: BuyPending. Strategy: MorningOpenStrategy. Price: 6.4. Lots: 39. ChangeOpenToCurrent: 0.95. ChangePrevCloseToCurrent: -3.76. Candle: ID:9, Time: 7:00, Close: 6.4.
+2021-07-04 23:31:29 28      NOK: OrderID: b898507f. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:29 28      NOK: OrderID: b898507f partially executed. Executed lots: 1. OrderStatus: 1/39 lots
+2021-07-04 23:31:29 28      NOK: OrderID: b898507f partially executed. Executed lots: 4. OrderStatus: 5/39 lots
+2021-07-04 23:31:29 28      NOK: OrderID: b898507f partially executed. Executed lots: 15. OrderStatus: 20/39 lots
+2021-07-04 23:31:29 28      NOK: OrderID: b898507f fully executed
+2021-07-04 23:31:29 28      NOK: SPYKE!. Candle: ID:33, Time: 7:00, Close: 6.95
+2021-07-04 23:31:29 28      NOK: SPYKE!. Candle: ID:65, Time: 7:00, Close: 6.74
+2021-07-04 23:31:29 28      NOK: SPYKE!. Candle: ID:72, Time: 7:00, Close: 6.16
+2021-07-04 23:31:29 28      NOK: Buy more. Price: 6.16. Lots: 40. changeFromLastBuy: -3.75. Candle: ID:72, Time: 7:00, Close: 6.16.
+2021-07-04 23:31:29 28      NOK: OrderID: 69b3f5a1. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:29 28      NOK: OrderID: 69b3f5a1 fully executed
+2021-07-04 23:31:29 28      NOK: SPYKE!. Candle: ID:73, Time: 7:00, Close: 6.05
+2021-07-04 23:31:29 28      NOK: SPYKE!. Candle: ID:74, Time: 7:00, Close: 6.6
+2021-07-04 23:31:29 28      NOK: SPYKE!. Candle: ID:79, Time: 7:00, Close: 6
+2021-07-04 23:31:29 28      NOK: SPYKE!. Candle: ID:97, Time: 7:00, Close: 6.58
+2021-07-04 23:31:29 28      NOK: SPYKE!. Candle: ID:100, Time: 7:00, Close: 6.85
+2021-07-04 23:31:29 28      NOK: SPYKE!. Candle: ID:101, Time: 7:00, Close: 6.9
+2021-07-04 23:31:29 28      NOK: SPYKE!. Candle: ID:144, Time: 7:00, Close: 6.4
+2021-07-04 23:31:29 28      NOK: SPYKE!. Candle: ID:148, Time: 7:00, Close: 6.66
+2021-07-04 23:31:29 28      NOK: SPYKE!. Candle: ID:177, Time: 7:00, Close: 6.4
+2021-07-04 23:31:29 28      NOK: SPYKE!. Candle: ID:182, Time: 7:00, Close: 6.67
+2021-07-04 23:31:29 28      NOK: SPYKE!. Candle: ID:197, Time: 7:00, Close: 6.4
+2021-07-04 23:31:29 28      NOK: SPYKE!. Candle: ID:245, Time: 7:00, Close: 6.4
+2021-07-04 23:31:29 28      NOK: Morning closing. Close price: 6.65. Lots: 79. CandleChange: -0.15%. ChangeFromCandleHigh: -0.15%. Profit: 0.38(6.06%). Candle: ID:907, Time: 7:05, Close: 6.65
+2021-07-04 23:31:29 28      NOK: OrderID: 0e3f778c. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:29 28      NOK: OrderID: 0e3f778c partially executed. Executed lots: 1. OrderStatus: 1/79 lots
+2021-07-04 23:31:29 28      NOK: OrderID: 0e3f778c partially executed. Executed lots: 15. OrderStatus: 16/79 lots
+2021-07-04 23:31:29 28      NOK: OrderID: 0e3f778c fully executed
+2021-07-04 23:31:29 28      NOK: SPYKE!. Candle: ID:1938, Time: 7:05, Close: 6.9
+2021-07-04 23:31:29 29      NOK: SPYKE!. Candle: ID:9223, Time: 9:00, Close: 6.2
+2021-07-04 23:31:29 29      NOK: SPYKE!. Candle: ID:9272, Time: 9:00, Close: 6.01
+2021-07-04 23:31:29 29      NOK: SPYKE!. Candle: ID:9705, Time: 9:00, Close: 5.98
+2021-07-04 23:31:29 29      NOK: SPYKE!. Candle: ID:9962, Time: 9:00, Close: 6
+2021-07-04 23:31:29 29      NOK: SPYKE!. Candle: ID:9967, Time: 9:00, Close: 5.7
+2021-07-04 23:31:29 29      NOK: SPYKE!. Candle: ID:9975, Time: 9:00, Close: 6
+2021-07-04 23:31:29 29      NOK: SPYKE!. Candle: ID:9985, Time: 9:00, Close: 6
+2021-07-04 23:31:29 30      NOK: SPYKE!. Candle: ID:21160, Time: 12:00, Close: 5.92
+2021-07-04 23:31:29 49      NOV_BBG000BJX8C8_2021-01-28
+2021-07-04 23:31:29 52      NRG_BBG000D8RG11_2021-01-28
+2021-07-04 23:31:29 54      NTAP_BBG000FP1N32_2021-01-28
+2021-07-04 23:31:29 56      NTES_BBG000BX72V8_2021-01-28
+2021-07-04 23:31:29 58      NTES: BuyPending. Strategy: MorningOpenStrategy2. Price: 116.76. Lots: 2. ChangeOpenToCurrent: -4.29. ChangePrevCloseToCurrent: -4.29. Candle: ID:7, Time: 7:05, Close: 116.76.
+2021-07-04 23:31:29 58      NTES: OrderID: 709e6462. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:29 58      NTES: OrderID: 709e6462 fully executed
+2021-07-04 23:31:29 58      NTES: Morning closing by timeout. Close price: 116.13. Lots: 2. Profit: -0.63(-0.54%). Candle: ID:30, Time: 7:25, Close: 116.13
+2021-07-04 23:31:29 58      NTES: OrderID: e0321de1. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:29 58      NTES: OrderID: e0321de1 fully executed
+2021-07-04 23:31:29 59      NTLA_BBG007KC7PB0_2021-01-28
+2021-07-04 23:31:29 60      NTLA: BuyPending. Strategy: MorningOpenStrategy. Price: 57.99. Lots: 4. ChangeOpenToCurrent: -2.04. ChangePrevCloseToCurrent: -2.49. Candle: ID:4, Time: 7:00, Close: 57.99.
+2021-07-04 23:31:29 60      NTLA: OrderID: 544c21e6. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:29 60      NTLA: Cancel order. Did not bought at market open. Candle: ID:5, Time: 7:05, Close: 58
+2021-07-04 23:31:29 60      OrderID: 544c21e6 successfully canceled
+2021-07-04 23:31:29 60      NTLA: BuyPending. Strategy: MorningOpenStrategy2. Price: 56.9. Lots: 4. ChangeOpenToCurrent: -4.32. ChangePrevCloseToCurrent: -4.32. Candle: ID:8, Time: 7:05, Close: 56.9.
+2021-07-04 23:31:29 60      NTLA: OrderID: e6019cc6. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:29 60      NTLA: OrderID: e6019cc6 partially executed. Executed lots: 1. OrderStatus: 1/4 lots
+2021-07-04 23:31:29 60      NTLA: OrderID: e6019cc6 fully executed
+2021-07-04 23:31:29 60      NTLA: Morning closing. Close price: 57. Lots: 4. CandleChange: -1.67%. ChangeFromCandleHigh: -1.69%. Profit: 0.10(0.18%). Candle: ID:51, Time: 7:15, Close: 57
+2021-07-04 23:31:29 60      NTLA: OrderID: 747b77dd. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:29 60      NTLA: OrderID: 747b77dd partially executed. Executed lots: 1. OrderStatus: 1/4 lots
+2021-07-04 23:31:29 60      NTLA: OrderID: 747b77dd fully executed
+2021-07-04 23:31:29 61      NTNX_BBG001NDW1Z7_2021-01-28
+2021-07-04 23:31:29 62      NTRS_BBG000BQ74K1_2021-01-28
+2021-07-04 23:31:29 64      NVDA_BBG000BBJQV0_2021-01-28
+2021-07-04 23:31:29 72      NVTA_BBG005DJFD43_2021-01-28
+2021-07-04 23:31:29 73      NVTA: BuyPending. Strategy: MorningOpenStrategy. Price: 47.01. Lots: 5. ChangeOpenToCurrent: -0.30. ChangePrevCloseToCurrent: -2.14. Candle: ID:4, Time: 7:00, Close: 47.01.
+2021-07-04 23:31:29 73      NVTA: OrderID: b8a23a4c. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:29 73      NVTA: Cancel order. Did not bought at market open. Candle: ID:8, Time: 7:05, Close: 47.17
+2021-07-04 23:31:29 73      OrderID: b8a23a4c successfully canceled
+2021-07-04 23:31:29 75      NWL_BBG000BQC9V2_2021-01-28
+2021-07-04 23:31:29 76      NWSA_BBG0035LY913_2021-01-28
+2021-07-04 23:31:29 78      NXPI_BBG000BND699_2021-01-28
+2021-07-04 23:31:29 81      O_BBG000DHPN63_2021-01-28
+2021-07-04 23:31:29 83      OIS_BBG000BDDN94_2021-01-28
+2021-07-04 23:31:29 84      OIS: SPYKE!. Candle: ID:626, Time: 14:00, Close: 5.89
+2021-07-04 23:31:29 84      OKE_BBG000BQHGR6_2021-01-28
+2021-07-04 23:31:29 86      OKTA_BBG001YV1SM4_2021-01-28
+2021-07-04 23:31:29 88      OLLI_BBG0098VVDT9_2021-01-28
+2021-07-04 23:31:29 90      OMC_BBG000BS9489_2021-01-28
+2021-07-04 23:31:29 91      ON_BBG000DV7MX4_2021-01-28
+2021-07-04 23:31:29 95      ORCL_BBG000BQLTW7_2021-01-28
+2021-07-04 23:31:29 99      OSUR_BBG000J3D1Y8_2021-01-28
+2021-07-04 23:31:30 00      OSUR: SPYKE!. Candle: ID:3127, Time: 22:30, Close: 13.62
+2021-07-04 23:31:30 00      OTIS_BBG00RP60KV0_2021-01-28
+2021-07-04 23:31:30 02      OVV_BBG00R2NHQ65_2021-01-28
+2021-07-04 23:31:30 02      OVV: SPYKE!. Candle: ID:30, Time: 9:00, Close: 17.38
+2021-07-04 23:31:30 02      OVV: SPYKE!. Candle: ID:43, Time: 10:25, Close: 16.92
+2021-07-04 23:31:30 02      OVV: SPYKE!. Candle: ID:44, Time: 10:25, Close: 17.38
+2021-07-04 23:31:30 03      OXY_BBG000BQQ2S6_2021-01-28
+2021-07-04 23:31:30 04      OXY: BuyPending. Strategy: MorningOpenStrategy. Price: 20. Lots: 12. ChangeOpenToCurrent: -2.01. ChangePrevCloseToCurrent: -2.58. Candle: ID:17, Time: 7:00, Close: 20.
+2021-07-04 23:31:30 04      OXY: OrderID: 3faafc93. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:30 04      OXY: OrderID: 3faafc93 partially executed. Executed lots: 1. OrderStatus: 1/12 lots
+2021-07-04 23:31:30 04      OXY: OrderID: 3faafc93 fully executed
+2021-07-04 23:31:30 04      OXY: Morning closing by timeout. Close price: 20.17. Lots: 12. Profit: 0.17(0.85%). Candle: ID:52, Time: 7:20, Close: 20.17
+2021-07-04 23:31:30 04      OXY: OrderID: 0e428c28. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:30 04      OXY: OrderID: 0e428c28 fully executed
+2021-07-04 23:31:30 07      PAGS_BBG00JM7QBR6_2021-01-28
+2021-07-04 23:31:30 08      PBCT_BBG000BQT4L6_2021-01-28
+2021-07-04 23:31:30 10      PBF_BBG002832GV8_2021-01-28
+2021-07-04 23:31:30 11      PBF: SPYKE!. Candle: ID:2, Time: 7:00, Close: 10.36
+2021-07-04 23:31:30 11      PBF: BuyPending. Strategy: MorningOpenStrategy. Price: 10.58. Lots: 23. ChangeOpenToCurrent: 2.12. ChangePrevCloseToCurrent: -4.25. Candle: ID:4, Time: 7:00, Close: 10.58.
+2021-07-04 23:31:30 11      PBF: OrderID: 759ffd3d. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:30 11      PBF: OrderID: 759ffd3d fully executed
+2021-07-04 23:31:30 11      PBF: SPYKE!. Candle: ID:7, Time: 7:00, Close: 10.9
+2021-07-04 23:31:30 11      PBF: SPYKE!. Candle: ID:36, Time: 7:00, Close: 10.9
+2021-07-04 23:31:30 11      PBF: Morning closing. Close price: 10.74. Lots: 23. CandleChange: -0.56%. ChangeFromCandleHigh: -0.56%. Profit: 0.16(1.51%). Candle: ID:67, Time: 7:05, Close: 10.74
+2021-07-04 23:31:30 11      PBF: OrderID: a5ee697c. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:30 11      PBF: OrderID: a5ee697c partially executed. Executed lots: 11. OrderStatus: 11/23 lots
+2021-07-04 23:31:30 11      PBF: OrderID: a5ee697c fully executed
+2021-07-04 23:31:30 12      PBF: SPYKE!. Candle: ID:1607, Time: 14:25, Close: 11.04
+2021-07-04 23:31:30 13      PBI_BBG000BQTMJ9_2021-01-28
+2021-07-04 23:31:30 15      PBI: SPYKE!. Candle: ID:2, Time: 7:00, Close: 10.7
+2021-07-04 23:31:30 15      PBI: BuyPending. Strategy: MorningOpenStrategy. Price: 10.46. Lots: 23. ChangeOpenToCurrent: -0.38. ChangePrevCloseToCurrent: -6.52. Candle: ID:5, Time: 7:00, Close: 10.46.
+2021-07-04 23:31:30 15      PBI: OrderID: e8a38d75. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:30 15      PBI: OrderID: e8a38d75 partially executed. Executed lots: 18. OrderStatus: 18/23 lots
+2021-07-04 23:31:30 15      PBI: OrderID: e8a38d75 fully executed
+2021-07-04 23:31:30 15      PBI: SPYKE!. Candle: ID:16, Time: 7:00, Close: 10.75
+2021-07-04 23:31:30 15      PBI: SPYKE!. Candle: ID:19, Time: 7:00, Close: 10.5
+2021-07-04 23:31:30 15      PBI: Morning closing. Close price: 10.53. Lots: 23. CandleChange: -0.09%. ChangeFromCandleHigh: -0.19%. Profit: 0.07(0.67%). Candle: ID:224, Time: 7:05, Close: 10.53
+2021-07-04 23:31:30 15      PBI: OrderID: 25033ae0. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:30 15      PBI: OrderID: 25033ae0 fully executed
+2021-07-04 23:31:30 16      PBI: SPYKE!. Candle: ID:1770, Time: 9:00, Close: 10.86
+2021-07-04 23:31:30 18      PCAR_BBG000BQVTF5_2021-01-28
+2021-07-04 23:31:30 20      PCG_BBG000BQWPC5_2021-01-28
+2021-07-04 23:31:30 21      PCG: SPYKE!. Candle: ID:205, Time: 13:00, Close: 10.09
+2021-07-04 23:31:30 22      PDCO_BBG000BQY289_2021-01-28
+2021-07-04 23:31:30 23      PEAK_BBG000BKYDP9_2021-01-28
+2021-07-04 23:31:30 25      PEG_BBG000BQZMH4_2021-01-28
+2021-07-04 23:31:30 27      PEP_BBG000DH7JK6_2021-01-28
+2021-07-04 23:31:30 31      PFE_BBG000BR2B91_2021-01-28
+2021-07-04 23:31:30 39      PFG_BBG000NSCNT7_2021-01-28
+2021-07-04 23:31:30 41      PG_BBG000BR2TH3_2021-01-28
+2021-07-04 23:31:30 44      PGR_BBG000BR37X2_2021-01-28
+2021-07-04 23:31:30 48      PHM_BBG000BR54L0_2021-01-28
+2021-07-04 23:31:30 51      PINS_BBG002583CV8_2021-01-28
+2021-07-04 23:31:30 53      PINS: SPYKE!. Candle: ID:514, Time: 8:45, Close: 69.52
+2021-07-04 23:31:30 55      PLAN_BBG002DZS299_2021-01-28
+2021-07-04 23:31:30 56      PLAY_BBG001WWJTK5_2021-01-28
+2021-07-04 23:31:30 57      PLAY: SPYKE!. Candle: ID:94, Time: 12:40, Close: 32.6
+2021-07-04 23:31:30 58      PLCE_BBG000JK9DK4_2021-01-28
+2021-07-04 23:31:30 59      PLCE: BuyPending. Strategy: MorningOpenStrategy2. Price: 69.06. Lots: 3. ChangeOpenToCurrent: -4.78. ChangePrevCloseToCurrent: -4.78. Candle: ID:1, Time: 7:10, Close: 69.06.
+2021-07-04 23:31:30 59      PLCE: OrderID: 2be142d2. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:30 59      PLCE: OrderID: 2be142d2 fully executed
+2021-07-04 23:31:30 59      PLCE: Morning closing by timeout. Close price: 69.61. Lots: 3. Profit: 0.55(0.80%). Candle: ID:20, Time: 8:05, Close: 69.61
+2021-07-04 23:31:30 59      PLCE: OrderID: efc41276. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:30 59      PLCE: OrderID: efc41276 partially executed. Executed lots: 1. OrderStatus: 1/3 lots
+2021-07-04 23:31:30 59      PLCE: OrderID: efc41276 fully executed
+2021-07-04 23:31:30 60      PLD_BBG000B9Z0J8_2021-01-28
+2021-07-04 23:31:30 61      PLNT_BBG009H04M17_2021-01-28
+2021-07-04 23:31:30 62      PM_BBG000J2XL74_2021-01-28
+2021-07-04 23:31:30 64      PNC_BBG000BRD0D8_2021-01-28
+2021-07-04 23:31:30 66      PPC_BBG000BFLXV3_2021-01-28
+2021-07-04 23:31:30 67      PPL_BBG000BRJL00_2021-01-28
+2021-07-04 23:31:30 69      PRU_BBG000HCJMF9_2021-01-28
+2021-07-04 23:31:30 70      PSTG_BBG00212PVZ5_2021-01-28
+2021-07-04 23:31:30 73      PSX_BBG00286S4N9_2021-01-28
+2021-07-04 23:31:30 74      PTON_BBG00JG0FFZ2_2021-01-28
+2021-07-04 23:31:30 78      PXD_BBG000BXRPH1_2021-01-28
+2021-07-04 23:31:30 80      PYPL_BBG0077VNXV6_2021-01-28
+2021-07-04 23:31:30 86      QCOM_BBG000CGC1X8_2021-01-28
+2021-07-04 23:31:30 91      QDEL_BBG000C6GN04_2021-01-28
+2021-07-04 23:31:30 93      QRTEA_BBG000PCQQL6_2021-01-28
+2021-07-04 23:31:30 94      QRVO_BBG007TJF1N7_2021-01-28
+2021-07-04 23:31:30 95      QRVO: BuyPending. Strategy: MorningOpenStrategy2. Price: 159. Lots: 1. ChangeOpenToCurrent: -4.27. ChangePrevCloseToCurrent: -4.27. Candle: ID:12, Time: 7:20, Close: 159.
+2021-07-04 23:31:30 95      QRVO: OrderID: 99132740. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:30 95      QRVO: OrderID: 99132740 fully executed
+2021-07-04 23:31:30 95      QRVO: Morning closing. Close price: 162.25. Lots: 1. CandleChange: -0.02%. ChangeFromCandleHigh: -0.02%. Profit: 3.25(2.04%). Candle: ID:37, Time: 7:50, Close: 162.25
+2021-07-04 23:31:30 95      QRVO: OrderID: 76473a95. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:30 95      QRVO: OrderID: 76473a95 fully executed
+2021-07-04 23:31:30 97      RCL_BBG000BB5792_2021-01-28
+2021-07-04 23:31:30 99      RDFN_BBG001Q7HP63_2021-01-28
+2021-07-04 23:31:31 00      RDFN: BuyPending. Strategy: MorningOpenStrategy2. Price: 71.39. Lots: 3. ChangeOpenToCurrent: -4.56. ChangePrevCloseToCurrent: -4.56. Candle: ID:5, Time: 7:55, Close: 71.39.
+2021-07-04 23:31:31 00      RDFN: OrderID: 2b03b94c. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:31 00      RDFN: OrderID: 2b03b94c partially executed. Executed lots: 1. OrderStatus: 1/3 lots
+2021-07-04 23:31:31 00      RDFN: OrderID: 2b03b94c fully executed
+2021-07-04 23:31:31 00      RDFN: Morning closing by timeout. Close price: 71.12. Lots: 3. Profit: -0.27(-0.38%). Candle: ID:11, Time: 8:55, Close: 71.12
+2021-07-04 23:31:31 00      RDFN: OrderID: 25dd1fa7. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:31 00      RDFN: OrderID: 25dd1fa7 partially executed. Executed lots: 2. OrderStatus: 2/3 lots
+2021-07-04 23:31:31 00      RDFN: OrderID: 25dd1fa7 fully executed
+2021-07-04 23:31:31 01      RDS.A_BBG000QXSSS6_2021-01-28
+2021-07-04 23:31:31 03      REG_BBG000BL46Q4_2021-01-28
+2021-07-04 23:31:31 05      REGN_BBG000C734W3_2021-01-28
+2021-07-04 23:31:31 06      RF_BBG000Q3JN03_2021-01-28
+2021-07-04 23:31:31 09      ROKU_BBG001ZZPQJ6_2021-01-28
+2021-07-04 23:31:31 12      ROST_BBG000BSBZH7_2021-01-28
+2021-07-04 23:31:31 14      RRC_BBG000FVXD63_2021-01-28
+2021-07-04 23:31:31 17      RRGB_BBG000MXH9C1_2021-01-28
+2021-07-04 23:31:31 18      RTX_BBG000BW8S60_2021-01-28
+2021-07-04 23:31:31 22      SAVE_BBG000BF6RQ9_2021-01-28
+2021-07-04 23:31:31 25      SBGI_BBG000F2XXP2_2021-01-28
+2021-07-04 23:31:31 25      SBGI: SPYKE!. Candle: ID:43, Time: 14:25, Close: 33.07
+2021-07-04 23:31:31 26      SBRA_BBG000MTDW24_2021-01-28
+2021-07-04 23:31:31 27      SBUX_BBG000CTQBF3_2021-01-28
+2021-07-04 23:31:31 32      SCHW_BBG000BSLZY7_2021-01-28
+2021-07-04 23:31:31 35      SDGR_BBG000T88BN2_2021-01-28
+2021-07-04 23:31:31 36      SEDG_BBG0084BBZY6_2021-01-28
+2021-07-04 23:31:31 39      SFIX_BBG0046L1KL9_2021-01-28
+2021-07-04 23:31:31 41      SFIX: BuyPending. Strategy: MorningOpenStrategy2. Price: 99.83. Lots: 2. ChangeOpenToCurrent: -5.17. ChangePrevCloseToCurrent: -5.17. Candle: ID:7, Time: 7:05, Close: 99.83.
+2021-07-04 23:31:31 41      SFIX: OrderID: 273511da. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:31 41      SFIX: Cancel order. Did not bought at market open. Candle: ID:14, Time: 7:10, Close: 99.94
+2021-07-04 23:31:31 41      OrderID: 273511da successfully canceled
+2021-07-04 23:31:31 41      SFIX: BuyPending. Strategy: MorningOpenStrategy2. Price: 99.72. Lots: 2. ChangeOpenToCurrent: -5.27. ChangePrevCloseToCurrent: -5.27. Candle: ID:15, Time: 7:10, Close: 99.72.
+2021-07-04 23:31:31 41      SFIX: OrderID: a8ee0652. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:31 41      SFIX: Cancel order. Did not bought at market open. Candle: ID:16, Time: 7:20, Close: 100.74
+2021-07-04 23:31:31 41      OrderID: a8ee0652 successfully canceled
+2021-07-04 23:31:31 41      SFIX: BuyPending. Strategy: MorningOpenStrategy2. Price: 100.67. Lots: 2. ChangeOpenToCurrent: -4.37. ChangePrevCloseToCurrent: -4.37. Candle: ID:17, Time: 7:20, Close: 100.67.
+2021-07-04 23:31:31 41      SFIX: OrderID: b6e515db. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:31 41      SFIX: Cancel order. Did not bought at market open. Candle: ID:24, Time: 7:25, Close: 100.74
+2021-07-04 23:31:31 41      OrderID: b6e515db successfully canceled
+2021-07-04 23:31:31 41      SFIX: BuyPending. Strategy: MorningOpenStrategy2. Price: 99.47. Lots: 2. ChangeOpenToCurrent: -5.51. ChangePrevCloseToCurrent: -5.51. Candle: ID:25, Time: 7:30, Close: 99.47.
+2021-07-04 23:31:31 41      SFIX: OrderID: 4c5a136e. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:31 41      SFIX: OrderID: 4c5a136e partially executed. Executed lots: 1. OrderStatus: 1/2 lots
+2021-07-04 23:31:31 41      SFIX: OrderID: 4c5a136e fully executed
+2021-07-04 23:31:31 41      SFIX: Morning closing by timeout. Close price: 99. Lots: 2. Profit: -0.47(-0.47%). Candle: ID:41, Time: 7:55, Close: 99
+2021-07-04 23:31:31 41      SFIX: OrderID: 1fcde55a. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:31 41      SFIX: OrderID: 1fcde55a fully executed
+2021-07-04 23:31:31 42      SFM_BBG001KFKQM7_2021-01-28
+2021-07-04 23:31:31 44      SGEN_BBG000BH0FR6_2021-01-28
+2021-07-04 23:31:31 46      SIG_BBG000C4ZZ10_2021-01-28
+2021-07-04 23:31:31 48      SLB_BBG000BT41Q8_2021-01-28
+2021-07-04 23:31:31 50      SLG_BBG000BVP5P2_2021-01-28
+2021-07-04 23:31:31 52      SMAR_BBG00GQK3WB5_2021-01-28
+2021-07-04 23:31:31 53      SNAP_BBG00441QMJ7_2021-01-28
+2021-07-04 23:31:31 56      SNAP: BuyPending. Strategy: MorningOpenStrategy. Price: 47. Lots: 5. ChangeOpenToCurrent: -2.08. ChangePrevCloseToCurrent: -3.98. Candle: ID:4, Time: 7:00, Close: 47.
+2021-07-04 23:31:31 56      SNAP: OrderID: 16fcd115. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:31 56      SNAP: OrderID: 16fcd115 fully executed
+2021-07-04 23:31:31 56      SNAP: Morning closing. Close price: 47.69. Lots: 5. CandleChange: -0.02%. ChangeFromCandleHigh: -0.02%. Profit: 0.69(1.47%). Candle: ID:45, Time: 7:05, Close: 47.69
+2021-07-04 23:31:31 56      SNAP: OrderID: 83d75c54. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:31 56      SNAP: OrderID: 83d75c54 partially executed. Executed lots: 1. OrderStatus: 1/5 lots
+2021-07-04 23:31:31 56      SNAP: OrderID: 83d75c54 fully executed
+2021-07-04 23:31:31 59      SNPS_BBG000BSFRF3_2021-01-28
+2021-07-04 23:31:31 61      SNY_BBG000BBD5N1_2021-01-28
+2021-07-04 23:31:31 62      SO_BBG000BT9DW0_2021-01-28
+2021-07-04 23:31:31 64      SONO_BBG001JZPSQ2_2021-01-28
+2021-07-04 23:31:31 65      SPCE_BBG00HTN2CQ3_2021-01-28
+2021-07-04 23:31:31 82      SPCE: SPYKE!. Candle: ID:2, Time: 7:00, Close: 45
+2021-07-04 23:31:31 82      SPCE: SPYKE!. Candle: ID:3, Time: 7:00, Close: 42.5
+2021-07-04 23:31:31 82      SPCE: BuyPending. Strategy: MorningOpenStrategy. Price: 42.5. Lots: 5. ChangeOpenToCurrent: -5.56. ChangePrevCloseToCurrent: -10.28. Candle: ID:4, Time: 7:00, Close: 42.5.
+2021-07-04 23:31:31 82      SPCE: OrderID: c24142e4. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:31 82      SPCE: OrderID: c24142e4 fully executed
+2021-07-04 23:31:31 82      SPCE: SPYKE!. Candle: ID:25, Time: 7:00, Close: 45
+2021-07-04 23:31:31 82      SPCE: Morning closing. Close price: 51.5. Lots: 5. CandleChange: -0.39%. ChangeFromCandleHigh: -0.39%. Profit: 9.00(21.18%). Candle: ID:1208, Time: 7:05, Close: 51.5
+2021-07-04 23:31:31 82      SPCE: OrderID: 449e7dfe. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:31 82      SPCE: OrderID: 449e7dfe fully executed
+2021-07-04 23:31:31 83      SPCE: BuyPending. Strategy: MorningOpenStrategy2. Price: 49. Lots: 5. ChangeOpenToCurrent: -4.85. ChangePrevCloseToCurrent: -4.85. Candle: ID:1322, Time: 7:05, Close: 49.
+2021-07-04 23:31:31 83      SPCE: OrderID: 442a203e. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:31 83      SPCE: OrderID: 442a203e fully executed
+2021-07-04 23:31:31 83      SPCE: Buy more. Price: 48. Lots: 5. changeFromLastBuy: -2.04. Candle: ID:1342, Time: 7:05, Close: 48.
+2021-07-04 23:31:31 83      SPCE: OrderID: 596a42f1. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:31 83      SPCE: OrderID: 596a42f1 fully executed
+2021-07-04 23:31:31 83      SPCE: SPYKE!. Candle: ID:1407, Time: 7:05, Close: 49
+2021-07-04 23:31:31 83      SPCE: SPYKE!. Candle: ID:1421, Time: 7:05, Close: 47.28
+2021-07-04 23:31:31 83      SPCE: Morning closing. Close price: 49.3. Lots: 10. CandleChange: -0.10%. ChangeFromCandleHigh: -0.10%. Profit: 0.80(1.65%). Candle: ID:2065, Time: 7:10, Close: 49.3
+2021-07-04 23:31:31 83      SPCE: OrderID: 49a759c4. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:31 83      SPCE: OrderID: 49a759c4 partially executed. Executed lots: 5. OrderStatus: 5/10 lots
+2021-07-04 23:31:31 83      SPCE: OrderID: 49a759c4 partially executed. Executed lots: 1. OrderStatus: 6/10 lots
+2021-07-04 23:31:31 83      SPCE: OrderID: 49a759c4 fully executed
+2021-07-04 23:31:31 83      SPCE: BuyPending. Strategy: MorningOpenStrategy2. Price: 47.31. Lots: 5. ChangeOpenToCurrent: -4.04. ChangePrevCloseToCurrent: -4.04. Candle: ID:4499, Time: 7:30, Close: 47.31.
+2021-07-04 23:31:31 83      SPCE: OrderID: 6fde797a. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:31 83      SPCE: OrderID: 6fde797a partially executed. Executed lots: 4. OrderStatus: 4/5 lots
+2021-07-04 23:31:31 83      SPCE: OrderID: 6fde797a fully executed
+2021-07-04 23:31:31 83      SPCE: Morning closing. Close price: 48.03. Lots: 5. CandleChange: 1.72%. ChangeFromCandleHigh: -1.07%. Profit: 0.72(1.52%). Candle: ID:4885, Time: 7:35, Close: 48.03
+2021-07-04 23:31:31 83      SPCE: OrderID: 6c780f34. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:31 83      SPCE: OrderID: 6c780f34 fully executed
+2021-07-04 23:31:31 84      SPCE: SPYKE!. Candle: ID:13089, Time: 10:10, Close: 45.45
+2021-07-04 23:31:31 95      SPG_BBG000BJ2D31_2021-01-28
+2021-07-04 23:31:31 97      SPLK_BBG001C7TST4_2021-01-28
+2021-07-04 23:31:32 01      SPR_BBG000PRJ2Z9_2021-01-28
+2021-07-04 23:31:32 03      SPR: BuyPending. Strategy: MorningOpenStrategy. Price: 33.64. Lots: 7. ChangeOpenToCurrent: -2.07. ChangePrevCloseToCurrent: -1.64. Candle: ID:29, Time: 7:00, Close: 33.64.
+2021-07-04 23:31:32 03      SPR: OrderID: 3a1891bc. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:32 03      SPR: Cancel order. Did not bought at market open. Candle: ID:32, Time: 7:05, Close: 33.7
+2021-07-04 23:31:32 03      OrderID: 3a1891bc successfully canceled
+2021-07-04 23:31:32 04      SQ_BBG0018SLC07_2021-01-28
+2021-07-04 23:31:32 11      SSNC_BBG000RJ2J04_2021-01-28
+2021-07-04 23:31:32 12      STLD_BBG000HGYNZ9_2021-01-28
+2021-07-04 23:31:32 17      STT_BBG000BKFBD7_2021-01-28
+2021-07-04 23:31:32 19      STX_BBG000F0KF42_2021-01-28
+2021-07-04 23:31:32 19      Warning: figi `BBG000F0KF42` for history data does not match actual figi `BBG0113JGQF0`. Ticker: STX. Will be used actual!
+2021-07-04 23:31:32 22      SWBI_BBG000BM0QL7_2021-01-28
+2021-07-04 23:31:32 24      SWKS_BBG000KLB4Q1_2021-01-28
+2021-07-04 23:31:32 27      SWN_BBG000BTR593_2021-01-28
+2021-07-04 23:31:32 30      SYF_BBG00658F3P3_2021-01-28
+2021-07-04 23:31:32 34      SYY_BBG000BTVJ25_2021-01-28
+2021-07-04 23:31:32 35      T_BBG000BSJK37_2021-01-28
+2021-07-04 23:31:32 41      TAL_BBG0016XJ8S0_2021-01-28
+2021-07-04 23:31:32 42      TAP_BBG000BS7KS3_2021-01-28
+2021-07-04 23:31:32 44      TDOC_BBG0019T5SG0_2021-01-28
+2021-07-04 23:31:32 45      TDOC: BuyPending. Strategy: MorningOpenStrategy. Price: 264.12. Lots: 1. ChangeOpenToCurrent: -1.85. ChangePrevCloseToCurrent: -2.55. Candle: ID:5, Time: 7:00, Close: 264.12.
+2021-07-04 23:31:32 45      TDOC: OrderID: 5a12496d. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:32 45      TDOC: Cancel order. Did not bought at market open. Candle: ID:9, Time: 7:05, Close: 266.03
+2021-07-04 23:31:32 45      OrderID: 5a12496d successfully canceled
+2021-07-04 23:31:32 46      TENB_BBG00LBLCD02_2021-01-28
+2021-07-04 23:31:32 47      TER_BBG000BV4DR6_2021-01-28
+2021-07-04 23:31:32 49      TER: BuyPending. Strategy: MorningOpenStrategy. Price: 121.21. Lots: 2. ChangeOpenToCurrent: -2.62. ChangePrevCloseToCurrent: -2.24. Candle: ID:12, Time: 7:00, Close: 121.21.
+2021-07-04 23:31:32 49      TER: OrderID: 5aaaff59. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:32 49      TER: OrderID: 5aaaff59 fully executed
+2021-07-04 23:31:32 49      TER: Morning closing by timeout. Close price: 120.87. Lots: 2. Profit: -0.34(-0.28%). Candle: ID:79, Time: 7:20, Close: 120.87
+2021-07-04 23:31:32 49      TER: OrderID: 67a3551a. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:32 49      TER: OrderID: 67a3551a fully executed
+2021-07-04 23:31:32 51      TFC_BBG000BYYLS8_2021-01-28
+2021-07-04 23:31:32 53      TGT_BBG000H8TVT2_2021-01-28
+2021-07-04 23:31:32 56      TJX_BBG000BV8DN6_2021-01-28
+2021-07-04 23:31:32 59      TMUS_BBG000NDV1D4_2021-01-28
+2021-07-04 23:31:32 62      TOL_BBG000BVHBM1_2021-01-28
+2021-07-04 23:31:32 64      TOT_BBG000CHZ857_2021-01-28
+2021-07-04 23:31:32 64      Warning: figi `BBG000CHZ857` for history data does not match actual figi `IZHBULDINKDK`. Ticker: TOT. Will be used actual!
+2021-07-04 23:31:32 65      TPR_BBG000BY29C7_2021-01-28
+2021-07-04 23:31:32 67      TRIP_BBG001M8HHB7_2021-01-28
+2021-07-04 23:31:32 67      TRIP: BuyPending. Strategy: MorningOpenStrategy. Price: 33.4. Lots: 7. ChangeOpenToCurrent: -0.15. ChangePrevCloseToCurrent: -2.05. Candle: ID:4, Time: 7:00, Close: 33.4.
+2021-07-04 23:31:32 67      TRIP: OrderID: 946e9a85. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:32 67      TRIP: OrderID: 946e9a85 partially executed. Executed lots: 2. OrderStatus: 2/7 lots
+2021-07-04 23:31:32 67      TRIP: OrderID: 946e9a85 partially executed. Executed lots: 3. OrderStatus: 5/7 lots
+2021-07-04 23:31:32 67      TRIP: OrderID: 946e9a85 partially executed. Executed lots: 1. OrderStatus: 6/7 lots
+2021-07-04 23:31:32 67      TRIP: OrderID: 946e9a85 fully executed
+2021-07-04 23:31:32 67      TRIP: Morning closing by timeout. Close price: 33. Lots: 7. Profit: -0.40(-1.20%). Candle: ID:38, Time: 7:25, Close: 33
+2021-07-04 23:31:32 67      TRIP: OrderID: 54ad0518. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:32 67      TRIP: OrderID: 54ad0518 partially executed. Executed lots: 5. OrderStatus: 5/7 lots
+2021-07-04 23:31:32 67      TRIP: OrderID: 54ad0518 partially executed. Executed lots: 1. OrderStatus: 6/7 lots
+2021-07-04 23:31:32 67      TRIP: OrderID: 54ad0518 fully executed
+2021-07-04 23:31:32 68      TRIP: SPYKE!. Candle: ID:5832, Time: 22:40, Close: 34.62
+2021-07-04 23:31:32 68      TRMB_BBG000BNPS52_2021-01-28
+2021-07-04 23:31:32 70      TROW_BBG000BVMPN3_2021-01-28
+2021-07-04 23:31:32 72      TSCO_BBG000BLXZN1_2021-01-28
+2021-07-04 23:31:32 74      TSLA_BBG000N9MNX3_2021-01-28
+2021-07-04 23:31:32 96      TSLA: BuyPending. Strategy: MorningOpenStrategy. Price: 819.72. Lots: 1. ChangeOpenToCurrent: -1.84. ChangePrevCloseToCurrent: -2.41. Candle: ID:4, Time: 7:00, Close: 819.72.
+2021-07-04 23:31:32 96      TSLA: OrderID: 95dd3c62. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:32 96      TSLA: OrderID: 95dd3c62 fully executed
+2021-07-04 23:31:32 96      TSLA: Buy more. Price: 801.97. Lots: 1. changeFromLastBuy: -2.17. Candle: ID:8, Time: 7:00, Close: 801.97.
+2021-07-04 23:31:32 96      TSLA: OrderID: b5517b2d. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:32 96      TSLA: Morning closing. Close price: 824.1. Lots: 1. CandleChange: -0.09%. ChangeFromCandleHigh: -0.10%. Profit: 4.38(0.53%). Candle: ID:630, Time: 7:05, Close: 824.1
+2021-07-04 23:31:32 96      TSLA: OrderID: bf496011. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:32 96      TSLA: OrderID: b5517b2d automatically canceling...
+2021-07-04 23:31:32 96      TSLA: OrderID: bf496011 fully executed
+2021-07-04 23:31:32 96      OrderID: b5517b2d successfully canceled
+2021-07-04 23:31:33 12      TSM_BBG000BD8ZK0_2021-01-28
+2021-07-04 23:31:33 18      TSM: BuyPending. Strategy: MorningOpenStrategy2. Price: 117.05. Lots: 2. ChangeOpenToCurrent: -4.04. ChangePrevCloseToCurrent: -4.04. Candle: ID:698, Time: 7:55, Close: 117.05.
+2021-07-04 23:31:33 18      TSM: OrderID: 5df23a70. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:33 18      TSM: OrderID: 5df23a70 fully executed
+2021-07-04 23:31:33 18      TSM: Buy more. Price: 114. Lots: 2. changeFromLastBuy: -2.61. Candle: ID:723, Time: 7:55, Close: 114.
+2021-07-04 23:31:33 18      TSM: OrderID: 1a0b83aa. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:33 18      TSM: OrderID: 1a0b83aa fully executed
+2021-07-04 23:31:33 18      TSM: Morning closing. Close price: 117.05. Lots: 4. CandleChange: -0.01%. ChangeFromCandleHigh: -0.01%. Profit: 1.53(1.32%). Candle: ID:865, Time: 8:00, Close: 117.05
+2021-07-04 23:31:33 18      TSM: OrderID: 99648b4b. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:33 18      TSM: OrderID: 99648b4b partially executed. Executed lots: 3. OrderStatus: 3/4 lots
+2021-07-04 23:31:33 18      TSM: OrderID: 99648b4b fully executed
+2021-07-04 23:31:33 22      TSN_BBG000DKCC19_2021-01-28
+2021-07-04 23:31:33 23      TTD_BBG00629NGT2_2021-01-28
+2021-07-04 23:31:33 25      TTM_BBG000PVGDH9_2021-01-28
+2021-07-04 23:31:33 27      TTMI_BBG000BYQ0B1_2021-01-28
+2021-07-04 23:31:33 28      TTWO_BBG000BS1YV5_2021-01-28
+2021-07-04 23:31:33 30      TWLO_BBG0029ZX840_2021-01-28
+2021-07-04 23:31:33 32      TWNK_BBG00B6KGNN1_2021-01-28
+2021-07-04 23:31:33 33      TWOU_BBG001KS9450_2021-01-28
+2021-07-04 23:31:33 34      TWTR_BBG000H6HNW3_2021-01-28
+2021-07-04 23:31:33 41      TXN_BBG000BVV7G1_2021-01-28
+2021-07-04 23:31:33 45      TXRH_BBG000PSJMV7_2021-01-28
+2021-07-04 23:31:33 46      UA_BBG009DTD8H2_2021-01-28
+2021-07-04 23:31:33 48      UAA_BBG000BXM6V2_2021-01-28
+2021-07-04 23:31:33 49      UAL_BBG000M65M61_2021-01-28
+2021-07-04 23:31:33 56      UBER_BBG002B04MT8_2021-01-28
+2021-07-04 23:31:33 63      UDR_BBG000C41023_2021-01-28
+2021-07-04 23:31:33 65      ULTA_BBG00FWQ4VD6_2021-01-28
+2021-07-04 23:31:33 68      UNH_BBG000CH5208_2021-01-28
+2021-07-04 23:31:33 69      UNM_BBG000BW2QX0_2021-01-28
+2021-07-04 23:31:33 70      UNM: BuyPending. Strategy: MorningOpenStrategy2. Price: 23.94. Lots: 10. ChangeOpenToCurrent: -4.05. ChangePrevCloseToCurrent: -4.05. Candle: ID:12, Time: 7:05, Close: 23.94.
+2021-07-04 23:31:33 70      UNM: OrderID: 90e20fa3. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:33 70      UNM: Cancel order. Did not bought at market open. Candle: ID:14, Time: 7:10, Close: 24.18
+2021-07-04 23:31:33 70      OrderID: 90e20fa3 successfully canceled
+2021-07-04 23:31:33 70      UNM: BuyPending. Strategy: MorningOpenStrategy2. Price: 23.92. Lots: 10. ChangeOpenToCurrent: -4.13. ChangePrevCloseToCurrent: -4.13. Candle: ID:26, Time: 7:25, Close: 23.92.
+2021-07-04 23:31:33 70      UNM: OrderID: 4591676b. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:33 70      UNM: OrderID: 4591676b partially executed. Executed lots: 1. OrderStatus: 1/10 lots
+2021-07-04 23:31:33 70      UNM: Morning closing by timeout. Close price: 23.94. Lots: 1. Profit: 0.02(0.08%). Candle: ID:33, Time: 7:55, Close: 23.94
+2021-07-04 23:31:33 70      UNM: OrderID: 6e41448c. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:33 70      UNM: OrderID: 4591676b automatically canceling...
+2021-07-04 23:31:33 70      OrderID: 4591676b successfully canceled
+2021-07-04 23:31:33 70      UNM: OrderID: 6e41448c fully executed
+2021-07-04 23:31:33 71      UNP_BBG000BW3299_2021-01-28
+2021-07-04 23:31:33 73      UNVR_BBG000BDHD29_2021-01-28
+2021-07-04 23:31:33 74      UNVR: SPYKE!. Candle: ID:3, Time: 14:35, Close: 19.28
+2021-07-04 23:31:33 74      UPS_BBG000L9CV04_2021-01-28
+2021-07-04 23:31:33 75      UPWK_BBG00FBJ6390_2021-01-28
+2021-07-04 23:31:33 77      URBN_BBG000BL79J3_2021-01-28
+2021-07-04 23:31:33 78      USB_BBG000FFDM15_2021-01-28
+2021-07-04 23:31:33 82      USFD_BBG00C6H6D40_2021-01-28
+2021-07-04 23:31:33 83      V_BBG000PSKYX7_2021-01-28
+2021-07-04 23:31:33 90      VALE_BBG000BN5LG7_2021-01-28
+2021-07-04 23:31:33 92      VFC_BBG000BWCKB6_2021-01-28
+2021-07-04 23:31:33 95      VG_BBG000BRB5D9_2021-01-28
+2021-07-04 23:31:33 95      VG: SPYKE!. Candle: ID:54, Time: 13:10, Close: 12.76
+2021-07-04 23:31:33 96      VIAC_BBG000C496P7_2021-01-28
+2021-07-04 23:31:33 99      VIAC: BuyPending. Strategy: MorningOpenStrategy. Price: 52.18. Lots: 4. ChangeOpenToCurrent: -5.98. ChangePrevCloseToCurrent: -6.10. Candle: ID:4, Time: 7:00, Close: 52.18.
+2021-07-04 23:31:33 99      VIAC: OrderID: d809cc7a. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:33 99      VIAC: Cancel order. Did not bought at market open. Candle: ID:6, Time: 7:05, Close: 52.85
+2021-07-04 23:31:33 99      OrderID: d809cc7a successfully canceled
+2021-07-04 23:31:33 99      VIAC: BuyPending. Strategy: MorningOpenStrategy2. Price: 53.13. Lots: 4. ChangeOpenToCurrent: -4.39. ChangePrevCloseToCurrent: -4.39. Candle: ID:7, Time: 7:05, Close: 53.13.
+2021-07-04 23:31:33 99      VIAC: OrderID: 8156a06e. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:33 99      VIAC: OrderID: 8156a06e partially executed. Executed lots: 1. OrderStatus: 1/4 lots
+2021-07-04 23:31:33 99      VIAC: OrderID: 8156a06e partially executed. Executed lots: 2. OrderStatus: 3/4 lots
+2021-07-04 23:31:33 99      VIAC: OrderID: 8156a06e fully executed
+2021-07-04 23:31:33 99      VIAC: Morning closing by timeout. Close price: 52.18. Lots: 4. Profit: -0.95(-1.79%). Candle: ID:21, Time: 7:25, Close: 52.18
+2021-07-04 23:31:33 99      VIAC: OrderID: 3395c62d. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:33 99      VIAC: OrderID: 3395c62d partially executed. Executed lots: 2. OrderStatus: 2/4 lots
+2021-07-04 23:31:33 99      VIAC: OrderID: 3395c62d partially executed. Executed lots: 1. OrderStatus: 3/4 lots
+2021-07-04 23:31:33 99      VIAC: OrderID: 3395c62d fully executed
+2021-07-04 23:31:34 01      VIPS_BBG002NLDLV8_2021-01-28
+2021-07-04 23:31:34 03      VLO_BBG000BBGGQ1_2021-01-28
+2021-07-04 23:31:34 06      VNO_BBG000BWHD54_2021-01-28
+2021-07-04 23:31:34 07      VRSK_BBG000BCZL41_2021-01-28
+2021-07-04 23:31:34 09      VRTX_BBG000C1S2X2_2021-01-28
+2021-07-04 23:31:34 11      VTR_BBG000FRVHB9_2021-01-28
+2021-07-04 23:31:34 12      VZ_BBG000HS77T5_2021-01-28
+2021-07-04 23:31:34 16      W_BBG001B17MV2_2021-01-28
+2021-07-04 23:31:34 18      WB_BBG0065XPGX9_2021-01-28
+2021-07-04 23:31:34 19      WBA_BBG000BWLMJ4_2021-01-28
+2021-07-04 23:31:34 23      WDAY_BBG000VC0T95_2021-01-28
+2021-07-04 23:31:34 25      WDC_BBG000BWNFZ9_2021-01-28
+2021-07-04 23:31:34 27      WDC: SPYKE!. Candle: ID:8563, Time: 21:00, Close: 56.76
+2021-07-04 23:31:34 28      WELL_BBG000BKY1G5_2021-01-28
+2021-07-04 23:31:34 29      WERN_BBG000BWPP85_2021-01-28
+2021-07-04 23:31:34 31      WFC_BBG000BWQFY7_2021-01-28
+2021-07-04 23:31:34 35      WLTW_BBG000DB3KT1_2021-01-28
+2021-07-04 23:31:34 36      WMB_BBG000BWVCP8_2021-01-28
+2021-07-04 23:31:34 38      WMT_BBG000BWXBC2_2021-01-28
+2021-07-04 23:31:34 41      WORK_BBG007G7V505_2021-01-28
+2021-07-04 23:31:34 44      WRK_BBG008NXC572_2021-01-28
+2021-07-04 23:31:34 46      WSC_BBG00B0FS947_2021-01-28
+2021-07-04 23:31:34 47      WU_BBG000BB5373_2021-01-28
+2021-07-04 23:31:34 48      WY_BBG000BX3BL3_2021-01-28
+2021-07-04 23:31:34 50      WYNN_BBG000LD9JQ8_2021-01-28
+2021-07-04 23:31:34 53      XEL_BBG000BCTQ65_2021-01-28
+2021-07-04 23:31:34 55      XLNX_BBG000C0F570_2021-01-28
+2021-07-04 23:31:34 58      XOM_BBG000GZQ728_2021-01-28
+2021-07-04 23:31:34 64      XRAY_BBG000BX57K1_2021-01-28
+2021-07-04 23:31:34 65      XRX_BBG00NNG2ZJ8_2021-01-28
+2021-07-04 23:31:34 67      YUM_BBG000BH3GZ2_2021-01-28
+2021-07-04 23:31:34 69      YUMC_BBG00B8N0HG1_2021-01-28
+2021-07-04 23:31:34 70      YY_BBG003H0XV18_2021-01-28
+2021-07-04 23:31:34 71      Z_BBG009NRSWJ4_2021-01-28
+2021-07-04 23:31:34 74      ZGNX_BBG000VDC3G9_2021-01-28
+2021-07-04 23:31:34 75      ZION_BBG000BX9WL1_2021-01-28
+2021-07-04 23:31:34 77      ZM_BBG0042V6JM8_2021-01-28
+2021-07-04 23:31:34 81      ZS_BBG003338H34_2021-01-28
+2021-07-04 23:31:34 84      ZYNE_BBG007BBS8B7_2021-01-28
+2021-07-04 23:31:34 88      ZYXI_BBG000BJBXZ2_2021-01-28
+2021-07-04 23:31:34 90      ZYXI: BuyPending. Strategy: MorningOpenStrategy. Price: 19.75. Lots: 12. ChangeOpenToCurrent: -1.20. ChangePrevCloseToCurrent: -3.66. Candle: ID:4, Time: 7:00, Close: 19.75.
+2021-07-04 23:31:34 90      ZYXI: OrderID: 79ca70d7. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:34 90      ZYXI: OrderID: 79ca70d7 partially executed. Executed lots: 9. OrderStatus: 9/12 lots
+2021-07-04 23:31:34 90      ZYXI: OrderID: 79ca70d7 fully executed
+2021-07-04 23:31:34 90      ZYXI: Morning closing. Close price: 20.22. Lots: 12. CandleChange: -0.34%. ChangeFromCandleHigh: -0.54%. Profit: 0.47(2.38%). Candle: ID:147, Time: 7:05, Close: 20.22
+2021-07-04 23:31:34 90      ZYXI: OrderID: f04f9d8f. PlacedOrder. Status: New. RejectReason: 
+2021-07-04 23:31:34 90      ZYXI: OrderID: f04f9d8f partially executed. Executed lots: 3. OrderStatus: 3/12 lots
+2021-07-04 23:31:34 90      ZYXI: OrderID: f04f9d8f partially executed. Executed lots: 8. OrderStatus: 11/12 lots
+2021-07-04 23:31:34 90      ZYXI: OrderID: f04f9d8f fully executed
+2021-07-04 23:31:34 91      Total candles read: 4773235
+2021-07-04 23:31:34 91      Start DisposeAsync...
+2021-07-04 23:31:34 91      Trade statistic. Total/Pos/Neg/(ratio): 56/34/16/(2.12); Profit: 144.89/2.59; Volume: 0; MaxVolume: 3630.75; Commission: 12.952465;
+2021-07-04 23:31:34 91      BaseBot::DisposeAsync...
+2021-07-04 23:31:34 91      BaseBot::DisposeAsync done!
+2021-07-04 23:31:34 91      End DisposeAsync...
