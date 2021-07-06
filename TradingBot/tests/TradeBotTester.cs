@@ -343,6 +343,7 @@ namespace TradingBot
             // re-order when did not luck to execute order
             Test("EQT_BBG000BHZ5J9_2020-12-28", 0, 0.0m);
 
+            Test("ATRC_BBG000BL6CB5_2021-07-06", 0, 0.0m); // should not buy due to low volumes
 
             _basePath = basePath;
         }
@@ -513,12 +514,11 @@ namespace TradingBot
         {
             _testNameFilter = "";
 
-            RunPositiveTestsMorningOpenStrategy();
-            RunNegativeTestsMorningOpenStrategy();
+            //RunPositiveTestsMorningOpenStrategy();
+            //RunNegativeTestsMorningOpenStrategy();
 
             //Test("ACH_BBG000CMRVH1_2021-03-12", 1, 0.0m);
             //Test("TOT_BBG000CHZ857_2020-12-21", 1, 0.0m);
-            Test("", 1, 0.0m);
             Test("", 1, 0.0m);
             Test("", 1, 0.0m);
             Test("", 1, 0.0m);

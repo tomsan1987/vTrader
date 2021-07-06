@@ -63,6 +63,9 @@ namespace TradingBot
             }
             else if (candle.Time.Hour <= 7)
             {
+                if (!CheckVolumes(instrument.Ticker, quotes, candle))
+                    return IStrategy.StrategyResultType.NoOp;
+
                 var startPrice = (tradeData.PrevDayClosePrice > 0) ? tradeData.PrevDayClosePrice : candles[0].Close;
                 if (tradeData.Positions.Count > 0)
                     startPrice = tradeData.Positions[tradeData.Positions.Count - 1].Price;
@@ -90,11 +93,7 @@ namespace TradingBot
             var candles = quotes.Candles;
             var candle = candles[candles.Count - 1];
 
-            if (quotes.Raw.Count <= 4)
-                return IStrategy.StrategyResultType.NoOp;
-
-            bool isLiquid = (_liquidInstruments == null) ? false : _liquidInstruments.Contains(instrument.Ticker);
-            if (!isLiquid && (quotes.Raw.Count < 10 || candle.Volume < 100))
+            if (!CheckVolumes(instrument.Ticker, quotes, candle))
                 return IStrategy.StrategyResultType.NoOp;
 
             var currCandleChange = Helpers.GetChangeInPercent(candle);
@@ -306,6 +305,15 @@ namespace TradingBot
             }
 
             return false;
+        }
+
+        private bool CheckVolumes(string ticker, Quotes quotes, CandlePayload candle)
+        {
+            if (quotes.Raw.Count <= 4)
+                return false;
+
+            bool isLiquid = (_liquidInstruments == null) ? false : _liquidInstruments.Contains(ticker);
+            return (isLiquid || (quotes.Raw.Count >= 10 && candle.Volume >= 50));
         }
     }
 }
