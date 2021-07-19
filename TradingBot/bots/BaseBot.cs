@@ -251,6 +251,9 @@ namespace TradingBot
 
         protected void Connect()
         {
+            if (_settings.Token == null || _settings.Token.Length == 0)
+                throw new Exception("Token could not be empty!");
+
             if (_settings.FakeConnection)
             {
                 _fakeConnection?.Dispose();

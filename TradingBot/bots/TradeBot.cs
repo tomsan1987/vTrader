@@ -288,6 +288,12 @@ namespace TradingBot
             {
                 Logger.Write("OpenApiException: " + e.Message);
 
+                if (e.Message.Contains("OrderNotAvailable"))
+                {
+                    Logger.Write("{0}: reset trade data!", _figiToInstrument[figi].Ticker);
+                    _tradeData[figi].Reset(false);
+                }
+
                 // seems timeout, disable operations for 15 seconds
                 if (e.HttpStatusCode == System.Net.HttpStatusCode.TooManyRequests)
                     _lastTimeOut = DateTime.UtcNow;
@@ -515,8 +521,8 @@ namespace TradingBot
 
                     if (e.Message.Contains("Cannot find order by id") || e.Message.Contains("OrderCancelError"))
                     {
-                        _lastTimeOut = DateTime.UtcNow;
-                        Logger.Write("Operations disabled for some time...");
+                        result = true;
+                        Logger.Write("OrderID: {0} unable to cancel: {1}. Will think order already canceled", orderID, message);
                     }
                 }
             }

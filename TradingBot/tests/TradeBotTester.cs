@@ -517,14 +517,12 @@ namespace TradingBot
             //RunPositiveTestsMorningOpenStrategy();
             //RunNegativeTestsMorningOpenStrategy();
 
-            //Test("ACH_BBG000CMRVH1_2021-03-12", 1, 0.0m);
-            //Test("TOT_BBG000CHZ857_2020-12-21", 1, 0.0m);
-            Test("", 1, 0.0m);
-            Test("", 1, 0.0m);
-            Test("", 1, 0.0m);
-            Test("", 1, 0.0m);
-            Test("", 1, 0.0m);
-            Test("", 1, 0.0m);
+            //Test("SHI_BBG000BHR1H9_2021-06-18", 0, 0.0m); // TODO: do not buy second time
+            //Test("HNP_BBG000BX5YM0_2021-06-30", 0, 0.0m); // TODO: do not buy second time
+            //Test("TAL_BBG0016XJ8S0_2021-06-18", 0, 0.0m); // TODO: should by more!
+            //Test("ICPT_BBG001J1QN87_2021-06-18", 0, 0.0m); // TODO: did not sold morning
+            //Test("PUMP_BBG00FYCQ352_2021-06-28", 1, 0.0m); // TODO: did not sold morning
+            //Test("BTAI_BBG00K20GVD2_2021-06-30", 1, 0.0m); // TODO: did not sold morning
             Test("", 1, 0.0m);
             Test("", 1, 0.0m);
             Test("", 1, 0.0m);
