@@ -518,7 +518,7 @@ namespace TradingBot
         //      - remove previous day close data if it repeated some times at the beginning
         //      - re-numerate candles 0...n
         //      - remove wrong stored data from the next day
-        // Param: CandlesPath - path to folder with candles in csv format. Iterating with sub folders
+        // Param: candlesPath - path to folder with candles in csv format. Iterating with sub folders
         //        OutputFolder[optional] - path to store result data
         public static void CorrectHistoryData(string candlesPath, string outputFolder)
         {
@@ -606,6 +606,21 @@ namespace TradingBot
             var name = Enum.GetName(enumType, type);
             var enumMemberAttribute = ((EnumMemberAttribute[])enumType.GetField(name).GetCustomAttributes(typeof(EnumMemberAttribute), true)).Single();
             return enumMemberAttribute.Value;
+        }
+
+        // Check whether 01:00 UTC of a next day occur to restart the Bot
+        // Param: startDate - Date time when Bot was run
+        public static bool IsNextDay(DateTime startDate)
+        {
+            if (startDate.Hour < 1)
+                return DateTime.UtcNow.Hour >= 1;
+
+            var nextDay = startDate;
+            nextDay = nextDay.AddSeconds(-nextDay.Second);
+            nextDay = nextDay.AddMinutes(-nextDay.Minute);
+            nextDay = nextDay.AddHours(25 - nextDay.Hour);
+
+            return DateTime.UtcNow >= nextDay;
         }
     }
 }

@@ -28,7 +28,7 @@ namespace TradingBot
                             {
                                 try
                                 {
-                                    if (bot == null || (startTime.Day < DateTime.UtcNow.Day && DateTime.UtcNow.Hour >= 1))
+                                    if (bot == null || Utils.IsNextDay(startTime))
                                     {
                                         startTime = DateTime.UtcNow;
                                         if (bot != null)
@@ -59,7 +59,7 @@ namespace TradingBot
                             {
                                 try
                                 {
-                                    if (bot == null || (startTime.Day < DateTime.UtcNow.Day && DateTime.UtcNow.Hour >= 1))
+                                    if (bot == null || Utils.IsNextDay(startTime))
                                     {
                                         startTime = DateTime.UtcNow;
                                         if (bot != null)
